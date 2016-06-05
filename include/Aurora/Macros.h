@@ -1,0 +1,4 @@
+namespace AuroraMacros
+{
+    bool Debug;
+}

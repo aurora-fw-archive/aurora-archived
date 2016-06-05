@@ -1,5 +1,3 @@
-#include <Aurora/InfoRAM.h>
-
 #ifdef _WIN32
 #include <windows.h>
 #elif __linux__
@@ -8,6 +6,8 @@
 // #include <sys/sysctl.h>
 #include <sys/vmmeter.h>
 #endif
+
+#include <Aurora/InfoRAM.h>
 
 namespace InfoRAM
 {
@@ -36,7 +36,7 @@ namespace InfoRAM
         #ifdef __linux
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
-        return ((memInfo.totalram - memInfo.freeram) + (memInfo.totalswap - memInfo.freeswap)) * mem_temp.mem_unit;
+        return ((mem_temp.totalram - mem_temp.freeram) + (mem_temp.totalswap - mem_temp.freeswap)) * mem_temp.mem_unit;
         #elif _WIN32
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
@@ -54,9 +54,9 @@ namespace InfoRAM
     unsigned int getFreeVirtualMemory()
     {
         #ifdef __linux__
-        struct sysinfo mem_t emp;
+        struct sysinfo mem_temp;
         sysinfo (&mem_temp);
-        return ((memInfo.totalram + memInfo.totalswap) - ((memInfo.totalram - memInfo.freeram) + (memInfo.totalswap - memInfo.freeswap))) * mem_temp.mem_unit;
+        return ((mem_temp.totalram + mem_temp.totalswap) - ((mem_temp.totalram - mem_temp.freeram) + (mem_temp.totalswap - mem_temp.freeswap))) * mem_temp.mem_unit;
         #elif _WIN32
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);

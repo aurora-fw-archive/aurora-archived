@@ -1,12 +1,18 @@
 #ifndef _AURORA_SHELLLOG
 #define _AURORA_SHELLLOG
 
-namespace ShellLog 
+#include <iostream>
+
+namespace AuroraShell
 {
-    void Error (std::string body, bool newline = true);
-    void Warning (std::string body, bool newline = true);
-    void Notice (std::string body, bool newline = true);
-    void Information (std::string body, bool newline = true);
+    struct Log
+    {
+    public:
+        static void Error (std::string body, bool newline = true);
+        static void Warning (std::string body, bool newline = true);
+        static void Notice (std::string body, bool newline = true);
+        static void Information (std::string body, bool newline = true);
+    };
 }
 
 #endif // _AURORA_SHELLLOG

@@ -1,26 +1,35 @@
 #ifndef _AURORA_GUIWINDOW
 #define _AURORA_GUIWINDOW
 
-extern struct Display;
-extern struct Window;
-extern struct XEvent;
+#ifdef __linux__
+#include <X11/Xlib.h>
+#endif
+#include <iostream>
+
+#include <Aurora/Typedef.h>
+#include <Aurora/GUIEvent.h>
 
 struct GUIWindow
 {
 public:
-    GUIWindow (std::string title, unsigned int width, unsigned int height);
+    GUIWindow (std::string title = "Aurora Window",
+               unsigned int width = 200, unsigned int height = 200,
+               void (*mainFunction)() = []{});
     ~GUIWindow();
     
     void SetEvents(unsigned long ev);
     void SetTitle(std::string title);
     void SignalEvent(void (*signalEventFunction)(), int eventType);
+    void StandardMain();
     
 protected:
     //Display, Window and Event declarations
+    #ifdef __linux__
     Display *XDisplay;
     Window XWindow;
     Window WindowParent;
     XEvent WindowEvent;
+    #endif
     
     // Title Variable
     std::string WindowTitle;
@@ -43,8 +52,6 @@ protected:
     unsigned long WindowBorder;
     unsigned long WindowBackground;
 
-private:
-    void LoopEvent(void (*signalEventFunction)(), int eventType);
 };
 
 #endif // _AURORA_GUIWINDOW

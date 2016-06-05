@@ -1,26 +1,26 @@
 #include <iostream>
 #include <Aurora/ShellLog.h>
 
-namespace ShellLog
+namespace AuroraShell
 {
-    void Error (std::string body, bool newline)
+    void Log::Error (std::string body, bool newline)
     {
         std::cout << "[ERROR] " << body ;
-        if(newline) std::endl;
+        if(newline) std::cout << std::endl;
     }
-    void Warning (std::string body, bool newline)
+    void Log::Warning (std::string body, bool newline)
     {
         std::cout << "[WARNING] " << body ;
-        if(newline) std::endl;
+        if(newline) std::cout << std::endl;
     }
-    void Notice (std::string body, bool newline)
+    void Log::Notice (std::string body, bool newline)
     {
         std::cout << "[NOTICE] " << body ;
-        if(newline) std::endl;
+        if(newline) std::cout << std::endl;
     }
-    void Information (std::string body, bool newline)
+    void Log::Information (std::string body, bool newline)
     {
         std::cout << "[INFORMATION] " << body ;
-        if(newline) std::endl;
+        if(newline) std::cout << std::endl;
     }
 }
