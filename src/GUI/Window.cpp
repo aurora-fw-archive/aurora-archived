@@ -1,101 +1,54 @@
-#ifdef _WIN32
-#include <windows.h>
-#elif __linux__
-#include <X11/Xlib.h>
-#else
+// ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
+// ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
+// ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
+//  Copyright (c) 2016 - Luís Ferreira. All right reserved
+//  More information in: https://github.com/ljmf00/ (Github Page)
+
 #include <gtk/gtk.h>
-#endif
-#include <Aurora/ShellLog.h>
 #include <Aurora/GUIWindow.h>
-#include <Aurora/GUIEvent.h>
 
-namespace AuroraMacros {
-    extern bool Debug;
+//Window Types
+const arflags_t GUIWindow::ToplevelWindow = GTK_WINDOW_TOPLEVEL;
+const arflags_t GUIWindow::PopupWindow = GTK_WINDOW_POPUP;
+
+//Window Positions
+const arflags_t GUIWindow::NonePosition = GTK_WIN_POS_NONE;
+const arflags_t GUIWindow::CenterPosition = GTK_WIN_POS_CENTER;
+const arflags_t GUIWindow::MousePosition = GTK_WIN_POS_MOUSE;
+const arflags_t GUIWindow::AlwaysCenterPosition = GTK_WIN_POS_CENTER_ALWAYS;
+const arflags_t GUIWindow::CenterParentPosition = GTK_WIN_POS_CENTER_ON_PARENT;
+
+GUIWindow::GUIWindow(std::string name, int width, int height, int pos, arflags_t type)
+{
+    Window = gtk_window_new((GtkWindowType) type);
+    setTitle(name);
+    setPos(pos);
+    gtk_window_set_default_size(GTK_WINDOW(Window), width, height);
+    connect("destroy", gtk_main_quit);
+    show();
 }
 
-
-GUIWindow::GUIWindow (std::string title,
-                      unsigned int width, unsigned int height,
-                      void (*mainFunction)())
+void GUIWindow::setTitle(std::string title) 
 {
-    //Store window size
-    WindowWidth = width;
-    WindowHeight = height;
-    
-    WindowBorderX = 0;
-    WindowBorderY = 0;
-    WindowBorderWidth = 1;
-    
-    
-    #ifdef __linux__
-    //Open connection with the X Server
-    if(AuroraMacros::Debug) AuroraShell::Log::Information("Opening connection with the X Server");
-    XDisplay = XOpenDisplay(NULL);
-    if (XDisplay == NULL)
-    {
-        AuroraShell::Log::Error("Can't open the display");
-        return;
-    }
-    //Connected message
-    if(AuroraMacros::Debug) AuroraShell::Log::Information("Connected with the X Server");
-    
-    //Store some information
-    XScreen = DefaultScreen(XDisplay);
-    WindowParent = RootWindow(XDisplay, XScreen);
-    WindowBorder = BlackPixel(XDisplay, XScreen);
-    WindowBackground = WhitePixel(XDisplay, XScreen);
-    
-    //Create the window
-    if(AuroraMacros::Debug) AuroraShell::Log::Information("Creating the window...");
-    XWindow = XCreateSimpleWindow(XDisplay, WindowParent, 
-                                  WindowBorderX, WindowBorderY, 
-                                  WindowWidth, WindowHeight, 
-                                  WindowBorderWidth,
-                                  WindowBorder, WindowBackground);
-    #endif
-    
-    // Select interested events
-    SetEvents(GUIEvent::EventExposure);
-    
-    #ifdef __linux__
-    // Show the window
-    XMapWindow(XDisplay, XWindow);
-    #endif
-    
-    // Set the title
-    SetTitle(title);
-
-    SignalEvent(mainFunction, GUIEvent::TypeExpose);
+    gtk_window_set_title(GTK_WINDOW(Window), title.c_str());
 }
 
-GUIWindow::~GUIWindow()
+void GUIWindow::setPos(int pos)
 {
-    #ifdef __linux__
-    XCloseDisplay(XDisplay);
-    #endif
+    gtk_window_set_position (GTK_WINDOW(Window), (GtkWindowPosition) pos);
 }
 
-void GUIWindow::SetEvents(unsigned long ev)
+void GUIWindow::connect(std::string detailedSignal, void (*signalFunction)(), void* signalData)
 {
-    XSelectInput(XDisplay, XWindow, ev);
+    g_signal_connect(Window, detailedSignal.c_str(), G_CALLBACK(signalFunction), signalData);
 }
 
-void GUIWindow::SignalEvent(void (*signalEventFunction)(), int eventType)
+void GUIWindow::show(void)
 {
-    for(;;)
-    {
-        while (XPending(XDisplay))
-        {
-            XNextEvent(XDisplay, &WindowEvent);
-            if (WindowEvent.type == eventType) 
-            {
-                (*signalEventFunction)();
-            }
-        }
-    }
+    gtk_widget_show_all(Window);
 }
 
-void GUIWindow::SetTitle(std::string title)
+void GUIWindow::start(void)
 {
-    XStoreName(XDisplay, XWindow, title.c_str());
+    gtk_main();
 }

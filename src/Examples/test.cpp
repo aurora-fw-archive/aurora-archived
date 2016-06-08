@@ -1,22 +1,21 @@
+// ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
+// ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
+// ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
+//  Copyright (c) 2016 - Luís Ferreira. All right reserved
+//  More information in: https://github.com/ljmf00/ (Github Page)
+
+#include <Aurora/GUIApplication.h>
 #include <Aurora/GUIWindow.h>
-#include <Aurora/Application.h>
 using namespace std;
 
-arslot_t slot_MyWindow_on_open();
-
-arslot_t AuroraMain()
+arslot_t slot_MyApp_on_open()
 {
-	GUIWindow *MyWindow = new GUIWindow("Test Window", 800, 600, slot_MyWindow_on_open);
-}
-
-arslot_t slot_MyWindow_on_open()
-{
-	GUIWindow *MyOtherWindow = new GUIWindow("Other Test Window", 600, 800);
+	GUIWindow *FirstWindow = new GUIWindow("First Window", 800, 600, GUIWindow::NonePosition, GUIWindow::ToplevelWindow);
+	FirstWindow->start();
 }
 
 int main(int argc, char * argv[])
 {
-	AuroraApplication *MyApp = new AuroraApplication(AuroraMain, true);
-	delete MyApp;
-	return 1;
+	GUIApplication *MyApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyApp_on_open, argc, argv);
+	return MyApp->AppStatus;
 }

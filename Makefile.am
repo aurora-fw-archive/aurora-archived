@@ -5,14 +5,15 @@
 #  Copyright (c) 2016 - Luís Ferreira. All right reserved
 #  More information in: https://github.com/ljmf00/ (Github Page)
 
-AM_CXXFLAGS = -Wall -Wextra -std=c++14 -lX11 -lGL -lGLU -lglut -I../include/
-lib_LTLIBRARIES = ../bin/libaurora.la
-libaurora_la_SOURCES = ../src/GUI/Event.cpp \
+AM_CXXFLAGS = -Wall -Wextra -std=c++14 -lGL -lGLU -lglut -I../include/ `pkg-config --cflags --libs gtk+-3.0`
+lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
+__top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Event.cpp \
                        ../src/GUI/Window.cpp \
                        ../src/Info/RAM.cpp \
                        ../src/Shell/Log.cpp \
-                       ../src/Aurora/Application.cpp
-
+                       ../src/Aurora/Application.cpp \
+                       ../src/GUI/Application.cpp
+                       
 # Headers
 cincludedir = $(includedir)/Aurora
 cinclude_HEADERS = ../include/Aurora/GUIEvent.h \
@@ -21,4 +22,5 @@ cinclude_HEADERS = ../include/Aurora/GUIEvent.h \
                    ../include/Aurora/ShellLog.h \
                    ../include/Aurora/Application.h \
                    ../include/Aurora/Typedef.h \
-                   ../include/Aurora/Macros.h
+                   ../include/Aurora/Macros.h \
+                   ../include/Aurora/GUIApplication.h

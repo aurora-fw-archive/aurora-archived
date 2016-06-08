@@ -138,12 +138,13 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(cincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libaurora_la_LIBADD =
+__top_builddir_____bin_libaurora_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libaurora_la_OBJECTS = ../src/GUI/Event.lo ../src/GUI/Window.lo \
-	../src/Info/RAM.lo ../src/Shell/Log.lo \
-	../src/Aurora/Application.lo
-libaurora_la_OBJECTS = $(am_libaurora_la_OBJECTS)
+am___top_builddir_____bin_libaurora_la_OBJECTS = ../src/GUI/Event.lo \
+	../src/GUI/Window.lo ../src/Info/RAM.lo ../src/Shell/Log.lo \
+	../src/Aurora/Application.lo ../src/GUI/Application.lo
+__top_builddir_____bin_libaurora_la_OBJECTS =  \
+	$(am___top_builddir_____bin_libaurora_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -182,8 +183,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(libaurora_la_SOURCES)
-DIST_SOURCES = $(libaurora_la_SOURCES)
+SOURCES = $(__top_builddir_____bin_libaurora_la_SOURCES)
+DIST_SOURCES = $(__top_builddir_____bin_libaurora_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -353,13 +354,14 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CXXFLAGS = -Wall -Wextra -std=c++14 -lX11 -lGL -lGLU -lglut -I../include/
-lib_LTLIBRARIES = libaurora.la
-libaurora_la_SOURCES = ../src/GUI/Event.cpp \
+AM_CXXFLAGS = -Wall -Wextra -std=c++14 -lGL -lGLU -lglut -I../include/ `pkg-config --cflags --libs gtk+-3.0`
+lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
+__top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Event.cpp \
                        ../src/GUI/Window.cpp \
                        ../src/Info/RAM.cpp \
                        ../src/Shell/Log.cpp \
-                       ../src/Aurora/Application.cpp
+                       ../src/Aurora/Application.cpp \
+                       ../src/GUI/Application.cpp
 
 
 # Headers
@@ -370,7 +372,8 @@ cinclude_HEADERS = ../include/Aurora/GUIEvent.h \
                    ../include/Aurora/ShellLog.h \
                    ../include/Aurora/Application.h \
                    ../include/Aurora/Typedef.h \
-                   ../include/Aurora/Macros.h
+                   ../include/Aurora/Macros.h \
+                   ../include/Aurora/GUIApplication.h
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -494,9 +497,14 @@ clean-libLTLIBRARIES:
 	@: > ../src/Aurora/$(DEPDIR)/$(am__dirstamp)
 ../src/Aurora/Application.lo: ../src/Aurora/$(am__dirstamp) \
 	../src/Aurora/$(DEPDIR)/$(am__dirstamp)
+../src/GUI/Application.lo: ../src/GUI/$(am__dirstamp) \
+	../src/GUI/$(DEPDIR)/$(am__dirstamp)
+$(top_builddir)/../bin/$(am__dirstamp):
+	@$(MKDIR_P) $(top_builddir)/../bin
+	@: > $(top_builddir)/../bin/$(am__dirstamp)
 
-libaurora.la: $(libaurora_la_OBJECTS) $(libaurora_la_DEPENDENCIES) $(EXTRA_libaurora_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libaurora_la_OBJECTS) $(libaurora_la_LIBADD) $(LIBS)
+$(top_builddir)/../bin/libaurora.la: $(__top_builddir_____bin_libaurora_la_OBJECTS) $(__top_builddir_____bin_libaurora_la_DEPENDENCIES) $(EXTRA___top_builddir_____bin_libaurora_la_DEPENDENCIES) $(top_builddir)/../bin/$(am__dirstamp)
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(__top_builddir_____bin_libaurora_la_OBJECTS) $(__top_builddir_____bin_libaurora_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -513,6 +521,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Aurora/$(DEPDIR)/Application.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Application.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Event.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Info/$(DEPDIR)/RAM.Plo@am__quote@
@@ -546,6 +555,7 @@ mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
+	-rm -rf $(top_builddir)/../bin/.libs $(top_builddir)/../bin/_libs
 	-rm -rf .libs _libs
 	-rm -rf ../src/Aurora/.libs ../src/Aurora/_libs
 	-rm -rf ../src/GUI/.libs ../src/GUI/_libs
@@ -839,6 +849,7 @@ distclean-generic:
 	-rm -f ../src/Info/$(am__dirstamp)
 	-rm -f ../src/Shell/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ../src/Shell/$(am__dirstamp)
+	-test -z "$(top_builddir)/../bin/$(am__dirstamp)" || rm -f $(top_builddir)/../bin/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
