@@ -4,19 +4,20 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#include <Aurora/Aurora.h>
+#ifndef _AURORA_GUILABEL
+#define _AURORA_GUILABEL
 
-using namespace std;
+#include <Aurora/GUIWindow.h>
 
-arslot_t slot_MyApp_on_open()
+typedef struct _GtkWidget GtkWidget;
+
+class GUILabel
 {
-	GUIWindow *FirstWindow = new GUIWindow();
-	AuroraShell::Log::Information(to_string(AuroraInfo::RAM::getTotalVirtualMemory()));
-	FirstWindow->start();
-}
+public:
+    GUILabel(std::string name);
+    void setText(std::string text);
 
-int main(int argc, char * argv[])
-{
-	GUIApplication *MyApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyApp_on_open, argc, argv);
-	return MyApp->AppStatus;
-}
+private:
+    GtkWidget *Label;
+};
+#endif // _AURORA_GUILABEL

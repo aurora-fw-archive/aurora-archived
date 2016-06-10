@@ -8,9 +8,19 @@
 #include <Aurora/Application.h>
 #include <Aurora/Macros.h>
 
-AuroraApplication::AuroraApplication(void (*mainFucntion)(), bool debug)
+AuroraApplication::AuroraApplication(void (*mainFucntion)(), int argc, char *argv[])
 {
-    AuroraMacros::Debug = debug;
+    if(argc == 2)
+    {
+        if((std::string(argv[1]) == "--debug") || (std::string(argv[1]) == "-D"))
+        {
+            Aurora::Debug = true;
+        }
+        else
+        {
+            Aurora::Debug = false;
+        }
+    }
     (*mainFucntion)();
 }
 

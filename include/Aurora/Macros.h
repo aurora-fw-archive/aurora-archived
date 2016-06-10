@@ -7,9 +7,10 @@
 #ifndef _AURORA_MACROS
 #define _AURORA_MACROS
 
-namespace AuroraMacros
+namespace Aurora
 {
-    bool Debug;
+    extern bool Debug;
+    extern int LastID;
 }
 
 #endif // _AURORA_MACROS

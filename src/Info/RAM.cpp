@@ -15,10 +15,10 @@
 
 #include <Aurora/InfoRAM.h>
 
-namespace InfoRAM
+namespace AuroraInfo
 {
     // Total virtual memory size in bytes
-    unsigned int getTotalVirtualMemory()
+    unsigned int RAM::getTotalVirtualMemory()
     {
         #ifdef __linux__
         struct sysinfo mem_temp;
@@ -37,7 +37,7 @@ namespace InfoRAM
     }
     
     // Used virtual memory size in bytes
-    unsigned int getUsedVirtualMemory()
+    unsigned int RAM::getUsedVirtualMemory()
     {
         #ifdef __linux
         struct sysinfo mem_temp;
@@ -57,7 +57,7 @@ namespace InfoRAM
     }
     
     // Free virtual memory size in bytes
-    unsigned int getFreeVirtualMemory()
+    unsigned int RAM::getFreeVirtualMemory()
     {
         #ifdef __linux__
         struct sysinfo mem_temp;
@@ -77,7 +77,7 @@ namespace InfoRAM
     }
     
     // Total pysical memory size in bytes
-    unsigned int getTotalPhysicalMemory()
+    unsigned int RAM::getTotalPhysicalMemory()
     {
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
@@ -85,7 +85,7 @@ namespace InfoRAM
     }
     
     // Used pysical memory size in bytes
-    unsigned int getUsedPhysicalMemory()
+    unsigned int RAM::getUsedPhysicalMemory()
     {
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
@@ -93,7 +93,7 @@ namespace InfoRAM
     }
     
     // Free pysical memory size in bytes
-    unsigned int getFreePhysicalMemory()
+    unsigned int RAM::getFreePhysicalMemory()
     {
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);

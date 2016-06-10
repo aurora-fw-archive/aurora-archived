@@ -8,12 +8,14 @@
 #define _AURORA_GUIWINDOW
 
 #include <iostream>
+#include <string>
 #include <Aurora/Typedef.h>
 
 typedef struct _GtkWidget GtkWidget;
 
 class GUIWindow
 {
+friend class GUILabel;
 public:
     //Window type
     static const arflags_t ToplevelWindow;
@@ -27,6 +29,7 @@ public:
     static const arflags_t CenterParentPosition;
 
     GUIWindow(std::string name = "Aurora Window", int width = 200, int height = 200, int pos = NonePosition, arflags_t type = ToplevelWindow);
+    ~GUIWindow();
     void setTitle(std::string title);
     void setPos(arflags_t pos);
     void connect(std::string detailedSignal, void (*signalFunction)(), void* signalData = NULL);
@@ -34,6 +37,7 @@ public:
     void start(void);
 private:
     GtkWidget *Window;
+    unsigned long ID;
 };
 
 #endif // _AURORA_GUIWINDOW

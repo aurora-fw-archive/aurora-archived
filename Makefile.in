@@ -140,9 +140,11 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(cincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 __top_builddir_____bin_libaurora_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am___top_builddir_____bin_libaurora_la_OBJECTS = ../src/GUI/Event.lo \
-	../src/GUI/Window.lo ../src/Info/RAM.lo ../src/Shell/Log.lo \
-	../src/Aurora/Application.lo ../src/GUI/Application.lo
+am___top_builddir_____bin_libaurora_la_OBJECTS = ../src/GUI/Window.lo \
+	../src/Info/RAM.lo ../src/Shell/Log.lo \
+	../src/Aurora/Application.lo ../src/GUI/Application.lo \
+	../src/GUI/Label.lo ../src/Aurora/Macros.lo \
+	../src/Shell/Color.lo
 __top_builddir_____bin_libaurora_la_OBJECTS =  \
 	$(am___top_builddir_____bin_libaurora_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -356,24 +358,27 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CXXFLAGS = -Wall -Wextra -std=c++14 -lGL -lGLU -lglut -I../include/ `pkg-config --cflags --libs gtk+-3.0`
 lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
-__top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Event.cpp \
-                       ../src/GUI/Window.cpp \
-                       ../src/Info/RAM.cpp \
-                       ../src/Shell/Log.cpp \
-                       ../src/Aurora/Application.cpp \
-                       ../src/GUI/Application.cpp
-
+__top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
+                                              ../src/Info/RAM.cpp \
+                                              ../src/Shell/Log.cpp \
+                                              ../src/Aurora/Application.cpp \
+                                              ../src/GUI/Application.cpp \
+                                              ../src/GUI/Label.cpp \
+                                              ../src/Aurora/Macros.cpp \
+                                              ../src/Shell/Color.cpp
 
 # Headers
 cincludedir = $(includedir)/Aurora
-cinclude_HEADERS = ../include/Aurora/GUIEvent.h \
+cinclude_HEADERS = ../include/Aurora/Aurora.h \
                    ../include/Aurora/GUIWindow.h \
                    ../include/Aurora/InfoRAM.h \
                    ../include/Aurora/ShellLog.h \
                    ../include/Aurora/Application.h \
                    ../include/Aurora/Typedef.h \
                    ../include/Aurora/Macros.h \
-                   ../include/Aurora/GUIApplication.h
+                   ../include/Aurora/GUIApplication.h \
+                   ../include/Aurora/GUILabel.h \
+                   ../include/Aurora/ShellColor.h
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -469,8 +474,6 @@ clean-libLTLIBRARIES:
 ../src/GUI/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) ../src/GUI/$(DEPDIR)
 	@: > ../src/GUI/$(DEPDIR)/$(am__dirstamp)
-../src/GUI/Event.lo: ../src/GUI/$(am__dirstamp) \
-	../src/GUI/$(DEPDIR)/$(am__dirstamp)
 ../src/GUI/Window.lo: ../src/GUI/$(am__dirstamp) \
 	../src/GUI/$(DEPDIR)/$(am__dirstamp)
 ../src/Info/$(am__dirstamp):
@@ -499,6 +502,12 @@ clean-libLTLIBRARIES:
 	../src/Aurora/$(DEPDIR)/$(am__dirstamp)
 ../src/GUI/Application.lo: ../src/GUI/$(am__dirstamp) \
 	../src/GUI/$(DEPDIR)/$(am__dirstamp)
+../src/GUI/Label.lo: ../src/GUI/$(am__dirstamp) \
+	../src/GUI/$(DEPDIR)/$(am__dirstamp)
+../src/Aurora/Macros.lo: ../src/Aurora/$(am__dirstamp) \
+	../src/Aurora/$(DEPDIR)/$(am__dirstamp)
+../src/Shell/Color.lo: ../src/Shell/$(am__dirstamp) \
+	../src/Shell/$(DEPDIR)/$(am__dirstamp)
 $(top_builddir)/../bin/$(am__dirstamp):
 	@$(MKDIR_P) $(top_builddir)/../bin
 	@: > $(top_builddir)/../bin/$(am__dirstamp)
@@ -521,10 +530,12 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Aurora/$(DEPDIR)/Application.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/Aurora/$(DEPDIR)/Macros.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Application.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Event.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Label.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Info/$(DEPDIR)/RAM.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/Shell/$(DEPDIR)/Color.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Shell/$(DEPDIR)/Log.Plo@am__quote@
 
 .cpp.o:

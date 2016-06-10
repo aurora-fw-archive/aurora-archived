@@ -6,6 +6,8 @@
 
 #include <gtk/gtk.h>
 #include <Aurora/GUIWindow.h>
+#include <Aurora/Macros.h>
+#include <Aurora/ShellLog.h>
 
 //Window Types
 const arflags_t GUIWindow::ToplevelWindow = GTK_WINDOW_TOPLEVEL;
@@ -20,12 +22,22 @@ const arflags_t GUIWindow::CenterParentPosition = GTK_WIN_POS_CENTER_ON_PARENT;
 
 GUIWindow::GUIWindow(std::string name, int width, int height, int pos, arflags_t type)
 {
+    Aurora::LastID++;
+    unsigned long ID = ( unsigned long ) Aurora::LastID;
+        if(Aurora::Debug) AuroraShell::Log::Information("Creating new GUIWindow: " + std::to_string(ID));
     Window = gtk_window_new((GtkWindowType) type);
     setTitle(name);
     setPos(pos);
     gtk_window_set_default_size(GTK_WINDOW(Window), width, height);
+        if(Aurora::Debug) AuroraShell::Log::Information("GUIWindow " + std::to_string(ID) + " is created.");
     connect("destroy", gtk_main_quit);
     show();
+}
+
+GUIWindow::~GUIWindow()
+{
+    //Debug message
+    if(Aurora::Debug) AuroraShell::Log::Information("GUIWindow " + std::to_string(ID) + " is destroyed.");
 }
 
 void GUIWindow::setTitle(std::string title) 

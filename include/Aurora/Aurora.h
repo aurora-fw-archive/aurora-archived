@@ -4,19 +4,19 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#include <Aurora/Aurora.h>
+#pragma once
 
-using namespace std;
+// GUI
+#include <Aurora/GUIWindow.h>
+#include <Aurora/GUIApplication.h>
 
-arslot_t slot_MyApp_on_open()
-{
-	GUIWindow *FirstWindow = new GUIWindow();
-	AuroraShell::Log::Information(to_string(AuroraInfo::RAM::getTotalVirtualMemory()));
-	FirstWindow->start();
-}
+// Shell
+#include <Aurora/ShellLog.h>
 
-int main(int argc, char * argv[])
-{
-	GUIApplication *MyApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyApp_on_open, argc, argv);
-	return MyApp->AppStatus;
-}
+// Information
+
+#include <Aurora/InfoRAM.h>
+//#include <Aurora/InfoOS.h>
+//#include <Aurora/InfoGPU.h>
+//#include <Aurora/InfoCPU.h>
+//#include <Aurora/InfoSystem.h>

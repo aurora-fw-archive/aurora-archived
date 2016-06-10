@@ -9,6 +9,6 @@
 struct AuroraApplication
 {
 public:
-    AuroraApplication(void (*mainFunction)()=[]{}, bool debug = false);
+    AuroraApplication(void (*mainFucntion)(), int argc = 0, char *argv[] = NULL);
     ~AuroraApplication();
 };
