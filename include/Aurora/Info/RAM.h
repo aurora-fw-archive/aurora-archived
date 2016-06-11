@@ -4,21 +4,21 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_SHELLLOG
-#define _AURORA_SHELLLOG
+#ifndef _AURORA_INFO_RAM
+#define _AURORA_INFO_RAM
 
-#include <iostream>
-
-namespace AuroraShell
+namespace Aurora
 {
-    struct Log
+    struct InfoRAM
     {
     public:
-        static void Error (std::string body, bool newline = true);
-        static void Warning (std::string body, bool newline = true);
-        static void Notice (std::string body, bool newline = true);
-        static void Information (std::string body, bool newline = true);
+        static unsigned int getTotalVirtualMemory(); // Total virtual memory size in bytes
+        static unsigned int getUsedVirtualMemory(); // Used virtual memory size in bytes
+        static unsigned int getFreeVirtualMemory(); // Free virtual memory size in bytes
+        static unsigned int getTotalPhysicalMemory(); // Total pysical memory size in bytes
+        static unsigned int getUsedPhysicalMemory(); // Used pysical memory size in bytes
+        static unsigned int getFreePhysicalMemory(); // Free pysical memory size in bytes
     };
 }
 
-#endif // _AURORA_SHELLLOG
+#endif // _AURORA_INFO_RAM

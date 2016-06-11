@@ -5,11 +5,11 @@
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
 #include <iostream>
-#include <Aurora/ShellLog.h>
+#include <Aurora/Shell/Log.h>
 
-namespace AuroraShell
+namespace Aurora
 {
-    void Log::Error (std::string body, bool newline)
+    void ShellLog::Error (std::string body, bool newline)
     {
         #ifdef __unix__
         std::cout << "\e[1m[\e[1;31mERROR\e[0;1m] \e[0m" << body ;
@@ -18,7 +18,7 @@ namespace AuroraShell
         #endif
         if(newline) std::cout << std::endl;
     }
-    void Log::Warning (std::string body, bool newline)
+    void ShellLog::Warning (std::string body, bool newline)
     {
         #ifdef __unix__
         std::cout << "\e[1m[\e[1;33mWARNING\e[0;1m] \e[0m" << body ;
@@ -27,7 +27,7 @@ namespace AuroraShell
         #endif
         if(newline) std::cout << std::endl;
     }
-    void Log::Notice (std::string body, bool newline)
+    void ShellLog::Notice (std::string body, bool newline)
     {
         #ifdef __unix__
         std::cout << "\e[1m[\e[1;36mNOTICE\e[0;1m] \e[0m" << body ;
@@ -36,7 +36,7 @@ namespace AuroraShell
         #endif
         if(newline) std::cout << std::endl;
     }
-    void Log::Information (std::string body, bool newline)
+    void ShellLog::Information (std::string body, bool newline)
     {
         #ifdef __unix__
         std::cout << "\e[1m[\e[1;32mINFORMATION\e[0;1m] \e[0m" << body ;

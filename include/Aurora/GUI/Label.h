@@ -4,21 +4,24 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_INFORAM
-#define _AURORA_INFORAM
+#ifndef _AURORA_GUI_LABEL
+#define _AURORA_GUI_LABEL
 
-namespace AuroraInfo
+#include <Aurora/GUI/Window.h>
+
+typedef struct _GtkWidget GtkWidget;
+
+namespace Aurora
 {
-    struct RAM
+    class GUILabel
     {
     public:
-        static unsigned int getTotalVirtualMemory(); // Total virtual memory size in bytes
-        static unsigned int getUsedVirtualMemory(); // Used virtual memory size in bytes
-        static unsigned int getFreeVirtualMemory(); // Free virtual memory size in bytes
-        static unsigned int getTotalPhysicalMemory(); // Total pysical memory size in bytes
-        static unsigned int getUsedPhysicalMemory(); // Used pysical memory size in bytes
-        static unsigned int getFreePhysicalMemory(); // Free pysical memory size in bytes
+        GUILabel(std::string name);
+        void setText(std::string text);
+
+    private:
+        GtkWidget *Label;
     };
 }
 
-#endif // _AURORA_INFORAM
+#endif // _AURORA_GUI_LABEL

@@ -4,20 +4,21 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_GUILABEL
-#define _AURORA_GUILABEL
+#ifndef _AURORA_SHELL_LOG
+#define _AURORA_SHELL_LOG
 
-#include <Aurora/GUIWindow.h>
+#include <iostream>
 
-typedef struct _GtkWidget GtkWidget;
-
-class GUILabel
+namespace Aurora
 {
-public:
-    GUILabel(std::string name);
-    void setText(std::string text);
+    struct ShellLog
+    {
+    public:
+        static void Error (std::string body, bool newline = true);
+        static void Warning (std::string body, bool newline = true);
+        static void Notice (std::string body, bool newline = true);
+        static void Information (std::string body, bool newline = true);
+    };
+}
 
-private:
-    GtkWidget *Label;
-};
-#endif // _AURORA_GUILABEL
+#endif // _AURORA_SHELL_LOG

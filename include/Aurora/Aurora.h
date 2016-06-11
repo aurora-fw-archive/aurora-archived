@@ -4,19 +4,31 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
+#ifndef _AURORA_H_INCLUDE
+#define _AURORA_H_INCLUDE
+
 #pragma once
 
+// Core
+#include <Aurora/Core/Typedef.h>
+#include <Aurora/Core/Application.h>
+#include <Aurora/Core/Macros.h>
+
 // GUI
-#include <Aurora/GUIWindow.h>
-#include <Aurora/GUIApplication.h>
+#include <Aurora/GUI/Window.h>
+#include <Aurora/GUI/Application.h>
 
 // Shell
-#include <Aurora/ShellLog.h>
+#include <Aurora/Shell/Log.h>
+#include <Aurora/Shell/ColorType.h>
+#include <Aurora/Shell/TextStyle.h>
 
 // Information
 
-#include <Aurora/InfoRAM.h>
-//#include <Aurora/InfoOS.h>
-//#include <Aurora/InfoGPU.h>
-//#include <Aurora/InfoCPU.h>
-//#include <Aurora/InfoSystem.h>
+#include <Aurora/Info/RAM.h>
+//#include <Aurora/Info/OS.h>
+//#include <Aurora/Info/GPU.h>
+//#include <Aurora/Info/CPU.h>
+//#include <Aurora/Info/System.h>
+
+#endif // _AURORA_H_INCLUDE

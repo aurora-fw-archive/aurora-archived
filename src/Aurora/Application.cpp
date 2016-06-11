@@ -5,26 +5,29 @@
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
 #include <iostream>
-#include <Aurora/Application.h>
-#include <Aurora/Macros.h>
+#include <Aurora/Core/Application.h>
+#include <Aurora/Core/Macros.h>
 
-AuroraApplication::AuroraApplication(void (*mainFucntion)(), int argc, char *argv[])
+namespace Aurora
 {
-    if(argc == 2)
+    Application::Application(void (*mainFucntion)(), int argc, char *argv[])
     {
-        if((std::string(argv[1]) == "--debug") || (std::string(argv[1]) == "-D"))
+        if(argc == 2)
         {
-            Aurora::Debug = true;
+            if((std::string(argv[1]) == "--debug") || (std::string(argv[1]) == "-D"))
+            {
+                Aurora::Debug = true;
+            }
+            else
+            {
+                Aurora::Debug = false;
+            }
         }
-        else
-        {
-            Aurora::Debug = false;
-        }
+        (*mainFucntion)();
     }
-    (*mainFucntion)();
-}
 
-AuroraApplication::~AuroraApplication()
-{
-    exit(0);
+    Application::~Application()
+    {
+        exit(0);
+    }
 }

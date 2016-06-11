@@ -5,8 +5,13 @@
 #  Copyright (c) 2016 - Luís Ferreira. All right reserved
 #  More information in: https://github.com/ljmf00/ (Github Page)
 
+# C++ Flags
 AM_CXXFLAGS = -Wall -Wextra -std=c++14 -lGL -lGLU -lglut -I../include/ `pkg-config --cflags --libs gtk+-3.0`
+
+# Library Information
 lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
+
+# Source files
 __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/Info/RAM.cpp \
                                               ../src/Shell/Log.cpp \
@@ -15,15 +20,30 @@ __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/GUI/Label.cpp \
                                               ../src/Aurora/Macros.cpp \
                                               ../src/Shell/Color.cpp
+
 # Headers
-cincludedir = $(includedir)/Aurora
-cinclude_HEADERS = ../include/Aurora/Aurora.h \
-                   ../include/Aurora/GUIWindow.h \
-                   ../include/Aurora/InfoRAM.h \
-                   ../include/Aurora/ShellLog.h \
-                   ../include/Aurora/Application.h \
-                   ../include/Aurora/Typedef.h \
-                   ../include/Aurora/Macros.h \
-                   ../include/Aurora/GUIApplication.h \
-                   ../include/Aurora/GUILabel.h \
-                   ../include/Aurora/ShellColor.h
+cincludedir = $(includedir)/Aurora/
+cinclude_HEADERS = ../include/Aurora/Aurora.h
+
+# Core Headers
+coreincludedir = $(includedir)/Aurora/Core
+coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
+                      ../include/Aurora/Core/Macros.h \
+                      ../include/Aurora/Core/Typedef.h 
+
+# GUI Headers
+guiincludedir = $(includedir)/Aurora/GUI
+guiinclude_HEADERS = ../include/Aurora/GUI/Window.h \
+                     ../include/Aurora/GUI/Application.h \
+                     ../include/Aurora/GUI/Label.h 
+
+# Info Headers
+infoincludedir = $(includedir)/Aurora/Info
+infoinclude_HEADERS = ../include/Aurora/Info/RAM.h
+                   
+# Shell Headers
+shellincludedir = $(includedir)/Aurora/Shell
+shellinclude_HEADERS = ../include/Aurora/Shell/Log.h \
+                       ../include/Aurora/Shell/Color.h \
+                       ../include/Aurora/Shell/ColorType.h \
+                       ../include/Aurora/Shell/TextStyle.h 

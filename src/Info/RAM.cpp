@@ -13,12 +13,12 @@
 #include <sys/vmmeter.h>
 #endif
 
-#include <Aurora/InfoRAM.h>
+#include <Aurora/Info/RAM.h>
 
-namespace AuroraInfo
+namespace Aurora
 {
     // Total virtual memory size in bytes
-    unsigned int RAM::getTotalVirtualMemory()
+    unsigned int InfoRAM::getTotalVirtualMemory()
     {
         #ifdef __linux__
         struct sysinfo mem_temp;
@@ -35,9 +35,9 @@ namespace AuroraInfo
         return mem_temp.t_vm;
         #endif
     }
-    
+        
     // Used virtual memory size in bytes
-    unsigned int RAM::getUsedVirtualMemory()
+    unsigned int InfoRAM::getUsedVirtualMemory()
     {
         #ifdef __linux
         struct sysinfo mem_temp;
@@ -55,9 +55,9 @@ namespace AuroraInfo
         return mem_temp.t_vm - mem_temp.t_free;
         #endif
     }
-    
+        
     // Free virtual memory size in bytes
-    unsigned int RAM::getFreeVirtualMemory()
+    unsigned int InfoRAM::getFreeVirtualMemory()
     {
         #ifdef __linux__
         struct sysinfo mem_temp;
@@ -75,25 +75,25 @@ namespace AuroraInfo
         return mem_temp.t_free;
         #endif
     }
-    
+        
     // Total pysical memory size in bytes
-    unsigned int RAM::getTotalPhysicalMemory()
+    unsigned int InfoRAM::getTotalPhysicalMemory()
     {
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return mem_temp.totalram * mem_temp.mem_unit;
     }
-    
+        
     // Used pysical memory size in bytes
-    unsigned int RAM::getUsedPhysicalMemory()
+    unsigned int InfoRAM::getUsedPhysicalMemory()
     {
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return (mem_temp.totalram - mem_temp.freeram) * mem_temp.mem_unit;
     }
-    
+        
     // Free pysical memory size in bytes
-    unsigned int RAM::getFreePhysicalMemory()
+    unsigned int InfoRAM::getFreePhysicalMemory()
     {
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);

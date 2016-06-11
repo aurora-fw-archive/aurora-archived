@@ -4,11 +4,18 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#include <Aurora/Typedef.h>
+#ifndef _AURORA_SHELL_COLOR
+#define _AURORA_SHELL_COLOR
 
-struct AuroraApplication
+#include <Aurora/Shell/TextStyle.h>
+#include <Aurora/Shell/ColorType.h>
+
+namespace Aurora
 {
-public:
-    AuroraApplication(void (*mainFucntion)(), int argc = 0, char *argv[] = NULL);
-    ~AuroraApplication();
-};
+    namespace Shell
+    {
+        extern unsigned int setColor(ColorType type = ColorType::Return, TextStyle style = TextStyle::Regular);
+    };
+}
+
+#endif // _AURORA_SHELL_COLOR

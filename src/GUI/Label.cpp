@@ -5,9 +5,12 @@
 //  More information in: https://github.com/ljmf00/ (Gith
 
 #include <gtk/gtk.h>
-#include <Aurora/GUILabel.h>
+#include <Aurora/GUI/Label.h>
 
-GUILabel::GUILabel(std::string)
+namespace Aurora
 {
-    
+    GUILabel::GUILabel(std::string)
+    {
+        
+    }
 }
