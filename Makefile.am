@@ -45,5 +45,4 @@ infoinclude_HEADERS = ../include/Aurora/Info/RAM.h
 shellincludedir = $(includedir)/Aurora/Shell
 shellinclude_HEADERS = ../include/Aurora/Shell/Log.h \
                        ../include/Aurora/Shell/Color.h \
-                       ../include/Aurora/Shell/ColorType.h \
-                       ../include/Aurora/Shell/TextStyle.h 
+                       ../include/Aurora/Shell/ColorType.h

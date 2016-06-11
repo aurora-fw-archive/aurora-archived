@@ -15,8 +15,7 @@ namespace Aurora
         {
             Background,
             Foreground,
-            Both,
-            Return
+            Both
         };
     }
 }

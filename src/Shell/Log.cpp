@@ -11,7 +11,8 @@ namespace Aurora
 {
     void ShellLog::Error (std::string body, bool newline)
     {
-        #ifdef __unix__
+        #if defined(__unix__) || defined(__unix) || \
+            (defined(__APPLE__) && defined(__MACH__))
         std::cout << "\e[1m[\e[1;31mERROR\e[0;1m] \e[0m" << body ;
         #else
         std::cout << "[ERROR] " << body ;
@@ -20,7 +21,8 @@ namespace Aurora
     }
     void ShellLog::Warning (std::string body, bool newline)
     {
-        #ifdef __unix__
+        #if defined(__unix__) || defined(__unix) || \
+            (defined(__APPLE__) && defined(__MACH__))
         std::cout << "\e[1m[\e[1;33mWARNING\e[0;1m] \e[0m" << body ;
         #else
         std::cout << "[WARNING] " << body ;
@@ -29,7 +31,8 @@ namespace Aurora
     }
     void ShellLog::Notice (std::string body, bool newline)
     {
-        #ifdef __unix__
+        #if defined(__unix__) || defined(__unix) || \
+            (defined(__APPLE__) && defined(__MACH__))
         std::cout << "\e[1m[\e[1;36mNOTICE\e[0;1m] \e[0m" << body ;
         #else
         std::cout << "[NOTICE] " << body ;
@@ -38,7 +41,8 @@ namespace Aurora
     }
     void ShellLog::Information (std::string body, bool newline)
     {
-        #ifdef __unix__
+        #if defined(__unix__) || defined(__unix) || \
+            (defined(__APPLE__) && defined(__MACH__))
         std::cout << "\e[1m[\e[1;32mINFORMATION\e[0;1m] \e[0m" << body ;
         #else
         std::cout << "[INFORMATION] " << body ;

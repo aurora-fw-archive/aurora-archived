@@ -11,6 +11,7 @@ using namespace std;
 
 arslot_t slot_MyWindow_on_start()
 {
+	Shell::setColor(Shell::Color::White, Shell::ColorType::Foreground);
 	cout << InfoRAM::getTotalVirtualMemory() << endl;
 }
 
