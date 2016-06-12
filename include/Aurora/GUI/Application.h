@@ -28,10 +28,12 @@ namespace Aurora
         static const arflags_t OverrideAppIDFlag;
 
         GUIApplication(std::string pkgname = "org.aurora.example", arflags_t flags = NoneFlag, void (*mainfunction)() = []{}, int argc = 0, char *argv[] = NULL);
+        void connect(std::string detailedSignal, void (*signalFunction)(), void *signalData = NULL);
         int AppStatus;
 
     private:
         GtkApplication *App;
+        unsigned long ID = 0;
     };
 }
 

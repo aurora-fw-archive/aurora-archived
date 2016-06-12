@@ -6,10 +6,11 @@
 
 #ifdef _WIN32
 #include <windows.h>
-#elif __linux__
+#elif defined(__linux__)
 #include <sys/sysinfo.h>
-#elif __APPLE__
-// #include <sys/sysctl.h>
+#elif defined(__MACH__) && defined(__APPLE__)
+#include <sys/types.h>
+#include <sys/sysctl.h>
 #include <sys/vmmeter.h>
 #endif
 
@@ -24,7 +25,7 @@ namespace Aurora
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return (mem_temp.totalram + mem_temp.totalswap) * mem_temp.mem_unit;
-        #elif _WIN32
+        #elif defined(_WIN32)
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
@@ -43,14 +44,13 @@ namespace Aurora
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return ((mem_temp.totalram - mem_temp.freeram) + (mem_temp.totalswap - mem_temp.freeswap)) * mem_temp.mem_unit;
-        #elif _WIN32
+        #elif defined(_WIN32)
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullTotalVirtual - mem_temp.ullAvailVirtual;
         #elif defined(__MACH__) && defined(__APPLE__)
         struct vmtotal mem_temp;
-        struct xsw_usage swmem_temp;
         vmtotal (&mem_temp);
         return mem_temp.t_vm - mem_temp.t_free;
         #endif
@@ -63,14 +63,13 @@ namespace Aurora
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return ((mem_temp.totalram + mem_temp.totalswap) - ((mem_temp.totalram - mem_temp.freeram) + (mem_temp.totalswap - mem_temp.freeswap))) * mem_temp.mem_unit;
-        #elif _WIN32
+        #elif defined(_WIN32)
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullAvailVirtual;
         #elif defined(__MACH__) && defined(__APPLE__)
         struct vmtotal mem_temp;
-        struct xsw_usage swmem_temp;
         vmtotal (&mem_temp);
         return mem_temp.t_free;
         #endif
@@ -79,24 +78,72 @@ namespace Aurora
     // Total pysical memory size in bytes
     unsigned int InfoRAM::getTotalPhysicalMemory()
     {
+        #ifdef __linux__
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return mem_temp.totalram * mem_temp.mem_unit;
+        #elif defined(_WIN32)
+        MEMORYSTATUSEX mem_temp;
+        mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
+        GlobalMemoryStatusEx(&mem_temp);
+        return mem_temp.ullTotalPhys;
+        #elif defined(__MACH__) && defined(__APPLE__)
+        int mib[2];
+        int64_t physical_memory;
+        size_t length;
+        // Get the Physical memory size
+        mib[0] = CTL_HW;
+        mib[1] = HW_MEMSIZE;
+        length = sizeof(int64);
+        sysctl(mib, 2, &physical_memory, &length, NULL, 0);
+        return physical_memory;
+        #endif
+
     }
-        
+
     // Used pysical memory size in bytes
     unsigned int InfoRAM::getUsedPhysicalMemory()
     {
+        #ifdef __linux__
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return (mem_temp.totalram - mem_temp.freeram) * mem_temp.mem_unit;
+        #elif defined(_WIN32)
+        MEMORYSTATUSEX mem_temp;
+        mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
+        GlobalMemoryStatusEx(&mem_temp);
+        return mem_temp.ullTotalPhys - mem_temp.ullAvailPhys;
+        #elif defined(__MACH__) && defined(__APPLE__)
+        struct vmmeter mem_temp;
+        vmmeter (&mem_temp);
+        int mib[2];
+        int64_t physical_memory;
+        size_t length;
+        // Get the Physical memory size
+        mib[0] = CTL_HW;
+        mib[1] = HW_MEMSIZE;
+        length = sizeof(int64);
+        sysctl(mib, 2, &physical_memory, &length, NULL, 0);
+        return physical_memory - mem_temp.v_free_count;
+        #endif
     }
         
     // Free pysical memory size in bytes
     unsigned int InfoRAM::getFreePhysicalMemory()
     {
+        #ifdef __linux__
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return mem_temp.freeram * mem_temp.mem_unit;
+        #elif defined(_WIN32)
+        MEMORYSTATUSEX mem_temp;
+        mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
+        GlobalMemoryStatusEx(&mem_temp);
+        return mem_temp.ullAvailPhys;
+        #elif defined(__MACH__) && defined(__APPLE__)
+        struct vmmeter mem_temp;
+        vmmeter (&mem_temp);
+        return mem_temp.v_free_count;
+        #endif
     }
 }

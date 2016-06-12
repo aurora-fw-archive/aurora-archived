@@ -16,11 +16,13 @@ namespace Aurora
     class GUILabel
     {
     public:
-        GUILabel(std::string name);
+        GUILabel(GUIWindow *parent, std::string name = "New Label");
         void setText(std::string text);
 
     private:
+        unsigned long ID = 0;
         GtkWidget *Label;
+        GtkWidget *WindowParent;
     };
 }
 

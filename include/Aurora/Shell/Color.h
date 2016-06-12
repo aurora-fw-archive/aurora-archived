@@ -32,6 +32,7 @@ namespace Aurora
             White
         };
         extern void setColor(Color color, ColorType type = ColorType::Foreground);
+        extern void resetColor();
     };
 }
 

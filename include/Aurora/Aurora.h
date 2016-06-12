@@ -13,15 +13,16 @@
 #include <Aurora/Core/Typedef.h>
 #include <Aurora/Core/Application.h>
 #include <Aurora/Core/Macros.h>
+#include <Aurora/Core/Debug.h>
 
 // GUI
 #include <Aurora/GUI/Window.h>
+#include <Aurora/GUI/Label.h>
 #include <Aurora/GUI/Application.h>
 
 // Shell
 #include <Aurora/Shell/Log.h>
 #include <Aurora/Shell/ColorType.h>
-#include <Aurora/Shell/TextStyle.h>
 #include <Aurora/Shell/Color.h>
 
 // Information

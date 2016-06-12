@@ -15,5 +15,9 @@ namespace Aurora
     public:
         Application(void (*mainFucntion)(), int argc = 0, char *argv[] = NULL);
         ~Application();
+        static void ExitSuccess();
+        static void ExitFail();
+    private:
+        unsigned long ID = 0;
     };
 }

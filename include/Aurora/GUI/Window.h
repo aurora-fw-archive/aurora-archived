@@ -31,7 +31,6 @@ namespace Aurora
         static const arflags_t CenterParentPosition;
 
         GUIWindow(std::string name = "Aurora Window", int width = 200, int height = 200, int pos = NonePosition, arflags_t type = ToplevelWindow);
-        ~GUIWindow();
         void setTitle(std::string title);
         void setPos(arflags_t pos);
         void connect(std::string detailedSignal, void (*signalFunction)(), void* signalData = NULL);
@@ -39,7 +38,7 @@ namespace Aurora
         void start(void (*startFunction)() = []{});
     private:
         GtkWidget *Window;
-        unsigned long ID;
+        unsigned long ID = 0;
     };
 }
 

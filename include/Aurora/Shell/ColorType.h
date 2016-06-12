@@ -14,8 +14,7 @@ namespace Aurora
         enum class ColorType
         {
             Background,
-            Foreground,
-            Both
+            Foreground
         };
     }
 }

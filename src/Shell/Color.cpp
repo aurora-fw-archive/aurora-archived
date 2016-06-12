@@ -73,7 +73,7 @@ namespace Aurora
             {
                 if(std::to_string(colr_tmp).length()==2)
                 {
-                    std::cout << "\e[1;4" << std::to_string(colr_tmp)[1] << "m";
+                    std::cout << "\e[4" << std::to_string(colr_tmp)[1] << "m";
                 }
                 else
                 {
@@ -93,6 +93,14 @@ namespace Aurora
             }
             #endif
         }
-
+        void resetColor()
+        {
+            #ifdef _WIN32
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | 0);
+            #elif __unix__
+            std::cout << "\e[0m";
+            #endif
+            
+        }
     }
 }

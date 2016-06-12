@@ -18,6 +18,7 @@ namespace Aurora
         static void Warning (std::string body, bool newline = true);
         static void Notice (std::string body, bool newline = true);
         static void Information (std::string body, bool newline = true);
+        static void Debug (std::string body, bool newline = true);
     };
 }
 

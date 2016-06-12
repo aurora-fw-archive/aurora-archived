@@ -9,20 +9,43 @@
 using namespace Aurora;
 using namespace std;
 
-arslot_t slot_MyWindow_on_start()
+Application *MyApp;
+GUIApplication *MyGUIApp;
+GUIWindow *FirstWindow;
+GUILabel *HelloLabel;
+
+arslot_t slot_MyWindow_on_open()
 {
-	Shell::setColor(Shell::Color::White, Shell::ColorType::Foreground);
-	cout << InfoRAM::getTotalVirtualMemory() << endl;
+	// Application::ExitSuccess();
+}
+
+arslot_t slot_MyGUIApp_on_open()
+{
+	FirstWindow = new GUIWindow("First Window", 800, 600, GUIWindow::NonePosition, GUIWindow::ToplevelWindow);
+	HelloLabel = new GUILabel(FirstWindow, "Hello World!");
+	FirstWindow->start(slot_MyWindow_on_open);
 }
 
 arslot_t slot_MyApp_on_open()
 {
-	GUIWindow *FirstWindow = new GUIWindow("First Window", 800, 600, GUIWindow::NonePosition, GUIWindow::ToplevelWindow);
-	FirstWindow->start(slot_MyWindow_on_start);
+	ShellLog::Information("Getting total virtual memory:\t", false);
+	cout << InfoRAM::getTotalVirtualMemory() << endl;
+	ShellLog::Information("Getting used virtual memory:\t", false);
+	cout << InfoRAM::getUsedVirtualMemory() << endl;
+	ShellLog::Information("Getting free virtual memory:\t", false);
+	cout << InfoRAM::getFreeVirtualMemory() << endl;
+	ShellLog::Information("Getting total physical memory:\t", false);
+	cout << InfoRAM::getTotalPhysicalMemory() << endl;
+	ShellLog::Information("Getting used physical memory:\t", false);
+	cout << InfoRAM::getUsedPhysicalMemory() << endl;
+	ShellLog::Information("Getting free physical memory:\t", false);
+	cout << InfoRAM::getFreePhysicalMemory() << endl;
 }
 
 int main(int argc, char * argv[])
 {
-	GUIApplication *MyApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyApp_on_open, argc, argv);
-	return MyApp->AppStatus;
+	MyApp = new Application(slot_MyApp_on_open, argc, argv);
+	delete MyApp;
+	MyGUIApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyGUIApp_on_open, argc, argv);
+	return MyGUIApp->AppStatus;
 }

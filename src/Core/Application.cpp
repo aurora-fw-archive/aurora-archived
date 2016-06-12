@@ -5,26 +5,15 @@
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
 #include <iostream>
-#include <gtk/gtk.h>
-#include <Aurora/GUI/Application.h>
-#include <Aurora/Core/Debug.h>
+#include <string>
+#include <Aurora/Core/Application.h>
 #include <Aurora/Core/Macros.h>
 #include <Aurora/Shell/Log.h>
 #include <Aurora/Core/Debug.h>
 
 namespace Aurora
 {
-    // Application Flags
-    const arflags_t GUIApplication::NoneFlag = G_APPLICATION_FLAGS_NONE;
-    const arflags_t GUIApplication::ServiceFlag = G_APPLICATION_IS_SERVICE;
-    const arflags_t GUIApplication::LauncherFlag = G_APPLICATION_IS_LAUNCHER;
-    const arflags_t GUIApplication::HandlesOpenFlag = G_APPLICATION_HANDLES_OPEN;
-    const arflags_t GUIApplication::HandlesCommandLineFlag = G_APPLICATION_HANDLES_COMMAND_LINE;
-    const arflags_t GUIApplication::SendEnvironmentFlag = G_APPLICATION_SEND_ENVIRONMENT;
-    const arflags_t GUIApplication::NonUniqueFlag = G_APPLICATION_NON_UNIQUE;
-    const arflags_t GUIApplication::OverrideAppIDFlag = G_APPLICATION_CAN_OVERRIDE_APP_ID;
-
-    GUIApplication::GUIApplication(std::string pkgname, arflags_t flags, void (*mainfunction)(), int argc, char *argv[])
+    Application::Application(void (*mainFucntion)(), int argc, char *argv[])
     {
         ID = ( unsigned long ) Aurora::LastID;
         Aurora::LastID++;
@@ -44,16 +33,21 @@ namespace Aurora
             }
         }
         if(Debug) ShellLog::Debug("creating new application: id_" + std::to_string(ID));
-        App = gtk_application_new (pkgname.c_str(), (GApplicationFlags) flags);
         if(Debug) ShellLog::Debug("application id_" + std::to_string(ID) + " is created.");
-        connect("activate", mainfunction);
-        AppStatus = g_application_run (G_APPLICATION (App), 0, NULL);
-        g_object_unref(App);
+        (*mainFucntion)();
     }
-
-    void GUIApplication::connect(std::string detailedSignal, void (*signalFunction)(), void *signalData)
+    Application::~Application()
     {
-        if(Debug) ShellLog::Debug("creating new signal on application id_" + std::to_string(ID));
-        g_signal_connect (App, detailedSignal.c_str(), G_CALLBACK(signalFunction), signalData);
+        if(Debug) ShellLog::Debug("application id_" + std::to_string(ID) + " is destroyed.");
+    }
+    void Application::ExitSuccess()
+    {
+        if(Debug) ShellLog::Debug("application return success code: " + std::to_string(EXIT_SUCCESS));
+        exit(EXIT_SUCCESS);
+    }
+    void Application::ExitFail()
+    {
+        if(Debug) ShellLog::Debug("application return error code: " + std::to_string(EXIT_FAILURE));
+        exit(EXIT_FAILURE);
     }
 }

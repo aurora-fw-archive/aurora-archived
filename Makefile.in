@@ -103,9 +103,9 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
 	$(am__configure_deps) $(cinclude_HEADERS) \
-	$(coreinclude_HEADERS) $(guiinclude_HEADERS) \
-	$(infoinclude_HEADERS) $(shellinclude_HEADERS) \
-	$(am__DIST_COMMON)
+	$(coreinclude_HEADERS) $(cryptoinclude_HEADERS) \
+	$(guiinclude_HEADERS) $(infoinclude_HEADERS) \
+	$(shellinclude_HEADERS) $(am__DIST_COMMON)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
@@ -140,16 +140,18 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(cincludedir)" \
-	"$(DESTDIR)$(coreincludedir)" "$(DESTDIR)$(guiincludedir)" \
-	"$(DESTDIR)$(infoincludedir)" "$(DESTDIR)$(shellincludedir)"
+	"$(DESTDIR)$(coreincludedir)" "$(DESTDIR)$(cryptoincludedir)" \
+	"$(DESTDIR)$(guiincludedir)" "$(DESTDIR)$(infoincludedir)" \
+	"$(DESTDIR)$(shellincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 __top_builddir_____bin_libaurora_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am___top_builddir_____bin_libaurora_la_OBJECTS = ../src/GUI/Window.lo \
 	../src/Info/RAM.lo ../src/Shell/Log.lo \
-	../src/Aurora/Application.lo ../src/GUI/Application.lo \
-	../src/GUI/Label.lo ../src/Aurora/Macros.lo \
-	../src/Shell/Color.lo
+	../src/Core/Application.lo ../src/GUI/Application.lo \
+	../src/GUI/Label.lo ../src/Core/Macros.lo \
+	../src/Shell/Color.lo ../src/Crypto/AES.lo \
+	../src/Core/Debug.lo
 __top_builddir_____bin_libaurora_la_OBJECTS =  \
 	$(am___top_builddir_____bin_libaurora_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -198,8 +200,8 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 HEADERS = $(cinclude_HEADERS) $(coreinclude_HEADERS) \
-	$(guiinclude_HEADERS) $(infoinclude_HEADERS) \
-	$(shellinclude_HEADERS)
+	$(cryptoinclude_HEADERS) $(guiinclude_HEADERS) \
+	$(infoinclude_HEADERS) $(shellinclude_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) \
 	$(LISP)config.h.in
 # Read a list of newline-separated strings from the standard input,
@@ -374,11 +376,13 @@ lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
 __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/Info/RAM.cpp \
                                               ../src/Shell/Log.cpp \
-                                              ../src/Aurora/Application.cpp \
+                                              ../src/Core/Application.cpp \
                                               ../src/GUI/Application.cpp \
                                               ../src/GUI/Label.cpp \
-                                              ../src/Aurora/Macros.cpp \
-                                              ../src/Shell/Color.cpp
+                                              ../src/Core/Macros.cpp \
+                                              ../src/Shell/Color.cpp \
+                                              ../src/Crypto/AES.cpp \
+                                              ../src/Core/Debug.cpp
 
 
 # Headers
@@ -389,7 +393,8 @@ cinclude_HEADERS = ../include/Aurora/Aurora.h
 coreincludedir = $(includedir)/Aurora/Core
 coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
                       ../include/Aurora/Core/Macros.h \
-                      ../include/Aurora/Core/Typedef.h 
+                      ../include/Aurora/Core/Typedef.h \
+                      ../include/Aurora/Core/Debug.h
 
 
 # GUI Headers
@@ -409,6 +414,10 @@ shellinclude_HEADERS = ../include/Aurora/Shell/Log.h \
                        ../include/Aurora/Shell/Color.h \
                        ../include/Aurora/Shell/ColorType.h
 
+
+# Crypto Headers
+cryptoincludedir = $(includedir)/Aurora/Crypto
+cryptoinclude_HEADERS = ../include/Aurora/Crypto/AES.h
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -521,22 +530,32 @@ clean-libLTLIBRARIES:
 	@: > ../src/Shell/$(DEPDIR)/$(am__dirstamp)
 ../src/Shell/Log.lo: ../src/Shell/$(am__dirstamp) \
 	../src/Shell/$(DEPDIR)/$(am__dirstamp)
-../src/Aurora/$(am__dirstamp):
-	@$(MKDIR_P) ../src/Aurora
-	@: > ../src/Aurora/$(am__dirstamp)
-../src/Aurora/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../src/Aurora/$(DEPDIR)
-	@: > ../src/Aurora/$(DEPDIR)/$(am__dirstamp)
-../src/Aurora/Application.lo: ../src/Aurora/$(am__dirstamp) \
-	../src/Aurora/$(DEPDIR)/$(am__dirstamp)
+../src/Core/$(am__dirstamp):
+	@$(MKDIR_P) ../src/Core
+	@: > ../src/Core/$(am__dirstamp)
+../src/Core/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../src/Core/$(DEPDIR)
+	@: > ../src/Core/$(DEPDIR)/$(am__dirstamp)
+../src/Core/Application.lo: ../src/Core/$(am__dirstamp) \
+	../src/Core/$(DEPDIR)/$(am__dirstamp)
 ../src/GUI/Application.lo: ../src/GUI/$(am__dirstamp) \
 	../src/GUI/$(DEPDIR)/$(am__dirstamp)
 ../src/GUI/Label.lo: ../src/GUI/$(am__dirstamp) \
 	../src/GUI/$(DEPDIR)/$(am__dirstamp)
-../src/Aurora/Macros.lo: ../src/Aurora/$(am__dirstamp) \
-	../src/Aurora/$(DEPDIR)/$(am__dirstamp)
+../src/Core/Macros.lo: ../src/Core/$(am__dirstamp) \
+	../src/Core/$(DEPDIR)/$(am__dirstamp)
 ../src/Shell/Color.lo: ../src/Shell/$(am__dirstamp) \
 	../src/Shell/$(DEPDIR)/$(am__dirstamp)
+../src/Crypto/$(am__dirstamp):
+	@$(MKDIR_P) ../src/Crypto
+	@: > ../src/Crypto/$(am__dirstamp)
+../src/Crypto/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../src/Crypto/$(DEPDIR)
+	@: > ../src/Crypto/$(DEPDIR)/$(am__dirstamp)
+../src/Crypto/AES.lo: ../src/Crypto/$(am__dirstamp) \
+	../src/Crypto/$(DEPDIR)/$(am__dirstamp)
+../src/Core/Debug.lo: ../src/Core/$(am__dirstamp) \
+	../src/Core/$(DEPDIR)/$(am__dirstamp)
 $(top_builddir)/../bin/$(am__dirstamp):
 	@$(MKDIR_P) $(top_builddir)/../bin
 	@: > $(top_builddir)/../bin/$(am__dirstamp)
@@ -546,8 +565,10 @@ $(top_builddir)/../bin/libaurora.la: $(__top_builddir_____bin_libaurora_la_OBJEC
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f ../src/Aurora/*.$(OBJEXT)
-	-rm -f ../src/Aurora/*.lo
+	-rm -f ../src/Core/*.$(OBJEXT)
+	-rm -f ../src/Core/*.lo
+	-rm -f ../src/Crypto/*.$(OBJEXT)
+	-rm -f ../src/Crypto/*.lo
 	-rm -f ../src/GUI/*.$(OBJEXT)
 	-rm -f ../src/GUI/*.lo
 	-rm -f ../src/Info/*.$(OBJEXT)
@@ -558,8 +579,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@../src/Aurora/$(DEPDIR)/Application.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@../src/Aurora/$(DEPDIR)/Macros.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/Core/$(DEPDIR)/Application.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/Core/$(DEPDIR)/Debug.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/Core/$(DEPDIR)/Macros.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/Crypto/$(DEPDIR)/AES.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Application.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Label.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Window.Plo@am__quote@
@@ -597,7 +620,8 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf $(top_builddir)/../bin/.libs $(top_builddir)/../bin/_libs
 	-rm -rf .libs _libs
-	-rm -rf ../src/Aurora/.libs ../src/Aurora/_libs
+	-rm -rf ../src/Core/.libs ../src/Core/_libs
+	-rm -rf ../src/Crypto/.libs ../src/Crypto/_libs
 	-rm -rf ../src/GUI/.libs ../src/GUI/_libs
 	-rm -rf ../src/Info/.libs ../src/Info/_libs
 	-rm -rf ../src/Shell/.libs ../src/Shell/_libs
@@ -646,6 +670,27 @@ uninstall-coreincludeHEADERS:
 	@list='$(coreinclude_HEADERS)'; test -n "$(coreincludedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(coreincludedir)'; $(am__uninstall_files_from_dir)
+install-cryptoincludeHEADERS: $(cryptoinclude_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(cryptoinclude_HEADERS)'; test -n "$(cryptoincludedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(cryptoincludedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(cryptoincludedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(cryptoincludedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(cryptoincludedir)" || exit $$?; \
+	done
+
+uninstall-cryptoincludeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(cryptoinclude_HEADERS)'; test -n "$(cryptoincludedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(cryptoincludedir)'; $(am__uninstall_files_from_dir)
 install-guiincludeHEADERS: $(guiinclude_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(guiinclude_HEADERS)'; test -n "$(guiincludedir)" || list=; \
@@ -936,7 +981,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS) config.h
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(cincludedir)" "$(DESTDIR)$(coreincludedir)" "$(DESTDIR)$(guiincludedir)" "$(DESTDIR)$(infoincludedir)" "$(DESTDIR)$(shellincludedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(cincludedir)" "$(DESTDIR)$(coreincludedir)" "$(DESTDIR)$(cryptoincludedir)" "$(DESTDIR)$(guiincludedir)" "$(DESTDIR)$(infoincludedir)" "$(DESTDIR)$(shellincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -965,8 +1010,10 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f ../src/Aurora/$(DEPDIR)/$(am__dirstamp)
-	-rm -f ../src/Aurora/$(am__dirstamp)
+	-rm -f ../src/Core/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../src/Core/$(am__dirstamp)
+	-rm -f ../src/Crypto/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../src/Crypto/$(am__dirstamp)
 	-rm -f ../src/GUI/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ../src/GUI/$(am__dirstamp)
 	-rm -f ../src/Info/$(DEPDIR)/$(am__dirstamp)
@@ -985,7 +1032,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ../src/Aurora/$(DEPDIR) ../src/GUI/$(DEPDIR) ../src/Info/$(DEPDIR) ../src/Shell/$(DEPDIR)
+	-rm -rf ../src/Core/$(DEPDIR) ../src/Crypto/$(DEPDIR) ../src/GUI/$(DEPDIR) ../src/Info/$(DEPDIR) ../src/Shell/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -1003,8 +1050,8 @@ info: info-am
 info-am:
 
 install-data-am: install-cincludeHEADERS install-coreincludeHEADERS \
-	install-guiincludeHEADERS install-infoincludeHEADERS \
-	install-shellincludeHEADERS
+	install-cryptoincludeHEADERS install-guiincludeHEADERS \
+	install-infoincludeHEADERS install-shellincludeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -1035,7 +1082,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ../src/Aurora/$(DEPDIR) ../src/GUI/$(DEPDIR) ../src/Info/$(DEPDIR) ../src/Shell/$(DEPDIR)
+	-rm -rf ../src/Core/$(DEPDIR) ../src/Crypto/$(DEPDIR) ../src/GUI/$(DEPDIR) ../src/Info/$(DEPDIR) ../src/Shell/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1053,8 +1100,9 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-cincludeHEADERS uninstall-coreincludeHEADERS \
-	uninstall-guiincludeHEADERS uninstall-infoincludeHEADERS \
-	uninstall-libLTLIBRARIES uninstall-shellincludeHEADERS
+	uninstall-cryptoincludeHEADERS uninstall-guiincludeHEADERS \
+	uninstall-infoincludeHEADERS uninstall-libLTLIBRARIES \
+	uninstall-shellincludeHEADERS
 
 .MAKE: all install-am install-strip
 
@@ -1066,17 +1114,18 @@ uninstall-am: uninstall-cincludeHEADERS uninstall-coreincludeHEADERS \
 	distclean-hdr distclean-libtool distclean-tags distcleancheck \
 	distdir distuninstallcheck dvi dvi-am html html-am info \
 	info-am install install-am install-cincludeHEADERS \
-	install-coreincludeHEADERS install-data install-data-am \
-	install-dvi install-dvi-am install-exec install-exec-am \
-	install-guiincludeHEADERS install-html install-html-am \
-	install-info install-info-am install-infoincludeHEADERS \
-	install-libLTLIBRARIES install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-shellincludeHEADERS \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
-	uninstall-cincludeHEADERS uninstall-coreincludeHEADERS \
+	install-coreincludeHEADERS install-cryptoincludeHEADERS \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-guiincludeHEADERS \
+	install-html install-html-am install-info install-info-am \
+	install-infoincludeHEADERS install-libLTLIBRARIES install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-shellincludeHEADERS install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am uninstall-cincludeHEADERS \
+	uninstall-coreincludeHEADERS uninstall-cryptoincludeHEADERS \
 	uninstall-guiincludeHEADERS uninstall-infoincludeHEADERS \
 	uninstall-libLTLIBRARIES uninstall-shellincludeHEADERS
 
