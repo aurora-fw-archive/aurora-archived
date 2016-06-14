@@ -4,29 +4,26 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_GUI_LABEL
-#define _AURORA_GUI_LABEL
+#ifndef _AURORA_GUI_STYLE
+#define _AURORA_GUI_STYLE
 
-#include <Aurora/GUI/Window.h>
+#include <Aurora/Core/Typedef.h>
 
-typedef struct _GtkWidget GtkWidget;
-
-namespace Aurora
+namespace Aurora 
 {
-    class GUILabel
+    namespace GUIStyle
     {
-    public:
-        GUILabel(GUIWindow *parent, std::string name = "New Label");
-        void setText(std::string text);
-        std::string getText();
-        void setSelectable(bool value);
-        bool getSelectable();
+        ///Warp Mode
+        // wrap lines at word boundaries.
+        static const arflags_t WarpWord;
+        // wrap lines at character boundaries.
+        static const arflags_t WarpChar;
+        /* wrap lines at word boundaries, but fall back to character
+        * boundaries if there is not enough space for a full word. */
+        static const arflags_t WarpWordChar;
 
-    private:
-        unsigned long ID = 0;
-        GtkWidget *Label;
-        GtkWidget *WindowParent;
-    };
+        
+    }
 }
 
-#endif // _AURORA_GUI_LABEL
+#endif // _AURORA_GUI_STYLE

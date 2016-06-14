@@ -13,7 +13,7 @@ namespace Aurora
     struct Application
     {
     public:
-        Application(void (*mainFucntion)(), int argc = 0, char *argv[] = NULL);
+        Application(void (*mainFunction)(), int argc = 0, char *argv[] = NULL);
         ~Application();
         static void ExitSuccess();
         static void ExitFail();

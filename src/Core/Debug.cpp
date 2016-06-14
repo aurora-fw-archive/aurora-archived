@@ -12,13 +12,13 @@ namespace Aurora
 {
     void enableDebug(bool silent)
     {
-        if(Aurora::Debug)
+        if(Debug)
         {
             if(!silent) ShellLog::Debug("debug is already enabled");
         }
         else
         {
-            Aurora::Debug = true;
+            Debug = true;
             if(!silent) 
             {
                 ShellLog::Debug("┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─");
@@ -30,18 +30,18 @@ namespace Aurora
     }
     void disableDebug(bool silent)
     {
-        if(!Aurora::Debug)
+        if(!Debug)
         {
             if(!silent) ShellLog::Debug("debug is already disabled");
         }
         else
         {
-            Aurora::Debug = false;
+            Debug = false;
             if(!silent) ShellLog::Debug("debug is disabled");   
         }
     }
     bool getDebugStatus()
     {
-        return Aurora::Debug;
+        return Debug;
     }
 }

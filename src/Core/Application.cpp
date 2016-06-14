@@ -13,7 +13,7 @@
 
 namespace Aurora
 {
-    Application::Application(void (*mainFucntion)(), int argc, char *argv[])
+    Application::Application(void (*mainFunction)(), int argc, char *argv[])
     {
         ID = ( unsigned long ) Aurora::LastID;
         Aurora::LastID++;
@@ -32,22 +32,22 @@ namespace Aurora
                 disableDebug(true);
             }
         }
-        if(Debug) ShellLog::Debug("creating new application: id_" + std::to_string(ID));
-        if(Debug) ShellLog::Debug("application id_" + std::to_string(ID) + " is created.");
-        (*mainFucntion)();
+        ShellLog::Debug("creating new application: id_" + std::to_string(ID));
+        ShellLog::Debug("application id_" + std::to_string(ID) + " is created.");
+        (*mainFunction)();
     }
     Application::~Application()
     {
-        if(Debug) ShellLog::Debug("application id_" + std::to_string(ID) + " is destroyed.");
+        ShellLog::Debug("application id_" + std::to_string(ID) + " is destroyed.");
     }
     void Application::ExitSuccess()
     {
-        if(Debug) ShellLog::Debug("application return success code: " + std::to_string(EXIT_SUCCESS));
+        ShellLog::Debug("application return success code: " + std::to_string(EXIT_SUCCESS));
         exit(EXIT_SUCCESS);
     }
     void Application::ExitFail()
     {
-        if(Debug) ShellLog::Debug("application return error code: " + std::to_string(EXIT_FAILURE));
+        ShellLog::Debug("application return error code: " + std::to_string(EXIT_FAILURE));
         exit(EXIT_FAILURE);
     }
 }

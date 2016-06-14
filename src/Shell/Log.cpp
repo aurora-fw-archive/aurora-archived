@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <Aurora/Shell/Log.h>
+#include <Aurora/Core/Macros.h>
 
 namespace Aurora
 {
@@ -51,12 +52,15 @@ namespace Aurora
     }
     void ShellLog::Debug (std::string body, bool newline)
     {
-        #if defined(__unix__) || defined(__unix) || \
+        if(Aurora::Debug)
+        {
+            #if defined(__unix__) || defined(__unix) || \
             (defined(__APPLE__) && defined(__MACH__))
-        std::cout << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m" << body ;
-        #else
-        std::cout << "[DEBUG] " << body ;
-        #endif
-        if(newline) std::cout << std::endl;
+            std::cout << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m" << body ;
+            #else
+            std::cout << "[DEBUG] " << body ;
+            #endif
+            if(newline) std::cout << std::endl;
+        }
     }
 }

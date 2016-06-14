@@ -16,6 +16,8 @@ GUILabel *HelloLabel;
 
 arslot_t slot_MyWindow_on_open()
 {
+	HelloLabel->setText("Hello, World!");
+	HelloLabel->setSelectable(true);
 	// Application::ExitSuccess();
 }
 
@@ -28,6 +30,18 @@ arslot_t slot_MyGUIApp_on_open()
 
 arslot_t slot_MyApp_on_open()
 {
+	if(!getDebugStatus())
+	{
+		ShellLog::Notice("debug is disable");
+	}
+	if(Debug)
+	{
+		ShellLog::Notice("test the log");
+		ShellLog::Warning("test the log");
+		ShellLog::Error("test the log");
+		ShellLog::Information("test the log");
+		ShellLog::Debug("test the log");
+	}
 	ShellLog::Information("Getting total virtual memory:\t", false);
 	cout << InfoRAM::getTotalVirtualMemory() << endl;
 	ShellLog::Information("Getting used virtual memory:\t", false);
