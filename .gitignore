@@ -98,6 +98,8 @@ config.h
 *.Po
 *.Plo
 
+.vscode/
 .dirstamp/
+.dirstamp
 .deps/
 *.la
