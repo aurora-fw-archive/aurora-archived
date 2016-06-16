@@ -14,17 +14,17 @@ namespace Aurora
     {
         if(Debug)
         {
-            if(!silent) ShellLog::Debug("debug is already enabled");
+            if(!silent) Shell::Log(Shell::Debug, "debug is already enabled", Shell::EndLine);
         }
         else
         {
             Debug = true;
             if(!silent) 
             {
-                ShellLog::Debug("┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─");
-                ShellLog::Debug("├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐");
-                ShellLog::Debug("┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴");
-                ShellLog::Debug("debug is enabled");
+                Shell::Log(Shell::Debug, "┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─", Shell::EndLine);
+                Shell::Log(Shell::Debug, "├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐", Shell::EndLine);
+                Shell::Log(Shell::Debug, "┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴", Shell::EndLine);
+                Shell::Log(Shell::Debug, "debug is enabled", Shell::EndLine);
             }
         }
     }
@@ -32,12 +32,12 @@ namespace Aurora
     {
         if(!Debug)
         {
-            if(!silent) ShellLog::Debug("debug is already disabled");
+            if(!silent) Shell::Log(Shell::Debug, "debug is already disabled", Shell::EndLine);
         }
         else
         {
             Debug = false;
-            if(!silent) ShellLog::Debug("debug is disabled");   
+            if(!silent) Shell::Log(Shell::Debug, "debug is disabled", Shell::EndLine);
         }
     }
     bool getDebugStatus()

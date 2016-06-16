@@ -32,22 +32,22 @@ namespace Aurora
                 disableDebug(true);
             }
         }
-        ShellLog::Debug("creating new application: id_" + std::to_string(ID));
-        ShellLog::Debug("application id_" + std::to_string(ID) + " is created.");
+        Shell::Log(Shell::Debug, "creating new application: id_", ID, Shell::EndLine);
+        Shell::Log(Shell::Debug, "application id_", ID, " is created.", Shell::EndLine);
         (*mainFunction)();
     }
     Application::~Application()
     {
-        ShellLog::Debug("application id_" + std::to_string(ID) + " is destroyed.");
+        Shell::Log(Shell::Debug, "application id_", ID, " is destroyed.", Shell::EndLine);
     }
     void Application::ExitSuccess()
     {
-        ShellLog::Debug("application return success code: " + std::to_string(EXIT_SUCCESS));
+        Shell::Log(Shell::Debug, "application return success code: ", EXIT_SUCCESS, Shell::EndLine);
         exit(EXIT_SUCCESS);
     }
     void Application::ExitFail()
     {
-        ShellLog::Debug("application return error code: " + std::to_string(EXIT_FAILURE));
+        Shell::Log(Shell::Debug, "application return error code: ", EXIT_FAILURE, Shell::EndLine);
         exit(EXIT_FAILURE);
     }
 }

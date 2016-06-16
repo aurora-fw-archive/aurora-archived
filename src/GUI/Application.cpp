@@ -43,9 +43,9 @@ namespace Aurora
                 disableDebug(true);
             }
         }
-        ShellLog::Debug("creating new application: id_" + std::to_string(ID));
+        Shell::Log(Shell::Debug, "creating new application: id_", ID, Shell::EndLine);
         App = gtk_application_new (pkgname.c_str(), (GApplicationFlags) flags);
-        ShellLog::Debug("application id_" + std::to_string(ID) + " is created.");
+        Shell::Log(Shell::Debug, "application id_", ID, " is created.", Shell::EndLine);
         connect("activate", mainfunction);
         AppStatus = g_application_run (G_APPLICATION (App), 0, NULL);
         g_object_unref(App);
@@ -53,7 +53,7 @@ namespace Aurora
 
     void GUIApplication::connect(std::string detailedSignal, void (*signalFunction)(), void *signalData)
     {
-        ShellLog::Debug("creating new signal on application id_" + std::to_string(ID));
+        Shell::Log(Shell::Debug, "creating new signal on application id_", ID, Shell::EndLine);
         g_signal_connect (App, detailedSignal.c_str(), G_CALLBACK(signalFunction), signalData);
     }
 }

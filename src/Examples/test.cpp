@@ -5,9 +5,7 @@
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
 #include <Aurora/Aurora.h>
-
 using namespace Aurora;
-using namespace std;
 
 Application *MyApp;
 GUIApplication *MyGUIApp;
@@ -32,28 +30,28 @@ arslot_t slot_MyApp_on_open()
 {
 	if(!getDebugStatus())
 	{
-		ShellLog::Notice("debug is disable");
+		Shell::Log(Shell::Notice, "debug is disable", Shell::EndLine);
 	}
 	if(Debug)
 	{
-		ShellLog::Notice("test the log");
-		ShellLog::Warning("test the log");
-		ShellLog::Error("test the log");
-		ShellLog::Information("test the log");
-		ShellLog::Debug("test the log");
+		Shell::Log(Shell::Notice, "test the log", Shell::EndLine);
+		Shell::Log(Shell::Warning, "test the log", Shell::EndLine);
+		Shell::Log(Shell::Error, "test the log", Shell::EndLine);
+		Shell::Log(Shell::Notice,"test the log", Shell::EndLine);
+		Shell::Log(Shell::Debug, "test the log", Shell::EndLine);
 	}
-	ShellLog::Information("Getting total virtual memory:\t", false);
-	cout << InfoRAM::getTotalVirtualMemory() << endl;
-	ShellLog::Information("Getting used virtual memory:\t", false);
-	cout << InfoRAM::getUsedVirtualMemory() << endl;
-	ShellLog::Information("Getting free virtual memory:\t", false);
-	cout << InfoRAM::getFreeVirtualMemory() << endl;
-	ShellLog::Information("Getting total physical memory:\t", false);
-	cout << InfoRAM::getTotalPhysicalMemory() << endl;
-	ShellLog::Information("Getting used physical memory:\t", false);
-	cout << InfoRAM::getUsedPhysicalMemory() << endl;
-	ShellLog::Information("Getting free physical memory:\t", false);
-	cout << InfoRAM::getFreePhysicalMemory() << endl;
+	Shell::Log(Shell::Information, "Getting total virtual memory:\t");
+    Shell::Output(InfoRAM::getTotalVirtualMemory(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting used virtual memory:\t");
+    Shell::Output(InfoRAM::getUsedVirtualMemory(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting free virtual memory:\t");
+    Shell::Output(InfoRAM::getFreeVirtualMemory(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting total physical memory:\t");
+    Shell::Output(InfoRAM::getTotalPhysicalMemory(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting used physical memory:\t");
+    Shell::Output(InfoRAM::getUsedPhysicalMemory(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting free physical memory:\t");
+    Shell::Output(InfoRAM::getFreePhysicalMemory(), Shell::EndLine);
 }
 
 int main(int argc, char * argv[])
@@ -62,4 +60,5 @@ int main(int argc, char * argv[])
 	delete MyApp;
 	MyGUIApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyGUIApp_on_open, argc, argv);
 	return MyGUIApp->AppStatus;
+
 }

@@ -8,18 +8,92 @@
 #define _AURORA_SHELL_LOG
 
 #include <iostream>
+#include <Aurora/Core/Macros.h>
 
-namespace Aurora
-{
-    struct ShellLog
+namespace Aurora { namespace Shell
     {
-    public:
-        static void Error (std::string body, bool newline = true);
-        static void Warning (std::string body, bool newline = true);
-        static void Notice (std::string body, bool newline = true);
-        static void Information (std::string body, bool newline = true);
-        static void Debug (std::string body, bool newline = true);
-    };
+        const char EndLine = '\n';
+
+        enum MessageStatus
+        {
+            Error,
+            Warning,
+            Notice,
+            Information,
+            Debug
+        };
+        void Log (MessageStatus status, auto... args);
+        void Output (auto t);
+        void Output (auto t, auto... args);
+
+        void Log (MessageStatus status, auto... args)
+        {
+            if(status == Error)
+            {
+                #if defined(__unix__) || defined(__unix) || \
+                    (defined(__APPLE__) && defined(__MACH__))
+                std::cout << "\e[0m\e[1m[\e[1;31mERROR\e[0;1m] \e[0m";
+                #else
+                std::cout << "[ERROR] ";
+                #endif
+                Output(args...);
+            }
+            else if (status == Warning)
+            {
+                #if defined(__unix__) || defined(__unix) || \
+                    (defined(__APPLE__) && defined(__MACH__))
+                std::cout << "\e[0m\e[1m[\e[1;33mWARNING\e[0;1m] \e[0m";
+                #else
+                std::cout << "[WARNING] ";
+                #endif
+                Output(args...);
+            }
+            else if (status == Notice)
+            {
+                #if defined(__unix__) || defined(__unix) || \
+                    (defined(__APPLE__) && defined(__MACH__))
+                std::cout << "\e[0m\e[1m[\e[1;36mNOTICE\e[0;1m] \e[0m";
+                #else
+                std::cout << "[NOTICE] ";
+                #endif
+                Output(args...);
+            }
+            else if (status == Information)
+            {
+                #if defined(__unix__) || defined(__unix) || \
+                (defined(__APPLE__) && defined(__MACH__))
+                std::cout << "\e[0m\e[1m[\e[1;32mINFORMATION\e[0;1m] \e[0m";
+                #else
+                std::cout << "[INFORMATION] ";
+                #endif
+                Output(args...);
+            }
+            else if (status == Aurora::Shell::Debug)
+            {
+                if(Aurora::Debug)
+                {
+                    #if defined(__unix__) || defined(__unix) || \
+                    (defined(__APPLE__) && defined(__MACH__))
+                    std::cout << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";
+                    #else
+                    std::cout << "[DEBUG] ";
+                    #endif
+                    Output(args...);
+                }
+            }
+        }
+
+        void Output (auto t)
+        {
+            std::cout << t;
+        }
+
+        void Output (auto t, auto... args)
+        {
+            std::cout << t;
+            Output(args...);
+        }
+    }
 }
 
 #endif // _AURORA_SHELL_LOG

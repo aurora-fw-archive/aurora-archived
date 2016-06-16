@@ -9,6 +9,7 @@
 */
 
 #include <Aurora/Crypto/AES.h>
+#include <Aurora/Shell/Log.h>
 
 #include <iostream>
 #include <cstdlib>
@@ -384,10 +385,7 @@ namespace Aurora
 		}
         else
         {
-            /* _AURORA_TO_DO: Implement invalid keysize message
-            *                 with ShellLog::Error
-            */
-            
+           Shell::Log(Shell::Error, "aes encrypt: invalid keysize", Shell::EndLine);
         }
     }
     void AES::decrypt(unsigned char key[32], int keysize, unsigned char ciphertext[16])
@@ -409,19 +407,18 @@ namespace Aurora
             // The next function call decrypts the CipherText with the Key using AES algorithm.
             InvCipher();
 
+			std::string temp;
+
             // Output the decrypted text.
             for(int i=0;i<_AURORA_CRYPTO_AES_STDNUM*4;i++)
             {
                 printf("%02x ",out[i]);
             }
-            std::cout << std::endl;
+            
         }
         else
         {
-            /* _AURORA_TO_DO: Implement invalid keysize message
-            *                 with ShellLog::Error
-            */
-            
+			Shell::Log(Shell::Error, "aes decrypt: invalid keysize", Shell::EndLine);
         }
     }
 }

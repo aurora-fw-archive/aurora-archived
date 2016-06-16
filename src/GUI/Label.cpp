@@ -18,34 +18,34 @@ namespace Aurora
     {
         ID = (unsigned)(long) Aurora::LastID;
         Aurora::LastID++;
-        ShellLog::Debug("creating new label: id_" + std::to_string(ID) + " on window id_" + std::to_string(parent->ID));
+        Shell::Log(Shell::Debug, "creating new label: id_", ID, " on window id_", parent->ID, Shell::EndLine);
         Label = gtk_label_new (name.c_str());
         WindowParent = parent->Window;
         gtk_container_add(GTK_CONTAINER(WindowParent), Label);
-        ShellLog::Debug("label id_" + std::to_string(ID) + " is created on window id_" + std::to_string(parent->ID));
+        Shell::Log(Shell::Debug, "label id_", ID, " is created on window id_", parent->ID, Shell::EndLine);
         gtk_widget_show_all(WindowParent);
-        ShellLog::Debug("showing label id_" + std::to_string(ID) + " on window id_" + std::to_string(parent->ID));
+        Shell::Log(Shell::Debug, "showing label id_", ID, " on window id_", parent->ID, Shell::EndLine);
     }
 
     //Settings
     void GUILabel::setText(std::string text)
     {
-        ShellLog::Debug("setting text on label id_" + std::to_string(ID));
+        Shell::Log(Shell::Debug, "setting text on label id_", ID, Shell::EndLine);
         gtk_label_set_text((GtkLabel*)Label, text.c_str());
     }
     std::string GUILabel::getText()
     {
-        ShellLog::Debug("getting text from label id_" + std::to_string(ID));
+        Shell::Log(Shell::Debug, "getting text from label id_", ID, Shell::EndLine);
         return std::string(gtk_label_get_text ((GtkLabel*)Label));
     }
     void GUILabel::setSelectable(bool value)
     {
-        ShellLog::Debug("setting selectable property on label id_" + std::to_string(ID));
+        Shell::Log(Shell::Debug, "setting selectable property on label id_", ID, Shell::EndLine);
         gtk_label_set_selectable((GtkLabel*)Label, value);
     }
     bool GUILabel::getSelectable()
     {
-        ShellLog::Debug("getting selectable property from label id_" + std::to_string(ID));
+        Shell::Log(Shell::Debug, "getting selectable property from label id_", ID, Shell::EndLine);
         return gtk_label_get_selectable((GtkLabel*)Label);
     }
 
