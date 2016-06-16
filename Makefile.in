@@ -147,11 +147,10 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 __top_builddir_____bin_libaurora_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am___top_builddir_____bin_libaurora_la_OBJECTS = ../src/GUI/Window.lo \
-	../src/Info/RAM.lo ../src/Shell/Log.lo \
-	../src/Core/Application.lo ../src/GUI/Application.lo \
-	../src/GUI/Label.lo ../src/Core/Macros.lo \
-	../src/Shell/Color.lo ../src/Crypto/AES.lo \
-	../src/Core/Debug.lo
+	../src/GUI/Application.lo ../src/GUI/Label.lo \
+	../src/Info/RAM.lo ../src/Core/Application.lo \
+	../src/Core/Macros.lo ../src/Core/Debug.lo \
+	../src/Shell/Color.lo ../src/Crypto/AES.lo
 __top_builddir_____bin_libaurora_la_OBJECTS =  \
 	$(am___top_builddir_____bin_libaurora_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -374,15 +373,14 @@ lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
 
 # Source files
 __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
-                                              ../src/Info/RAM.cpp \
-                                              ../src/Shell/Log.cpp \
-                                              ../src/Core/Application.cpp \
                                               ../src/GUI/Application.cpp \
                                               ../src/GUI/Label.cpp \
+                                              ../src/Info/RAM.cpp \
+                                              ../src/Core/Application.cpp \
                                               ../src/Core/Macros.cpp \
+                                              ../src/Core/Debug.cpp \
                                               ../src/Shell/Color.cpp \
-                                              ../src/Crypto/AES.cpp \
-                                              ../src/Core/Debug.cpp
+                                              ../src/Crypto/AES.cpp
 
 
 # Headers
@@ -410,9 +408,11 @@ infoinclude_HEADERS = ../include/Aurora/Info/RAM.h
 
 # Shell Headers
 shellincludedir = $(includedir)/Aurora/Shell
-shellinclude_HEADERS = ../include/Aurora/Shell/Log.h \
-                       ../include/Aurora/Shell/Color.h \
-                       ../include/Aurora/Shell/ColorType.h
+shellinclude_HEADERS = ../include/Aurora/Shell/Color.h \
+                       ../include/Aurora/Shell/ColorType.h \
+                       ../include/Aurora/Shell/Input.h \
+                       ../include/Aurora/Shell/Log.h \
+                       ../include/Aurora/Shell/Output.h
 
 
 # Crypto Headers
@@ -514,6 +514,10 @@ clean-libLTLIBRARIES:
 	@: > ../src/GUI/$(DEPDIR)/$(am__dirstamp)
 ../src/GUI/Window.lo: ../src/GUI/$(am__dirstamp) \
 	../src/GUI/$(DEPDIR)/$(am__dirstamp)
+../src/GUI/Application.lo: ../src/GUI/$(am__dirstamp) \
+	../src/GUI/$(DEPDIR)/$(am__dirstamp)
+../src/GUI/Label.lo: ../src/GUI/$(am__dirstamp) \
+	../src/GUI/$(DEPDIR)/$(am__dirstamp)
 ../src/Info/$(am__dirstamp):
 	@$(MKDIR_P) ../src/Info
 	@: > ../src/Info/$(am__dirstamp)
@@ -522,14 +526,6 @@ clean-libLTLIBRARIES:
 	@: > ../src/Info/$(DEPDIR)/$(am__dirstamp)
 ../src/Info/RAM.lo: ../src/Info/$(am__dirstamp) \
 	../src/Info/$(DEPDIR)/$(am__dirstamp)
-../src/Shell/$(am__dirstamp):
-	@$(MKDIR_P) ../src/Shell
-	@: > ../src/Shell/$(am__dirstamp)
-../src/Shell/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../src/Shell/$(DEPDIR)
-	@: > ../src/Shell/$(DEPDIR)/$(am__dirstamp)
-../src/Shell/Log.lo: ../src/Shell/$(am__dirstamp) \
-	../src/Shell/$(DEPDIR)/$(am__dirstamp)
 ../src/Core/$(am__dirstamp):
 	@$(MKDIR_P) ../src/Core
 	@: > ../src/Core/$(am__dirstamp)
@@ -538,12 +534,16 @@ clean-libLTLIBRARIES:
 	@: > ../src/Core/$(DEPDIR)/$(am__dirstamp)
 ../src/Core/Application.lo: ../src/Core/$(am__dirstamp) \
 	../src/Core/$(DEPDIR)/$(am__dirstamp)
-../src/GUI/Application.lo: ../src/GUI/$(am__dirstamp) \
-	../src/GUI/$(DEPDIR)/$(am__dirstamp)
-../src/GUI/Label.lo: ../src/GUI/$(am__dirstamp) \
-	../src/GUI/$(DEPDIR)/$(am__dirstamp)
 ../src/Core/Macros.lo: ../src/Core/$(am__dirstamp) \
 	../src/Core/$(DEPDIR)/$(am__dirstamp)
+../src/Core/Debug.lo: ../src/Core/$(am__dirstamp) \
+	../src/Core/$(DEPDIR)/$(am__dirstamp)
+../src/Shell/$(am__dirstamp):
+	@$(MKDIR_P) ../src/Shell
+	@: > ../src/Shell/$(am__dirstamp)
+../src/Shell/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../src/Shell/$(DEPDIR)
+	@: > ../src/Shell/$(DEPDIR)/$(am__dirstamp)
 ../src/Shell/Color.lo: ../src/Shell/$(am__dirstamp) \
 	../src/Shell/$(DEPDIR)/$(am__dirstamp)
 ../src/Crypto/$(am__dirstamp):
@@ -554,8 +554,6 @@ clean-libLTLIBRARIES:
 	@: > ../src/Crypto/$(DEPDIR)/$(am__dirstamp)
 ../src/Crypto/AES.lo: ../src/Crypto/$(am__dirstamp) \
 	../src/Crypto/$(DEPDIR)/$(am__dirstamp)
-../src/Core/Debug.lo: ../src/Core/$(am__dirstamp) \
-	../src/Core/$(DEPDIR)/$(am__dirstamp)
 $(top_builddir)/../bin/$(am__dirstamp):
 	@$(MKDIR_P) $(top_builddir)/../bin
 	@: > $(top_builddir)/../bin/$(am__dirstamp)
@@ -588,7 +586,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Info/$(DEPDIR)/RAM.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Shell/$(DEPDIR)/Color.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@../src/Shell/$(DEPDIR)/Log.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

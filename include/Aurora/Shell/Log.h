@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <Aurora/Core/Macros.h>
+#include <Aurora/Shell/Output.h>
 
 namespace Aurora { namespace Shell
     {
@@ -23,9 +24,6 @@ namespace Aurora { namespace Shell
             Debug
         };
         void Log (MessageStatus status, auto... args);
-        void Output (auto t);
-        void Output (auto t, auto... args);
-
         void Log (MessageStatus status, auto... args)
         {
             if(status == Error)
@@ -81,17 +79,6 @@ namespace Aurora { namespace Shell
                     Output(args...);
                 }
             }
-        }
-
-        void Output (auto t)
-        {
-            std::cout << t;
-        }
-
-        void Output (auto t, auto... args)
-        {
-            std::cout << t;
-            Output(args...);
         }
     }
 }

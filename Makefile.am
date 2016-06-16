@@ -13,15 +13,14 @@ lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
 
 # Source files
 __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
-                                              ../src/Info/RAM.cpp \
-                                              ../src/Shell/Log.cpp \
-                                              ../src/Core/Application.cpp \
                                               ../src/GUI/Application.cpp \
                                               ../src/GUI/Label.cpp \
+                                              ../src/Info/RAM.cpp \
+                                              ../src/Core/Application.cpp \
                                               ../src/Core/Macros.cpp \
+                                              ../src/Core/Debug.cpp \
                                               ../src/Shell/Color.cpp \
-                                              ../src/Crypto/AES.cpp \
-                                              ../src/Core/Debug.cpp
+                                              ../src/Crypto/AES.cpp
 
 # Headers
 cincludedir = $(includedir)/Aurora/
@@ -46,9 +45,11 @@ infoinclude_HEADERS = ../include/Aurora/Info/RAM.h
                    
 # Shell Headers
 shellincludedir = $(includedir)/Aurora/Shell
-shellinclude_HEADERS = ../include/Aurora/Shell/Log.h \
-                       ../include/Aurora/Shell/Color.h \
-                       ../include/Aurora/Shell/ColorType.h
+shellinclude_HEADERS = ../include/Aurora/Shell/Color.h \
+                       ../include/Aurora/Shell/ColorType.h \
+                       ../include/Aurora/Shell/Input.h \
+                       ../include/Aurora/Shell/Log.h \
+                       ../include/Aurora/Shell/Output.h
 
 # Crypto Headers
 cryptoincludedir = $(includedir)/Aurora/Crypto

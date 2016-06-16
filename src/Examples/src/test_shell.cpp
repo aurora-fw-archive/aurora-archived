@@ -8,23 +8,6 @@
 using namespace Aurora;
 
 Application *MyApp;
-GUIApplication *MyGUIApp;
-GUIWindow *FirstWindow;
-GUILabel *HelloLabel;
-
-arslot_t slot_MyWindow_on_open()
-{
-	HelloLabel->setText("Hello, World!");
-	HelloLabel->setSelectable(true);
-	// Application::ExitSuccess();
-}
-
-arslot_t slot_MyGUIApp_on_open()
-{
-	FirstWindow = new GUIWindow("First Window", 800, 600, GUIWindow::NonePosition, GUIWindow::ToplevelWindow);
-	HelloLabel = new GUILabel(FirstWindow, "Hello World!");
-	FirstWindow->start(slot_MyWindow_on_open);
-}
 
 arslot_t slot_MyApp_on_open()
 {
@@ -52,13 +35,12 @@ arslot_t slot_MyApp_on_open()
     Shell::Output(InfoRAM::getUsedPhysicalMemory(), Shell::EndLine);
 	Shell::Log(Shell::Information, "Getting free physical memory:\t");
     Shell::Output(InfoRAM::getFreePhysicalMemory(), Shell::EndLine);
+    Application::ExitSuccess();
 }
 
 int main(int argc, char * argv[])
 {
-	MyApp = new Application(slot_MyApp_on_open, argc, argv);
+    MyApp = new Application(slot_MyApp_on_open, argc, argv);
 	delete MyApp;
-	MyGUIApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyGUIApp_on_open, argc, argv);
-	return MyGUIApp->AppStatus;
-
+    return 0;
 }

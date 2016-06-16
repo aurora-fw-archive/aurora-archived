@@ -2,5 +2,5 @@
 ---------------------------
 
 ```bash
-g++ -o test test.cpp -laurora
+$ make
 ```
