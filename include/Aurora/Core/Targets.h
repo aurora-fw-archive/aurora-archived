@@ -7,13 +7,16 @@
 // File: include/Aurora/Core/Target.h
 // Contains: Targets for Operation System / Kernel / Platform Detection
 
-#ifndef _AURORA_CORE_TARGETS
-#define _AURORA_CORE_TARGETS
+#ifndef INCLUDE_H_AURORA_CORE_TARGETS
+#define INCLUDE_H_AURORA_CORE_TARGETS
+
+#include <Aurora/Core/Aurora.h>
 
 // TODO: Implement this macros ( https://sourceforge.net/p/predef/wiki/OperatingSystems/ )
+//       Needs to test all macros ( Windows and Apple platforms and ARM and PowerPC Architectures)
 
 #ifdef _WIN32
-    #define AURORA_TARGET_WINDOW
+    #define AURORA_TARGET_WINDOWS
     #define AURORA_TARGET_WINDOWS_86_64
     #ifdef _WIN64
         #define AURORA_TARGET_WINDOWS_64
@@ -39,17 +42,36 @@
     #endif
 #elif defined(__linux__) || defined(__linux) || defined(linux)
     #define AURORA_TARGET_LINUX
+    #ifndef AURORA_TARGET_OPENSOURCE
+        #define AURORA_TARGET_OPENSOURCE
+    #endif
     #ifdef __gnu_linux__
         #define AURORA_TARGET_GNU_LINUX
+        #ifndef AURORA_TARGET_OPENSOURCE
+            #define AURORA_TARGET_OPENSOURCE
+        #endif
     #endif
+#endif
+
+#if defined(__unix__) || defined(__unix) || defined(unix)
+    #define AURORA_TARGET_UNIX
 #endif
 
 #ifdef __ANDROID__
     #define AURORA_TARGET_ANDROID
+    #ifndef AURORA_TARGET_OPENSOURCE
+        #define AURORA_TARGET_OPENSOURCE
+    #endif
 #elif __CYGWIN__
     #define AURORA_TARGET_CYGWIN
+    #ifndef AURORA_TARGET_OPENSOURCE
+        #define AURORA_TARGET_OPENSOURCE
+    #endif
 #elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
     #define AURORA_TARGET_FREEBSD
+    #ifndef AURORA_TARGET_OPENSOURCE
+        #define AURORA_TARGET_OPENSOURCE
+    #endif
 #endif
 
 #if defined(__ppc__) || defined(__powerpc__) || defined(__PPC__) || defined(__POWERPC__)
@@ -124,6 +146,6 @@
     #ifdef AURORA_TARGET_CXX
         #undef AURORA_TARGET_CXX
     #endif
-#endif
+#endif 
 
-#endif // _AURORA_CORE_TARGETS
+#endif // INCLUDE_H_AURORA_CORE_TARGETS

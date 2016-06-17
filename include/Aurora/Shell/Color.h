@@ -4,10 +4,11 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_SHELL_COLOR
-#define _AURORA_SHELL_COLOR
+#ifndef INCLUDE_H_AURORA_SHELL_COLOR
+#define INCLUDE_H_AURORA_SHELL_COLOR
 
 #include <Aurora/Shell/ColorType.h>
+#include <Aurora/Core/Aurora.h>
 
 namespace Aurora
 {
@@ -36,4 +37,4 @@ namespace Aurora
     };
 }
 
-#endif // _AURORA_SHELL_COLOR
+#endif // INCLUDE_H_AURORA_SHELL_COLOR

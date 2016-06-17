@@ -4,12 +4,13 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_GUI_WINDOW
-#define _AURORA_GUI_WINDOW
+#ifndef INCLUDE_H_AURORA_GUI_WINDOW
+#define INCLUDE_H_AURORA_GUI_WINDOW
 
 #include <iostream>
 #include <string>
 #include <Aurora/Core/Typedef.h>
+#include <Aurora/Core/Aurora.h>
 
 typedef struct _GtkWidget GtkWidget;
 
@@ -42,4 +43,4 @@ namespace Aurora
     };
 }
 
-#endif // _AURORA_GUI_WINDOW
+#endif // INCLUDE_H_AURORA_GUI_WINDOW

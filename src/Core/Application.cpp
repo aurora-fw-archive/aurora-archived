@@ -21,15 +21,15 @@ namespace Aurora
         {
             if((std::string(argv[1]) == "--debug") || (std::string(argv[1]) == "-ds"))
             {
-                enableDebug();
+                Debug::enableDebug();
             }
             else if((std::string(argv[1]) == "--debug-silent") || (std::string(argv[1]) == "-ds"))
             {
-                enableDebug(true);
+                Debug::enableDebug(true);
             }
             else
             {
-                disableDebug(true);
+                Debug::disableDebug(true);
             }
         }
         Shell::Log(Shell::Debug, "creating new application: id_", ID, Shell::EndLine);

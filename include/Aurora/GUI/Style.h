@@ -4,10 +4,11 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_GUI_STYLE
-#define _AURORA_GUI_STYLE
+#ifndef INCLUDE_H_AURORA_GUI_STYLE
+#define INCLUDE_H_AURORA_GUI_STYLE
 
 #include <Aurora/Core/Typedef.h>
+#include <Aurora/Core/Aurora.h>
 
 namespace Aurora 
 {
@@ -26,4 +27,4 @@ namespace Aurora
     }
 }
 
-#endif // _AURORA_GUI_STYLE
+#endif // INCLUDE_H_AURORA_GUI_STYLE

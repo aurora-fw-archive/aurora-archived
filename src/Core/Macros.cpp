@@ -6,6 +6,6 @@
 
 namespace Aurora
 {
-    bool Debug = false;
+    bool DebugStatus = false;
     int LastID;
 }

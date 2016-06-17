@@ -4,8 +4,10 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_INFO_RAM
-#define _AURORA_INFO_RAM
+#ifndef INCLUDE_H_AURORA_INFO_RAM
+#define INCLUDE_H_AURORA_INFO_RAM
+
+#include <Aurora/Core/Aurora.h>
 
 namespace Aurora
 {
@@ -21,4 +23,4 @@ namespace Aurora
     };
 }
 
-#endif // _AURORA_INFO_RAM
+#endif // INCLUDE_H_AURORA_INFO_RAM

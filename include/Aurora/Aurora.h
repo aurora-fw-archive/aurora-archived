@@ -4,8 +4,8 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_H_INCLUDE
-#define _AURORA_H_INCLUDE
+#ifndef INCLUDE_H_AURORA_H_INCLUDE
+#define INCLUDE_H_AURORA_H_INCLUDE
 
 #pragma once
 
@@ -15,6 +15,7 @@
 #include <Aurora/Core/Application.h>
 #include <Aurora/Core/Macros.h>
 #include <Aurora/Core/Debug.h>
+#include <Aurora/Core/Aurora.h>
 
 // GUI
 #include <Aurora/GUI/Window.h>
@@ -35,11 +36,9 @@
 //#include <Aurora/Info/System.h>
 
 // Headers for cross-compiler
-#if !defined(__unix__) && !defined(__unix) &&   \
-    !defined(_WIN32) && !defined(__linux__) &&  \
-    !defined(__APPLE__) && !defined(__MACH__)
+
 //#include <Aurora/Cross/System/IO.h>
 //#include <Aurora/Cross/Video/VGA.h>
-#endif
 
-#endif // _AURORA_H_INCLUDE
+
+#endif // INCLUDE_H_AURORA_H_INCLUDE

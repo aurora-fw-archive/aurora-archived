@@ -14,11 +14,11 @@ Application *MyApp;
 
 arslot_t slot_MyApp_on_open()
 {
-	if(!getDebugStatus())
+	if(!Debug::getDebugStatus())
 	{
 		Shell::Log(Shell::Notice, "debug is disable", Shell::EndLine);
 	}
-	if(Debug)
+	if(Debug::getDebugStatus())
 	{
 		Shell::Log(Shell::Notice, "test the log", Shell::EndLine);
 		Shell::Log(Shell::Warning, "test the log", Shell::EndLine);
@@ -26,6 +26,10 @@ arslot_t slot_MyApp_on_open()
 		Shell::Log(Shell::Notice,"test the log", Shell::EndLine);
 		Shell::Log(Shell::Debug, "test the log", Shell::EndLine);
 	}
+	#ifdef __AURORA_FW
+		Shell::Log(Shell::Notice, "Aurora Framework Macro detected!", Shell::EndLine);
+	#endif
+
 	Shell::Log(Shell::Information, "Getting total virtual memory:\t\t");
   Shell::Output(InfoRAM::getTotalVirtualMemory(), Shell::EndLine);
 	Shell::Log(Shell::Information, "Getting used virtual memory:\t\t");

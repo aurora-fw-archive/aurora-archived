@@ -4,9 +4,10 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-/* _AURORA_TO_DO: Convert output functions
-*                 into a return functions
-*/
+// File: src/Crypto/AES.cpp
+// Contains: AES Cryptography Algorithm
+
+// TODO: Convert output functions into a return functions
 
 #include <Aurora/Crypto/AES.h>
 #include <Aurora/Shell/Log.h>

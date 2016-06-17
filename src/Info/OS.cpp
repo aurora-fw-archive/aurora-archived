@@ -7,20 +7,21 @@
 #include <Aurora/Core/Targets.h>
 #include <Aurora/Info/OS.h>
 
-#if defined(AURORA_TARGET_LINUX) && defined(AURORA_TARGET_GNU_LINUX)
+#ifdef AURORA_TARGET_GNU_LINUX
 #include <sys/utsname.h>
+#elif AURORA_TARGET_WINDOWS
+#include <windows.h>
 #endif
-
 
 namespace Aurora
 {
     std::string InfoOS::getManufacturer()
     {
-        #ifdef AURORA_TARGET_WINDOW
+        #ifdef AURORA_TARGET_WINDOWS
             return "Microsoft Corporation";
         #elif defined(AURORA_TARGET_APPLE)
             return "Apple Inc.";
-        #elif defined(AURORA_TARGET_LINUX) || defined(AURORA_TARGET_FREEBSD)
+        #elif defined(AURORA_TARGET_OPENSOURCE)
             return "Community (Open Source)";
         #else
             return "Unknown Manufacturer";
@@ -28,7 +29,7 @@ namespace Aurora
     }
     std::string InfoOS::getArchitecture()
     {
-        #if defined(AURORA_TARGET_LINUX) && defined(AURORA_TARGET_GNU_LINUX)
+        #ifdef AURORA_TARGET_GNU_LINUX
             struct utsname linuxname_temp;
             uname(&linuxname_temp);
             return std::string(linuxname_temp.machine);
@@ -46,9 +47,9 @@ namespace Aurora
     }
     std::string InfoOS::getName()
     {
-        #ifdef AURORA_TARGET_WINDOW
+        #ifdef AURORA_TARGET_WINDOWS
             return "Microsoft Windows";
-        #elif defined(AURORA_TARGET_LINUX) && defined(AURORA_TARGET_GNU_LINUX)
+        #elif defined(AURORA_TARGET_GNU_LINUX)
             struct utsname linuxname_temp;
             uname(&linuxname_temp);
             return std::string(linuxname_temp.sysname);
@@ -61,8 +62,8 @@ namespace Aurora
 
     std::string InfoOS::getVersion()
     {
-        // TODO : Get Version for Windows Platforms
-        #if defined(AURORA_TARGET_LINUX) && defined(AURORA_TARGET_GNU_LINUX)
+        // TODO: Get Version for Windows Platforms
+        #ifdef AURORA_TARGET_GNU_LINUX
             struct utsname linuxname_temp;
             uname(&linuxname_temp);
             return std::string(linuxname_temp.release) + std::string(linuxname_temp.version);
@@ -73,7 +74,8 @@ namespace Aurora
 
     std::string InfoOS::getUserComputerName()
     {
-        #if defined(AURORA_TARGET_LINUX) && defined(AURORA_TARGET_GNU_LINUX)
+        // TODO: Get User computer name for others platforms
+        #ifdef AURORA_TARGET_GNU_LINUX
             struct utsname linuxname_temp;
             uname(&linuxname_temp);
             return std::string(linuxname_temp.nodename);

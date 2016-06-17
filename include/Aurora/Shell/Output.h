@@ -4,11 +4,12 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_SHELL_OUTPUT
-#define _AURORA_SHELL_OUTPUT
+#ifndef INCLUDE_H_AURORA_SHELL_OUTPUT
+#define INCLUDE_H_AURORA_SHELL_OUTPUT
 
 #include <iostream>
 #include <Aurora/Core/Macros.h>
+#include <Aurora/Core/Aurora.h>
 
 namespace Aurora { namespace Shell
     {
@@ -27,4 +28,4 @@ namespace Aurora { namespace Shell
     }
 }
 
-#endif // _AURORA_SHELL_OUTPUT
+#endif // INCLUDE_H_AURORA_SHELL_OUTPUT

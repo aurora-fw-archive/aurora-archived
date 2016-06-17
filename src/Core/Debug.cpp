@@ -8,40 +8,41 @@
 #include <Aurora/Core/Debug.h>
 #include <Aurora/Core/Macros.h>
 
-namespace Aurora
-{
-    void enableDebug(bool silent)
+namespace Aurora { namespace Debug
     {
-        if(Debug)
+        void enableDebug(bool silent)
         {
-            if(!silent) Shell::Log(Shell::Debug, "debug is already enabled", Shell::EndLine);
-        }
-        else
-        {
-            Debug = true;
-            if(!silent) 
+            if(Aurora::DebugStatus)
             {
-                Shell::Log(Shell::Debug, "┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─", Shell::EndLine);
-                Shell::Log(Shell::Debug, "├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐", Shell::EndLine);
-                Shell::Log(Shell::Debug, "┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴", Shell::EndLine);
-                Shell::Log(Shell::Debug, "debug is enabled", Shell::EndLine);
+                if(!silent) Shell::Log(Shell::Debug, "debug is already enabled", Shell::EndLine);
+            }
+            else
+            {
+                Aurora::DebugStatus = true;
+                if(!silent) 
+                {
+                    Shell::Log(Shell::Debug, "┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─", Shell::EndLine);
+                    Shell::Log(Shell::Debug, "├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐", Shell::EndLine);
+                    Shell::Log(Shell::Debug, "┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴", Shell::EndLine);
+                    Shell::Log(Shell::Debug, "debug is enabled", Shell::EndLine);
+                }
             }
         }
-    }
-    void disableDebug(bool silent)
-    {
-        if(!Debug)
+        void disableDebug(bool silent)
         {
-            if(!silent) Shell::Log(Shell::Debug, "debug is already disabled", Shell::EndLine);
+            if(!Aurora::DebugStatus)
+            {
+                if(!silent) Shell::Log(Shell::Debug, "debug is already disabled", Shell::EndLine);
+            }
+            else
+            {
+                Aurora::DebugStatus = false;
+                if(!silent) Shell::Log(Shell::Debug, "debug is disabled", Shell::EndLine);
+            }
         }
-        else
+        bool getDebugStatus()
         {
-            Debug = false;
-            if(!silent) Shell::Log(Shell::Debug, "debug is disabled", Shell::EndLine);
+            return Aurora::DebugStatus;
         }
-    }
-    bool getDebugStatus()
-    {
-        return Debug;
     }
 }

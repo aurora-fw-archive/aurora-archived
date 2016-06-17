@@ -4,10 +4,11 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_GUI_LABEL
-#define _AURORA_GUI_LABEL
+#ifndef INCLUDE_H_AURORA_GUI_LABEL
+#define INCLUDE_H_AURORA_GUI_LABEL
 
 #include <Aurora/GUI/Window.h>
+#include <Aurora/Core/Aurora.h>
 
 typedef struct _GtkWidget GtkWidget;
 
@@ -29,4 +30,4 @@ namespace Aurora
     };
 }
 
-#endif // _AURORA_GUI_LABEL
+#endif // INCLUDE_H_AURORA_GUI_LABEL

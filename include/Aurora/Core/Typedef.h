@@ -4,10 +4,13 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_TYPEDEF
-#define _AURORA_TYPEDEF
+#ifndef INCLUDE_H_AURORA_TYPEDEF
+#define INCLUDE_H_AURORA_TYPEDEF
 
-#ifdef __cplusplus
+#include <Aurora/Core/Targets.h>
+#include <Aurora/Core/Aurora.h>
+
+#ifdef AURORA_TARGET_CXX
 #include <iostream>
 #include <string>
 
@@ -16,7 +19,7 @@
 
 typedef std::string arstring_t;
 typedef std::wstring arwstring_t;
-#else
+#elif defined(AURORA_TARGET_CC)
 #include <wchar.h>
 #include <cstdint.h>
 
@@ -34,4 +37,4 @@ typedef wchar_t arwchar_t;
 // For Bytes
 typedef unsigned char arbyte_t;
 
-#endif // _AURORA_TYPEDEF
+#endif // INCLUDE_H_AURORA_TYPEDEF

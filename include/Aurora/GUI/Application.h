@@ -4,11 +4,12 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_GUI_APPLICATION
-#define _AURORA_GUI_APPLICATION
+#ifndef INCLUDE_H_AURORA_GUI_APPLICATION
+#define INCLUDE_H_AURORA_GUI_APPLICATION
 
 #include <iostream>
 #include <Aurora/Core/Typedef.h>
+#include <Aurora/Core/Aurora.h>
 
 typedef struct _GtkApplication GtkApplication;
 
@@ -37,4 +38,4 @@ namespace Aurora
     };
 }
 
-#endif // _AURORA_GUI_APPLICATION
+#endif // INCLUDE_H_AURORA_GUI_APPLICATION

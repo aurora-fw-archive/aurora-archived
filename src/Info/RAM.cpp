@@ -4,11 +4,13 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifdef _WIN32
+#include <Aurora/Core/Targets.h>
+
+#ifdef AURORA_TARGET_WINDOWS
 #include <windows.h>
-#elif defined(__linux__)
+#elif defined(AURORA_TARGET_GNU_LINUX)
 #include <sys/sysinfo.h>
-#elif defined(__MACH__) && defined(__APPLE__)
+#elif defined(AURORA_TARGET_APPLE_MAC)
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <sys/vmmeter.h>
@@ -21,16 +23,20 @@ namespace Aurora
     // Total virtual memory size in bytes
     unsigned int InfoRAM::getTotalVirtualMemory()
     {
-        #ifdef __linux__
+        #ifdef AURORA_TARGET_GNU_LINUX
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return (mem_temp.totalram + mem_temp.totalswap) * mem_temp.mem_unit;
-        #elif defined(_WIN32)
+        #elif defined(AURORA_TARGET_WINDOWS)
+
+        // TODO: Needs to be tested
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullTotalVirtual;
-        #elif defined(__MACH__) && defined(__APPLE__)
+        #elif defined(AURORA_TARGET_APPLE_MAC)
+
+        // TODO: Needs to be tested
         struct vmtotal mem_temp;
         vmtotal (&mem_temp);
         return mem_temp.t_vm;
@@ -40,16 +46,16 @@ namespace Aurora
     // Used virtual memory size in bytes
     unsigned int InfoRAM::getUsedVirtualMemory()
     {
-        #ifdef __linux
+        #ifdef AURORA_TARGET_GNU_LINUX
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return ((mem_temp.totalram - mem_temp.freeram) + (mem_temp.totalswap - mem_temp.freeswap)) * mem_temp.mem_unit;
-        #elif defined(_WIN32)
+        #elif defined(AURORA_TARGET_WINDOWS)
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullTotalVirtual - mem_temp.ullAvailVirtual;
-        #elif defined(__MACH__) && defined(__APPLE__)
+        #elif defined(AURORA_TARGET_APPLE_MAC)
         struct vmtotal mem_temp;
         vmtotal (&mem_temp);
         return mem_temp.t_vm - mem_temp.t_free;
@@ -59,16 +65,20 @@ namespace Aurora
     // Free virtual memory size in bytes
     unsigned int InfoRAM::getFreeVirtualMemory()
     {
-        #ifdef __linux__
+        #ifdef AURORA_TARGET_GNU_LINUX
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return ((mem_temp.totalram + mem_temp.totalswap) - ((mem_temp.totalram - mem_temp.freeram) + (mem_temp.totalswap - mem_temp.freeswap))) * mem_temp.mem_unit;
-        #elif defined(_WIN32)
+        #elif defined(AURORA_TARGET_WINDOWS)
+
+        // TODO: Needs to be tested
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullAvailVirtual;
-        #elif defined(__MACH__) && defined(__APPLE__)
+        #elif defined(AURORA_TARGET_APPLE_MAC)
+
+        // TODO: Needs to be tested
         struct vmtotal mem_temp;
         vmtotal (&mem_temp);
         return mem_temp.t_free;
@@ -78,16 +88,20 @@ namespace Aurora
     // Total pysical memory size in bytes
     unsigned int InfoRAM::getTotalPhysicalMemory()
     {
-        #ifdef __linux__
+        #ifdef AURORA_TARGET_GNU_LINUX
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return mem_temp.totalram * mem_temp.mem_unit;
-        #elif defined(_WIN32)
+        #elif defined(AURORA_TARGET_WINDOWS)
+
+        // TODO: Needs to be tested
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullTotalPhys;
-        #elif defined(__MACH__) && defined(__APPLE__)
+        #elif defined(AURORA_TARGET_APPLE_MAC)
+
+        // TODO: Needs to be tested
         int mib[2];
         int64_t physical_memory;
         size_t length;
@@ -104,16 +118,20 @@ namespace Aurora
     // Used pysical memory size in bytes
     unsigned int InfoRAM::getUsedPhysicalMemory()
     {
-        #ifdef __linux__
+        #ifdef AURORA_TARGET_GNU_LINUX
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return (mem_temp.totalram - mem_temp.freeram) * mem_temp.mem_unit;
-        #elif defined(_WIN32)
+        #elif defined(AURORA_TARGET_WINDOWS)
+
+        // TODO: Needs to be tested
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullTotalPhys - mem_temp.ullAvailPhys;
-        #elif defined(__MACH__) && defined(__APPLE__)
+        #elif defined(AURORA_TARGET_APPLE_MAC)
+
+        // TODO: Needs to be tested
         struct vmmeter mem_temp;
         vmmeter (&mem_temp);
         int mib[2];
@@ -131,16 +149,20 @@ namespace Aurora
     // Free pysical memory size in bytes
     unsigned int InfoRAM::getFreePhysicalMemory()
     {
-        #ifdef __linux__
+        #ifdef AURORA_TARGET_GNU_LINUX
         struct sysinfo mem_temp;
         sysinfo (&mem_temp);
         return mem_temp.freeram * mem_temp.mem_unit;
-        #elif defined(_WIN32)
+        #elif defined(AURORA_TARGET_WINDOWS)
+
+        // TODO: Needs to be tested
         MEMORYSTATUSEX mem_temp;
         mem_temp.dwLength = sizeof(MEMORYSTATUSEX);
         GlobalMemoryStatusEx(&mem_temp);
         return mem_temp.ullAvailPhys;
-        #elif defined(__MACH__) && defined(__APPLE__)
+        #elif defined(AURORA_TARGET_APPLE_MAC)
+
+        // TODO: Needs to be tested
         struct vmmeter mem_temp;
         vmmeter (&mem_temp);
         return mem_temp.v_free_count;

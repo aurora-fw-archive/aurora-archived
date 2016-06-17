@@ -4,11 +4,12 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_INFO_OS
-#define _AURORA_INFO_OS
+#ifndef INCLUDE_H_AURORA_INFO_OS
+#define INCLUDE_H_AURORA_INFO_OS
 
 #include <iostream>
 #include <Aurora/Core/Targets.h>
+#include <Aurora/Core/Aurora.h>
 
 #ifdef AURORA_TARGET_ANDROID
     #include <android/api-level.h>
@@ -27,4 +28,4 @@ namespace Aurora
     };
 }
 
-#endif // _AURORA_INFO_OS
+#endif // INCLUDE_H_AURORA_INFO_OS

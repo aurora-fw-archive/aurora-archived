@@ -4,8 +4,10 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_CRYPTO_AES
-#define _AURORA_CRYPTO_AES
+#ifndef INCLUDE_H_AURORA_CRYPTO_AES
+#define INCLUDE_H_AURORA_CRYPTO_AES
+
+#include <Aurora/Core/Aurora.h>
 
 namespace Aurora
 {
@@ -89,4 +91,4 @@ namespace Aurora
 }
 
 
-#endif // _AURORA_CRYPTO_AES
+#endif // INCLUDE_H_AURORA_CRYPTO_AES

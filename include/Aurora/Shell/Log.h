@@ -4,12 +4,13 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef _AURORA_SHELL_LOG
-#define _AURORA_SHELL_LOG
+#ifndef INCLUDE_H_AURORA_SHELL_LOG
+#define INCLUDE_H_AURORA_SHELL_LOG
 
 #include <iostream>
 #include <Aurora/Core/Macros.h>
 #include <Aurora/Shell/Output.h>
+#include <Aurora/Core/Aurora.h>
 
 namespace Aurora { namespace Shell
     {
@@ -26,10 +27,11 @@ namespace Aurora { namespace Shell
         void Log (MessageStatus status, auto... args);
         void Log (MessageStatus status, auto... args)
         {
+            // TODO: Windows ANSI integration
+            //       Needs to be tested on Windows and Apple platforms
             if(status == Error)
             {
-                #if defined(__unix__) || defined(__unix) || \
-                    (defined(__APPLE__) && defined(__MACH__))
+                #ifdef AURORA_TARGET_UNIX
                 std::cout << "\e[0m\e[1m[\e[1;31mERROR\e[0;1m] \e[0m";
                 #else
                 std::cout << "[ERROR] ";
@@ -38,8 +40,7 @@ namespace Aurora { namespace Shell
             }
             else if (status == Warning)
             {
-                #if defined(__unix__) || defined(__unix) || \
-                    (defined(__APPLE__) && defined(__MACH__))
+                #ifdef AURORA_TARGET_UNIX
                 std::cout << "\e[0m\e[1m[\e[1;33mWARNING\e[0;1m] \e[0m";
                 #else
                 std::cout << "[WARNING] ";
@@ -48,8 +49,7 @@ namespace Aurora { namespace Shell
             }
             else if (status == Notice)
             {
-                #if defined(__unix__) || defined(__unix) || \
-                    (defined(__APPLE__) && defined(__MACH__))
+                #ifdef AURORA_TARGET_UNIX
                 std::cout << "\e[0m\e[1m[\e[1;36mNOTICE\e[0;1m] \e[0m";
                 #else
                 std::cout << "[NOTICE] ";
@@ -58,8 +58,7 @@ namespace Aurora { namespace Shell
             }
             else if (status == Information)
             {
-                #if defined(__unix__) || defined(__unix) || \
-                (defined(__APPLE__) && defined(__MACH__))
+                #ifdef AURORA_TARGET_UNIX
                 std::cout << "\e[0m\e[1m[\e[1;32mINFORMATION\e[0;1m] \e[0m";
                 #else
                 std::cout << "[INFORMATION] ";
@@ -68,10 +67,9 @@ namespace Aurora { namespace Shell
             }
             else if (status == Aurora::Shell::Debug)
             {
-                if(Aurora::Debug)
+                if(Aurora::DebugStatus)
                 {
-                    #if defined(__unix__) || defined(__unix) || \
-                    (defined(__APPLE__) && defined(__MACH__))
+                    #ifdef AURORA_TARGET_UNIX
                     std::cout << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";
                     #else
                     std::cout << "[DEBUG] ";
@@ -83,4 +81,4 @@ namespace Aurora { namespace Shell
     }
 }
 
-#endif // _AURORA_SHELL_LOG
+#endif // INCLUDE_H_AURORA_SHELL_LOG
