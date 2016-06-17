@@ -8,7 +8,7 @@
 #define _AURORA_INFO_OS
 
 #include <iostream>
-#include <Aurora/Core/Target.h>
+#include <Aurora/Core/Targets.h>
 
 #ifdef AURORA_TARGET_ANDROID
     #include <android/api-level.h>
@@ -19,11 +19,12 @@ namespace Aurora
     struct InfoOS 
     {
     public:
-        std::string getManufacturer();
-        std::string getArchitecture();
-        std::string getVersion();
-        std::string getName();
-    }
+        static std::string getManufacturer();
+        static std::string getArchitecture();
+        static std::string getVersion();
+        static std::string getName();
+        static std::string getUserComputerName();
+    };
 }
 
 #endif // _AURORA_INFO_OS

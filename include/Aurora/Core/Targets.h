@@ -7,8 +7,8 @@
 // File: include/Aurora/Core/Target.h
 // Contains: Targets for Operation System / Kernel / Platform Detection
 
-#ifndef _AURORA_CORE_TARGET
-#define _AURORA_CORE_TARGET
+#ifndef _AURORA_CORE_TARGETS
+#define _AURORA_CORE_TARGETS
 
 // TODO: Implement this macros ( https://sourceforge.net/p/predef/wiki/OperatingSystems/ )
 
@@ -22,7 +22,7 @@
     #define AURORA_TARGET_APPLE
     #if defined(__APPLE_CPP__) || defined(__APPLE_CC__) || defined(__MACOS_CLASSIC__)
         #if (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh) || defined(Macintosh)
-        #define AURORA_TARGET_APPLE_MAC
+            #define AURORA_TARGET_APPLE_MAC
         #endif
         #if defined(__GNUC__)
             #define TARGET_OS_EMBEDDED          @CONFIG_EMBEDDED@
@@ -41,6 +41,7 @@
     #define AURORA_TARGET_LINUX
     #ifdef __gnu_linux__
         #define AURORA_TARGET_GNU_LINUX
+    #endif
 #endif
 
 #ifdef __ANDROID__
@@ -51,7 +52,7 @@
     #define AURORA_TARGET_FREEBSD
 #endif
 
-#ifdef defined(__ppc__) || defined(__powerpc__) || defined(__PPC__) || defined(__POWERPC__)
+#if defined(__ppc__) || defined(__powerpc__) || defined(__PPC__) || defined(__POWERPC__)
     #define AURORA_TARGET_POWERPC
     #define AURORA_TARGET_POWERPC_32
     #if defined(__powerpc64__) || defined(__ppc64__) || defined(__PPC64__)
@@ -59,7 +60,7 @@
     #endif
 #endif
 
-#ifdef defined(__i386) || defined(_M_IX86) || defined(__i386__) || (defined(__MWERKS__) && defined(__INTEL__))
+#if defined(__i386) || defined(_M_IX86) || defined(__i386__) || (defined(__MWERKS__) && defined(__INTEL__))
     #define AURORA_TARGET_CPU_I386
 #elif defined(__x86_64__) || defined(_M_X64) || defined(__amd64__) || defined(__amd64) || defined(_M_AMD64)
     #define AURORA_TARGET_CPU_86_64
@@ -125,4 +126,4 @@
     #endif
 #endif
 
-#endif // _AURORA_CORE_TARGET
+#endif // _AURORA_CORE_TARGETS

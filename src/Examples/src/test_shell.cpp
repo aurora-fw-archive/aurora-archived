@@ -26,18 +26,28 @@ arslot_t slot_MyApp_on_open()
 		Shell::Log(Shell::Notice,"test the log", Shell::EndLine);
 		Shell::Log(Shell::Debug, "test the log", Shell::EndLine);
 	}
-	Shell::Log(Shell::Information, "Getting total virtual memory:\t");
+	Shell::Log(Shell::Information, "Getting total virtual memory:\t\t");
   Shell::Output(InfoRAM::getTotalVirtualMemory(), Shell::EndLine);
-	Shell::Log(Shell::Information, "Getting used virtual memory:\t");
+	Shell::Log(Shell::Information, "Getting used virtual memory:\t\t");
   Shell::Output(InfoRAM::getUsedVirtualMemory(), Shell::EndLine);
-	Shell::Log(Shell::Information, "Getting free virtual memory:\t");
+	Shell::Log(Shell::Information, "Getting free virtual memory:\t\t");
   Shell::Output(InfoRAM::getFreeVirtualMemory(), Shell::EndLine);
-	Shell::Log(Shell::Information, "Getting total physical memory:\t");
+	Shell::Log(Shell::Information, "Getting total physical memory:\t\t");
   Shell::Output(InfoRAM::getTotalPhysicalMemory(), Shell::EndLine);
-	Shell::Log(Shell::Information, "Getting used physical memory:\t");
+	Shell::Log(Shell::Information, "Getting used physical memory:\t\t");
   Shell::Output(InfoRAM::getUsedPhysicalMemory(), Shell::EndLine);
-	Shell::Log(Shell::Information, "Getting free physical memory:\t");
+	Shell::Log(Shell::Information, "Getting free physical memory:\t\t");
   Shell::Output(InfoRAM::getFreePhysicalMemory(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting Operation System Name:\t\t");
+	Shell::Output(InfoOS::getName(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting Operation System Architecture:\t");
+	Shell::Output(InfoOS::getArchitecture(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting Operation System Manufacturer:\t");
+	Shell::Output(InfoOS::getManufacturer(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting Operation System Version:\t\t");
+	Shell::Output(InfoOS::getVersion(), Shell::EndLine);
+	Shell::Log(Shell::Information, "Getting User Computer Name:\t\t");
+	Shell::Output(InfoOS::getUserComputerName(), Shell::EndLine);
   Application::ExitSuccess();
 }
 

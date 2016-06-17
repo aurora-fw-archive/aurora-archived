@@ -150,7 +150,7 @@ am___top_builddir_____bin_libaurora_la_OBJECTS = ../src/GUI/Window.lo \
 	../src/GUI/Application.lo ../src/GUI/Label.lo \
 	../src/Info/RAM.lo ../src/Core/Application.lo \
 	../src/Core/Macros.lo ../src/Core/Debug.lo \
-	../src/Shell/Color.lo ../src/Crypto/AES.lo
+	../src/Shell/Color.lo ../src/Crypto/AES.lo ../src/Info/OS.lo
 __top_builddir_____bin_libaurora_la_OBJECTS =  \
 	$(am___top_builddir_____bin_libaurora_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -380,7 +380,8 @@ __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/Core/Macros.cpp \
                                               ../src/Core/Debug.cpp \
                                               ../src/Shell/Color.cpp \
-                                              ../src/Crypto/AES.cpp
+                                              ../src/Crypto/AES.cpp \
+                                              ../src/Info/OS.cpp
 
 
 # Headers
@@ -391,7 +392,7 @@ cinclude_HEADERS = ../include/Aurora/Aurora.h
 coreincludedir = $(includedir)/Aurora/Core
 coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
                       ../include/Aurora/Core/Macros.h \
-                      ../include/Aurora/Core/Target.h \
+                      ../include/Aurora/Core/Targets.h \
                       ../include/Aurora/Core/Typedef.h \
                       ../include/Aurora/Core/Debug.h
 
@@ -557,6 +558,8 @@ clean-libLTLIBRARIES:
 	@: > ../src/Crypto/$(DEPDIR)/$(am__dirstamp)
 ../src/Crypto/AES.lo: ../src/Crypto/$(am__dirstamp) \
 	../src/Crypto/$(DEPDIR)/$(am__dirstamp)
+../src/Info/OS.lo: ../src/Info/$(am__dirstamp) \
+	../src/Info/$(DEPDIR)/$(am__dirstamp)
 $(top_builddir)/../bin/$(am__dirstamp):
 	@$(MKDIR_P) $(top_builddir)/../bin
 	@: > $(top_builddir)/../bin/$(am__dirstamp)
@@ -587,6 +590,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Application.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Label.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/GUI/$(DEPDIR)/Window.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@../src/Info/$(DEPDIR)/OS.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Info/$(DEPDIR)/RAM.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../src/Shell/$(DEPDIR)/Color.Plo@am__quote@
 

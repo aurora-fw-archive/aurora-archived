@@ -11,6 +11,7 @@
 
 // Core
 #include <Aurora/Core/Typedef.h>
+#include <Aurora/Core/Targets.h>
 #include <Aurora/Core/Application.h>
 #include <Aurora/Core/Macros.h>
 #include <Aurora/Core/Debug.h>
@@ -28,7 +29,7 @@
 // Information
 
 #include <Aurora/Info/RAM.h>
-//#include <Aurora/Info/OS.h>
+#include <Aurora/Info/OS.h>
 //#include <Aurora/Info/GPU.h>
 //#include <Aurora/Info/CPU.h>
 //#include <Aurora/Info/System.h>

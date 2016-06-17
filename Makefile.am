@@ -20,7 +20,8 @@ __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/Core/Macros.cpp \
                                               ../src/Core/Debug.cpp \
                                               ../src/Shell/Color.cpp \
-                                              ../src/Crypto/AES.cpp
+                                              ../src/Crypto/AES.cpp \
+                                              ../src/Info/OS.cpp
 
 # Headers
 cincludedir = $(includedir)/Aurora/
@@ -30,7 +31,7 @@ cinclude_HEADERS = ../include/Aurora/Aurora.h
 coreincludedir = $(includedir)/Aurora/Core
 coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
                       ../include/Aurora/Core/Macros.h \
-                      ../include/Aurora/Core/Target.h \
+                      ../include/Aurora/Core/Targets.h \
                       ../include/Aurora/Core/Typedef.h \
                       ../include/Aurora/Core/Debug.h
 
