@@ -30,6 +30,7 @@ cinclude_HEADERS = ../include/Aurora/Aurora.h
 coreincludedir = $(includedir)/Aurora/Core
 coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
                       ../include/Aurora/Core/Macros.h \
+                      ../include/Aurora/Core/Target.h \
                       ../include/Aurora/Core/Typedef.h \
                       ../include/Aurora/Core/Debug.h
 
@@ -41,7 +42,8 @@ guiinclude_HEADERS = ../include/Aurora/GUI/Window.h \
 
 # Info Headers
 infoincludedir = $(includedir)/Aurora/Info
-infoinclude_HEADERS = ../include/Aurora/Info/RAM.h
+infoinclude_HEADERS = ../include/Aurora/Info/RAM.h \
+                      ../include/Aurora/Info/OS.h 
                    
 # Shell Headers
 shellincludedir = $(includedir)/Aurora/Shell
