@@ -29,5 +29,4 @@ int main(int argc, char * argv[])
 {
 	MyGUIApp = new GUIApplication("org.aurora.example", GUIApplication::NoneFlag, slot_MyGUIApp_on_open, argc, argv);
 	return MyGUIApp->AppStatus;
-
 }

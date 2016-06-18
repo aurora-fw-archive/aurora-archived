@@ -48,5 +48,24 @@ namespace Aurora
         Shell::Log(Shell::Debug, "getting selectable property from label id_", ID, Shell::EndLine);
         return gtk_label_get_selectable((GtkLabel*)Label);
     }
-
+    void GUILabel::setLineWrap(bool value)
+    {
+        Shell::Log(Shell::Debug, "setting wrap property on label id_", ID, Shell::EndLine);
+        gtk_label_set_line_wrap((GtkLabel*)Label, value);
+    }
+    bool GUILabel::getLineWrap()
+    {
+        Shell::Log(Shell::Debug, "getting wrap property from label id_", ID, Shell::EndLine);
+        return gtk_label_get_line_wrap((GtkLabel*)Label);
+    }
+    void GUILabel::setLineWrapMode(WarpMode mode)
+    {
+        Shell::Log(Shell::Debug, "setting wrap mode property on label id_", ID);
+        gtk_label_set_line_wrap_mode((GtkLabel*)Label, (PangoWrapMode)mode);
+    }
+    WarpMode GUILabel::getLineWrapMode()
+    {
+        Shell::Log(Shell::Debug, "getting wrap mod property from label id_", ID);
+        return (WarpMode)gtk_label_get_line_wrap_mode((GtkLabel*)Label);
+    }
 }

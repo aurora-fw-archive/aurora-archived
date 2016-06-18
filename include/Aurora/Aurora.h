@@ -20,6 +20,7 @@
 // GUI
 #include <Aurora/GUI/Window.h>
 #include <Aurora/GUI/Label.h>
+#include <Aurora/GUI/Layout.h>
 #include <Aurora/GUI/Application.h>
 
 // Shell

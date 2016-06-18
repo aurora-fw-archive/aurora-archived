@@ -20,25 +20,35 @@ namespace Aurora
     {
     friend class GUILabel;
     public:
-        //Window type
-        static const arflags_t ToplevelWindow;
-        static const arflags_t PopupWindow;
 
-        //Window Position
-        static const arflags_t NonePosition;
-        static const arflags_t CenterPosition;
-        static const arflags_t MousePosition;
-        static const arflags_t AlwaysCenterPosition;
-        static const arflags_t CenterParentPosition;
+        // Window Types
+        enum GUIWindowType
+        {
+            ToplevelWindow,
+            PopupWindow
+        };
 
-        GUIWindow(std::string name = "Aurora Window", int width = 200, int height = 200, int pos = NonePosition, arflags_t type = ToplevelWindow);
+        // Window Positions
+        enum GUIWindowPosition
+        {
+            NonePosition,
+            CenterPosition,
+            MousePosition,
+            AlwaysCenterPosition,
+            CenterParentPosition
+        };
+
+        GUIWindow(std::string name = "Aurora Window", int width = 200, int height = 200, GUIWindowPosition pos = NonePosition, GUIWindowType type = ToplevelWindow);
         void setTitle(std::string title);
-        void setPos(arflags_t pos);
+        void setPos(GUIWindowPosition pos);
         void connect(std::string detailedSignal, void (*signalFunction)(), void* signalData = NULL);
         void show(void);
         void start(void (*startFunction)() = []{});
-    private:
+    
+    protected:
         GtkWidget *Window;
+        
+    private:
         unsigned long ID = 0;
     };
 }

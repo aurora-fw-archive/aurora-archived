@@ -14,17 +14,7 @@
 
 namespace Aurora
 {
-    // Application Flags
-    const arflags_t GUIApplication::NoneFlag = G_APPLICATION_FLAGS_NONE;
-    const arflags_t GUIApplication::ServiceFlag = G_APPLICATION_IS_SERVICE;
-    const arflags_t GUIApplication::LauncherFlag = G_APPLICATION_IS_LAUNCHER;
-    const arflags_t GUIApplication::HandlesOpenFlag = G_APPLICATION_HANDLES_OPEN;
-    const arflags_t GUIApplication::HandlesCommandLineFlag = G_APPLICATION_HANDLES_COMMAND_LINE;
-    const arflags_t GUIApplication::SendEnvironmentFlag = G_APPLICATION_SEND_ENVIRONMENT;
-    const arflags_t GUIApplication::NonUniqueFlag = G_APPLICATION_NON_UNIQUE;
-    const arflags_t GUIApplication::OverrideAppIDFlag = G_APPLICATION_CAN_OVERRIDE_APP_ID;
-
-    GUIApplication::GUIApplication(std::string pkgname, arflags_t flags, void (*mainfunction)(), int argc, char *argv[])
+    GUIApplication::GUIApplication(std::string pkgname, GUIApplicationFlags flags, void (*mainfunction)(), int argc, char *argv[])
     {
         ID = ( unsigned long ) Aurora::LastID;
         Aurora::LastID++;
@@ -44,7 +34,7 @@ namespace Aurora
             }
         }
         Shell::Log(Shell::Debug, "creating new application: id_", ID, Shell::EndLine);
-        App = gtk_application_new (pkgname.c_str(), (GApplicationFlags) flags);
+        App = gtk_application_new (pkgname.c_str(), (GApplicationFlags)flags);
         Shell::Log(Shell::Debug, "application id_", ID, " is created.", Shell::EndLine);
         connect("activate", mainfunction);
         AppStatus = g_application_run (G_APPLICATION (App), 0, NULL);

@@ -11,6 +11,7 @@
 #include <Aurora/Core/Macros.h>
 #include <Aurora/Shell/Output.h>
 #include <Aurora/Core/Aurora.h>
+#include <Aurora/Core/Targets.h>
 
 namespace Aurora { namespace Shell
     {

@@ -402,7 +402,8 @@ coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
 guiincludedir = $(includedir)/Aurora/GUI
 guiinclude_HEADERS = ../include/Aurora/GUI/Window.h \
                      ../include/Aurora/GUI/Application.h \
-                     ../include/Aurora/GUI/Label.h 
+                     ../include/Aurora/GUI/Label.h \
+                     ../include/Aurora/GUI/Layout.h
 
 
 # Info Headers

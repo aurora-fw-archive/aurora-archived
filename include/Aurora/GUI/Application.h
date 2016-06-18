@@ -18,17 +18,18 @@ namespace Aurora
     class GUIApplication
     {
     public:
-        //Application Flags
-        static const arflags_t NoneFlag;
-        static const arflags_t ServiceFlag;
-        static const arflags_t LauncherFlag;
-        static const arflags_t HandlesOpenFlag;
-        static const arflags_t HandlesCommandLineFlag;
-        static const arflags_t SendEnvironmentFlag;
-        static const arflags_t NonUniqueFlag;
-        static const arflags_t OverrideAppIDFlag;
-
-        GUIApplication(std::string pkgname = "org.aurora.example", arflags_t flags = NoneFlag, void (*mainfunction)() = []{}, int argc = 0, char *argv[] = NULL);
+        enum GUIApplicationFlags
+        {
+            NoneFlag,
+            ServiceFlag,
+            LauncherFlag,
+            HandlesOpenFlag,
+            HandlesCommandLineFlag,
+            SendEnvironmentFlag,
+            NonUniqueFlag,
+            OverrideAppIDFlag
+        };
+        GUIApplication(std::string pkgname = "org.aurora.example", GUIApplicationFlags flags = NoneFlag, void (*mainfunction)() = []{}, int argc = 0, char *argv[] = NULL);
         void connect(std::string detailedSignal, void (*signalFunction)(), void *signalData = NULL);
         int AppStatus;
 

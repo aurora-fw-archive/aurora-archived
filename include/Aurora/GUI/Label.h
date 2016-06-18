@@ -8,6 +8,7 @@
 #define INCLUDE_H_AURORA_GUI_LABEL
 
 #include <Aurora/GUI/Window.h>
+#include <Aurora/GUI/Layout.h>
 #include <Aurora/Core/Aurora.h>
 
 typedef struct _GtkWidget GtkWidget;
@@ -22,6 +23,10 @@ namespace Aurora
         std::string getText();
         void setSelectable(bool value);
         bool getSelectable();
+        void setLineWrap(bool value);
+        bool getLineWrap();
+        void setLineWrapMode(WarpMode mode);
+        WarpMode getLineWrapMode();
 
     private:
         unsigned long ID = 0;
