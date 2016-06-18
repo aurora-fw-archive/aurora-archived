@@ -11,7 +11,7 @@
 
 namespace Aurora
 {
-    enum class WarpMode
+    enum class WrapMode
     {
         Word,
         Char,

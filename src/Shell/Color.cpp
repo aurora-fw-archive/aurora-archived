@@ -11,6 +11,7 @@
 #endif
 
 #include <Aurora/Shell/Color.h>
+#include <Aurora/Core/Targets.h>
 
 namespace Aurora
 {
@@ -18,37 +19,39 @@ namespace Aurora
     {
         void setColor(Color color, ColorType type)
         {   
-            #ifdef _WIN32
-            unsigned char colr_id_tmp;
-            if(type == ColorType::Background)
-            {
-                switch(color)
+            #ifdef AURORA_TARGET_WINDOWS
+
+                // TODO: Needs to be tested!
+                unsigned char colr_id_tmp;
+                if(type == ColorType::Background)
                 {
-                    case Color::Black : colr_id_tmp = 0x0046; break;
-                    case Color::Blue : colr_id_tmp = 0x0010; break;
-                    case Color::Green : colr_id_tmp = 0x0020; break;
-                    case Color::Cyan : colr_id_tmp = 0x0030; break;
-                    case Color::Red : colr_id_tmp = 0x0040; break;
-                    case Color::Magenta : colr_id_tmp = 0x0050; break;
-                    case Color::Yellow : colr_id_tmp = 0x0060; break;
-                    case Color::LightGrey : colr_id_tmp = 0x0070; break;
-                    case Color::DarkGrey : colr_id_tmp = 0x0080; break;
-                    case Color::LightBlue : colr_id_tmp = 0x0090; break;
-                    case Color::LightGreen : colr_id_tmp = 0x00A0; break;
-                    case Color::LightCyan : colr_id_tmp = 0x00B0; break;
-                    case Color::LightRed : colr_id_tmp = 0x00C0; break;
-                    case Color::LightMagenta : colr_id_tmp = 0x00D0; break;
-                    case Color::LightYellow : colr_id_tmp = 0x00E0; break;
-                    case Color::White : colr_id_tmp = 0x00F0; break;
-                    default : colr_id_tmp = 0x0046;
+                    switch(color)
+                    {
+                        case Color::Black : colr_id_tmp = 0x0046; break;
+                        case Color::Blue : colr_id_tmp = 0x0010; break;
+                        case Color::Green : colr_id_tmp = 0x0020; break;
+                        case Color::Cyan : colr_id_tmp = 0x0030; break;
+                        case Color::Red : colr_id_tmp = 0x0040; break;
+                        case Color::Magenta : colr_id_tmp = 0x0050; break;
+                        case Color::Yellow : colr_id_tmp = 0x0060; break;
+                        case Color::LightGrey : colr_id_tmp = 0x0070; break;
+                        case Color::DarkGrey : colr_id_tmp = 0x0080; break;
+                        case Color::LightBlue : colr_id_tmp = 0x0090; break;
+                        case Color::LightGreen : colr_id_tmp = 0x00A0; break;
+                        case Color::LightCyan : colr_id_tmp = 0x00B0; break;
+                        case Color::LightRed : colr_id_tmp = 0x00C0; break;
+                        case Color::LightMagenta : colr_id_tmp = 0x00D0; break;
+                        case Color::LightYellow : colr_id_tmp = 0x00E0; break;
+                        case Color::White : colr_id_tmp = 0x00F0; break;
+                        default : colr_id_tmp = 0x0046;
+                    }
                 }
-            }
-            else if(type == ColorType::Foreground)
-            {
-                colr_id_tmp = (unsigned)(char) color;
-            }
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colr_id_tmp);
-            #elif __unix__
+                else if(type == ColorType::Foreground)
+                {
+                    colr_id_tmp = (unsigned)(char) color;
+                }
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colr_id_tmp);
+            #elif defined(AURORA_TARGET_UNIX)
             int colr_tmp = 0;
             switch(color)
             {
@@ -95,9 +98,9 @@ namespace Aurora
         }
         void resetColor()
         {
-            #ifdef _WIN32
+            #ifdef AURORA_TARGET_WINDOWS
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | 0);
-            #elif __unix__
+            #elif defined(AURORA_TARGET_UNIX)
             std::cout << "\e[0m";
             #endif
             

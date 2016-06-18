@@ -23,10 +23,10 @@ namespace Aurora
         std::string getText();
         void setSelectable(bool value);
         bool getSelectable();
-        void setLineWrap(bool value);
+        void setWrap(bool value);
         bool getLineWrap();
-        void setLineWrapMode(WarpMode mode);
-        WarpMode getLineWrapMode();
+        void setWrapMode(WrapMode mode);
+        WrapMode getWrapMode();
 
     private:
         unsigned long ID = 0;

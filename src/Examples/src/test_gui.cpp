@@ -14,8 +14,10 @@ GUILabel *HelloLabel;
 
 arslot_t slot_MyWindow_on_open()
 {
-	HelloLabel->setText("Hello, World!");
+	HelloLabel->setText("Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!");
 	HelloLabel->setSelectable(true);
+	HelloLabel->setWrap(true);
+	HelloLabel->setWrapMode(WrapMode::Word);
 }
 
 arslot_t slot_MyGUIApp_on_open()
