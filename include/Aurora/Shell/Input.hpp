@@ -4,27 +4,27 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_SHELL_OUTPUT
-#define INCLUDE_H_AURORA_SHELL_OUTPUT
+#ifndef INCLUDE_H_AURORA_SHELL_INPUT
+#define INCLUDE_H_AURORA_SHELL_INPUT
 
-#include <iostream>
+#include <Aurora/Lib/Input.h>
 #include <Aurora/Core/Aurora.h>
 
 namespace Aurora { namespace Shell
     {
-        void Output (auto t);
-        void Output (auto t, auto... args);
-        void Output (auto t)
+        void Input (auto t);
+        void Input (auto t, auto... args);
+        void Input (auto t)
         {
-            std::cout << t;
+            ar::in >> t;
         }
 
-        void Output (auto t, auto... args)
+        void Input (auto t, auto... args)
         {
-            std::cout << t;
+            ar::in >> t;
             Output(args...);
         }
     }
 }
 
-#endif // INCLUDE_H_AURORA_SHELL_OUTPUT
+#endif // INCLUDE_H_AURORA_SHELL_INPUT

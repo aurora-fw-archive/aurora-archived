@@ -7,7 +7,7 @@
 #ifndef INCLUDE_H_AURORA_SHELL_LOG
 #define INCLUDE_H_AURORA_SHELL_LOG
 
-#include <iostream>
+#include <Aurora/Lib/Output.h>
 #include <Aurora/Lib/Target.h>
 #include <Aurora/Shell/Output.h>
 #include <Aurora/Core/Debug.h>
@@ -25,7 +25,6 @@ namespace Aurora { namespace Shell
             Information,
             Debug
         };
-        void Log (MessageStatus status, auto... args);
         void Log (MessageStatus status, auto... args)
         {
             // TODO: Windows ANSI integration

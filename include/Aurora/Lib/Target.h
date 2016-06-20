@@ -15,7 +15,10 @@
 // TODO: Implement this macros ( https://sourceforge.net/p/predef/wiki/OperatingSystems/ )
 //       Needs to test all macros ( Windows and Apple platforms and ARM and PowerPC Architectures)
 
-#ifdef _WIN32
+#ifdef _WIN16
+    #define AURORA_TARGET_WINDOWS
+    #define AURORA_TARGET_WINDOWS_16
+#elif defined(_WIN32)
     #define AURORA_TARGET_WINDOWS
     #define AURORA_TARGET_WINDOWS_86_64
     #ifdef _WIN64
@@ -42,13 +45,13 @@
     #endif
 #elif defined(__linux__) || defined(__linux) || defined(linux)
     #define AURORA_TARGET_LINUX
-    #ifndef AURORA_TARGET_OPENSOURCE
-        #define AURORA_TARGET_OPENSOURCE
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
     #endif
     #ifdef __gnu_linux__
         #define AURORA_TARGET_GNU_LINUX
-        #ifndef AURORA_TARGET_OPENSOURCE
-            #define AURORA_TARGET_OPENSOURCE
+        #ifndef AURORA_TARGET_IS_OPENSOURCE
+            #define AURORA_TARGET_IS_OPENSOURCE
         #endif
     #endif
 #endif
@@ -59,18 +62,33 @@
 
 #ifdef __ANDROID__
     #define AURORA_TARGET_ANDROID
-    #ifndef AURORA_TARGET_OPENSOURCE
-        #define AURORA_TARGET_OPENSOURCE
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
     #endif
 #elif __CYGWIN__
     #define AURORA_TARGET_CYGWIN
-    #ifndef AURORA_TARGET_OPENSOURCE
-        #define AURORA_TARGET_OPENSOURCE
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
     #endif
 #elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
     #define AURORA_TARGET_FREEBSD
-    #ifndef AURORA_TARGET_OPENSOURCE
-        #define AURORA_TARGET_OPENSOURCE
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
+    #endif
+#elif defined(__OpenBSD__)
+    #define AURORA_TARGET_OPENBSD
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
+    #endif
+#elif defined(__NetBSD__)
+    #define AURORA_TARGET_NETBSD
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
+    #endif
+#elif defined(__DragonFly__)
+    #define AURORA_TARGET_DRAGONFLY
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
     #endif
 #endif
 
@@ -136,6 +154,10 @@
     #define AURORA_TARGET_CC
 #elif defined(_MSC_VER)
     #define AURORA_TARGET_COMPILER_MICROSOFT
+    #define AURORA_TARGET_CXX
+    #define AURORA_TARGET_CC
+#elif defined(__MINGW32__)
+    #define AURORA_TARGET_COMPILER_MINGW
     #define AURORA_TARGET_CXX
     #define AURORA_TARGET_CC
 #endif

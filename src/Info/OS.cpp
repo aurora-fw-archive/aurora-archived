@@ -21,7 +21,7 @@ namespace Aurora
             return "Microsoft Corporation";
         #elif defined(AURORA_TARGET_APPLE)
             return "Apple Inc.";
-        #elif defined(AURORA_TARGET_OPENSOURCE)
+        #elif defined(AURORA_TARGET_IS_OPENSOURCE)
             return "Community (Open Source)";
         #else
             return "Unknown Manufacturer";
