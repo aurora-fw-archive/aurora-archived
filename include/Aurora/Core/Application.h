@@ -4,8 +4,6 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#include <Aurora/Core/Typedef.h>
-
 #include <stddef.h>
 
 namespace Aurora

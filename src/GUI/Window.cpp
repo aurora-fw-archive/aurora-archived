@@ -6,16 +6,16 @@
 
 #include <gtk/gtk.h>
 #include <Aurora/GUI/Window.h>
-#include <Aurora/Core/Macros.h>
-#include <Aurora/Shell/Log.h>
+#include <Aurora/Core/Debug.h>
+#include <Aurora/Shell/Log.hpp>
 
 namespace Aurora
 {
     GUIWindow::GUIWindow(std::string name, int width, int height, GUIWindowPosition pos, GUIWindowType type)
     {
-        ID = ( unsigned long ) Aurora::LastID;
+        ID = ( unsigned long ) Aurora::Debug::LastID;
         static const unsigned long scid_tmp = ID;
-        Aurora::LastID++;
+        Aurora::Debug::LastID++;
         Shell::Log(Shell::Debug, "creating new window: id_", ID, Shell::EndLine);
         Window = gtk_window_new((GtkWindowType)type);
         setTitle(name);

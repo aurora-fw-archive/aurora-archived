@@ -4,7 +4,7 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#include <Aurora/Core/Targets.h>
+#include <Aurora/Lib/Target.h>
 
 #ifdef AURORA_TARGET_WINDOWS
 #include <windows.h>

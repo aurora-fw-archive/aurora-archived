@@ -8,16 +8,15 @@
 #include <gtk/gtk.h>
 #include <Aurora/GUI/Application.h>
 #include <Aurora/Core/Debug.h>
-#include <Aurora/Core/Macros.h>
-#include <Aurora/Shell/Log.h>
-#include <Aurora/Core/Debug.h>
+#include <Aurora/Shell/Log.hpp>
+
 
 namespace Aurora
 {
     GUIApplication::GUIApplication(std::string pkgname, GUIApplicationFlags flags, void (*mainfunction)(), int argc, char *argv[])
     {
-        ID = ( unsigned long ) Aurora::LastID;
-        Aurora::LastID++;
+        ID = ( unsigned long ) Aurora::Debug::LastID;
+        Aurora::Debug::LastID++;
         if(argc == 2)
         {
             if((std::string(argv[1]) == "--debug") || (std::string(argv[1]) == "-ds"))

@@ -4,11 +4,11 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-// File: include/Aurora/Core/Target.h
+// File: include/Aurora/Lib/Target.h
 // Contains: Targets for Operation System / Kernel / Platform Detection
 
-#ifndef INCLUDE_H_AURORA_CORE_TARGETS
-#define INCLUDE_H_AURORA_CORE_TARGETS
+#ifndef INCLUDE_H_AURORA_LIB_TARGET
+#define INCLUDE_H_AURORA_LIB_TARGET 1
 
 #include <Aurora/Core/Aurora.h>
 
@@ -86,23 +86,35 @@
     #define AURORA_TARGET_CPU_I386
 #elif defined(__x86_64__) || defined(_M_X64) || defined(__amd64__) || defined(__amd64) || defined(_M_AMD64)
     #define AURORA_TARGET_CPU_86_64
-#elif defined(__ia64) || defined(__itanium__) || defined(_M_IA64)
+#elif defined(__arm__)
+    #define AURORA_TARGET_CPU_ARM
+#endif
+
+#ifdef __ILP32__
+    #define AURORA_TARGET_CPU_ILP32
+#endif
+
+#if defined(__ia64) || defined(__itanium__) || defined(_M_IA64)
     #define AURORA_TARGET_CPU_ITANIUM
 #elif defined(__sparc)
     #define AURORA_TARGET_CPU_SPARC
-#elif defined(__arm__)
-    #define AURORA_TARGET_CPU_ARM
 #endif
 
 // TODO: Include Compiler Targets ( https://sourceforge.net/p/predef/wiki/Compilers/ )
 
 #if defined(__GNUG__) || (defined(__GNUC__) && defined(__cplusplus))
+    #ifndef AURORA_TARGET_COMPILER_GNU
+        #define AURORA_TARGET_COMPILER_GNU
+    #endif
     #define AURORA_TARGET_COMPILER_GNU_CXX        
     #define AURORA_TARGET_CXX
     #ifdef __GNUC__
         #define AURORA_TARGET_CC
     #endif
 #elif defined(__GNUC__)
+    #ifndef AURORA_TARGET_COMPILER_GNU
+        #define AURORA_TARGET_COMPILER_GNU
+    #endif
     #define AURORA_TARGET_COMPILER_GNU_CC
     #define AURORA_TARGET_CXX
     #define AURORA_TARGET_CC
@@ -146,6 +158,6 @@
     #ifdef AURORA_TARGET_CXX
         #undef AURORA_TARGET_CXX
     #endif
-#endif 
+#endif
 
-#endif // INCLUDE_H_AURORA_CORE_TARGETS
+#endif // INCLUDE_H_AURORA_LIB_TARGET

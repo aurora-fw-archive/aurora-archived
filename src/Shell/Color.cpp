@@ -11,7 +11,7 @@
 #endif
 
 #include <Aurora/Shell/Color.h>
-#include <Aurora/Core/Targets.h>
+#include <Aurora/Lib/Target.h>
 
 namespace Aurora
 {

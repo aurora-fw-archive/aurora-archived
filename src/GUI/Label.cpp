@@ -8,16 +8,15 @@
 
 #include <Aurora/GUI/Label.h>
 #include <Aurora/GUI/Window.h>
-#include <Aurora/Shell/Log.h>
-#include <Aurora/Core/Macros.h>
+#include <Aurora/Shell/Log.hpp>
 #include <Aurora/Core/Debug.h>
 
 namespace Aurora
 {
     GUILabel::GUILabel(GUIWindow *parent, std::string name)
     {
-        ID = (unsigned)(long) Aurora::LastID;
-        Aurora::LastID++;
+        ID = (unsigned)(long) Aurora::Debug::LastID;
+        Aurora::Debug::LastID++;
         Shell::Log(Shell::Debug, "creating new label: id_", ID, " on window id_", parent->ID, Shell::EndLine);
         Label = gtk_label_new (name.c_str());
         WindowParent = parent->Window;

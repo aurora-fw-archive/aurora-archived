@@ -8,10 +8,10 @@
 #define INCLUDE_H_AURORA_SHELL_LOG
 
 #include <iostream>
-#include <Aurora/Core/Macros.h>
+#include <Aurora/Lib/Target.h>
 #include <Aurora/Shell/Output.h>
+#include <Aurora/Core/Debug.h>
 #include <Aurora/Core/Aurora.h>
-#include <Aurora/Core/Targets.h>
 
 namespace Aurora { namespace Shell
     {
@@ -68,7 +68,7 @@ namespace Aurora { namespace Shell
             }
             else if (status == Aurora::Shell::Debug)
             {
-                if(Aurora::DebugStatus)
+                if(Aurora::Debug::Status)
                 {
                     #ifdef AURORA_TARGET_UNIX
                     std::cout << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";

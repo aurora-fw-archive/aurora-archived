@@ -10,7 +10,7 @@
 // TODO: Convert output functions into a return functions
 
 #include <Aurora/Crypto/AES.h>
-#include <Aurora/Shell/Log.h>
+#include <Aurora/Shell/Log.hpp>
 
 #include <iostream>
 #include <cstdlib>
@@ -358,7 +358,7 @@ namespace Aurora
 			}
 		}
 	}
-	void AES::encrypt(unsigned char key[32], int keysize, unsigned char plaintext[16])
+	unsigned char* AES::encrypt(unsigned char key[32], int keysize, unsigned char plaintext[16])
 	{
 		if (keysize==128 || keysize==192 || keysize==256)
 		{
@@ -377,19 +377,15 @@ namespace Aurora
 			// The next function call encrypts the PlainText with the Key using AES algorithm.
 			Cipher();
 
-			// Output the encrypted text.
-			for(int i=0;i<_AURORA_CRYPTO_AES_STDNUM*4;i++)
-			{
-				printf("%02x ",out[i]);
-			}
-			std::cout << std::endl;
+			return out;
 		}
         else
         {
            Shell::Log(Shell::Error, "aes encrypt: invalid keysize", Shell::EndLine);
+		   return NULL;
         }
     }
-    void AES::decrypt(unsigned char key[32], int keysize, unsigned char ciphertext[16])
+    unsigned char* AES::decrypt(unsigned char key[32], int keysize, unsigned char ciphertext[16])
     {
         if (keysize==128 || keysize==192 || keysize==256)
         {
@@ -408,18 +404,12 @@ namespace Aurora
             // The next function call decrypts the CipherText with the Key using AES algorithm.
             InvCipher();
 
-			std::string temp;
-
-            // Output the decrypted text.
-            for(int i=0;i<_AURORA_CRYPTO_AES_STDNUM*4;i++)
-            {
-                printf("%02x ",out[i]);
-            }
-            
+            return out;
         }
         else
         {
 			Shell::Log(Shell::Error, "aes decrypt: invalid keysize", Shell::EndLine);
-        }
+        	return NULL;
+		}
     }
 }

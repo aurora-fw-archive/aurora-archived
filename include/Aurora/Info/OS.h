@@ -8,7 +8,7 @@
 #define INCLUDE_H_AURORA_INFO_OS
 
 #include <iostream>
-#include <Aurora/Core/Targets.h>
+#include <Aurora/Lib/Target.h>
 #include <Aurora/Core/Aurora.h>
 
 #ifdef AURORA_TARGET_ANDROID

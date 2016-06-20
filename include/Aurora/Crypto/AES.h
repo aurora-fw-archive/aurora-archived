@@ -14,8 +14,8 @@ namespace Aurora
     struct AES
     {
     public:
-        void encrypt(unsigned char key[32], int keysize, unsigned char plaintext[16]);
-	    void decrypt(unsigned char key[32], int keysize, unsigned char ciphertext[16]);
+        unsigned char* encrypt(unsigned char key[32], int keysize, unsigned char plaintext[16]);
+	    unsigned char* decrypt(unsigned char key[32], int keysize, unsigned char ciphertext[16]);
 
     private:
         int Nr, Nk;

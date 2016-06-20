@@ -4,6 +4,9 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
+// File: src/Examples/src/test_gui.cpp
+// Contains:
+
 #include <Aurora/Aurora.h>
 using namespace Aurora;
 
@@ -14,7 +17,7 @@ GUILabel *HelloLabel;
 
 arslot_t slot_MyWindow_on_open()
 {
-	HelloLabel->setText("Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!");
+	HelloLabel->setText("Hello, World!");
 	HelloLabel->setSelectable(true);
 	HelloLabel->setWrap(true);
 	HelloLabel->setWrapMode(WrapMode::Word);

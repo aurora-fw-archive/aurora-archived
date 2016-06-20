@@ -9,7 +9,6 @@
 
 #include <iostream>
 #include <string>
-#include <Aurora/Core/Typedef.h>
 #include <Aurora/Core/Aurora.h>
 
 typedef struct _GtkWidget GtkWidget;

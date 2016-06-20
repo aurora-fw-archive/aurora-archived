@@ -4,22 +4,23 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#include <Aurora/Shell/Log.h>
+#include <Aurora/Shell/Log.hpp>
 #include <Aurora/Core/Debug.h>
-#include <Aurora/Core/Macros.h>
 
 namespace Aurora { namespace Debug
     {
+        bool Status = false;
+        int LastID;
         void enableDebug(bool silent)
         {
-            if(Aurora::DebugStatus)
+            if(Status)
             {
                 if(!silent) Shell::Log(Shell::Debug, "debug is already enabled", Shell::EndLine);
             }
             else
             {
-                Aurora::DebugStatus = true;
-                if(!silent) 
+                Status = true;
+                if(!silent)
                 {
                     Shell::Log(Shell::Debug, "┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─", Shell::EndLine);
                     Shell::Log(Shell::Debug, "├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐", Shell::EndLine);
@@ -30,19 +31,19 @@ namespace Aurora { namespace Debug
         }
         void disableDebug(bool silent)
         {
-            if(!Aurora::DebugStatus)
+            if(!Status)
             {
                 if(!silent) Shell::Log(Shell::Debug, "debug is already disabled", Shell::EndLine);
             }
             else
             {
-                Aurora::DebugStatus = false;
+                Status = false;
                 if(!silent) Shell::Log(Shell::Debug, "debug is disabled", Shell::EndLine);
             }
         }
         bool getDebugStatus()
         {
-            return Aurora::DebugStatus;
+            return Status;
         }
     }
 }

@@ -8,7 +8,6 @@
 #define INCLUDE_H_AURORA_GUI_APPLICATION
 
 #include <iostream>
-#include <Aurora/Core/Typedef.h>
 #include <Aurora/Core/Aurora.h>
 
 typedef struct _GtkApplication GtkApplication;

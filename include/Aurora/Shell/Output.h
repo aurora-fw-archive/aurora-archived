@@ -8,7 +8,6 @@
 #define INCLUDE_H_AURORA_SHELL_OUTPUT
 
 #include <iostream>
-#include <Aurora/Core/Macros.h>
 #include <Aurora/Core/Aurora.h>
 
 namespace Aurora { namespace Shell
