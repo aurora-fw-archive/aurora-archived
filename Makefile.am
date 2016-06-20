@@ -6,7 +6,7 @@
 #  More information in: https://github.com/ljmf00/ (Github Page)
 
 # C++ Flags
-AM_CXXFLAGS = -Wall -Wextra -std=c++14 -lGL -lGLU -lglut -I../include/ `pkg-config --cflags --libs gtk+-3.0`
+AM_CXXFLAGS = -Wall -Wextra -std=c++14 -I../include/ `pkg-config --cflags --libs gtk+-3.0`
 
 # Library Information
 lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
@@ -42,12 +42,12 @@ guiinclude_HEADERS = ../include/Aurora/GUI/Window.h \
 # Info Headers
 infoincludedir = $(includedir)/Aurora/Info
 infoinclude_HEADERS = ../include/Aurora/Info/RAM.h \
-                      ../include/Aurora/Info/OS.h 
+                      ../include/Aurora/Info/OS.h
 
 # Lib Headers
 libincludedir = $(includedir)/Aurora/Lib
 libinclude_HEADERS = ../include/Aurora/Lib/Target.h \
-                     ../include/Aurora/Lib/Type.h 
+                     ../include/Aurora/Lib/Type.h
 
 # Shell Headers
 shellincludedir = $(includedir)/Aurora/Shell

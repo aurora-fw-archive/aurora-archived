@@ -13,6 +13,10 @@ See the Documentation [here](https://github.com/ljmf00/aurora/wiki).
 Required Packages:
 - gcc (>= 4:4.9)
 - g++ (>= 4:4.9)
+- gtk+3.0
+[//]: # (- glu)
+[//]: # (- mesa)
+[//]: # (- gtkglext)
 - libc-dev
 - autoconf (>=2:2.69)
 - libtool
