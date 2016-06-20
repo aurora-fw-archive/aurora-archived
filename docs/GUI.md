@@ -1,5 +1,4 @@
 # GUI - TODOGuide
----------------------------
 
 ### GUI Xlib Documentation:
 - https://tronche.com/gui/x/xlib/

@@ -6,7 +6,7 @@
 See the Documentation [here](https://github.com/ljmf00/aurora/wiki).
 
 ### Installation
-#### Dependencies
+##### Dependencies
 * Arch Linux Developer Toolkit: ```pacman -S --needed base-devel```
 * Developer Toolkit for Debian-based Linux Distribution: ```sudo apt-get install build-essential```
 
