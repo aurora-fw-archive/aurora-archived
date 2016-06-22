@@ -10,9 +10,9 @@
 #pragma once
 
 // Core
+#include <Aurora/Core/Aurora.h>
 #include <Aurora/Core/Application.h>
 #include <Aurora/Core/Debug.h>
-#include <Aurora/Core/Aurora.h>
 
 // GUI
 #include <Aurora/GUI/Window.h>
@@ -21,13 +21,17 @@
 #include <Aurora/GUI/Application.h>
 
 // Shell
-#include <Aurora/Shell/Log.hpp>
-#include <Aurora/Shell/ColorType.h>
+#include <Aurora/Shell/Log.h>
 #include <Aurora/Shell/Color.h>
+#include <Aurora/Shell/Output.h>
+#include <Aurora/Shell/Input.h>
 
 // Lib
+#include <Aurora/Lib/Aurora.h>
 #include <Aurora/Lib/Target.h>
 #include <Aurora/Lib/Type.h>
+#include <Aurora/Lib/IOStream.h>
+#include <Aurora/Lib/Endian.h>
 
 // Information
 #include <Aurora/Info/RAM.h>

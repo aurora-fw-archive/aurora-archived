@@ -20,7 +20,10 @@ __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/Core/Debug.cpp \
                                               ../src/Shell/Color.cpp \
                                               ../src/Crypto/AES.cpp \
-                                              ../src/Info/OS.cpp
+                                              ../src/Info/OS.cpp \
+                                              ../src/Lib/IOStream.cpp \
+                                              ../src/Shell/Input.cpp \
+                                              ../src/Shell/Output.cpp
 
 # Headers
 cincludedir = $(includedir)/Aurora/
@@ -30,7 +33,8 @@ cinclude_HEADERS = ../include/Aurora/Aurora.h
 coreincludedir = $(includedir)/Aurora/Core
 coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
                       ../include/Aurora/Core/Aurora.h \
-                      ../include/Aurora/Core/Debug.h
+                      ../include/Aurora/Core/Debug.h \
+                      ../include/Aurora/Core/String.h
 
 # GUI Headers
 guiincludedir = $(includedir)/Aurora/GUI
@@ -46,15 +50,17 @@ infoinclude_HEADERS = ../include/Aurora/Info/RAM.h \
 
 # Lib Headers
 libincludedir = $(includedir)/Aurora/Lib
-libinclude_HEADERS = ../include/Aurora/Lib/Target.h \
-                     ../include/Aurora/Lib/Type.h
+libinclude_HEADERS = ../include/Aurora/Lib/Aurora.h \
+                     ../include/Aurora/Lib/Endian.h \
+                     ../include/Aurora/Lib/Type.h \
+                     ../include/Aurora/Lib/Target.h \
+                     ../include/Aurora/Lib/IOStream.h
 
 # Shell Headers
 shellincludedir = $(includedir)/Aurora/Shell
 shellinclude_HEADERS = ../include/Aurora/Shell/Color.h \
-                       ../include/Aurora/Shell/ColorType.h \
+                       ../include/Aurora/Shell/Log.h \
                        ../include/Aurora/Shell/Input.h \
-                       ../include/Aurora/Shell/Log.hpp \
                        ../include/Aurora/Shell/Output.h
 
 # Crypto Headers

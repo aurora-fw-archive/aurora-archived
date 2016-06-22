@@ -10,6 +10,8 @@
 #ifndef INCLUDE_H_AURORA_LIB_TARGET
 #define INCLUDE_H_AURORA_LIB_TARGET 1
 
+#pragma once
+
 #include <Aurora/Core/Aurora.h>
 
 // TODO: Implement this macros ( https://sourceforge.net/p/predef/wiki/OperatingSystems/ )
@@ -20,9 +22,9 @@
     #define AURORA_TARGET_WINDOWS_16
 #elif defined(_WIN32)
     #define AURORA_TARGET_WINDOWS
-    #define AURORA_TARGET_WINDOWS_86_64
+    #define AURORA_TARGET_WINDOWS_32
     #ifdef _WIN64
-        #define AURORA_TARGET_WINDOWS_64
+        #define AURORA_TARGET_WINDOWS_86_64
     #endif
 #elif __APPLE__
     #define AURORA_TARGET_APPLE

@@ -1,30 +1,22 @@
+// "Aurora/Shell/Input.cpp" -*- C++ -*-
 // ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_SHELL_INPUT
-#define INCLUDE_H_AURORA_SHELL_INPUT
+// This file is part of the Aurora Framework. This framework is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License, v3.
 
-#include <Aurora/Lib/Input.h>
-#include <Aurora/Core/Aurora.h>
+/* Contains: Input Stream Objects */
+
+#include <Aurora/Shell/Input.h>
+#include <iostream>
 
 namespace Aurora { namespace Shell
     {
-        void Input (auto t);
-        void Input (auto t, auto... args);
-        void Input (auto t)
-        {
-            ar::in >> t;
-        }
-
-        void Input (auto t, auto... args)
-        {
-            ar::in >> t;
-            Output(args...);
-        }
+        std::istream Input(std::cin.rdbuf());
+        std::wistream wInput(std::wcin.rdbuf());   
     }
 }
-
-#endif // INCLUDE_H_AURORA_SHELL_INPUT

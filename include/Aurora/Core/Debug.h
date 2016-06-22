@@ -7,6 +7,8 @@
 #ifndef INCLUDE_H_AURORA_CORE_DEBUG
 #define INCLUDE_H_AURORA_CORE_DEBUG
 
+#pragma once
+
 #include <Aurora/Core/Aurora.h>
 
 namespace Aurora { namespace Debug

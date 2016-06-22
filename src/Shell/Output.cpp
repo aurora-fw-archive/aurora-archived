@@ -1,30 +1,22 @@
+// "Aurora/Shell/Output.cpp" -*- C++ -*-
 // ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_SHELL_OUTPUT
-#define INCLUDE_H_AURORA_SHELL_OUTPUT
+// This file is part of the Aurora Framework. This framework is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License, v3.
 
-#include <Aurora/Lib/Output.h>
-#include <Aurora/Core/Aurora.h>
+/* Contains: Output Stream Objects */
+
+#include <Aurora/Shell/Output.h>
+#include <iostream>
 
 namespace Aurora { namespace Shell
     {
-        void Output (auto t);
-        void Output (auto t, auto... args);
-        void Output (auto t)
-        {
-            ar::out << t;
-        }
-
-        void Output (auto t, auto... args)
-        {
-            ar::out << t;
-            Output(args...);
-        }
-    }
+        std::ostream Output(std::cout.rdbuf());
+        std::wostream wOutput(std::wcout.rdbuf());
+    } 
 }
-
-#endif // INCLUDE_H_AURORA_SHELL_OUTPUT

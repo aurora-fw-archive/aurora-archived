@@ -10,7 +10,7 @@
 // TODO: Convert output functions into a return functions
 
 #include <Aurora/Crypto/AES.h>
-#include <Aurora/Shell/Log.hpp>
+#include <Aurora/Shell/Log.h>
 
 #include <iostream>
 #include <cstdlib>
@@ -381,7 +381,7 @@ namespace Aurora
 		}
         else
         {
-           Shell::Log(Shell::Error, "aes encrypt: invalid keysize", Shell::EndLine);
+           Shell::Log(Shell::Error, "aes encrypt: invalid keysize");
 		   return NULL;
         }
     }
@@ -408,7 +408,7 @@ namespace Aurora
         }
         else
         {
-			Shell::Log(Shell::Error, "aes decrypt: invalid keysize", Shell::EndLine);
+			Shell::Log(Shell::Error, "aes decrypt: invalid keysize");
         	return NULL;
 		}
     }

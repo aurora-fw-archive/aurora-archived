@@ -1,24 +1,25 @@
+// <Aurora/Lib/IOStream.h> -*- C++ -*-
 // ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_SHELL_COLORTYPE
-#define INCLUDE_H_AURORA_SHELL_COLORTYPE
+// This file is part of the Aurora Framework. This framework is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License, v3.
 
-#include <Aurora/Core/Aurora.h>
+// File: include/Aurora/Lib/IOStream.h
+// Contains: Input Stream and Output Stream Objects and Template Methods
 
-namespace Aurora
+#ifndef INCLUDE_H_AURORA_LIB_IOSTREAM
+#define INCLUDE_H_AURORA_LIB_IOSTREAM
+
+#pragma once
+
+namespace Ar
 {
-    namespace Shell
-    {
-        enum class ColorType
-        {
-            Background,
-            Foreground
-        };
-    }
+
 }
 
-#endif // INCLUDE_H_AURORA_SHELL_COLORTYPE
+#endif // INCLUDE_H_AURORA_LIB_IOSTREAM

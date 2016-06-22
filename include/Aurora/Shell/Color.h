@@ -7,13 +7,18 @@
 #ifndef INCLUDE_H_AURORA_SHELL_COLOR
 #define INCLUDE_H_AURORA_SHELL_COLOR
 
-#include <Aurora/Shell/ColorType.h>
 #include <Aurora/Core/Aurora.h>
 
 namespace Aurora
 {
     namespace Shell
     {
+        enum class ColorType
+        {
+            Background,
+            Foreground
+        };
+
         enum class Color : unsigned int {
             Black,
             Blue,

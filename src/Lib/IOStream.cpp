@@ -1,32 +1,20 @@
+// "Aurora/Lib/IOStream.cpp" -*- C++ -*-
 // ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_LIB_OUTPUT
-#define INCLUDE_H_AURORA_LIB_OUTPUT 1
+// This file is part of the Aurora Framework. This framework is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License, v3.
 
-#include <Aurora/CORE/Aurora.h>
-#include <Aurora/Lib/Target.h>
+// File: src/Aurora/Lib/IOStream.cpp
+// Contains: Input Stream and Output Stream Objects
 
-#ifdef AURORA_TARGET_CXX
-#include <ostream>
+#include <Aurora/Lib/IOStream.h>
 
-namespace ar { namespace __ar {
-        extern ostream cout;
-        extern wostream wcout;
-    }
-    ostream out(nullptr);
-    wostream w_out(nullptr);
-    out.rdbuf(__ar::cout.rdbuf());
-    w_out.rdbuf(__ar::wcout.rdbuf());
-
-    template<typename _T, typename T> inline basic_ostream<_T, T>& endl(basic_ostream<_T, _T>& __os)
-    { 
-        return flush(__os.put(__os.widen('\n'))); 
-    }
+namespace Ar
+{
+    
 }
-#endif // C++
-
-#endif // INCLUDE_H_AURORA_LIB_OUTPUT

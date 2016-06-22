@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 #include <Aurora/Core/Application.h>
-#include <Aurora/Shell/Log.hpp>
+#include <Aurora/Shell/Log.h>
 #include <Aurora/Core/Debug.h>
 
 namespace Aurora
@@ -31,22 +31,22 @@ namespace Aurora
                 Debug::disableDebug(true);
             }
         }
-        Shell::Log(Shell::Debug, "creating new application: id_", ID, Shell::EndLine);
-        Shell::Log(Shell::Debug, "application id_", ID, " is created.", Shell::EndLine);
+        Shell::Log(Shell::Debug, "creating new application: id_", ID);
+        Shell::Log(Shell::Debug, "application id_", ID, " is created.");
         (*mainFunction)();
     }
     Application::~Application()
     {
-        Shell::Log(Shell::Debug, "application id_", ID, " is destroyed.", Shell::EndLine);
+        Shell::Log(Shell::Debug, "application id_", ID, " is destroyed.");
     }
     void Application::ExitSuccess()
     {
-        Shell::Log(Shell::Debug, "application return success code: ", EXIT_SUCCESS, Shell::EndLine);
+        Shell::Log(Shell::Debug, "application return success code: ", EXIT_SUCCESS);
         exit(EXIT_SUCCESS);
     }
     void Application::ExitFail()
     {
-        Shell::Log(Shell::Debug, "application return error code: ", EXIT_FAILURE, Shell::EndLine);
+        Shell::Log(Shell::Debug, "application return error code: ", EXIT_FAILURE);
         exit(EXIT_FAILURE);
     }
 }

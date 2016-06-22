@@ -15,7 +15,7 @@ GUIApplication *MyGUIApp;
 GUIWindow *FirstWindow;
 GUILabel *HelloLabel;
 
-arslot_t slot_MyWindow_on_open()
+ArSlot_t slot_MyWindow_on_open()
 {
 	HelloLabel->setText("Hello, World!");
 	HelloLabel->setSelectable(true);
@@ -23,7 +23,7 @@ arslot_t slot_MyWindow_on_open()
 	HelloLabel->setWrapMode(WrapMode::Word);
 }
 
-arslot_t slot_MyGUIApp_on_open()
+ArSlot_t slot_MyGUIApp_on_open()
 {
 	FirstWindow = new GUIWindow("First Window", 800, 600, GUIWindow::NonePosition, GUIWindow::ToplevelWindow);
 	HelloLabel = new GUILabel(FirstWindow, "Hello World!");

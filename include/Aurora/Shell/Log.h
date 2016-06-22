@@ -1,13 +1,17 @@
+// <Aurora/Shell/Log.h> -*- C++ -*-
 // ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
+// This file is part of the Aurora Framework. This framework is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License, v3.
+
 #ifndef INCLUDE_H_AURORA_SHELL_LOG
 #define INCLUDE_H_AURORA_SHELL_LOG
 
-#include <Aurora/Lib/Output.h>
 #include <Aurora/Lib/Target.h>
 #include <Aurora/Shell/Output.h>
 #include <Aurora/Core/Debug.h>
@@ -15,8 +19,6 @@
 
 namespace Aurora { namespace Shell
     {
-        const char EndLine = '\n';
-
         enum MessageStatus
         {
             Error,
@@ -25,6 +27,18 @@ namespace Aurora { namespace Shell
             Information,
             Debug
         };
+
+        void __Log(auto t)
+        {
+            Output << t;
+        }
+
+        void __Log(auto t, auto... args)
+        {
+            Output << t;
+            __Log(args...);
+        }
+
         void Log (MessageStatus status, auto... args)
         {
             // TODO: Windows ANSI integration
@@ -32,51 +46,48 @@ namespace Aurora { namespace Shell
             if(status == Error)
             {
                 #ifdef AURORA_TARGET_UNIX
-                std::cout << "\e[0m\e[1m[\e[1;31mERROR\e[0;1m] \e[0m";
+                Output << "\e[0m\e[1m[\e[1;31mERROR\e[0;1m] \e[0m";
                 #else
-                std::cout << "[ERROR] ";
+                Output << "[ERROR] ";
                 #endif
-                Output(args...);
             }
             else if (status == Warning)
             {
                 #ifdef AURORA_TARGET_UNIX
-                std::cout << "\e[0m\e[1m[\e[1;33mWARNING\e[0;1m] \e[0m";
+                Output << "\e[0m\e[1m[\e[1;33mWARNING\e[0;1m] \e[0m";
                 #else
-                std::cout << "[WARNING] ";
+                Output << "[WARNING] ";
                 #endif
-                Output(args...);
             }
             else if (status == Notice)
             {
                 #ifdef AURORA_TARGET_UNIX
-                std::cout << "\e[0m\e[1m[\e[1;36mNOTICE\e[0;1m] \e[0m";
+                Output << "\e[0m\e[1m[\e[1;36mNOTICE\e[0;1m] \e[0m";
                 #else
-                std::cout << "[NOTICE] ";
+                Output << "[NOTICE] ";
                 #endif
-                Output(args...);
             }
             else if (status == Information)
             {
                 #ifdef AURORA_TARGET_UNIX
-                std::cout << "\e[0m\e[1m[\e[1;32mINFORMATION\e[0;1m] \e[0m";
+                Output << "\e[0m\e[1m[\e[1;32mINFORMATION\e[0;1m] \e[0m";
                 #else
-                std::cout << "[INFORMATION] ";
+                Output << "[INFORMATION] ";
                 #endif
-                Output(args...);
             }
             else if (status == Aurora::Shell::Debug)
             {
                 if(Aurora::Debug::Status)
                 {
                     #ifdef AURORA_TARGET_UNIX
-                    std::cout << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";
+                    Output << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";
                     #else
-                    std::cout << "[DEBUG] ";
+                    Output << "[DEBUG] ";
                     #endif
-                    Output(args...);
                 }
             }
+            __Log(args...);
+            Output << EndLine;
         }
     }
 }

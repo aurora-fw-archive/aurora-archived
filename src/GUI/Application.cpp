@@ -8,7 +8,7 @@
 #include <gtk/gtk.h>
 #include <Aurora/GUI/Application.h>
 #include <Aurora/Core/Debug.h>
-#include <Aurora/Shell/Log.hpp>
+#include <Aurora/Shell/Log.h>
 
 
 namespace Aurora
@@ -32,9 +32,9 @@ namespace Aurora
                 Debug::disableDebug(true);
             }
         }
-        Shell::Log(Shell::Debug, "creating new application: id_", ID, Shell::EndLine);
+        Shell::Log(Shell::Debug, "creating new application: id_", ID);
         App = gtk_application_new (pkgname.c_str(), (GApplicationFlags)flags);
-        Shell::Log(Shell::Debug, "application id_", ID, " is created.", Shell::EndLine);
+        Shell::Log(Shell::Debug, "application id_", ID, " is created.");
         connect("activate", mainfunction);
         AppStatus = g_application_run (G_APPLICATION (App), 0, NULL);
         g_object_unref(App);
@@ -42,7 +42,7 @@ namespace Aurora
 
     void GUIApplication::connect(std::string detailedSignal, void (*signalFunction)(), void *signalData)
     {
-        Shell::Log(Shell::Debug, "creating new signal on application id_", ID, Shell::EndLine);
+        Shell::Log(Shell::Debug, "creating new signal on application id_", ID);
         g_signal_connect (App, detailedSignal.c_str(), G_CALLBACK(signalFunction), signalData);
     }
 }

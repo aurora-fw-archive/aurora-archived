@@ -5,10 +5,12 @@
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
 #ifndef INCLUDE_H_AURORA_LIB_ENDIAN
-#define INCLUDE_H_AURORA_LIB_ENDIAN
+#define INCLUDE_H_AURORA_LIB_ENDIAN 1
+
+#pragma once
 
 #include <Aurora/Core/Aurora.h>
-#include <Aurora/Lib/Target.h>
+#include <Aurora/Core/Target.h>
 
 #if defined(AURORA_TARGET_LINUX) || defined(AURORA_TARGET_CYGWIN)
     #include <endian.h>
