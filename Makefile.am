@@ -33,8 +33,7 @@ cinclude_HEADERS = ../include/Aurora/Aurora.h
 coreincludedir = $(includedir)/Aurora/Core
 coreinclude_HEADERS = ../include/Aurora/Core/Application.h \
                       ../include/Aurora/Core/Aurora.h \
-                      ../include/Aurora/Core/Debug.h \
-                      ../include/Aurora/Core/String.h
+                      ../include/Aurora/Core/Debug.h
 
 # GUI Headers
 guiincludedir = $(includedir)/Aurora/GUI
@@ -54,7 +53,8 @@ libinclude_HEADERS = ../include/Aurora/Lib/Aurora.h \
                      ../include/Aurora/Lib/Endian.h \
                      ../include/Aurora/Lib/Type.h \
                      ../include/Aurora/Lib/Target.h \
-                     ../include/Aurora/Lib/IOStream.h
+                     ../include/Aurora/Lib/IOStream.h \
+                     ../include/Aurora/Lib/String.h
 
 # Shell Headers
 shellincludedir = $(includedir)/Aurora/Shell

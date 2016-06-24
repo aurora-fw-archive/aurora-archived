@@ -1,4 +1,4 @@
-// <Aurora/Lib/IOStream.h> -*- C++ -*-
+// <Aurora/Lib/String.h> -*- C++ -*-
 // ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
@@ -9,17 +9,30 @@
 // software; you can redistribute it and/or modify it under the
 // terms of the GNU General Public License, v3.
 
-// File: include/Aurora/Lib/IOStream.h
-// Contains: Input Stream and Output Stream Objects and Template Methods
+/* Contains: String Class (Compatible with STL) */
 
-#ifndef INCLUDE_H_AURORA_LIB_IOSTREAM
-#define INCLUDE_H_AURORA_LIB_IOSTREAM
+#ifndef INCLUDE_H_AURORA_LIB_STRING
+#define INCLUDE_H_AURORA_LIB_STRING    1
 
 #pragma once
 
+#include <istream>
+#include <ostream>
+
 namespace Ar
 {
-    
+    class String
+    {
+    public:
+        String (const char* str = "");  // Normal string
+        String (const String & str);    // String by copy
+        int size();                     // Return String size
+        ~String();
+
+    private:
+        char* buf;
+        int len = 0;
+    };
 }
 
-#endif // INCLUDE_H_AURORA_LIB_IOSTREAM
+#endif // INCLUDE_H_AURORA_LIB_STRING

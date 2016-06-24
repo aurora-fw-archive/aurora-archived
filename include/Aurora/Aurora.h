@@ -32,6 +32,7 @@
 #include <Aurora/Lib/Type.h>
 #include <Aurora/Lib/IOStream.h>
 #include <Aurora/Lib/Endian.h>
+#include <Aurora/Lib/String.h>
 
 // Information
 #include <Aurora/Info/RAM.h>

@@ -56,6 +56,6 @@ ArSlot_t slot_MyApp_on_open()
 int main(int argc, char * argv[])
 {
     MyApp = new Application(slot_MyApp_on_open, argc, argv);
-		delete MyApp;
+	delete MyApp;
     return 0;
 }
