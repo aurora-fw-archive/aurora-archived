@@ -27,7 +27,7 @@ $ make
 ```
 
 ### Windows
-With Windows Platform you need to install the folowing required packages from Ported GNU Projects, like [MinGW](http://www.mingw.org/) or [GnuWin](http://gnuwin32.sourceforge.net/):
+With Windows Platform you need to install the folowing required packages from Ported GNU Projects, like [MinGW](http://www.mingw.org/) and [GnuWin](http://gnuwin32.sourceforge.net/):
 - [AutoMake](http://gnuwin32.sourceforge.net/packages/automake.htm) ([Setup Executable](http://gnuwin32.sourceforge.net/downlinks/automake.php))
 - [AutoConf](http://gnuwin32.sourceforge.net/packages/autoconf.htm) ([Setup Executable](http://gnuwin32.sourceforge.net/downlinks/autoconf-bin.php))
 - [LibTool](http://gnuwin32.sourceforge.net/packages/libtool.htm) ([Setup Executable](http://gnuwin32.sourceforge.net/downlinks/libtool.php))
