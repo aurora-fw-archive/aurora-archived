@@ -30,6 +30,9 @@ See [BUILD.md](build/BUILD.md)
 
 NOTE: See [Installation.md](Installation.md) to compile Aurora framework on a cross platform.
 
+### UML Structure
+![UML1](docs/Aurora.png?raw=true "Aurora Class Structure - UML")
+
 ### Contributors
  - **Luís Ferreira** - General Developer
 
