@@ -4,28 +4,29 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_INFO_OS
-#define INCLUDE_H_AURORA_INFO_OS
+// File: src/Examples/src/test_string.cpp
+// Contains: Tests and Examples for Aurora Framework (String Example)
 
+#include <Aurora/Aurora.h>
 #include <iostream>
-#include <Aurora/Lib/Target.h>
-#include <Aurora/Core/Aurora.h>
 
-#ifdef AURORA_TARGET_ANDROID
-    #include <android/api-level.h>
-#endif
+using namespace Aurora;
 
-namespace Aurora
+ArInt_t main(ArInt_t argc, ArChar_t * argv[])
 {
-    class InfoOS 
-    {
-    public:
-        static std::string getManufacturer();
-        static std::string getArchitecture();
-        static std::string getVersion();
-        static std::string getName();
-        static std::string getUserComputerName();
-    };
-}
+	Ar::String inputstr;
+	Shell::Input >> inputstr;
+	Shell::Output << inputstr;
+	/*
+	// new String by Copy
+	Ar::String World = "World!";
+	Ar::String CpWorld(World);
+	Shell::Output << CpWorld << Shell::EndLine;*/
 
-#endif // INCLUDE_H_AURORA_INFO_OS
+	/*Ar::String hello_world = "Hello" + ", World!";
+	Shell::Output << hello_world << Shell::EndLine;*/
+	// Input
+	/*Ar::String read_str;
+	Shell::Input >> read_str;
+	Shell::Output << "Reading: "<< read_str;*/
+}

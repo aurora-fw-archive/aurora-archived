@@ -17,8 +17,10 @@
 
 #ifdef AURORA_TARGET_CXX
 #include <cstdint>
+#include <cstddef>
 #else
 #include <stdint.h>
+#include <stddef.h>
 #endif
 
 #ifdef AURORA_TARGET_COMPILER_MICROSOFT
@@ -50,15 +52,15 @@ typedef uint64_t ArUInt64_t;
 typedef size_t ArSize_t;
 typedef wchar_t ArWChar_t;
 
-typedef int ArInt;
+typedef int ArInt_t;
 typedef short int ArShort_t;
 typedef long int ArLong_t;
-typedef char ArChar;
-typedef float ArFloat;
-typedef double ArDouble;
-typedef long double ArLDouble;
-typedef bool ArBool;
-typedef unsigned char ArByte;
+typedef char ArChar_t;
+typedef float ArFloat_t;
+typedef double ArDouble_t;
+typedef long double ArLDouble_t;
+typedef bool ArBool_t;
+typedef unsigned char ArByte_t;
 
 // Unsigned
 typedef unsigned int ArUInt_t;
@@ -67,6 +69,7 @@ typedef unsigned short int ArUShort_t;
 typedef unsigned long int ArULong_t;
 
 typedef void ArSlot_t;
+typedef void ArVoid_t;
 
 #define AURORA_INT_MIN          (-2147483647-1)
 #define AURORA_INT8_MIN		(-128)

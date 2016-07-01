@@ -23,7 +23,8 @@ __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/Info/OS.cpp \
                                               ../src/Lib/IOStream.cpp \
                                               ../src/Shell/Input.cpp \
-                                              ../src/Shell/Output.cpp
+                                              ../src/Shell/Output.cpp \
+                                              ../src/Lib/String.cpp
 
 # Headers
 cincludedir = $(includedir)/Aurora/

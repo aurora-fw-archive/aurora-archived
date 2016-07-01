@@ -11,7 +11,7 @@
 
 namespace Aurora
 {
-    struct InfoRAM
+    class InfoRAM
     {
     public:
         static unsigned int getTotalVirtualMemory(); // Total virtual memory size in bytes

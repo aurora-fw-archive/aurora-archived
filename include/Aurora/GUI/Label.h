@@ -28,9 +28,10 @@ namespace Aurora
         void setWrapMode(WrapMode mode);
         WrapMode getWrapMode();
 
-    private:
+    protected:
         unsigned long ID = 0;
         GtkWidget *Label;
+    private:
         GtkWidget *WindowParent;
     };
 }

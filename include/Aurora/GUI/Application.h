@@ -29,10 +29,11 @@ namespace Aurora
             OverrideAppIDFlag
         };
         GUIApplication(std::string pkgname = "org.aurora.example", GUIApplicationFlags flags = NoneFlag, void (*mainfunction)() = []{}, int argc = 0, char *argv[] = NULL);
+        ~GUIApplication();
         void connect(std::string detailedSignal, void (*signalFunction)(), void *signalData = NULL);
         int AppStatus;
 
-    private:
+    protected:
         GtkApplication *App;
         unsigned long ID = 0;
     };

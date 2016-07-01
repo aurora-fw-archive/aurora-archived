@@ -184,4 +184,12 @@
     #endif
 #endif
 
+#ifndef __AURORA_WORDSIZE
+    #if defined(AURORA_TARGET_CPU_86_64) && !defined(AURORA_TARGET_CPU_ILP32)
+        #define __AURORA_WORDSIZE   64
+    #else
+        #define __AURORA_WORDSIZE   32
+    #endif
+#endif
+
 #endif // INCLUDE_H_AURORA_LIB_TARGET

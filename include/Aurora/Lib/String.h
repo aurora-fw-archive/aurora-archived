@@ -16,23 +16,58 @@
 
 #pragma once
 
+#include <Aurora/Lib/Target.h>
+
+#ifdef AURORA_TARGET_CXX
 #include <istream>
 #include <ostream>
+#endif
 
 namespace Ar
 {
-    class String
+    template<class charT>
+    class __string
     {
     public:
-        String (const char* str = "");  // Normal string
-        String (const String & str);    // String by copy
-        int size();                     // Return String size
-        ~String();
+        __string();                                     //Blank string
+        __string (const charT* );                        // Normal string
+        __string (const __string<charT> & );              // String by copy
+        ~__string();
 
-    private:
-        char* buf;
-        int len = 0;
+        //Operators
+        __string& operator = (const __string<charT> & );   // Operator: =
+        __string operator + (const __string<charT> & );         // Operator: +
+        __string& operator += (const __string<charT> & );        // Operator: +=
+        inline charT& operator [] (const int ) const;        // Operator: []
+
+        inline void output (std::ostream & );
+        inline void output (std::wostream & );
+        void input (std::istream & );
+        void input (std::wistream & );
+        inline int size() const;                    // Return String size
+
+    protected:
+        charT* _buf = NULL;
     };
+    typedef __string<char>      String;
+    typedef __string<wchar_t>   wString;
+
+    extern std::ostream & operator << (std::ostream &_out, String &__str);
+    extern std::istream & operator >> (std::istream &_in, String &__str);
+
+    //for wide characters
+    extern std::wostream & operator << (std::wostream &_wout, wString &__wstr);
+    extern std::wistream & operator >> (std::wistream &_win, wString &__wstr);
 }
+
+#ifndef AURORA_STRING_MAXSIZE
+    #ifdef __AURORA_WORDSIZE
+        #if __AURORA_WORDSIZE == 64
+            #define AURORA_STRING_MAXSIZE   9223372036854775807
+        #else
+            #define AURORA_STRING_MAXSIZE   2147483647
+        #endif
+    #endif
+#endif
 
 #endif // INCLUDE_H_AURORA_LIB_STRING

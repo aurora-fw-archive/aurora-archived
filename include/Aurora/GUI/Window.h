@@ -46,8 +46,6 @@ namespace Aurora
     
     protected:
         GtkWidget *Window;
-        
-    private:
         unsigned long ID = 0;
     };
 }

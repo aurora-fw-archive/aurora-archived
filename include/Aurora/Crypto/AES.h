@@ -11,11 +11,11 @@
 
 namespace Aurora
 {
-    struct AES
+    class AES
     {
     public:
-        unsigned char* encrypt(unsigned char key[32], int keysize, unsigned char plaintext[16]);
-	    unsigned char* decrypt(unsigned char key[32], int keysize, unsigned char ciphertext[16]);
+        static unsigned char* encrypt(unsigned char key[32], int keysize, unsigned char plaintext[16]);
+	    static unsigned char* decrypt(unsigned char key[32], int keysize, unsigned char ciphertext[16]);
 
     private:
         int Nr, Nk;
