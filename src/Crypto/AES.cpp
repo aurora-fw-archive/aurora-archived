@@ -20,7 +20,7 @@
 #endif
 
 /* 
- * The number of columns comprising a state in AES.
+ * The number of columns comprising a _s in AES.
  * This is a constant in AES. Value=4
  */
 #define _AURORA_AES_NUM 4
@@ -33,11 +33,24 @@
 
 namespace Aurora
 {
+	int AES::_nr, AES::_nk;
+
+	/* _i - it is the array that holds the CipherText to be decrypted.
+	* _o - it is the array that holds the output of the for decryption.
+	* _s - the array that holds the intermediate results during decryption.
+	*/
+	unsigned char AES::_i[16], AES::_o[16], AES::_s[4][4];
+
+	// The array that stores the round keys.
+	unsigned char AES::_rk[240];
+	// The Key input to the AES Program
+	unsigned char AES::_k[32];
+
 	/* @bief	Function to get SubBox Value for AES encryptation
 	** @param	number for value of subbox array
 	** @return	value of suubbox array
 	*/
-	const int AES::_getSBV(const int __n)
+	int AES::_getSBV(const int __n)
 	{
 		const int __sb[256] = 
 		{
@@ -65,7 +78,7 @@ namespace Aurora
 	** @param 	__n	number for inverse value of subbox array
 	** @return		value of inverse subbox array
 	*/
-	const int AES::_getISBV(const int __n)
+	int AES::_getISBV(const int __n)
 	{
         const int __isb[256] =
         { 
@@ -92,26 +105,51 @@ namespace Aurora
 
 	void AES::_ke()
 	{
-		int i,j;
-		unsigned char temp[4],k;
+		/*
+		* The round constant word array, _rc[i], contains the values given by
+		* x to th e power (i-1) being powers of x (x is denoted as {02}) in the field GF(2^8)
+		* Note that i starts at 1, not 0).
+		*/
+		const int _rc[256] =
+		{
+			0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a,
+			0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39,
+			0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a,
+			0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8,
+			0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef,
+			0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc,
+			0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b,
+			0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3,
+			0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94,
+			0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20,
+			0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35,
+			0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f,
+			0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04,
+			0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63,
+			0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd,
+			0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d
+		};
+
+		int i;
+		unsigned char temp[4], k;
 		
 		// The first round key is the key itself.
-		for(i=0;i<Nk;i++)
+		for(i=0;i<_nk;i++)
 		{
-			RoundKey[i*4]=Key[i*4];
-			RoundKey[i*4+1]=Key[i*4+1];
-			RoundKey[i*4+2]=Key[i*4+2];
-			RoundKey[i*4+3]=Key[i*4+3];
+			_rk[i*4]=_k[i*4];
+			_rk[i*4+1]=_k[i*4+1];
+			_rk[i*4+2]=_k[i*4+2];
+			_rk[i*4+3]=_k[i*4+3];
 		}
 
 		// All other round keys are found from the previous round keys.
-		while (i < (_AURORA_AES_NUM * (Nr+1)))
+		while (i < (_AURORA_AES_NUM * (_nr+1)))
 		{
-			for(j=0;j<4;j++)
+			for(int j=0;j<4;j++)
 			{
-				temp[_CRYPTOj]=RoundKe * 4  j];
+				temp[j]= _rk[(i-1) * 4 + j];
 			}
-			if (i % Nk == 0)
+			if (i % _nk == 0)
 			{
 				// This function rotates the 4 bytes in a word to the left once.
 				// [a0,a1,a2,a3] becomes [a1,a2,a3,a0]
@@ -130,269 +168,270 @@ namespace Aurora
 
 				// Function Subword()
 				{
-					temp[0]=getSBoxValue(temp[0]);
-					temp[1]=getSBoxValue(temp[1]);
-					temp[2]=getSBoxValue(temp[2]);
-					temp[3]=getSBoxValue(temp[3]);
+					temp[0]=_getSBV(temp[0]);
+					temp[1]=_getSBV(temp[1]);
+					temp[2]=_getSBV(temp[2]);
+					temp[3]=_getSBV(temp[3]);
 				}
 
-				temp[0] =  temp[0] ^ Rcon[i/Nk];
+				temp[0] =  temp[0] ^ _rc[i/_nk];
 			}
-			else if (Nk > 6 && i % Nk == 4)
+			else if (_nk > 6 && i % _nk == 4)
 			{
 				// Function Subword()
 				{
-					temp[0]=getSBoxValue(temp[0]);
-					temp[1]=getSBoxValue(temp[1]);
-					temp[2]=getSBoxValue(temp[2]);
-					temp[3]=getSBoxValue(temp[3]);
+					temp[0]=_getSBV(temp[0]);
+					temp[1]=_getSBV(temp[1]);
+					temp[2]=_getSBV(temp[2]);
+					temp[3]=_getSBV(temp[3]);
 				}
 			}
-			RoundKey[i*4+0] = RoundKey[(i-Nk)*4+0] ^ temp[0];
-			RoundKey[i*4+1] = RoundKey[(i-Nk)*4+1] ^ temp[1];
-			RoundKey[i*4+2] = RoundKey[(i-Nk)*4+2] ^ temp[2];
-			RoundKey[i*4+3] = RoundKey[(i-Nk)*4+3] ^ temp[3];
+			_rk[i*4+0] = _rk[(i-_nk)*4+0] ^ temp[0];
+			_rk[i*4+1] = _rk[(i-_nk)*4+1] ^ temp[1];
+			_rk[i*4+2] = _rk[(i-_nk)*4+2] ^ temp[2];
+			_rk[i*4+3] = _rk[(i-_nk)*4+3] ^ temp[3];
 			i++;
 		}
 	}
 	
-	void AES::AddRoundKey(int round) 
+	void AES::_ark(int round) 
 	{
 		int i,j;
 		for(i=0;i<4;i++)
 		{
 			for(j=0;j<4;j++)
 			{
-				state[j][i] ^= RoundKey[round * _AURORA_AES_NUM * 4 + i * _AURORA_AES_NUM + j];
+				_s[j][i] ^= _rk[round * _AURORA_AES_NUM * 4 + i * _AURORA_AES_NUM + j];
 			}
 		}
 	}
 	
-	void AES:_CRYPTO:SubBytes()
+	void AES::_sb()
 	{
-	j;
-		or(i=0;i<4;i++)
+		for(int i=0;i<4;i++)
 		{
-			for(j=0;j<4;j++)
+			for(int j=0;j<4;j++)
 			{
-				state[i][j] = getSBoxValue(state[i][j]);
+				_s[i][j] = _getSBV(_s[i][j]);
 
 			}
 		}
 	}
 
-	void AES::ShiftRows()
+	void AES::_sr()
 	{
 		unsigned char temp;
 
 		// Rotate first row 1 columns to left	
-		temp=state[1][0];
-		state[1][0]=state[1][1];
-		state[1][1]=state[1][2];
-		state[1][2]=state[1][3];
-		state[1][3]=temp;
+		temp=_s[1][0];
+		_s[1][0]=_s[1][1];
+		_s[1][1]=_s[1][2];
+		_s[1][2]=_s[1][3];
+		_s[1][3]=temp;
 
 		// Rotate second row 2 columns to left	
-		temp=state[2][0];
-		state[2][0]=state[2][2];
-		state[2][2]=temp;
+		temp=_s[2][0];
+		_s[2][0]=_s[2][2];
+		_s[2][2]=temp;
 
-		temp=state[2][1];
-		state[2][1]=state[2][3];
-		state[2][3]=temp;
+		temp=_s[2][1];
+		_s[2][1]=_s[2][3];
+		_s[2][3]=temp;
 
 		// Rotate third row 3 columns to left
-		temp=state[3][0];
-		state[3][0]=state[3][3];
-		state[3][3]=state[3][2];
-		state[3][2]=state[3][1];
-		state[3][1]=temp;
+		temp=_s[3][0];
+		_s[3][0]=_s[3][3];
+		_s[3][3]=_s[3][2];
+		_s[3][2]=_s[3][1];
+		_s[3][1]=temp;
 	}
 
 	
-	void AES::MixColumns()
+	void AES::_mc()
 	{
 		int i;
 		unsigned char Tmp,Tm,t;
 		for(i=0;i<4;i++)
 		{	
-			t=state[0][i];
-			Tmp = state[0][i] ^ state[1][i] ^ state[2][i] ^ state[3][i] ;
-			Tm = state[0][i] ^ state[1][i] ; Tm = _AURORA_AES_TIME(Tm); state[0][i] ^= Tm ^ Tmp ;
-			Tm = state[1][i] ^ state[2][i] ; Tm = _AURORA_AES_TIME(Tm); state[1][i] ^= Tm ^ Tmp ;
-			Tm = state[2][i] ^ state[3][i] ; Tm = _AURORA_AES_TIME(Tm); state[2][i] ^= Tm ^ Tmp ;
-			Tm = state[3][i] ^ t ; Tm = _AURORA_AES_TIME(Tm); state[3][i] ^= Tm ^ Tmp ;
+			t=_s[0][i];
+			Tmp = _s[0][i] ^ _s[1][i] ^ _s[2][i] ^ _s[3][i] ;
+			Tm = _s[0][i] ^ _s[1][i] ; Tm = _AURORA_AES_TIME(Tm); _s[0][i] ^= Tm ^ Tmp ;
+			Tm = _s[1][i] ^ _s[2][i] ; Tm = _AURORA_AES_TIME(Tm); _s[1][i] ^= Tm ^ Tmp ;
+			Tm = _s[2][i] ^ _s[3][i] ; Tm = _AURORA_AES_TIME(Tm); _s[2][i] ^= Tm ^ Tmp ;
+			Tm = _s[3][i] ^ t ; Tm = _AURORA_AES_TIME(Tm); _s[3][i] ^= Tm ^ Tmp ;
 		}
 	}
 
-	void AES::Cipher()
+	void AES::_c()
 	{
 		int i,j,round=0;
 
-		//Copy the input PlainText to state array.
+		//Copy the input PlainText to _s array.
 		for(i=0;i<4;i++)
 		{
 			for(j=0;j<4;j++)
 			{
-				state[j][i] = in[i*4 + j];
+				_s[j][i] = _i[i*4 + j];
 			}
 		}
 
-		// Add the First round key to the state before starting the rounds.
-		AddRoundKey(0); 
+		// Add the First round key to the _s before starting the rounds.
+		_ark(0); 
 		
 		// There will be Nr rounds.
 		// The first Nr-1 rounds are identical.
 		// These Nr-1 rounds are executed in the loop below.
-		for(round=1;round<Nr;round++)
+		for(round=1;round<_nr;round++)
 		{
-			SubBytes();
-			ShiftRows();
-			MixColumns();
-			AddRoundKey(round);
+			_sb();
+			_sr();
+			_mc();
+			_ark(round);
 		}
 		
 		// The last round is given below.
 		// The MixColumns function is not here in the last round.
-		SubBytes();
-		ShiftRows();
-		AddRoundKey(Nr);
+		_sb();
+		_sr();
+		_ark(_nr);
 
 		// The encryption process is over.
-		// Copy the state array to output array.
+		// Copy the _s array to output array.
 		for(i=0;i<4;i++)
 		{
 			for(j=0;j<4;j++)
 			{
-				out[i*4+j]=state[j][i];
+				_o[i*4+j]=_s[j][i];
 			}
 		}
 	}
 
 	
-	void AES::InvSubBytes()
+	void AES::_isb()
 	{
 		int i,j;
 		for(i=0;i<4;i++)
 		{
 			for(j=0;j<4;j++)
 			{
-				state[i][j] = getSBoxInvert(state[i][j]);
+				_s[i][j] = _getISBV(_s[i][j]);
 
 			}
 		}
 	}
 	
-	void AES::InvShiftRows()
+	void AES::_isr()
 	{
 		unsigned char temp;
 
 		// Rotate first row 1 columns to right	
-		temp=state[1][3];
-		state[1][3]=state[1][2];
-		state[1][2]=state[1][1];
-		state[1][1]=state[1][0];
-		state[1][0]=temp;
+		temp=_s[1][3];
+		_s[1][3]=_s[1][2];
+		_s[1][2]=_s[1][1];
+		_s[1][1]=_s[1][0];
+		_s[1][0]=temp;
 
 		// Rotate second row 2 columns to right	
-		temp=state[2][0];
-		state[2][0]=state[2][2];
-		state[2][2]=temp;
+		temp=_s[2][0];
+		_s[2][0]=_s[2][2];
+		_s[2][2]=temp;
 
-		temp=state[2][1];
-		state[2][1]=state[2][3];
-		state[2][3]=temp;
+		temp=_s[2][1];
+		_s[2][1]=_s[2][3];
+		_s[2][3]=temp;
 
 		// Rotate third row 3 columns to right
-		temp=state[3][0];
-		state[3][0]=state[3][1];
-		state[3][1]=state[3][2];
-		state[3][2]=state[3][3];
-		state[3][3]=temp;
+		temp=_s[3][0];
+		_s[3][0]=_s[3][1];
+		_s[3][1]=_s[3][2];
+		_s[3][2]=_s[3][3];
+		_s[3][3]=temp;
 	}
-	void AES::InvMixColumns()
+	void AES::_imc()
 	{
 		int i;
 		unsigned char a,b,c,d;
 		for(i=0;i<4;i++)
 		{	
 		
-			a = state[0][i];
-			b = state[1][i];
-			c = state[2][i];
-			d = state[3][i];
+			a = _s[0][i];
+			b = _s[1][i];
+			c = _s[2][i];
+			d = _s[3][i];
 
 			
-			state[0][i] = _AURORA_AES_MULTI(a, 0x0e) ^ _AURORA_AES_MULTI(b, 0x0b) ^ _AURORA_AES_MULTI(c, 0x0d) ^ _AURORA_AES_MULTI(d, 0x09);
-			state[1][i] = _AURORA_AES_MULTI(a, 0x09) ^ _AURORA_AES_MULTI(b, 0x0e) ^ _AURORA_AES_MULTI(c, 0x0b) ^ _AURORA_AES_MULTI(d, 0x0d);
-			state[2][i] = _AURORA_AES_MULTI(a, 0x0d) ^ _AURORA_AES_MULTI(b, 0x09) ^ _AURORA_AES_MULTI(c, 0x0e) ^ _AURORA_AES_MULTI(d, 0x0b);
-			state[3][i] = _AURORA_AES_MULTI(a, 0x0b) ^ _AURORA_AES_MULTI(b, 0x0d) ^ _AURORA_AES_MULTI(c, 0x09) ^ _AURORA_AES_MULTI(d, 0x0e);
+			_s[0][i] = _AURORA_AES_MULTI(a, 0x0e) ^ _AURORA_AES_MULTI(b, 0x0b) ^ _AURORA_AES_MULTI(c, 0x0d) ^ _AURORA_AES_MULTI(d, 0x09);
+			_s[1][i] = _AURORA_AES_MULTI(a, 0x09) ^ _AURORA_AES_MULTI(b, 0x0e) ^ _AURORA_AES_MULTI(c, 0x0b) ^ _AURORA_AES_MULTI(d, 0x0d);
+			_s[2][i] = _AURORA_AES_MULTI(a, 0x0d) ^ _AURORA_AES_MULTI(b, 0x09) ^ _AURORA_AES_MULTI(c, 0x0e) ^ _AURORA_AES_MULTI(d, 0x0b);
+			_s[3][i] = _AURORA_AES_MULTI(a, 0x0b) ^ _AURORA_AES_MULTI(b, 0x0d) ^ _AURORA_AES_MULTI(c, 0x09) ^ _AURORA_AES_MULTI(d, 0x0e);
 		}
 	}
-	void AES::InvCipher()
+	void AES::_ic()
 	{
-		int i,j,round=0;
+		int i,j,r=0;
 
-		//Copy the input CipherText to state array.
+		//Copy the input CipherText to _s array.
 		for(i=0;i<4;i++)
 		{
 			for(j=0;j<4;j++)
 			{
-				state[j][i] = in[i*4 + j];
+				_s[j][i] = _i[i*4 + j];
 			}
 		}
 
-		// Add the First round key to the state before starting the rounds.
-		AddRoundKey(Nr); 
+		// Add the First round key to the _s before starting the rounds.
+		_ark(_nr); 
 
 		// There will be Nr rounds.
 		// The first Nr-1 rounds are identical.
 		// These Nr-1 rounds are executed in the loop below.
-		for(round=Nr-1;round>0;round--)
+		for(r=_nr-1;r>0;r--)
 		{
-			InvShiftRows();
-			InvSubBytes();
-			AddRoundKey(round);
-			InvMixColumns();
+			_isr();
+			_isb();
+			_ark(r);
+			_imc();
 		}
 		
 		// The last round is given below.
 		// The MixColumns function is not here in the last round.
-		InvShiftRows();
-		InvSubBytes();
-		AddRoundKey(0);
+		_isr();
+		_isb();
+		_ark(0);
 
 		// The decryption process is over.
-		// Copy the state array to output array.
+		// Copy the _s array to output array.
 		for(i=0;i<4;i++)
 		{
 			for(j=0;j<4;j++)
 			{
-				out[i*4+j]=state[j][i];
+				_o[i*4+j]=_s[j][i];
 			}
 		}
 	}
 
-	static unsigned char* AES::encrypt(const unsigned char __k[32], const int __ks, unsigned char __i[16])
+	unsigned char* AES::encrypt(const unsigned char __k[32], 
+								const int __ks, 
+								unsigned char __i[16])
 	{
 		if (__ks==128 || __ks==192 || __ks==256)
 		{
 			_nk = __ks / 32;
 			_nr = _nk + 6;
 
-			for(int i=0;i<Nk*4;i++)
+			for(int i=0;i<_nk*4;i++)
 			{
-				Key[i]=key[i];
-				in[i]=plaintext[i];
+				_k[i]=__k[i];
+				_i[i]=__i[i];
 			}
 
 			// The KeyExpansion routine must be called before encryption.
-			KeyExpansion();
+			_ke();
 
 			// The next function call encrypts the PlainText with the Key using AES algorithm.
-			Cipher();
+			_c();
 
-			return out;
+			return _o;
 		}
         else
         {
@@ -400,6 +439,7 @@ namespace Aurora
 		   return NULL;
         }
     }
+
 	/* @brief	AES decrypt function
 	** @param __k	AES Key
 	** @param __ks	AES Key size
@@ -410,17 +450,13 @@ namespace Aurora
 								const int __ks, 
 								unsigned char __i[16])
     {
-        if __ks==128 || __ks==192 || __ks==256)
+        if (__ks==128 || __ks==192 || __ks==256)
         {
             _nk = __ks / 32;
             _nr = _nk + 6;
 
-			memcpy(_key, __k, 32);
-            for(int i=0;i<Nk*4;i++)
-            {
-                Key[i]=key[i];
-                in[i]=ciphertext[i];
-            }
+			memcpy(_k, __k, _nk * 4);
+			memcpy(_i, __i, _nk * 4);
 
             //The Key-Expansion routine must be called before the decryption routine.
             _ke();
@@ -428,7 +464,7 @@ namespace Aurora
             // The next function call decrypts the CipherText with the Key using AES algorithm.
             _ic();
 
-            return ;
+            return _o;
         }
         else
         {

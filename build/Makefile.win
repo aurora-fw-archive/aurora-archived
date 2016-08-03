@@ -1,0 +1,73 @@
+# -*- Makefile -*- 
+# ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
+# ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
+# ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
+#  Copyright (c) 2016 - Luís Ferreira. All right reserved
+#  More information in: https://github.com/ljmf00/ (Github Page)
+
+## Build names:
+# - win32-aurora
+# - wow64-aurora-nongui
+# - i686-elf-aurora-cross
+# - x86_64-elf-aurora-cross
+# - posix-i686-aurora
+# - posix-x86_64-aurora
+
+# C++ Standard Flags
+CXX11 = -std=gnu++11
+CXX14 = -std=gnu++14
+CXX17 = -std=gnu++17
+
+NAME = aurora
+CC = @gcc
+CXX = @g++ $(CXX14)
+CXXFLAGS = -Wall -Wextra -Iinclude/
+GTKFLAGS = `pkg-config --cflags --libs gtk+-3.0`
+DEBUG_CXXFLAGS = -g -ggdb
+PATH = 
+
+32BITS = -m32
+
+SOURCEFILES = src/GUI/Window.cpp \
+			src/GUI/Application.cpp \
+			src/GUI/Label.cpp \
+			src/Info/RAM.cpp \
+			src/Core/Application.cpp \
+			src/Core/Debug.cpp \
+			src/Shell/Color.cpp \
+			src/Crypto/AES.cpp \
+			src/Info/OS.cpp \
+			src/Lib/IOStream.cpp \
+			src/Shell/Input.cpp \
+			src/Shell/Output.cpp \
+			src/Lib/String.cpp
+
+all: binwin32build dbgwin32build
+
+# Build steps
+## Core Step
+mbuild:
+	$(CXX) -shared $(SOURCEFILES) $(CXXFLAGS) -o $(PATH)$(NAME).dll
+
+binwin32build: NAME = win32-aurora
+binwin32build: PATH = bin/
+binwin32build: CXX += $(32BITS)
+binwin32build: CXXFLAGS += $(GTKFLAGS)
+binwin32build: mbuild
+
+dbgwin32build: NAME = win32-aurora
+dbgwin32build: PATH = dbg/
+dbgwin32build: CXX += $(32BITS)
+dbgwin32build: CXXFLAGS += $(GTKFLAGS) $(DEBUG_CXXFLAGS)
+dbgwin32build: mbuild
+
+# Rebuild steps
+binwin32rebuild: win32clean binwin32build
+dbgwin32rebuild: win32clean dbgwin32build
+
+# Clean steps
+win32clean:
+	@rm -f bin/win32-aurora.dll
+
+wow64clean:
+	@rm -f bin/wow64-aurora-nongui.dll

@@ -9,7 +9,7 @@
 
 #ifdef AURORA_TARGET_GNU_LINUX
 #include <sys/utsname.h>
-#elif AURORA_TARGET_WINDOWS
+#elif defined(AURORA_TARGET_WINDOWS)
 #include <windows.h>
 #endif
 
@@ -79,6 +79,8 @@ namespace Aurora
             struct utsname linuxname_temp;
             uname(&linuxname_temp);
             return std::string(linuxname_temp.nodename);
+		#elif defined(AURORA_TARGET_WINDOWS)
+			return "Unknown";
         #endif
     }
 }
