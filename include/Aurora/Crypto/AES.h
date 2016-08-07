@@ -9,6 +9,18 @@
 
 #include <Aurora/Core/Aurora.h>
 
+/* 
+ * The number of columns comprising a _s in AES.
+ * This is a constant in AES. Value=4
+ */
+#define _AURORA_AES_NUM 4
+
+// _AURORA_AES_TIME is a macro that finds the product of {02} and the argument to xtime modulo {1b}  
+#define _AURORA_AES_TIME(x)   ((x<<1) ^ (((x>>7) & 1) * 0x1b))
+
+// _AURORA_AES_MULTI is a macro used to multiply numbers in the field GF(2^8)
+#define _AURORA_AES_MULTI(x,y) (((y & 1) * x) ^ ((y>>1 & 1) * _AURORA_AES_TIME(x)) ^ ((y>>2 & 1) * _AURORA_AES_TIME(_AURORA_AES_TIME(x))) ^ ((y>>3 & 1) * _AURORA_AES_TIME(_AURORA_AES_TIME(_AURORA_AES_TIME(x)))) ^ ((y>>4 & 1) * _AURORA_AES_TIME(_AURORA_AES_TIME(_AURORA_AES_TIME(_AURORA_AES_TIME(x))))))
+
 namespace Aurora
 {
 	class AES

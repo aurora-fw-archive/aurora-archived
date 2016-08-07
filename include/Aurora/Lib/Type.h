@@ -13,7 +13,7 @@
 #pragma once
 
 #include <Aurora/Core/Aurora.h>
-#include <Aurora/Core/Target.h>
+#include <Aurora/Lib/Target.h>
 
 #ifdef AURORA_TARGET_CXX
 #include <cstdint>

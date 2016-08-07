@@ -11,29 +11,44 @@
 #include <Aurora/GUI/Layout.h>
 #include <Aurora/Core/Aurora.h>
 
+/* TODO: Add:
+	Functions
+	- set/get alignment
+	- get selected text
+	
+	Event Functions
+	- onClick
+	- onTextChange
+*/
+
 typedef struct _GtkWidget GtkWidget;
 
 namespace Aurora
 {
-    class GUILabel
-    {
-    public:
-        GUILabel(GUIWindow *parent, std::string name = "New Label");
-        void setText(std::string text);
-        std::string getText();
-        void setSelectable(bool value);
-        bool getSelectable();
-        void setWrap(bool value);
-        bool getLineWrap();
-        void setWrapMode(WrapMode mode);
-        WrapMode getWrapMode();
+	class GUILabel
+	{
+	public:
+		GUILabel(GUIWindow *parent, std::string name = "New Label");
+		void setText(std::string);
+		std::string getText();
+		void setSelectable(bool);
+		bool getSelectable();
+		void setWrap(bool);
+		bool getLineWrap();
+		void setWrapMode(WrapMode);
+		WrapMode getWrapMode();
+		void setAlignment(AlignMode);
+		void setAlignment(const float, const float);
+		AlignMode getAlignment();
+		float getXAlignment();
+		float getYAlignment();
 
-    protected:
-        unsigned long ID = 0;
-        GtkWidget *Label;
-    private:
-        GtkWidget *WindowParent;
-    };
+	protected:
+		unsigned long ID = 0;
+		GtkWidget *Label;
+	private:
+		GtkWidget *WindowParent;
+	};
 }
 
 #endif // INCLUDE_H_AURORA_GUI_LABEL

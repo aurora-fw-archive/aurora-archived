@@ -11,12 +11,36 @@
 
 namespace Aurora
 {
-    enum class WrapMode
-    {
-        Word,
-        Char,
-        WordChar
-    };
+	enum class WrapMode
+	{
+		Word,
+		Char,
+		WordChar
+	};
+	enum class AlignMode
+	{
+		/* TL  TC  TR	| \ | /
+		** L   C   R	| < * >
+		** BL  BC  BR	| / | \
+		*/
+		TopLeft,
+		TopCenter,
+		TopRight,
+		Left,
+		Center,
+		Right,
+		BottomLeft,
+		BottomCenter,
+		BottomRight,
+		Custom
+	};
+	enum class JustifyMode
+	{
+		Left,
+		Right,
+		Center,
+		Fill
+	};
 }
 
 #endif // INCLUDE_H_AURORA_GUI_LAYOUT

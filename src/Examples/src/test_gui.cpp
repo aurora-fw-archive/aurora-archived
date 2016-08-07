@@ -21,6 +21,9 @@ ArSlot_t slot_MyWindow_on_open()
 	HelloLabel->setSelectable(true);
 	HelloLabel->setWrap(true);
 	HelloLabel->setWrapMode(WrapMode::Word);
+	HelloLabel->setAlignment(AlignMode::Center);
+	HelloLabel->setAlignment(0.7, 0.8);
+	AlignMode alignLabel = HelloLabel->getAlignment();
 }
 
 ArSlot_t slot_MyGUIApp_on_open()

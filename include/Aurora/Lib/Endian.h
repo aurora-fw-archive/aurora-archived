@@ -10,7 +10,7 @@
 #pragma once
 
 #include <Aurora/Core/Aurora.h>
-#include <Aurora/Core/Target.h>
+#include <Aurora/Lib/Target.h>
 
 #if defined(AURORA_TARGET_LINUX) || defined(AURORA_TARGET_CYGWIN)
     #include <endian.h>

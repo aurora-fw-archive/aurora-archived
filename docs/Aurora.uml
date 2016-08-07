@@ -72,6 +72,24 @@ package "Aurora Framework" <<Rect>> {
 				Char
 				WordChar
 			}
+			enum AlignMode {
+				TopLeft
+				TopCenter
+				TopRight
+				Left
+				Center
+				Right
+				BottomLeft
+				BottomCenter
+				BottomRight
+				Custom
+			}
+			enum JustifyMode {
+				Left
+				Right
+				Center
+				Fill
+			}
 			class GUIApplication {
 				+GUIApplication()
 				+~GUIApplication()
@@ -114,6 +132,8 @@ package "Aurora Framework" <<Rect>> {
 				#ID : uLong
 			}
 			WrapMode <|.. GUILabel
+			AlignMode <|.. GUILabel
+			JustifyMode <|.. GUILabel
 			GUIApplicationFlags o-- GUIApplication
 			GUIWindowType o-- GUIWindow
 			GUIWindowPosition o-- GUIWindow

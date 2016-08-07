@@ -8,42 +8,42 @@
 #include <Aurora/Core/Debug.h>
 
 namespace Aurora { namespace Debug
-    {
-        bool Status = false;
-        int LastID;
-        void enableDebug(bool silent)
-        {
-            if(Status)
-            {
-                if(!silent) Shell::Log(Shell::Debug, "debug is already enabled");
-            }
-            else
-            {
-                Status = true;
-                if(!silent)
-                {
-                    Shell::Log(Shell::Debug, "┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─");
-                    Shell::Log(Shell::Debug, "├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐");
-                    Shell::Log(Shell::Debug, "┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴");
-                    Shell::Log(Shell::Debug, "debug is enabled");
-                }
-            }
-        }
-        void disableDebug(bool silent)
-        {
-            if(!Status)
-            {
-                if(!silent) Shell::Log(Shell::Debug, "debug is already disabled");
-            }
-            else
-            {
-                Status = false;
-                if(!silent) Shell::Log(Shell::Debug, "debug is disabled");
-            }
-        }
-        bool getDebugStatus()
-        {
-            return Status;
-        }
-    }
+	{
+		bool Status = false;
+		int LastID;
+		void enableDebug(bool silent)
+		{
+			if(Status)
+			{
+				if(!silent) Shell::Log(Shell::Debug, "debug is already enabled");
+			}
+			else
+			{
+				Status = true;
+				if(!silent)
+				{
+					Shell::Log(Shell::Debug, "┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─");
+					Shell::Log(Shell::Debug, "├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐");
+					Shell::Log(Shell::Debug, "┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴");
+					Shell::Log(Shell::Debug, "debug is enabled");
+				}
+			}
+		}
+		void disableDebug(bool silent)
+		{
+			if(!Status)
+			{
+				if(!silent) Shell::Log(Shell::Debug, "debug is already disabled");
+			}
+			else
+			{
+				Status = false;
+				if(!silent) Shell::Log(Shell::Debug, "debug is disabled");
+			}
+		}
+		bool getDebugStatus()
+		{
+			return Status;
+		}
+	}
 }

@@ -89,11 +89,23 @@ _TeamCity*
 
 #Automake files
 
-Makefile
+aclocal.m4
+ar-lib
+compile
+config.sub
+configure
+depcomp
+install-sh
+ltmain.sh
+Makefile.in
+missing
+build/Makefile
 stamp-h1
 libtool
 config.status
 config.h
+config.h.in
+config.guess
 
 *.Po
 *.Plo
@@ -103,3 +115,9 @@ config.h
 .dirstamp
 .deps/
 *.la
+
+# Test Output
+src/Examples/bin/test_gui
+src/Examples/bin/test_shell
+src/Examples/bin/test_string
+
