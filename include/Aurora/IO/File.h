@@ -12,6 +12,9 @@
 namespace Aurora {
 	class File {
 		public:
-			
+			File(Ar::String);
+			bool open();
+		private:
+			Ar::String Path;
 	};
 }
