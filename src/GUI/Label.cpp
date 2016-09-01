@@ -42,7 +42,7 @@ namespace Aurora
 		Shell::Log(Shell::Debug, "setting selectable property on label id_", ID);
 		gtk_label_set_selectable((GtkLabel*)Label, value);
 	}
-	bool GUILabel::getSelectable()
+	bool GUILabel::isSelectable()
 	{
 		Shell::Log(Shell::Debug, "getting selectable property from label id_", ID);
 		return gtk_label_get_selectable((GtkLabel*)Label);
@@ -52,7 +52,7 @@ namespace Aurora
 		Shell::Log(Shell::Debug, "setting wrap property on label id_", ID);
 		gtk_label_set_line_wrap((GtkLabel*)Label, value);
 	}
-	bool GUILabel::getLineWrap()
+	bool GUILabel::isWrap()
 	{
 		Shell::Log(Shell::Debug, "getting wrap property from label id_", ID);
 		return gtk_label_get_line_wrap((GtkLabel*)Label);
@@ -69,6 +69,7 @@ namespace Aurora
 	}
 	void GUILabel::setAlignment(AlignMode mode)
 	{
+		bool isCustom = false;
 		switch(mode)
 		{
 			case AlignMode::TopLeft :
@@ -117,8 +118,10 @@ namespace Aurora
 				gtk_label_set_yalign((GtkLabel*)Label, 1);
 				break;
 			case AlignMode::Custom :
+				isCustom = true;
 				break;
 		}
+		assert(isCustom);
 	}
 	
 	void GUILabel::setAlignment(const float x, const float y)
@@ -156,4 +159,17 @@ namespace Aurora
 		}
 		return AlignMode::Custom;
 	}
+
+	float GUILabel::getXAlignment()
+	{
+		Shell::Log(Shell::Debug, "getting alignment mode property from label id_", ID, ": ", gtk_label_get_xalign((GtkLabel*)Label), "(x value)");
+		return gtk_label_get_xalign((GtkLabel*)Label);
+	}
+
+	float GUILabel::getYAlignment()
+	{
+		Shell::Log(Shell::Debug, "getting alignment mode property from label id_", ID, ": ", gtk_label_get_yalign((GtkLabel*)Label), "(y value)");
+		return gtk_label_get_yalign((GtkLabel*)Label);
+	}
+
 }

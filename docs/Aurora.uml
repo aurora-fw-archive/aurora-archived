@@ -56,6 +56,22 @@ package "Aurora Framework" <<Rect>> {
 				-Cryptography Steps
 			}
 		}
+		package "Input & Output" <<Rect>> #FFFFFF {
+			class File {
+				+File()
+				.. Public ..
+				open()
+				__ Private __
+				-Path
+			}
+			enum Permission {
+				RW
+				RO
+				WO
+			}
+			File ..|> Permission
+			File ..|> Ar.String : Path for file object
+		}
 		package "GUI" <<Rect>> #FFFFFF {
 			enum GUIApplicationFlags {
 				NoneFlag

@@ -17,9 +17,13 @@
 
 #pragma once
 
+#ifdef AURORA_TARGET_CXX
+	#include <iostream>
+#endif
+
 namespace Ar
 {
-    
+	
 }
 
 #endif // INCLUDE_H_AURORA_LIB_IOSTREAM
