@@ -15,8 +15,8 @@
 #include <iostream>
 
 namespace Aurora { namespace Shell
-    {
-        std::istream Input(std::cin.rdbuf());
-        std::wistream wInput(std::wcin.rdbuf());   
-    }
+	{
+		std::istream Input(std::cin.rdbuf());
+		std::wistream wInput(std::wcin.rdbuf());
+	}
 }

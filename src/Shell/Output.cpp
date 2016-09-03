@@ -15,8 +15,8 @@
 #include <iostream>
 
 namespace Aurora { namespace Shell
-    {
-        std::ostream Output(std::cout.rdbuf());
-        std::wostream wOutput(std::wcout.rdbuf());
-    } 
+	{
+		std::ostream Output(std::cout.rdbuf());
+		std::wostream wOutput(std::wcout.rdbuf());
+	} 
 }

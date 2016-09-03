@@ -11,22 +11,100 @@
 #include <iostream>
 
 using namespace Aurora;
+Application *MyApp;
+
+ArSlot_t slot_MyApp_on_open()
+{
+	/*
+	** @brief Creating a normal string - Procidual operations
+	*/
+	Shell::Log(Shell::Debug, "creating a string and output it...");
+	Ar::String TestString("Test!");
+	Shell::Output << TestString << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	Shell::Log(Shell::Debug, "creating a wide string and output it...");
+	Ar::wString wTestString(L"Test!");
+	Shell::wOutput << wTestString << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	
+	/*
+	** @brief String by Copy - Procidual operations
+	*/
+	Shell::Log(Shell::Debug, "creating a string by copy and output it...");
+	Ar::String World = " World!";
+	Ar::String CpWorld(World);
+	Shell::Output << CpWorld << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	Shell::Log(Shell::Debug, "creating a wide string by copy and output it...");
+	Ar::wString wWorld = L" World!";
+	Ar::wString wCpWorld(wWorld);
+	Shell::wOutput << wCpWorld << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	
+	/*
+	** @brief Concatenation procidual operations
+	*/
+	Shell::Log(Shell::Debug, "creating two strings, try to contatenate them with operator+ and output the result...");
+	Ar::String Hello = "Hello,";
+	Shell::Log(Shell::Debug, "concatenation process...");
+	Ar::String HelloWorld = Hello + World;
+	Shell::Output << HelloWorld << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	Shell::Log(Shell::Debug, "creating two wide strings, try to contatenate them with operator+ and output the result...");
+	Ar::wString wHello = L"Hello,";
+	Shell::Log(Shell::Debug, "concatenation process...");
+	Ar::wString wHelloWorld = wHello + wWorld;
+	Shell::wOutput << wHelloWorld << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	
+	/*
+	** @brief procidual operations for += operator (using char ptr)
+	*/
+	Shell::Log(Shell::Debug, "creating a string and try to use +=operator with a char pointer and output the result...");
+	Ar::String SomeString = "Hello";
+	SomeString += ", World";
+	Shell::Output << SomeString << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	
+	/*
+	** @brief Procidual operations for += operator (using two strings)
+	*/
+	Shell::Log(Shell::Debug, "creating a string and try to use +=operator with another string and output the result...");
+	Ar::String SomeString2 = "Message: ";
+	SomeString2 += SomeString;
+	Shell::Output << SomeString2 << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+	
+	Ar::String Check1Eq = "Hello";
+	Ar::String Check2Eq = Check1Eq;
+	bool checkEq = Check1Eq == Check2Eq;
+	Shell::Output << checkEq << Shell::EndLine;
+	checkEq = Check1Eq == "Hello";
+	Shell::Output << checkEq << Shell::EndLine;
+	checkEq = Check1Eq != Check2Eq;
+	Shell::Output << checkEq << Shell::EndLine;
+	
+	Ar::String Check1NEq = "Hello";
+	Ar::String Check2NEq = "World";
+	bool checkNEq =  Check1NEq != Check2NEq;
+	Shell::Output << checkNEq << Shell::EndLine;
+	checkNEq = Check1NEq != "World";
+	Shell::Output << checkNEq << Shell::EndLine;
+	checkNEq =  Check1NEq == Check2NEq;
+	Shell::Output << checkNEq << Shell::EndLine;
+	
+	Shell::Log(Shell::Debug, "testing operator>> and output the input...");
+	Shell::Log(Shell::Information, "You need to input something in the shell...");
+	Ar::String inputstr;
+	Shell::Input >> inputstr;
+	Shell::Log(Shell::Debug, "reading input...");
+	Shell::Output << inputstr << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
+}
 
 ArInt_t main(ArInt_t argc, ArChar_t * argv[])
 {
-	Ar::String inputstr;
-	Shell::Input >> inputstr;
-	Shell::Output << inputstr;
-	/*
-	// new String by Copy
-	Ar::String World = "World!";
-	Ar::String CpWorld(World);
-	Shell::Output << CpWorld << Shell::EndLine;*/
-
-	/*Ar::String hello_world = "Hello" + ", World!";
-	Shell::Output << hello_world << Shell::EndLine;*/
-	// Input
-	/*Ar::String read_str;
-	Shell::Input >> read_str;
-	Shell::Output << "Reading: "<< read_str;*/
+	MyApp = new Application(slot_MyApp_on_open, argc, argv);
+	delete MyApp;
+	return 0;
 }
