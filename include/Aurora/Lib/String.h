@@ -38,21 +38,27 @@ namespace Ar
 		__string& operator = (const __string<charT> & );		// Operator: =
 		__string operator + (const __string<charT> & );         // Operator: + (string)
 		__string operator + (const charT & );                   // Operator: + (char ptr)
-		__string& operator += (const __string<charT> & );       // Operator: +=
+		__string& operator += (const __string<charT> & );       // Operator: += (string)
+		__string& operator += (const charT & );					// Operator: += (char ptr)
 		inline charT& operator [] (const int ) const;			// Operator: []
 		inline bool operator == (const __string<charT> &);		// Operator: == (string)
 		inline bool operator == (const charT &);				// Operator: == (char ptr)
 		inline bool operator != (const __string<charT> &);		// Operator: != (string)
 		inline bool operator != (const charT &);				// Operator: != (char ptr)
 
+		void add (int, const __string<charT> & );
+		void add (int, const charT & );
+		void remove (int, int);
 		inline void output (std::ostream & );
 		inline void output (std::wostream & );
 		void input (std::istream & );
 		void input (std::wistream & );
 		inline int size() const;                    // Return String size
 
-	protected:
+	private:
+		__string (int);
 		charT* _buf = NULL;
+		int _len;
 	};
 	typedef __string<char>      String;
 	typedef __string<wchar_t>   wString;

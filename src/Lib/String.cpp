@@ -13,8 +13,6 @@
 
 /* @TODO: Create Ar::String Normal and Conditional Operators:
 **        Conditional Operators:
-**         - ==
-**         - !=
 **         - >
 **         - <
 **         - <=
@@ -47,25 +45,32 @@ namespace Ar
 	** @brief        constructor for new string.
 	** @param __cstr array of characters (string)
 	*/
+	template<class charT> __string<charT>::__string(int __n)
+	{
+		_buf = new charT[__n + 1];
+		_len = __n;
+	}
 	template<>
 	__string<char>::__string(const char* __cstr)
 	{
+		_len = strlen(__cstr);
 		/* create new buffer with str length +1 (null 
 		** character: '\0').
 		*/
-		_buf = new char[strlen(__cstr) + 1];
+		_buf = new char[size() + 1];
 		//copy array of characters to the buffer
-		memcpy(_buf, __cstr, (strlen(__cstr) + 1) * sizeof(char));
+		memcpy(_buf, __cstr, (size() + 1) * sizeof(char));
 	}
 	template<>
 	__string<wchar_t>::__string(const wchar_t* __cstr)
 	{
+		_len = wcslen(__cstr);
 		/* create new buffer with str length +1 (null 
 		** character: '\0').
 		*/
-		_buf = new wchar_t[wcslen(__cstr) + 1];
+		_buf = new wchar_t[size() + 1];
 		//copy array of characters to the buffer
-		memcpy(_buf, __cstr, (wcslen(__cstr) + 1) * sizeof(wchar_t));
+		memcpy(_buf, __cstr, (size() + 1) * sizeof(wchar_t));
 	}
 	/*
 	** @brief        constructor for new string by copy.
@@ -74,10 +79,11 @@ namespace Ar
 	template<class charT>
 	__string<charT>::__string(const __string<charT> &__str)
 	{
+		_len  = __str.size();
 		//create new buffer
-		_buf = new charT[__str.size() + 1];
+		_buf = new charT[size() + 1];
 		//clone the string object
-		memcpy(_buf, __str._buf, (__str.size() + 1) * sizeof(charT));
+		memcpy(_buf, __str._buf, (size() + 1) * sizeof(charT));
 	}
 
 	/*
@@ -95,15 +101,10 @@ namespace Ar
 	** @brief  function to get length of the string
 	** @return length (size of buffer)
 	*/
-	template<>
-	inline int __string<char>::size() const
+	template<class charT>
+	inline int __string<charT>::size() const
 	{
-		return strlen(_buf);
-	}
-	template<>
-	inline int __string<wchar_t>::size() const
-	{
-		return wcslen(_buf);
+		return _len;
 	}
 
 	/*
@@ -114,9 +115,10 @@ namespace Ar
 	template<class charT>
 	__string<charT>& __string<charT>::operator = (const __string<charT> &__str)
 	{
-		_buf = new charT[__str.size() + 1];
+		_len = __str.size();
+		_buf = new charT[size() + 1];
 		//clone the string object
-		memcpy(_buf, __str._buf, (__str.size() + 1) * sizeof(charT) );
+		memcpy(_buf, __str._buf, (size() + 1) * sizeof(charT) );
 		//return this object (string)
 		return *this;
 	}
@@ -141,24 +143,18 @@ namespace Ar
 	template<>
 	__string<char> __string<char>::operator + (const char &__str)
 	{
-		//temp buffer
-		char* __buf = new char[this->size() + strlen(&__str) + 1];
-		memcpy(__buf, _buf, this->size() * sizeof(char));
-		strcat(__buf, &__str);
-		__string<char> __ret(__buf);
-		delete [] __buf;
-		return __ret;
+		__string<char> __temp(size() + strlen(&__str));
+		memcpy(__temp._buf, _buf, size() * sizeof(char));
+		strcat(__temp._buf, &__str);
+		return __temp;
 	}
 	template<>
 	__string<wchar_t> __string<wchar_t>::operator + (const wchar_t &__str)
 	{
-		//temp buffer
-		wchar_t* __buf = new wchar_t[this->size() + wcslen(&__str) + 1];
-		memcpy(__buf, _buf, this->size() * sizeof(wchar_t));
-		wcscat(__buf, &__str);
-		__string<wchar_t> __ret(__buf);
-		delete [] __buf;
-		return __ret;
+		__string<wchar_t> __temp(size() + wcslen(&__str));
+		memcpy(__temp._buf, _buf, size() * sizeof(wchar_t));
+		wcscat(__temp._buf, &__str);
+		return __temp;
 	}
 	/*
 	** @brief        string operator + from another string
@@ -168,24 +164,18 @@ namespace Ar
 	template<>
 	__string<char> __string<char>::operator + (const __string<char> &__str)
 	{
-		//temp buffer length
-		char* __buf = new char[this->size() + __str.size() + 1];
-		memcpy(__buf, _buf, (this->size() + __str.size() + 1) * sizeof(char));
-		strcat(__buf, __str._buf);
-		__string<char> __ret(__buf);
-		delete [] __buf;
-		return __ret;
+		__string<char> __temp(size() + __str.size());
+		memcpy(__temp._buf, _buf, size() * sizeof(char));
+		strcat(__temp._buf, __str._buf);
+		return __temp;
 	}
 	template<>
 	__string<wchar_t> __string<wchar_t>::operator + (const __string<wchar_t> &__str)
 	{
-		//temp buffer length
-		wchar_t* __buf = new wchar_t[this->size() + __str.size() + 1];
-		memcpy(__buf, _buf, (this->size() + __str.size() + 1) * sizeof(wchar_t));
-		wcscat(__buf, __str._buf);
-		__string<wchar_t> __ret(__buf);
-		delete [] __buf;
-		return __ret;
+		__string<wchar_t> __temp(size() + __str.size());
+		memcpy(__temp._buf, _buf, size() * sizeof(wchar_t));
+		wcscat(__temp._buf, __str._buf);
+		return __temp;
 	}
 
 	/*
@@ -196,13 +186,35 @@ namespace Ar
 	template<>
 	__string<char>& __string<char>::operator += (const __string<char> &__str)
 	{
+		_len += __str.size();
 		strcat(_buf, __str._buf);
 		return *this;
 	}
 	template<>
 	__string<wchar_t>& __string<wchar_t>::operator += (const __string<wchar_t> &__str)
 	{
+		_len += __str.size();
 		wcscat(_buf, __str._buf);
+		return *this;
+	}
+
+	/*
+	** @brief        string operator += from a char ptr
+	** @param &__str char pointer
+	** @return       string (string with the same character type)
+	*/
+	template<>
+	__string<char>& __string<char>::operator += (const char &__str)
+	{
+		_len += strlen(&__str);
+		strcat(_buf, &__str);
+		return *this;
+	}
+	template<>
+	__string<wchar_t>& __string<wchar_t>::operator += (const wchar_t &__str)
+	{
+		_len += wcslen(&__str);
+		wcscat(_buf, &__str);
 		return *this;
 	}
 
@@ -214,7 +226,7 @@ namespace Ar
 	template<class charT>
 	inline bool __string<charT>::operator == (const __string<charT> &__str)
 	{
-		return !(bool)memcmp(this->_buf, __str._buf, sizeof(charT));
+		return (size() == __str.size()) && (memcmp(this->_buf, __str._buf, sizeof(charT) == 0);
 	}
 
 	/*
@@ -222,10 +234,15 @@ namespace Ar
 	** @param &__str	char pointer
 	** @return			bool
 	*/
-	template<class charT>
-	inline bool __string<charT>::operator == (const charT &__str)
+	template<>
+	inline bool __string<char>::operator == (const char __str)
 	{
-		return !(bool)memcmp(this->_buf, &__str, sizeof(charT));
+		return (size() == strlen(__str) && (memcmp(this->_buf, __str, sizeof(char) == 0);
+	}
+	template<>
+	inline bool __string<wchar_t>::operator == (const wchar_t __str)
+	{
+		return (size() == strlen(__str) && (memcmp(this->_buf, __str, sizeof(wchar_t) == 0);
 	}
 
 	/*
@@ -236,7 +253,7 @@ namespace Ar
 	template<class charT>
 	inline bool __string<charT>::operator != (const __string<charT> &__str)
 	{
-		return memcmp(this->_buf, __str._buf, sizeof(charT));
+		return (size() =! __str.size()) || (memcmp(this->_buf, __str._buf, sizeof(charT) != 0);
 	}
 
 	/*
@@ -250,6 +267,11 @@ namespace Ar
 		return memcmp(this->_buf, &__str, sizeof(charT));
 	}
 
+	template<class charT>
+	inline void __string<charT>::remove(int __pos, int __n)
+	{
+		//for(int i = __pos; )
+	}
 	/*
 	** @brief        function to write on the output stream (std::ostream)
 	** @param &__out ostream object (output stream)

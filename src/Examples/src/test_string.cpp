@@ -21,10 +21,12 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Log(Shell::Debug, "creating a string and output it...");
 	Ar::String TestString("Test!");
 	Shell::Output << TestString << Shell::EndLine;
+	Shell::Output << TestString.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	Shell::Log(Shell::Debug, "creating a wide string and output it...");
 	Ar::wString wTestString(L"Test!");
 	Shell::wOutput << wTestString << Shell::EndLine;
+	Shell::wOutput << wTestString.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	
 	/*
@@ -34,11 +36,13 @@ ArSlot_t slot_MyApp_on_open()
 	Ar::String World = " World!";
 	Ar::String CpWorld(World);
 	Shell::Output << CpWorld << Shell::EndLine;
+	Shell::Output << CpWorld.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	Shell::Log(Shell::Debug, "creating a wide string by copy and output it...");
 	Ar::wString wWorld = L" World!";
 	Ar::wString wCpWorld(wWorld);
 	Shell::wOutput << wCpWorld << Shell::EndLine;
+	Shell::wOutput << wCpWorld.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	
 	/*
@@ -49,12 +53,14 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Log(Shell::Debug, "concatenation process...");
 	Ar::String HelloWorld = Hello + World;
 	Shell::Output << HelloWorld << Shell::EndLine;
+	Shell::Output << HelloWorld.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	Shell::Log(Shell::Debug, "creating two wide strings, try to contatenate them with operator+ and output the result...");
 	Ar::wString wHello = L"Hello,";
 	Shell::Log(Shell::Debug, "concatenation process...");
 	Ar::wString wHelloWorld = wHello + wWorld;
 	Shell::wOutput << wHelloWorld << Shell::EndLine;
+	Shell::wOutput << wHelloWorld.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	
 	/*
@@ -64,6 +70,7 @@ ArSlot_t slot_MyApp_on_open()
 	Ar::String SomeString = "Hello";
 	SomeString += ", World";
 	Shell::Output << SomeString << Shell::EndLine;
+	Shell::Output << SomeString.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	
 	/*
@@ -73,6 +80,7 @@ ArSlot_t slot_MyApp_on_open()
 	Ar::String SomeString2 = "Message: ";
 	SomeString2 += SomeString;
 	Shell::Output << SomeString2 << Shell::EndLine;
+	Shell::Output << SomeString2.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	
 	Ar::String Check1Eq = "Hello";
@@ -85,20 +93,21 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Output << checkEq << Shell::EndLine;
 	
 	Ar::String Check1NEq = "Hello";
-	Ar::String Check2NEq = "World";
+	Ar::String Check2NEq = "World!";
 	bool checkNEq =  Check1NEq != Check2NEq;
 	Shell::Output << checkNEq << Shell::EndLine;
-	checkNEq = Check1NEq != "World";
+	checkNEq = Check1NEq != "World!";
 	Shell::Output << checkNEq << Shell::EndLine;
 	checkNEq =  Check1NEq == Check2NEq;
 	Shell::Output << checkNEq << Shell::EndLine;
-	
+
 	Shell::Log(Shell::Debug, "testing operator>> and output the input...");
 	Shell::Log(Shell::Information, "You need to input something in the shell...");
 	Ar::String inputstr;
 	Shell::Input >> inputstr;
 	Shell::Log(Shell::Debug, "reading input...");
 	Shell::Output << inputstr << Shell::EndLine;
+	Shell::Output << inputstr.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 }
 
