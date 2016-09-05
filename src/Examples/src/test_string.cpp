@@ -83,22 +83,33 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Output << SomeString2.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	
+	Shell::Log(Shell::Debug, "creating two strings and try to use conditional ==operator with another string and output the result...");
 	Ar::String Check1Eq = "Hello";
 	Ar::String Check2Eq = Check1Eq;
 	bool checkEq = Check1Eq == Check2Eq;
+	Shell::Log(Shell::Information, "the result need to be true");
 	Shell::Output << checkEq << Shell::EndLine;
 	checkEq = Check1Eq == "Hello";
+	Shell::Log(Shell::Information, "the result need to be true");
 	Shell::Output << checkEq << Shell::EndLine;
+	Shell::Log(Shell::Debug, "try to use conditional !=operator and output the result...");
 	checkEq = Check1Eq != Check2Eq;
+	Shell::Log(Shell::Information, "the result need to be false");
 	Shell::Output << checkEq << Shell::EndLine;
+	Shell::Log(Shell::Debug, "done.");
 	
+	Shell::Log(Shell::Debug, "creating two strings and try to use conditional !=operator with another string and output the result...");
 	Ar::String Check1NEq = "Hello";
 	Ar::String Check2NEq = "World!";
 	bool checkNEq =  Check1NEq != Check2NEq;
+	Shell::Log(Shell::Information, "the result need to be true");
 	Shell::Output << checkNEq << Shell::EndLine;
 	checkNEq = Check1NEq != "World!";
+	Shell::Log(Shell::Information, "the result need to be true");
 	Shell::Output << checkNEq << Shell::EndLine;
+	Shell::Log(Shell::Debug, "try to use conditional ==operator and output the result...");
 	checkNEq =  Check1NEq == Check2NEq;
+	Shell::Log(Shell::Information, "the result need to be false");
 	Shell::Output << checkNEq << Shell::EndLine;
 
 	Shell::Log(Shell::Debug, "testing operator>> and output the input...");

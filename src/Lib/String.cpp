@@ -35,55 +35,52 @@
 #endif
 
 #ifdef AURORA_TARGET_CXX
+//for tests
+#include <Aurora/Shell/Output.h>
 namespace Ar
 {
 	
 	// @brief blank constructor for new string.
-	template<class charT> __string<charT>::__string() {}
+	template<class charT> string<charT>::string() {}
+
+	/*
+	** @brief        private constructor for temporary buffer.
+	** @param cstr array of characters (string)
+	*/
+	template<class charT> string<charT>::string(size_t n)
+	{
+		buf = new charT[n + 1];
+		len = n;
+	}
 
 	/*
 	** @brief        constructor for new string.
-	** @param __cstr array of characters (string)
+	** @param cstr array of characters (string)
 	*/
-	template<class charT> __string<charT>::__string(int __n)
+	template<>
+	string<char>::string(const char* cstr)
 	{
-		_buf = new charT[__n + 1];
-		_len = __n;
+		len = strlen(cstr);
+		buf = new char[size() + 1];
+		memcpy(buf, cstr, (size() + 1) * sizeof(char));
 	}
 	template<>
-	__string<char>::__string(const char* __cstr)
+	string<wchar_t>::string(const wchar_t* cstr)
 	{
-		_len = strlen(__cstr);
-		/* create new buffer with str length +1 (null 
-		** character: '\0').
-		*/
-		_buf = new char[size() + 1];
-		//copy array of characters to the buffer
-		memcpy(_buf, __cstr, (size() + 1) * sizeof(char));
-	}
-	template<>
-	__string<wchar_t>::__string(const wchar_t* __cstr)
-	{
-		_len = wcslen(__cstr);
-		/* create new buffer with str length +1 (null 
-		** character: '\0').
-		*/
-		_buf = new wchar_t[size() + 1];
-		//copy array of characters to the buffer
-		memcpy(_buf, __cstr, (size() + 1) * sizeof(wchar_t));
+		len = wcslen(cstr);
+		buf = new wchar_t[size() + 1];
+		memcpy(buf, cstr, (size() + 1) * sizeof(wchar_t));
 	}
 	/*
 	** @brief        constructor for new string by copy.
-	** @param &__str string object (for copy purpose).
+	** @param &str string object (for copy purpose).
 	*/
 	template<class charT>
-	__string<charT>::__string(const __string<charT> &__str)
+	string<charT>::string(const string<charT> &str)
 	{
-		_len  = __str.size();
-		//create new buffer
-		_buf = new charT[size() + 1];
-		//clone the string object
-		memcpy(_buf, __str._buf, (size() + 1) * sizeof(charT));
+		len  = str.size();
+		buf = new charT[size() + 1];
+		memcpy(buf, str.buf, (size() + 1) * sizeof(charT));
 	}
 
 	/*
@@ -91,10 +88,9 @@ namespace Ar
 	**        (pointer).
 	*/
 	template<class charT>
-	__string<charT>::~__string()
+	string<charT>::~string()
 	{
-		//delete buffer
-		delete [] _buf;
+		delete [] buf;
 	}
 
 	/*
@@ -102,194 +98,192 @@ namespace Ar
 	** @return length (size of buffer)
 	*/
 	template<class charT>
-	inline int __string<charT>::size() const
+	inline size_t string<charT>::size() const
 	{
-		return _len;
+		return len;
 	}
 
 	/*
 	** @brief        string operator = from another string
-	** @param &__str string object
+	** @param &str string object
 	** @return       string (string with the same character type)
 	*/
 	template<class charT>
-	__string<charT>& __string<charT>::operator = (const __string<charT> &__str)
+	string<charT>& string<charT>::operator = (const string<charT> str)
 	{
-		_len = __str.size();
-		_buf = new charT[size() + 1];
-		//clone the string object
-		memcpy(_buf, __str._buf, (size() + 1) * sizeof(charT) );
-		//return this object (string)
+		len = str.size();
+		buf = new charT[size() + 1];
+		memcpy(buf, str.buf, (size() + 1) * sizeof(charT) );
 		return *this;
 	}
 
 	/*
 	** @brief      string operator [] from index of buffer
-	** @param  __i index of the buffer
+	** @param  i index of the buffer
 	** @return     character from the specific index of the
 	**  string / buffer.
 	*/
 	template<class charT>
-	inline charT& __string<charT>::operator [] (const int __i) const
+	inline charT& string<charT>::operator [] (const size_t i) const
 	{
-		return _buf[__i];
+		return buf[i];
 	}
 
 	/*
 	** @breif		 string operator + from a char ptr
-	** @param &__str char ptr
+	** @param &str char ptr
 	** @return		 string (default string + char ptr)
 	*/
 	template<>
-	__string<char> __string<char>::operator + (const char &__str)
+	string<char> string<char>::operator + (const char* str)
 	{
-		__string<char> __temp(size() + strlen(&__str));
-		memcpy(__temp._buf, _buf, size() * sizeof(char));
-		strcat(__temp._buf, &__str);
-		return __temp;
+		string<char> temp(size() + strlen(str));
+		memcpy(temp.buf, buf, size() * sizeof(char));
+		strcat(temp.buf, str);
+		return temp;
 	}
 	template<>
-	__string<wchar_t> __string<wchar_t>::operator + (const wchar_t &__str)
+	string<wchar_t> string<wchar_t>::operator + (const wchar_t* str)
 	{
-		__string<wchar_t> __temp(size() + wcslen(&__str));
-		memcpy(__temp._buf, _buf, size() * sizeof(wchar_t));
-		wcscat(__temp._buf, &__str);
-		return __temp;
+		string<wchar_t> temp(size() + wcslen(str));
+		memcpy(temp.buf, buf, size() * sizeof(wchar_t));
+		wcscat(temp.buf, str);
+		return temp;
 	}
 	/*
 	** @brief        string operator + from another string
-	** @param &__str string object
+	** @param &str string object
 	** @return       string (string with the same character type)
 	*/
 	template<>
-	__string<char> __string<char>::operator + (const __string<char> &__str)
+	string<char> string<char>::operator + (const string<char> str)
 	{
-		__string<char> __temp(size() + __str.size());
-		memcpy(__temp._buf, _buf, size() * sizeof(char));
-		strcat(__temp._buf, __str._buf);
-		return __temp;
+		string<char> temp(size() + str.size());
+		memcpy(temp.buf, buf, size() * sizeof(char));
+		strcat(temp.buf, str.buf);
+		return temp;
 	}
 	template<>
-	__string<wchar_t> __string<wchar_t>::operator + (const __string<wchar_t> &__str)
+	string<wchar_t> string<wchar_t>::operator + (const string<wchar_t> str)
 	{
-		__string<wchar_t> __temp(size() + __str.size());
-		memcpy(__temp._buf, _buf, size() * sizeof(wchar_t));
-		wcscat(__temp._buf, __str._buf);
-		return __temp;
+		string<wchar_t> temp(size() + str.size());
+		memcpy(temp.buf, buf, size() * sizeof(wchar_t));
+		wcscat(temp.buf, str.buf);
+		return temp;
 	}
 
 	/*
 	** @brief        string operator += from another string
-	** @param &__str string object
+	** @param &str string object
 	** @return       string (string with the same character type)
 	*/
 	template<>
-	__string<char>& __string<char>::operator += (const __string<char> &__str)
+	string<char>& string<char>::operator += (const string<char> str)
 	{
-		_len += __str.size();
-		strcat(_buf, __str._buf);
+		len += str.size();
+		strcat(buf, str.buf);
 		return *this;
 	}
 	template<>
-	__string<wchar_t>& __string<wchar_t>::operator += (const __string<wchar_t> &__str)
+	string<wchar_t>& string<wchar_t>::operator += (const string<wchar_t> str)
 	{
-		_len += __str.size();
-		wcscat(_buf, __str._buf);
+		len += str.size();
+		wcscat(buf, str.buf);
 		return *this;
 	}
 
 	/*
 	** @brief        string operator += from a char ptr
-	** @param &__str char pointer
+	** @param &str char pointer
 	** @return       string (string with the same character type)
 	*/
 	template<>
-	__string<char>& __string<char>::operator += (const char &__str)
+	string<char>& string<char>::operator += (const char* str)
 	{
-		_len += strlen(&__str);
-		strcat(_buf, &__str);
+		len += strlen(str);
+		strcat(buf, str);
 		return *this;
 	}
 	template<>
-	__string<wchar_t>& __string<wchar_t>::operator += (const wchar_t &__str)
+	string<wchar_t>& string<wchar_t>::operator += (const wchar_t* str)
 	{
-		_len += wcslen(&__str);
-		wcscat(_buf, &__str);
+		len += wcslen(str);
+		wcscat(buf, str);
 		return *this;
 	}
 
 	/*
 	** @brief			string conditional operator ==
-	** @param &__str	string object
+	** @param &str	string object
 	** @return			bool
 	*/
 	template<class charT>
-	inline bool __string<charT>::operator == (const __string<charT> &__str)
+	inline bool string<charT>::operator == (const string<charT> str)
 	{
-		return (size() == __str.size()) && (memcmp(this->_buf, __str._buf, sizeof(charT) == 0);
+		return (size() == str.size()) && (memcmp(buf, str.buf, sizeof(charT)) == 0);
 	}
 
 	/*
 	** @brief			string conditional operator ==
-	** @param &__str	char pointer
+	** @param &str	char pointer
 	** @return			bool
 	*/
 	template<>
-	inline bool __string<char>::operator == (const char __str)
+	inline bool string<char>::operator == (const char str)
 	{
-		return (size() == strlen(__str) && (memcmp(this->_buf, __str, sizeof(char) == 0);
+		return (size() == strlen(&str)) && (memcmp(buf, &str, sizeof(char)) == 0);
 	}
 	template<>
-	inline bool __string<wchar_t>::operator == (const wchar_t __str)
+	inline bool string<wchar_t>::operator == (const wchar_t str)
 	{
-		return (size() == strlen(__str) && (memcmp(this->_buf, __str, sizeof(wchar_t) == 0);
+		return (size() == wcslen(&str)) && (memcmp(buf, &str, sizeof(wchar_t)) == 0);
 	}
 
 	/*
 	** @brief			string conditional operator !=
-	** @param &__str	string object
+	** @param &str	string object
 	** @return			bool
 	*/
 	template<class charT>
-	inline bool __string<charT>::operator != (const __string<charT> &__str)
+	inline bool string<charT>::operator != (const string<charT> str)
 	{
-		return (size() =! __str.size()) || (memcmp(this->_buf, __str._buf, sizeof(charT) != 0);
+		return (size() != str.size()) || (memcmp(buf, str.buf, sizeof(charT)) != 0);
 	}
 
 	/*
 	** @brief			string conditional operator !=
-	** @param &__str	char pointer
+	** @param &str	char pointer
 	** @return			bool
 	*/
 	template<class charT>
-	inline bool __string<charT>::operator != (const charT &__str)
+	inline bool string<charT>::operator != (const charT* str)
 	{
-		return memcmp(this->_buf, &__str, sizeof(charT));
+		return memcmp(buf, str, sizeof(charT));
 	}
 
 	template<class charT>
-	inline void __string<charT>::remove(int __pos, int __n)
+	inline void string<charT>::remove(size_t pos, size_t n)
 	{
-		//for(int i = __pos; )
+		//for(int i = )
 	}
 	/*
 	** @brief        function to write on the output stream (std::ostream)
-	** @param &__out ostream object (output stream)
+	** @param &out ostream object (output stream)
 	*/
 	template<>
-	inline void __string<char>::output (std::ostream &__out)
+	inline void string<char>::output (std::ostream &out)
 	{
-		__out << _buf;
+		out << buf;
 	}
 	template<>
-	inline void __string<wchar_t>::output (std::wostream &__wout)
+	inline void string<wchar_t>::output (std::wostream &wout)
 	{
-		__wout << _buf;
+		wout << buf;
 	}
 
 	/*
 	** @brief       function to write on the input stream (std::istream)
-	** @param &__in istream object (input stream)
+	** @param &in istream object (input stream)
 	**
 	** bytes 	    2097152 <----- *
 	** kilobits 	16384
@@ -298,77 +292,77 @@ namespace Ar
 	** megabytes    2 <-----
 	*/
 	template<>
-	void __string<char>::input (std::istream &__in)
+	void string<char>::input (std::istream &in)
 	{
-		//char __buf[(2097152 / sizeof(char))]; // Limit: 2Mb per Input Stream [OLD]
-		char *__buf = new char[(Aurora::InfoRAM::getFreeVirtualMemory() / sizeof(char))];
-		__in >> __buf;
-		_buf = new char[strlen(__buf)+1];
-		memcpy(_buf, __buf, strlen(__buf)+1);
-		delete [] __buf;
+		char *tempbuf = new char[(Aurora::InfoRAM::getFreeVirtualMemory() / sizeof(char))];
+		in >> tempbuf;
+		len = strlen(tempbuf);
+		buf = new char[size() + 1];
+		memcpy(buf, tempbuf, size() + 1);
+		delete [] tempbuf;
 	}
 	template<>
-	void __string<wchar_t>::input (std::wistream &__win)
+	void string<wchar_t>::input (std::wistream &win)
 	{
-		//wchar_t *__buf[(2097152 / sizeof(wchar_t))]; // Limit: 2Mb per Input Stream [OLD]
-		wchar_t *__buf = new wchar_t[(Aurora::InfoRAM::getFreeVirtualMemory() / sizeof(wchar_t))];
-		__win >> __buf;
-		_buf = new wchar_t[wcslen(__buf)+1];
-		memcpy(_buf, __buf, sizeof(&__buf));
-		delete [] __buf;
+		wchar_t *tempbuf = new wchar_t[(Aurora::InfoRAM::getFreeVirtualMemory() / sizeof(wchar_t))];
+		win >> tempbuf;
+		len = wcslen(tempbuf);
+		buf = new wchar_t[size() + 1];
+		memcpy(buf, tempbuf, size() + 1);
+		delete [] tempbuf;
 	}
 
-	// __string
-	template class __string<char>;
-	template class __string<wchar_t>;
+	// string
+	template class string<char>;
+	template class string<wchar_t>;
 
 	/// stream operators
 	/*
 	** @brief        output stream (std::ostream) operator << from String
 	**        (string).
 	** @param &_out stream object (output stream)
-	** @param &__str String object (string object)
+	** @param &str String object (string object)
 	*/
-	std::ostream & operator << (std::ostream &_out, String &__str)
+	std::ostream & operator << (std::ostream& out, String &str)
 	{
-		__str.output(_out);
-		return _out;
+		str.output(out);
+		return out;
 	}
 
 	/*
 	** @brief        input stream (std::istream) operator >> from String
 	**        (string).
 	** @param &_in   stream object (input stream)
-	** @param &__str String object (string object)
+	** @param &str String object (string object)
 	*/
-	std::istream & operator >> (std::istream &_in, String &__str)
+	std::istream & operator >> (std::istream& in, String &str)
 	{
-		__str.input(_in);
-		return _in;
+		str.input(in);
+		return in;
 	}
 	// for wide characters
 	/*
 	** @brief        output stream (std::wostream) operator << from wString
 	**        (wide string).
 	** @param &_wout  stream object (output stream for wide characters)
-	** @param &__wstr wString object (string object for wide characters)
+	** @param &wstr wString object (string object for wide characters)
 	*/
-	std::wostream & operator << (std::wostream &_wout, wString &__wstr)
+	std::wostream & operator << (std::wostream& wout, wString &wstr)
 	{
-		__wstr.output(_wout);
-		return _wout;
+		wstr.output(wout);
+		return wout;
 	}
 
 	/*
 	** @brief         input stream (std::wistream) operator >> from wString
 	**        (wide string).
 	** @param &_win   wstream object (input stream for wide characters)
-	** @param &__wstr wString object (string object for wide characters)
+	** @param &wstr wString object (string object for wide characters)
 	*/
-	std::wistream & operator >> (std::wistream &_win, wString &__wstr)
+	std::wistream & operator >> (std::wistream& win, wString &wstr)
 	{
-		__wstr.input(_win);
-		return _win;
+		wstr.input(win);
+		return win;
 	}
 }
 #endif

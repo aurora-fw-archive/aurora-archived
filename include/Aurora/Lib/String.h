@@ -26,54 +26,54 @@
 namespace Ar
 {
 	template<class charT>
-	class __string
+	class string
 	{
 	public:
-		__string();                                     //Blank string
-		__string (const charT* );                        // Normal string
-		__string (const __string<charT> & );              // String by copy
-		~__string();
+		string();                                     //Blank string
+		string (const charT* );                        // Normal string
+		string (const string<charT>& );              // String by copy
+		~string();
 
 		//Operators
-		__string& operator = (const __string<charT> & );		// Operator: =
-		__string operator + (const __string<charT> & );         // Operator: + (string)
-		__string operator + (const charT & );                   // Operator: + (char ptr)
-		__string& operator += (const __string<charT> & );       // Operator: += (string)
-		__string& operator += (const charT & );					// Operator: += (char ptr)
-		inline charT& operator [] (const int ) const;			// Operator: []
-		inline bool operator == (const __string<charT> &);		// Operator: == (string)
-		inline bool operator == (const charT &);				// Operator: == (char ptr)
-		inline bool operator != (const __string<charT> &);		// Operator: != (string)
-		inline bool operator != (const charT &);				// Operator: != (char ptr)
+		string& operator = (const string<charT> );		// Operator: =
+		string operator + (const string<charT> );         // Operator: + (string)
+		string operator + (const charT* );                   // Operator: + (char ptr)
+		string& operator += (const string<charT> );       // Operator: += (string)
+		string& operator += (const charT* );					// Operator: += (char ptr)
+		inline charT& operator [] (const size_t ) const;			// Operator: []
+		inline bool operator == (const string<charT> );		// Operator: == (string)
+		inline bool operator == (const charT );					// Operator: == (char ptr)
+		inline bool operator != (const string<charT> );		// Operator: != (string)
+		inline bool operator != (const charT* );					// Operator: != (char ptr)
 
-		void add (int, const __string<charT> & );
-		void add (int, const charT & );
-		void remove (int, int);
-		inline void output (std::ostream & );
-		inline void output (std::wostream & );
-		void input (std::istream & );
-		void input (std::wistream & );
-		inline int size() const;                    // Return String size
+		void add (size_t, const string<charT>& );
+		void add (size_t, const charT* );
+		void remove (const size_t ,const size_t );
+		inline void output (std::ostream& );
+		inline void output (std::wostream& );
+		void input (std::istream& );
+		void input (std::wistream& );
+		inline size_t size() const;                    // Return String size
 
 	private:
-		__string (int);
-		charT* _buf = NULL;
-		int _len;
+		string (size_t );
+		charT* buf = NULL;
+		size_t len;
 	};
-	typedef __string<char>      String;
-	typedef __string<wchar_t>   wString;
+	typedef string<char>      String;
+	typedef string<wchar_t>   wString;
 
-	extern std::ostream & operator << (std::ostream &_out, String &__str);
-	extern std::istream & operator >> (std::istream &_in, String &__str);
+	extern std::ostream& operator << (std::ostream& out, String &str);
+	extern std::istream& operator >> (std::istream& in, String &str);
 
 	//for wide characters
-	extern std::wostream & operator << (std::wostream &_wout, wString &__wstr);
-	extern std::wistream & operator >> (std::wistream &_win, wString &__wstr);
+	extern std::wostream& operator << (std::wostream& wout, wString &wstr);
+	extern std::wistream& operator >> (std::wistream& win, wString &wstr);
 }
 
 #ifndef AURORA_STRING_MAXSIZE
-	#ifdef __AURORA_WORDSIZE
-		#if __AURORA_WORDSIZE == 64
+	#ifdef AURORA_WORDSIZE
+		#if AURORA_WORDSIZE == 64
 			#define AURORA_STRING_MAXSIZE   9223372036854775807
 		#else
 			#define AURORA_STRING_MAXSIZE   2147483647
