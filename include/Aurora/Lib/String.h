@@ -19,8 +19,14 @@
 #include <Aurora/Lib/Target.h>
 
 #ifdef AURORA_TARGET_CXX
-#include <istream>
-#include <ostream>
+	extern "C"
+	{
+#endif
+		// extern 
+#ifdef AURORA_TARGET_CXX
+	}
+	#include <istream>
+	#include <ostream>
 #endif
 
 namespace Ar

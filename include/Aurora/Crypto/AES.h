@@ -8,70 +8,72 @@
 #define INCLUDE_H_AURORA_CRYPTO_AES
 
 #include <Aurora/Core/Aurora.h>
+#include <Aurora/Lib/Memory.h>
 
 /* 
  * The number of columns comprising a _s in AES.
  * This is a constant in AES. Value=4
  */
-#define _AURORA_AES_NUM 4
+#define AURORA_AES_NUM 4
 
-// _AURORA_AES_TIME is a macro that finds the product of {02} and the argument to xtime modulo {1b}  
-#define _AURORA_AES_TIME(x)   ((x<<1) ^ (((x>>7) & 1) * 0x1b))
+// AURORA_AES_TIME is a macro that finds the product of {02} and the argument to xtime modulo {1b}  
+#define AURORA_AES_TIME(x)   ((x<<1) ^ (((x>>7) & 1) * 0x1b))
 
 // _AURORA_AES_MULTI is a macro used to multiply numbers in the field GF(2^8)
-#define _AURORA_AES_MULTI(x,y) (((y & 1) * x) ^ ((y>>1 & 1) * _AURORA_AES_TIME(x)) ^ ((y>>2 & 1) * _AURORA_AES_TIME(_AURORA_AES_TIME(x))) ^ ((y>>3 & 1) * _AURORA_AES_TIME(_AURORA_AES_TIME(_AURORA_AES_TIME(x)))) ^ ((y>>4 & 1) * _AURORA_AES_TIME(_AURORA_AES_TIME(_AURORA_AES_TIME(_AURORA_AES_TIME(x))))))
+#define AURORA_AES_MULTI(x,y) (((y & 1) * x) ^ ((y>>1 & 1) * AURORA_AES_TIME(x)) ^ ((y>>2 & 1) * AURORA_AES_TIME(AURORA_AES_TIME(x))) ^ ((y>>3 & 1) * AURORA_AES_TIME(AURORA_AES_TIME(AURORA_AES_TIME(x)))) ^ ((y>>4 & 1) * AURORA_AES_TIME(AURORA_AES_TIME(AURORA_AES_TIME(AURORA_AES_TIME(x))))))
 
 namespace Aurora
 {
 	class AES
 	{
-		static int _nr, _nk;
+	private:
+		static int nr, nk;
 
-		/* _i - it is the array that holds the CipherText to be decrypted.
-		* _o - it is the array that holds the output of the for decryption.
-		* _s - the array that holds the intermediate results during decryption.
+		/* i - it is the array that holds the CipherText to be decrypted.
+		** o - it is the array that holds the output of the for decryption.
+		** s - the array that holds the intermediate results during decryption.
 		*/
-		static unsigned char _i[16], _o[16], _s[4][4];
+		static unsigned char in[16], out[16], stt[4][4];
 
 		// The array that stores the round keys.
-		static unsigned char _rk[240];
+		static unsigned char rk[240];
 		// The Key input to the AES Program
-		static unsigned char _k[32];
+		static unsigned char key[32];
 
-		static int _getSBV(const int);
-		// Inverted _getSBV
-		static int _getISBV(const int);
+		static int getSBV(const int);
+		// Inverted getSBV
+		static int getISBV(const int);
 
 		// This function produces Nb(Nr+1) round keys. The round keys are used in each round to decrypt the states. 
-		static void _ke();
+		static void ke();
 		/* This function adds the round key to state.
 		* The round key is added to the state by an XOR function.
 		*/
-		static void _ark(int round);
+		static void ark(int round);
 		/* The SubBytes Function Substitutes the values in the
 		* state matrix with values in an S-box.
 		*/
-		static void _sb();
-		// Inverted _sb
-		static void _isb();
+		static void sb();
+		// Inverted sb
+		static void isb();
 
 		/* The ShiftRows() function shifts the rows in the state to the left.
 		* Each row is shifted with different offset.
 		* Offset = Row number. So the first row is not shifted.
 		*/
-		static void _sr();
+		static void sr();
 		// Inverted method of _sr
-		static void _isr();
+		static void isr();
 
 		// MixColumns function mixes the columns of the state matrix
-		static void _mc();
+		static void mc();
 		// Inverted method of _mc
-		static void _imc();
+		static void imc();
 
 		// Cipher is the main function that encrypts the input text
-		static void _c();
+		static void c();
 		// Inverted Cipher
-		static void _ic();
+		static void ic();
 	public:
 		// AES encrypt function
 		static unsigned char* encrypt(const unsigned char*, const int, unsigned char*);

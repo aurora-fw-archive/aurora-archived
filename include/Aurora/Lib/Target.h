@@ -18,178 +18,182 @@
 //       Needs to test all macros ( Windows and Apple platforms and ARM and PowerPC Architectures)
 
 #ifdef _WIN16
-    #define AURORA_TARGET_WINDOWS
-    #define AURORA_TARGET_WINDOWS_16
+	#define AURORA_TARGET_WINDOWS
+	#define AURORA_TARGET_WINDOWS_16
 #elif defined(_WIN32)
-    #define AURORA_TARGET_WINDOWS
-    #define AURORA_TARGET_WINDOWS_32
-    #ifdef _WIN64
-        #define AURORA_TARGET_WINDOWS_86_64
-    #endif
+	#define AURORA_TARGET_WINDOWS
+	#define AURORA_TARGET_WINDOWS_32
+	#ifdef _WIN64
+		#define AURORA_TARGET_WINDOWS_86_64
+	#endif
 #elif __APPLE__
-    #define AURORA_TARGET_APPLE
-    #if defined(__APPLE_CPP__) || defined(__APPLE_CC__) || defined(__MACOS_CLASSIC__)
-        #if (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh) || defined(Macintosh)
-            #define AURORA_TARGET_APPLE_MAC
-        #endif
-        #if defined(__GNUC__)
-            #define TARGET_OS_EMBEDDED          @CONFIG_EMBEDDED@
-            #define TARGET_OS_IPHONE            @CONFIG_IPHONE@
-            #define TARGET_IPHONE_SIMULATOR     @CONFIG_IPHONE_SIMULATOR@
-            #if TARGET_IPHONE_SIMULATOR
-                #define AURORA_TARGET_APPLE_IPHONE_SIMULATOR
-            #elif TARGET_OS_IPHONE
-                #define AURORA_TARGET_APPLE_IPHONE
-            #elif TARGET_OS_EMBEDDED
-                #define AURORA_TARGET_APPLE_EMBEDDED
-            #endif
-        #endif
-    #endif
+	#define AURORA_TARGET_APPLE
+	#if defined(__APPLE_CPP__) || defined(__APPLE_CC__) || defined(__MACOS_CLASSIC__)
+		#if (defined(__APPLE__) && defined(__MACH__)) || defined(macintosh) || defined(Macintosh)
+			#define AURORA_TARGET_APPLE_MAC
+		#endif
+		#if defined(__GNUC__)
+			#define TARGET_OS_EMBEDDED          @CONFIG_EMBEDDED@
+			#define TARGET_OS_IPHONE            @CONFIG_IPHONE@
+			#define TARGET_IPHONE_SIMULATOR     @CONFIG_IPHONE_SIMULATOR@
+			#if TARGET_IPHONE_SIMULATOR
+				#define AURORA_TARGET_APPLE_IPHONE_SIMULATOR
+			#elif TARGET_OS_IPHONE
+				#define AURORA_TARGET_APPLE_IPHONE
+			#elif TARGET_OS_EMBEDDED
+				#define AURORA_TARGET_APPLE_EMBEDDED
+			#endif
+		#endif
+	#endif
 #elif defined(__linux__) || defined(__linux) || defined(linux)
-    #define AURORA_TARGET_LINUX
-    #ifndef AURORA_TARGET_IS_OPENSOURCE
-        #define AURORA_TARGET_IS_OPENSOURCE
-    #endif
-    #ifdef __gnu_linux__
-        #define AURORA_TARGET_GNU_LINUX
-        #ifndef AURORA_TARGET_IS_OPENSOURCE
-            #define AURORA_TARGET_IS_OPENSOURCE
-        #endif
-    #endif
+	#define AURORA_TARGET_LINUX
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+	#endif
+	#ifdef __gnu_linux__
+		#define AURORA_TARGET_GNU_LINUX
+		#ifndef AURORA_TARGET_IS_OPENSOURCE
+			#define AURORA_TARGET_IS_OPENSOURCE
+		#endif
+	#endif
 #endif
 
 #if defined(__unix__) || defined(__unix) || defined(unix)
-    #define AURORA_TARGET_UNIX
+	#define AURORA_TARGET_UNIX
 #endif
 
 #ifdef __ANDROID__
-    #define AURORA_TARGET_ANDROID
-    #ifndef AURORA_TARGET_IS_OPENSOURCE
-        #define AURORA_TARGET_IS_OPENSOURCE
-    #endif
+	#define AURORA_TARGET_ANDROID
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+	#endif
 #elif __CYGWIN__
-    #define AURORA_TARGET_CYGWIN
-    #ifndef AURORA_TARGET_IS_OPENSOURCE
-        #define AURORA_TARGET_IS_OPENSOURCE
-    #endif
+	#define AURORA_TARGET_CYGWIN
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+	#endif
 #elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
-    #define AURORA_TARGET_FREEBSD
-    #ifndef AURORA_TARGET_IS_OPENSOURCE
-        #define AURORA_TARGET_IS_OPENSOURCE
-    #endif
+	#define AURORA_TARGET_FREEBSD
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+	#endif
 #elif defined(__OpenBSD__)
-    #define AURORA_TARGET_OPENBSD
-    #ifndef AURORA_TARGET_IS_OPENSOURCE
-        #define AURORA_TARGET_IS_OPENSOURCE
-    #endif
+	#define AURORA_TARGET_OPENBSD
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+	#endif
 #elif defined(__NetBSD__)
-    #define AURORA_TARGET_NETBSD
-    #ifndef AURORA_TARGET_IS_OPENSOURCE
-        #define AURORA_TARGET_IS_OPENSOURCE
-    #endif
+	#define AURORA_TARGET_NETBSD
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+	#endif
 #elif defined(__DragonFly__)
-    #define AURORA_TARGET_DRAGONFLY
-    #ifndef AURORA_TARGET_IS_OPENSOURCE
-        #define AURORA_TARGET_IS_OPENSOURCE
-    #endif
+	#define AURORA_TARGET_DRAGONFLY
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+	#endif
 #endif
 
 #if defined(__ppc__) || defined(__powerpc__) || defined(__PPC__) || defined(__POWERPC__)
-    #define AURORA_TARGET_POWERPC
-    #define AURORA_TARGET_POWERPC_32
-    #if defined(__powerpc64__) || defined(__ppc64__) || defined(__PPC64__)
-        #define AURORA_TARGET_POWERPC_64
-    #endif
+	#define AURORA_TARGET_POWERPC
+	#define AURORA_TARGET_POWERPC_32
+	#if defined(__powerpc64__) || defined(__ppc64__) || defined(__PPC64__)
+		#define AURORA_TARGET_POWERPC_64
+	#endif
 #endif
 
 #if defined(__i386) || defined(_M_IX86) || defined(__i386__) || (defined(__MWERKS__) && defined(__INTEL__))
-    #define AURORA_TARGET_CPU_I386
+	#define AURORA_TARGET_CPU_I386
 #elif defined(__x86_64__) || defined(_M_X64) || defined(__amd64__) || defined(__amd64) || defined(_M_AMD64)
-    #define AURORA_TARGET_CPU_86_64
+	#define AURORA_TARGET_CPU_86_64
 #elif defined(__arm__)
-    #define AURORA_TARGET_CPU_ARM
+	#define AURORA_TARGET_CPU_ARM
 #endif
 
 #ifdef __ILP32__
-    #define AURORA_TARGET_CPU_ILP32
+	#define AURORA_TARGET_CPU_ILP32
 #endif
 
 #if defined(__ia64) || defined(__itanium__) || defined(_M_IA64)
-    #define AURORA_TARGET_CPU_ITANIUM
+	#define AURORA_TARGET_CPU_ITANIUM
 #elif defined(__sparc)
-    #define AURORA_TARGET_CPU_SPARC
+	#define AURORA_TARGET_CPU_SPARC
 #endif
 
 // TODO: Include Compiler Targets ( https://sourceforge.net/p/predef/wiki/Compilers/ )
 
 #if defined(__GNUG__) || (defined(__GNUC__) && defined(__cplusplus))
-    #ifndef AURORA_TARGET_COMPILER_GNU
-        #define AURORA_TARGET_COMPILER_GNU
-    #endif
-    #define AURORA_TARGET_COMPILER_GNU_CXX        
-    #define AURORA_TARGET_CXX
-    #ifdef __GNUC__
-        #define AURORA_TARGET_CC
-    #endif
+	#ifndef AURORA_TARGET_COMPILER_GNU
+		#define AURORA_TARGET_COMPILER_GNU
+	#endif
+	#define AURORA_TARGET_COMPILER_GNU_CXX        
+	#define AURORA_TARGET_CXX
+	#ifdef __GNUC__
+		#define AURORA_TARGET_CC
+	#endif
 #elif defined(__GNUC__)
-    #ifndef AURORA_TARGET_COMPILER_GNU
-        #define AURORA_TARGET_COMPILER_GNU
-    #endif
-    #define AURORA_TARGET_COMPILER_GNU_CC
-    #define AURORA_TARGET_CXX
-    #define AURORA_TARGET_CC
+	#ifndef AURORA_TARGET_COMPILER_GNU
+		#define AURORA_TARGET_COMPILER_GNU
+	#endif
+	#define AURORA_TARGET_COMPILER_GNU_CC
+	#define AURORA_TARGET_CXX
+	#define AURORA_TARGET_CC
 #elif defined(__CC_ARM)
-    #define AURORA_TARGET_COMPILER_ARM
+	#define AURORA_TARGET_COMPILER_ARM
 #elif defined(__BORLANDC__) || defined(__CODEGEARC__)
-    #define AURORA_TARGET_COMPILER_BORLAND
+	#define AURORA_TARGET_COMPILER_BORLAND
 #elif defined(__clang__)
-    #define AURORA_TARGET_COMPILER_CLANG
+	#define AURORA_TARGET_COMPILER_CLANG
 #elif defined(__COMO__)
-    #define AURORA_TARGET_COMPILER_COMEAU
+	#define AURORA_TARGET_COMPILER_COMEAU
 #elif defined(__DECC)
-    #define AURORA_TARGET_COMPILER_COMPAQ_CC
-    #define AURORA_TARGET_CC
+	#define AURORA_TARGET_COMPILER_COMPAQ_CC
+	#define AURORA_TARGET_CC
 #elif defined(__DECCXX)
-    #define AURORA_TARGET_COMPILER_COMPAQ_CXX
+	#define AURORA_TARGET_COMPILER_COMPAQ_CXX
 #elif defined(__convexc__)
-    #define AURORA_TARGET_COMPILER_CONVEXC
-    #define AURORA_TARGET_CC
+	#define AURORA_TARGET_COMPILER_CONVEXC
+	#define AURORA_TARGET_CC
 #elif defined(_MSC_VER)
-    #define AURORA_TARGET_COMPILER_MICROSOFT
-    #define AURORA_TARGET_CXX
-    #define AURORA_TARGET_CC
+	#define AURORA_TARGET_COMPILER_MICROSOFT
+	#define AURORA_TARGET_CXX
+	#define AURORA_TARGET_CC
 #elif defined(__MINGW32__)
-    #define AURORA_TARGET_COMPILER_MINGW
-    #define AURORA_TARGET_CXX
-    #define AURORA_TARGET_CC
+	#define AURORA_TARGET_COMPILER_MINGW
+	#define AURORA_TARGET_CXX
+	#define AURORA_TARGET_CC
 #endif
 
 #ifdef __ELF__
-    #define AURORA_TARGET_ELF
+	#define AURORA_TARGET_ELF
 #endif
 
 #ifdef __cplusplus
-    #ifndef AURORA_TARGET_CXX
-        #define AURORA_TARGET_CXX
-    #endif
-    #ifdef AURORA_TARGET_CC
-        #undef AURORA_TARGET_CC
-    #endif
+	#ifndef AURORA_TARGET_CXX
+		#define AURORA_TARGET_CXX
+	#endif
+	#ifdef AURORA_TARGET_CC
+		#undef AURORA_TARGET_CC
+	#endif
 #else
-    #ifndef AURORA_TARGET_CC
-        #define AURORA_TARGET_CC
-    #endif
-    #ifdef AURORA_TARGET_CXX
-        #undef AURORA_TARGET_CXX
-    #endif
+	#ifndef AURORA_TARGET_CC
+		#define AURORA_TARGET_CC
+	#endif
+	#ifdef AURORA_TARGET_CXX
+		#undef AURORA_TARGET_CXX
+	#endif
 #endif
 
 #ifndef __AURORA_WORDSIZE
-    #if defined(AURORA_TARGET_CPU_86_64) && !defined(AURORA_TARGET_CPU_ILP32)
-        #define __AURORA_WORDSIZE   64
-    #else
-        #define __AURORA_WORDSIZE   32
-    #endif
+	#if defined(AURORA_TARGET_CPU_86_64) && !defined(AURORA_TARGET_CPU_ILP32)
+		#define AURORA_WORDSIZE   64
+	#else
+		#define AURORA_WORDSIZE   32
+	#endif
+#endif
+
+#ifdef __STRICT_ANSI__
+	#define AURORA_TARGET_STRICT_ANSI
 #endif
 
 #endif // INCLUDE_H_AURORA_LIB_TARGET

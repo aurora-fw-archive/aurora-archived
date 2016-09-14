@@ -24,17 +24,17 @@
 #endif
 
 #ifdef AURORA_TARGET_COMPILER_MICROSOFT
-        // Signed
-        typedef __int8 ArInt8_t;
-        typedef __int16 ArInt16_t;
-        typedef __int32 ArInt32_t;
-        typedef __int64 ArInt64_t;
+	// Signed
+	typedef __int8 ArInt8_t;
+	typedef __int16 ArInt16_t;
+	typedef __int32 ArInt32_t;
+	typedef __int64 ArInt64_t;
 
-        // Unsigned
-        typedef unsigned __int8  ArUInt8_t;
-        typedef unsigned __int16 ArUInt16_t;
-        typedef unsigned __int32 ArUInt32_t;
-        typedef unsigned __int64 ArUInt64_t;
+	// Unsigned
+	typedef unsigned __int8  ArUInt8_t;
+	typedef unsigned __int16 ArUInt16_t;
+	typedef unsigned __int32 ArUInt32_t;
+	typedef unsigned __int64 ArUInt64_t;
 #else
 // Signed
 typedef int8_t ArInt8_t;
@@ -59,7 +59,6 @@ typedef char ArChar_t;
 typedef float ArFloat_t;
 typedef double ArDouble_t;
 typedef long double ArLDouble_t;
-typedef bool ArBool_t;
 typedef unsigned char ArByte_t;
 
 // Unsigned
@@ -88,5 +87,19 @@ typedef void ArVoid_t;
 #define AURORA_UINT32_MAX	(4294967295)
 #define AURORA_UINT64_MAX	(18446744073709551615)
 
+#ifndef AURORA_TARGET_CXX
+	#define bool	_Bool
+	#define true	1
+	#define false	0
+#elif defined(AURORA_TARGET_COMPILER_GNU) && !defined(AURORA_TARGET_STRICT_ANSI)
+	#define _Bool	bool
+	#define bool	bool
+	#define false	false
+	#define true	true
+#endif
+
+#define __bool_true_false_are_defined 1
+
+typedef bool ArBool_t;
 
 #endif // INCLUDE_H_AURORA_LIB_TYPE
