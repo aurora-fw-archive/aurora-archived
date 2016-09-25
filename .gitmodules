@@ -1,3 +1,6 @@
 [submodule "docs"]
 	path = docs
 	url = git@github.com:aurora-fw/docs.git
+[submodule "aurora-wm"]
+	path = src/Binaries/aurora-wm
+	url = git@github.com:aurora-fw/aurora-wm.git
