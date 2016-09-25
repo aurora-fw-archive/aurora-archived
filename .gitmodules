@@ -1,3 +1,6 @@
 [submodule "docs"]
 	path = docs
 	url = git@github.com:aurora-fw/docs.git
+[submodule "license"]
+	path = license
+	url = git@github.com:aurora-fw/license.git
