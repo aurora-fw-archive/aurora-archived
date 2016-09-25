@@ -39,7 +39,7 @@ NOTE: See [Installation.md](Installation.md) to compile Aurora framework on a cr
 Want to contribute? Great! Make a pull request on my github repository.
 
 ### License
-GNU General Public License - Version 3, 29 June 2007
+Aurora Public License (AuPLv1.0), Version 1.0 - September 17, 2016
 
 More details coming soon. **It's freedom, it's [opensource](https://opensource.org/)!**
 This document was written with [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/) and [Emoji](http://www.emoji-cheat-sheet.com/)
