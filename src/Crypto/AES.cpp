@@ -9,15 +9,13 @@
 // software; you can redistribute it and/or modify it under the
 // terms of the GNU General Public License, v3.
 
-/* 
+/*
 ** @contains	AES Cryptography Algorithm
 ** @TODO		Fix the errors!
 */
-
 #include <Aurora/Crypto/AES.h>
 #include <Aurora/Shell/Log.h>
 #include <Aurora/Lib/Memory.h>
-
 #ifdef AURORA_TARGETCXX
 #include <iostream>
 #include <cstdlib>
@@ -48,7 +46,7 @@ namespace Aurora
 	*/
 	int AES::getSBV(const int n)
 	{
-		const int sb[256] = 
+		const int sb[256] =
 		{
 			//0     1    2      3     4    5     6     7      8    9     A      B    C     D     E     F
 			0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76, //0
@@ -77,7 +75,7 @@ namespace Aurora
 	int AES::getISBV(const int n)
 	{
         const int isb[256] =
-        { 
+        {
             0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81, 0xf3, 0xd7, 0xfb
             , 0x7c, 0xe3, 0x39, 0x82, 0x9b, 0x2f, 0xff, 0x87, 0x34, 0x8e, 0x43, 0x44, 0xc4, 0xde, 0xe9, 0xcb
             , 0x54, 0x7b, 0x94, 0x32, 0xa6, 0xc2, 0x23, 0x3d, 0xee, 0x4c, 0x95, 0x0b, 0x42, 0xfa, 0xc3, 0x4e
@@ -93,7 +91,7 @@ namespace Aurora
             , 0x1f, 0xdd, 0xa8, 0x33, 0x88, 0x07, 0xc7, 0x31, 0xb1, 0x12, 0x10, 0x59, 0x27, 0x80, 0xec, 0x5f
             , 0x60, 0x51, 0x7f, 0xa9, 0x19, 0xb5, 0x4a, 0x0d, 0x2d, 0xe5, 0x7a, 0x9f, 0x93, 0xc9, 0x9c, 0xef
             , 0xa0, 0xe0, 0x3b, 0x4d, 0xae, 0x2a, 0xf5, 0xb0, 0xc8, 0xeb, 0xbb, 0x3c, 0x83, 0x53, 0x99, 0x61
-            , 0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d 
+            , 0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d
         };
 
 		return isb[n];
@@ -128,7 +126,7 @@ namespace Aurora
 
 		int i;
 		unsigned char temp[4], k;
-		
+
 		// The first round key is the key itself.
 		for(i=0;i<nk;i++)
 		{
@@ -159,7 +157,7 @@ namespace Aurora
 					temp[3] = k;
 				}
 
-				// SubWord() is a function that takes a four-byte input word and 
+				// SubWord() is a function that takes a four-byte input word and
 				// applies the S-box to each of the four bytes to produce an output word.
 
 				// Function Subword()
@@ -189,8 +187,8 @@ namespace Aurora
 			i++;
 		}
 	}
-	
-	void AES::ark(int round) 
+
+	void AES::ark(int round)
 	{
 		int i,j;
 		for(i=0;i<4;i++)
@@ -201,7 +199,7 @@ namespace Aurora
 			}
 		}
 	}
-	
+
 	void AES::sb()
 	{
 		for(int i=0;i<4;i++)
@@ -218,14 +216,14 @@ namespace Aurora
 	{
 		unsigned char temp;
 
-		// Rotate first row 1 columns to left	
+		// Rotate first row 1 columns to left
 		temp=stt[1][0];
 		stt[1][0]=stt[1][1];
 		stt[1][1]=stt[1][2];
 		stt[1][2]=stt[1][3];
 		stt[1][3]=temp;
 
-		// Rotate second row 2 columns to left	
+		// Rotate second row 2 columns to left
 		temp=stt[2][0];
 		stt[2][0]=stt[2][2];
 		stt[2][2]=temp;
@@ -242,13 +240,13 @@ namespace Aurora
 		stt[3][1]=temp;
 	}
 
-	
+
 	void AES::mc()
 	{
 		int i;
 		unsigned char Tmp,Tm,t;
 		for(i=0;i<4;i++)
-		{	
+		{
 			t=stt[0][i];
 			Tmp = stt[0][i] ^ stt[1][i] ^ stt[2][i] ^ stt[3][i] ;
 			Tm = stt[0][i] ^ stt[1][i] ; Tm = AURORA_AES_TIME(Tm); stt[0][i] ^= Tm ^ Tmp ;
@@ -272,8 +270,8 @@ namespace Aurora
 		}
 
 		// Add the First round key to the s before starting the rounds.
-		ark(0); 
-		
+		ark(0);
+
 		// There will be Nr rounds.
 		// The first Nr-1 rounds are identical.
 		// These Nr-1 rounds are executed in the loop below.
@@ -284,7 +282,7 @@ namespace Aurora
 			mc();
 			ark(round);
 		}
-		
+
 		// The last round is given below.
 		// The MixColumns function is not here in the last round.
 		sb();
@@ -302,7 +300,7 @@ namespace Aurora
 		}
 	}
 
-	
+
 	void AES::isb()
 	{
 		int i,j;
@@ -315,19 +313,19 @@ namespace Aurora
 			}
 		}
 	}
-	
+
 	void AES::isr()
 	{
 		unsigned char temp;
 
-		// Rotate first row 1 columns to right	
+		// Rotate first row 1 columns to right
 		temp=stt[1][3];
 		stt[1][3]=stt[1][2];
 		stt[1][2]=stt[1][1];
 		stt[1][1]=stt[1][0];
 		stt[1][0]=temp;
 
-		// Rotate second row 2 columns to right	
+		// Rotate second row 2 columns to right
 		temp=stt[2][0];
 		stt[2][0]=stt[2][2];
 		stt[2][2]=temp;
@@ -348,14 +346,14 @@ namespace Aurora
 		int i;
 		unsigned char a,b,c,d;
 		for(i=0;i<4;i++)
-		{	
-		
+		{
+
 			a = stt[0][i];
 			b = stt[1][i];
 			c = stt[2][i];
 			d = stt[3][i];
 
-			
+
 			stt[0][i] = AURORA_AES_MULTI(a, 0x0e) ^ AURORA_AES_MULTI(b, 0x0b) ^ AURORA_AES_MULTI(c, 0x0d) ^ AURORA_AES_MULTI(d, 0x09);
 			stt[1][i] = AURORA_AES_MULTI(a, 0x09) ^ AURORA_AES_MULTI(b, 0x0e) ^ AURORA_AES_MULTI(c, 0x0b) ^ AURORA_AES_MULTI(d, 0x0d);
 			stt[2][i] = AURORA_AES_MULTI(a, 0x0d) ^ AURORA_AES_MULTI(b, 0x09) ^ AURORA_AES_MULTI(c, 0x0e) ^ AURORA_AES_MULTI(d, 0x0b);
@@ -376,7 +374,7 @@ namespace Aurora
 		}
 
 		// Add the First round key to the s before starting the rounds.
-		ark(nr); 
+		ark(nr);
 
 		// There will be Nr rounds.
 		// The first Nr-1 rounds are identical.
@@ -388,7 +386,7 @@ namespace Aurora
 			ark(r);
 			imc();
 		}
-		
+
 		// The last round is given below.
 		// The MixColumns function is not here in the last round.
 		isr();
@@ -406,8 +404,8 @@ namespace Aurora
 		}
 	}
 
-	unsigned char* AES::encrypt(const unsigned char k[32], 
-								const int ks, 
+	unsigned char* AES::encrypt(const unsigned char k[32],
+								const int ks,
 								unsigned char i[16])
 	{
 		if (ks==128 || ks==192 || ks==256)
@@ -445,7 +443,7 @@ namespace Aurora
 	** @return uchar	output block
 	*/
     unsigned char* AES::decrypt(const unsigned char k[32],
-								const int ks, 
+								const int ks,
 								unsigned char i[16])
     {
         if (ks==128 || ks==192 || ks==256)
