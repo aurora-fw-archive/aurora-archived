@@ -6,13 +6,36 @@ compiler:
   - clang
   - gcc
 
+os:
+  - linux
+  - osx
+
+sudo: true
+
+addons:
+ apt:
+   sources:
+   - ubuntu-toolchain-r-test
+   packages:
+   - gcc-5
+   - g++-5
+
 # Handle git submodules yourself
 git:
     submodules: false
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
-    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-    - git submodule update --init --recursive
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/gcc-5 /usr/bin/gcc; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/g++-5 /usr/bin/g++; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y build-essential libwxbase3.0-dev libwxgtk3.0-dev libwxgtk2.8-dev libwxgtk2.8-dbg; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y automake autotools-dev; fi
+  - make ubuntu-get-deps
+
+before_script:
+  - autoreconf -vfi
 
 install:
-  - make ubuntu-get-deps
+  - cd build && make install
