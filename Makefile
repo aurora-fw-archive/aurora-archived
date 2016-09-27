@@ -5,4 +5,4 @@
 #  More information in: https://github.com/ljmf00/ (Github Page)
 
 ubuntu-get-deps:
-	- sudo apt-get install build-essential libgtk-3-dev
+	- sudo apt-get install -y build-essential libgtk-3-dev
