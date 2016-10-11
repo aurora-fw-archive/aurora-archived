@@ -36,7 +36,7 @@
 #ifdef AURORA_TARGET_CXX
 	namespace Ar
 	{
-		
+
 		// @brief blank constructor for new string.
 		template<class charT> string<charT>::string() {}
 
@@ -81,7 +81,7 @@
 		}
 
 		/*
-		** @brief destructor of string object: delete buffer ptr 
+		** @brief destructor of string object: delete buffer ptr
 		**        (pointer).
 		*/
 		template<class charT>

@@ -22,12 +22,11 @@
 	extern "C"
 	{
 #endif
-		// extern 
+		// extern
 #ifdef AURORA_TARGET_CXX
 	}
 	#include <istream>
 	#include <ostream>
-#endif
 
 namespace Ar
 {
@@ -76,6 +75,7 @@ namespace Ar
 	extern std::wostream& operator << (std::wostream& wout, wString &wstr);
 	extern std::wistream& operator >> (std::wistream& win, wString &wstr);
 }
+#endif
 
 #ifndef AURORA_STRING_MAXSIZE
 	#ifdef AURORA_WORDSIZE

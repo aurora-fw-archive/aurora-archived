@@ -16,7 +16,7 @@
 #include <Aurora/Lib/CircularShift.h>
 
 #ifdef AURORA_TARGET_CXX
-	namespace 
+	namespace
 	{
 #endif
 	inline uint32_t rotl32 (uint32_t value, unsigned int count)

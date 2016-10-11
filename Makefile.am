@@ -10,7 +10,7 @@ AM_CXXFLAGS = -Wall -Wextra -std=c++14 -I../include/ `pkg-config --cflags --libs
 AM_CFLAGS = -Wall -Wno-unknown-pragmas -Wextra -std=c11 -I../include/ `pkg-config --cflags --libs gtk+-3.0`
 
 # Library Information
-lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la
+lib_LTLIBRARIES = $(top_builddir)/../bin/libaurora.la $(top_builddir)/../bin/libaurorac.la
 
 # Source files
 __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
@@ -26,8 +26,9 @@ __top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
                                               ../src/Shell/Input.cpp \
                                               ../src/Shell/Output.cpp \
                                               ../src/Lib/String.cpp \
-                                              ../src/Lib/CircularShift.cpp \
-                                              ../src/Lib/Memory.c
+                                              ../src/Lib/CircularShift.cpp
+
+__top_builddir_____bin_libaurorac_la_SOURCES = ../src/Lib/Memory.c
 
 # Headers
 cincludedir = $(includedir)/Aurora/
