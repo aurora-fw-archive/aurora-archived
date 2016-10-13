@@ -29,6 +29,7 @@ git:
     submodules: false
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
+  - uname
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules; fi
   - git submodule update --init --recursive
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90; fi
@@ -37,7 +38,6 @@ before_install:
   - autoreconf -vfi
   - cd build && ../configure --prefix=/usr
   - cd build && make
-  - uname
 
 install:
   - cd build && make install
