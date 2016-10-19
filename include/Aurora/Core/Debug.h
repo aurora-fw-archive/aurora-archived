@@ -14,6 +14,7 @@
 namespace Aurora { namespace Debug
     {
         extern bool Status;
+        extern bool isVerbose;
         extern int LastID;
         extern void enableDebug(bool silent = false);
         extern void disableDebug(bool silent = false);

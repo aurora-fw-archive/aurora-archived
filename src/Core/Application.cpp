@@ -18,18 +18,15 @@ namespace Aurora
         Aurora::Debug::LastID++;
         if(argc == 2)
         {
-            if((std::string(argv[1]) == "--debug") || (std::string(argv[1]) == "-ds"))
-            {
+            if(std::string(argv[1]) == "--debug")
                 Debug::enableDebug();
-            }
-            else if((std::string(argv[1]) == "--debug-silent") || (std::string(argv[1]) == "-ds"))
+            else if(std::string(argv[1]) == "--verbose")
             {
                 Debug::enableDebug(true);
+                Debug::isVerbose = true;
             }
             else
-            {
                 Debug::disableDebug(true);
-            }
         }
         Shell::Log(Shell::Debug, "creating new application: id_", ID);
         Shell::Log(Shell::Debug, "application id_", ID, " is created.");

@@ -21,14 +21,20 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Log(Shell::Debug, "creating a string and output it...");
 	Ar::String TestString("Test!");
 	Shell::Output << TestString << Shell::EndLine;
+	if(TestString.size() == 5)
+		Shell::setColor(Shell::Color::Green, Shell::ColorType::Foreground);
+	else
+		Shell::setColor(Shell::Color::Red, Shell::ColorType::Foreground);
 	Shell::Output << TestString.size() << Shell::EndLine;
+	Shell::resetColor();
+
 	Shell::Log(Shell::Debug, "done.");
 	Shell::Log(Shell::Debug, "creating a wide string and output it...");
 	Ar::wString wTestString(L"Test!");
 	Shell::wOutput << wTestString << Shell::EndLine;
 	Shell::wOutput << wTestString.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
-	
+
 	/*
 	** @brief String by Copy - Procidual operations
 	*/
@@ -44,7 +50,7 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::wOutput << wCpWorld << Shell::EndLine;
 	Shell::wOutput << wCpWorld.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
-	
+
 	/*
 	** @brief Concatenation procidual operations
 	*/
@@ -62,7 +68,7 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::wOutput << wHelloWorld << Shell::EndLine;
 	Shell::wOutput << wHelloWorld.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
-	
+
 	/*
 	** @brief procidual operations for += operator (using char ptr)
 	*/
@@ -72,7 +78,7 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Output << SomeString << Shell::EndLine;
 	Shell::Output << SomeString.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
-	
+
 	/*
 	** @brief Procidual operations for += operator (using two strings)
 	*/
@@ -82,7 +88,7 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Output << SomeString2 << Shell::EndLine;
 	Shell::Output << SomeString2.size() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
-	
+
 	Shell::Log(Shell::Debug, "creating two strings and try to use conditional ==operator with another string and output the result...");
 	Ar::String Check1Eq = "Hello";
 	Ar::String Check2Eq = Check1Eq;
@@ -97,7 +103,7 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Log(Shell::Information, "the result need to be false");
 	Shell::Output << checkEq << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
-	
+
 	Shell::Log(Shell::Debug, "creating two strings and try to use conditional !=operator with another string and output the result...");
 	Ar::String Check1NEq = "Hello";
 	Ar::String Check2NEq = "World!";

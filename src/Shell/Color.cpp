@@ -11,6 +11,7 @@
 #endif
 
 #include <Aurora/Shell/Color.h>
+#include <Aurora/Shell/Log.h>
 #include <Aurora/Lib/Target.h>
 
 namespace Aurora
@@ -18,7 +19,7 @@ namespace Aurora
     namespace Shell
     {
         void setColor(Color color, ColorType type)
-        {   
+        {
             #ifdef AURORA_TARGET_WINDOWS
 
                 // TODO: Needs to be tested!
@@ -76,11 +77,11 @@ namespace Aurora
             {
                 if(std::to_string(colr_tmp).length()==2)
                 {
-                    std::cout << "\e[4" << std::to_string(colr_tmp)[1] << "m";
+                    Output << "\e[4" << std::to_string(colr_tmp)[1] << "m";
                 }
                 else
                 {
-                    std::cout << "\e[4" << colr_tmp << "m";
+                    Output << "\e[4" << colr_tmp << "m";
                 }
             }
             else if(type == ColorType::Foreground)
@@ -101,9 +102,9 @@ namespace Aurora
             #ifdef AURORA_TARGET_WINDOWS
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_RED | BACKGROUND_GREEN | 0);
             #elif defined(AURORA_TARGET_UNIX)
-            std::cout << "\e[0m";
+            Output << "\e[0m";
             #endif
-            
+
         }
     }
 }

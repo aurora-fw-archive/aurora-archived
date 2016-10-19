@@ -80,12 +80,13 @@ namespace Aurora { namespace Shell
 				if(Aurora::Debug::Status)
 				{
 					#if AURORA_DEBUG_LOG
-						
+
 					#else
+						if(Debug::isVerbose == false)
 						#ifdef AURORA_TARGET_UNIX
-						Output << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";
+							Output << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";
 						#else
-						Output << "[DEBUG] ";
+							Output << "[DEBUG] ";
 						#endif
 						__Log(args...);
 						Output << EndLine;

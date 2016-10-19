@@ -10,12 +10,14 @@
 namespace Aurora { namespace Debug
 	{
 		bool Status = false;
+		bool isVerbose = false;
 		int LastID;
 		void enableDebug(bool silent)
 		{
 			if(Status)
 			{
-				if(!silent) Shell::Log(Shell::Debug, "debug is already enabled");
+				if(!silent)
+					Shell::Log(Shell::Debug, "debug is already enabled");
 			}
 			else
 			{
