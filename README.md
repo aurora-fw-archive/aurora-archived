@@ -45,7 +45,7 @@ Want to contribute? Great! Make a pull request on my github repository.
 
 
 ### License
-Aurora Public License (AuPLv1.0), Version 1.0 - September 17, 2016
+The GNU Lesser General Public License, version 3.0 (LGPL-3.0)
 
 More details coming soon. **It's freedom, it's [opensource](https://opensource.org/)!**
 This document was written with [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/) and [Emoji](http://www.emoji-cheat-sheet.com/)
