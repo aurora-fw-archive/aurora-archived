@@ -1,242 +1,165 @@
-                Aurora Public License (AuPLv1.0)
-              Version 1.0 - September 17, 2016
+                   GNU LESSER GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
 
-    https://github.com/aurora-fw/license
-    Copyright (c) 2016, Luís Ferreira
+ Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 
-    Everyone is permitted to copy or distribute copies of
-this license document, but changing it is not allowed.
 
-NOTE: The following considerations are for informational
-purposes only, are not exhaustive, and do not form part of
-our terms and conditions.
+  This version of the GNU Lesser General Public License incorporates
+the terms and conditions of version 3 of the GNU General Public
+License, supplemented by the additional permissions listed below.
 
-Summary:
-    Permissions:         Conditions:       Limitations:
-     - Commercial use     - License and     - Hold Liable;
-       if using copyleft    Copyright       - Trademark Use
-       concept;             Notice;           unless as 
-     - Distribution;      - State Changes;    required for
-     - Modification;      - Same License      reasonable and
-     - Private Use.         if using for      customary use.
-                            commercial
-                            purpose.
+  0. Additional Definitions.
 
-0. Introduction:
-    The Aurora Public License provide a standard set of
-terms and conditions that creators and other rights holders
-may use to share original works of authorship and other
-material subject to copyright and certain other rights specified
-in the public license below. 
-    The Aurora Public License is created and designed for
-workers that have software or other kind of work to share
-and allow other workers to copy and redistribute this material,
-freely. To use, distribute or reproduct the work under Aurora
-Public License in your material you need to accept some terms.
+  As used herein, "this License" refers to version 3 of the GNU Lesser
+General Public License, and the "GNU GPL" refers to version 3 of the GNU
+General Public License.
 
-TERMS AND CONDITIONS FOR USE, DISTRIBUTION AND REPRODUCTION
+  "The Library" refers to a covered work governed by this License,
+other than an Application or a Combined Work as defined below.
 
-1. General Definitions:
-    a. "License" shall mean the terms and conditions for use,
-       reproduction, and distribution the material;
-    b. "Licensor" means the individual(s) or entity(ies)
-       granting rights under the Aurora Public License;
-    c. "You" means the individual or entity exercising the
-       Licensed Rights under this Public License. Your has a
-       corresponding meaning.
-    d. "Adapted Material" means material subject to Copyright
-       that is derived from or based upon the Licensed Material
-       and in which the Licensed Material is translated, 
-       altered,arranged, transformed, or otherwise modified in a
-       manner requiring permission under the Copyright held by
-       the Licensor. For purposes of the Aurora Public License,
-       where the Licensed Material is a musical work,
-       performance, or sound recording, Adapted Material is
-       always produced where the Licensed Material is synched in
-       timed relation with a moving image.
-    e. "Non Commercial" means not primarily intended for or
-       directed towards commercial advantage or monetary
-       compensation. For purposes of this Public License, the
-       exchange of the Licensed Material for other material
-       subject to Copyright and Similar Rights by digital
-       file-sharing or similar means is NonCommercial provided
-       there is no payment of monetary compensation in
-       connection with the exchange.
-    f. "Source" form shall mean the preferred form for making
-       modifications, including but not limited to software
-       source code, documentation source, and configuration
-       files.
-    g. "Object" form shall mean any form resulting from
-       mechanical transformation or translation of a Source
-       form, including but not limited to compiled object code,
-       generated documentation, and conversions to other media
-       types.
-    h. "Work" shall mean the work of authorship, whether in
-      Source or Object form, made available under the License,
-      as indicated by a copyright notice that is included in or
-      attached to the work (an example is provided in the
-      Appendix below).
-    i. "Derivative Works" shall mean any work, whether in Source
-       or Object form, that is based on (or derived from) the
-       Work and for which the editorial revisions, annotations,
-       elaborations, or other modifications represent, as a
-       whole, an original work of authorship. For the purposes 
-       of this License, Derivative Works shall not include works
-       that remain separable from, or merely link (or bind by
-       name) to the interfaces of, the Work and Derivative Works
-       thereof.
-    j. "Contribution" shall mean any work of authorship,
-       including the original version of the Work and any
-       modifications or additions to that Work or Derivative
-       Works thereof, that is intentionally submitted to
-       Licensor for inclusion in the Work by the copyright owner
-       or by an individual or Legal Entity authorized to
-       submiton behalf of the copyright owner. For the purposes 
-       of this definition, "submitted" means any form of
-       electronic, verbal, or written communication sent to the
-       Licensor or its representatives, including but not
-       limited to communication on electronic mailing lists,
-       source code control systems, and issue tracking systems
-       that are managed by, or on behalf of, the Licensor for
-       the purpose of discussing and improving the Work, but
-       excluding communication that is conspicuously marked or
-       otherwise designated in writing by the copyright owner as
-       "Not a Contribution."
-    k. "Contributor" shall mean Licensor and any individual or
-       Legal Entity on behalf of whom a Contribution has been
-       received by Licensor and subsequently incorporated within
-       the Work.
+  An "Application" is any work that makes use of an interface provided
+by the Library, but which is not otherwise based on the Library.
+Defining a subclass of a class defined by the Library is deemed a mode
+of using an interface provided by the Library.
 
-2. Redistribution:
-    You may reproduce and distribute copies of the Work or
-Derivative Works thereof in any medium, with or without
-modifications, and in Source or Object form, provided that You
-meet the following conditions:
-    a. You must give any other recipients of the Work or
-       Derivative Works a copy of this License;
-    b. You must cause any modified files to carry prominent
-       notices tating that You changed the files;
-    c. You must retain, in the Source form of any Derivative
-       Works that You distribute, all copyright, patent,
-       trademark, and attribution notices from the Source form
-       of the Work, excluding those notices that do not pertain
-       to any part of the Derivative Works;
-    d. The Work may includes a "NOTICE" text file as part of its
-       distribution, then any Derivative Works that You
-       distribute must include a readable copy of the
-       attribution notices contained within such NOTICE file,
-       excluding those notices that do not pertain to any part
-       of the Derivative Works, in at least one of the following
-       places: within a NOTICE text file distributed as part of
-       the Derivative Works; within the Source form or
-       documentation, if provided along with the Derivative
-       Works; or, within a display generated by the Derivative
-       Works, if and wherever such third-party notices normally
-       appear. The contents of the NOTICE file are for
-       informational purposes only and do not modify the License.
-       You may add Your own attribution notices within Derivative
-       Works that You distribute, alongside or as an addendum to
-       the NOTICE text from the Work, provided that such
-       additional attribution notices cannot be construed as
-       modifying the License.
+  A "Combined Work" is a work produced by combining or linking an
+Application with the Library.  The particular version of the Library
+with which the Combined Work was made is also called the "Linked
+Version".
 
-3. Commercial Use:
-    To use or distribute copies of material or work, under the
-Aurora Public License and for commercial purpose, you need to be
-granted from the material or work owner. Otherwise you need to
-apply the copyleft concept to your work/material:
-    a. The Adapter’s License You apply must be the same license;
-    b. You must include the NOTICE text file into every source
-       files;
-    c. You may not offer or impose any additional or different
-       terms or conditions on, or apply any Effective
-       Technological Measures to, Adapted Material that restrict
-       exercise of the rights granted under the Adapter's
-       License You apply;
-    d. You must disclose the entire source of the work or
-       material when you are distribute the same work.
-    If you don't follow this rights you only be able to use this
-work/material as a non commercial purpose.
+  The "Minimal Corresponding Source" for a Combined Work means the
+Corresponding Source for the Combined Work, excluding any source code
+for portions of the Combined Work that, considered in isolation, are
+based on the Application, and not on the Linked Version.
 
-4. Trademarks:
-    This License does not grant permission to use the trade
-names, trademarks, service marks, or product names of the
-Licensor, except as required for reasonable and customary use in
-describing the origin of the Work and reproducing the content of
-the NOTICE file.
+  The "Corresponding Application Code" for a Combined Work means the
+object code and/or source code for the Application, including any data
+and utility programs needed for reproducing the Combined Work from the
+Application, but excluding the System Libraries of the Combined Work.
 
-5. Disclaimer of Warranty:
-    Unless required by applicable law or agreed to in writing,
-Licensor provides the Work (and each Contributor provides its
-Contributions) on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied, including, without limitation, any warranties or
-conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or
-FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for
-determining the appropriateness of using or redistributing the
-Work and assume any risks associated with Your exercise of
-permissions under this License. To the extent possible, in no
-event will the Licensor be liable to You on any legal theory
-(including, without limitation, negligence) or otherwise for any
-direct, special, indirect, incidental, consequential, punitive,
-exemplary, or other losses, costs, expenses, or damages arising
-out of this Public License or use of the Licensed Material, even
-if the Licensor has been advised of the possibility of such
-losses, costs, expenses, or damages. Where a limitation of
-liability is not allowed in full or in part, this limitation may
-not apply to You.
+  1. Exception to Section 3 of the GNU GPL.
 
-6. Interpretation:
-    a. For the avoidance of doubt, this Public License does not,
-       and shall not be interpreted to, reduce, limit, restrict,
-       or impose conditions on any use of the Licensed Material
-       that could lawfully be made without permission under this
-       Public License.
-    b. To the extent possible, if any provision of this Public 
-       License is deemed unenforceable, it shall be automatically
-       reformed to the minimum extent necessary to make it
-       enforceable. If the provision cannot be reformed, it
-       shall be severed from this Public License without
-       affecting the enforceability of the remaining terms and
-       conditions.
-    c. No term or condition of this Public License will be
-       waived and no failure to comply consented to unless
-       expressly agreed to by the Licensor.
-    d. Nothing in this Public License constitutes or may be
-       interpreted as a limitation upon, or waiver of, any
-       privileges and immunities that apply to the Licensor or
-       You, including from the legal processes of any
-       jurisdiction or authority.
+  You may convey a covered work under sections 3 and 4 of this License
+without being bound by section 3 of the GNU GPL.
 
-END OF TERMS AND CONDITIONS
+  2. Conveying Modified Versions.
 
-    The above copyright notice and this permission notice shall
-be included in all copies or substantial portions of the
-Software. Attach the following boilerplate notice (after the
-ellipsis) into every source files of your work under this
-license. The text should be enclosed in the appropriate comment
-syntax for the file format. We also recommend that a file or
-class name and description of purpose be included on the same
-"printed page" as the copyright notice for easier identification
-within third-party archives. Don't forget to edit the fields
-that enclosed by brackets "{}" and replace with your own
-information.
+  If you modify a copy of the Library, and, in your modifications, a
+facility refers to a function or data to be supplied by an Application
+that uses the facility (other than as an argument passed when the
+facility is invoked), then you may convey a copy of the modified
+version:
 
-...
-NOTICE BOILERPLATE
-Copyright (c) 2016 Aurora Framework
+   a) under this License, provided that you make a good faith effort to
+   ensure that, in the event an Application does not supply the
+   function or data, the facility still operates, and performs
+   whatever part of its purpose remains meaningful, or
 
-This work is provided as a free material. You can redistribute
-it, and/or modify it under the Aurora Public License, v1.0
-(AuPLv1.0).
+   b) under the GNU GPL, with none of the additional permissions of
+   this License applicable to that copy.
 
-More information about this license can be founded on AuPL
-Github page: https://github.com/aurora-fw/license
+  3. Object Code Incorporating Material from Library Header Files.
 
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an "AS
-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-express or implied.See the License for the specific language
-governing permissions and limitations under the License.
+  The object code form of an Application may incorporate material from
+a header file that is part of the Library.  You may convey such object
+code under terms of your choice, provided that, if the incorporated
+material is not limited to numerical parameters, data structure
+layouts and accessors, or small macros, inline functions and templates
+(ten or fewer lines in length), you do both of the following:
 
-END OF NOTICE BOILERPLATE
+   a) Give prominent notice with each copy of the object code that the
+   Library is used in it and that the Library and its use are
+   covered by this License.
+
+   b) Accompany the object code with a copy of the GNU GPL and this license
+   document.
+
+  4. Combined Works.
+
+  You may convey a Combined Work under terms of your choice that,
+taken together, effectively do not restrict modification of the
+portions of the Library contained in the Combined Work and reverse
+engineering for debugging such modifications, if you also do each of
+the following:
+
+   a) Give prominent notice with each copy of the Combined Work that
+   the Library is used in it and that the Library and its use are
+   covered by this License.
+
+   b) Accompany the Combined Work with a copy of the GNU GPL and this license
+   document.
+
+   c) For a Combined Work that displays copyright notices during
+   execution, include the copyright notice for the Library among
+   these notices, as well as a reference directing the user to the
+   copies of the GNU GPL and this license document.
+
+   d) Do one of the following:
+
+       0) Convey the Minimal Corresponding Source under the terms of this
+       License, and the Corresponding Application Code in a form
+       suitable for, and under terms that permit, the user to
+       recombine or relink the Application with a modified version of
+       the Linked Version to produce a modified Combined Work, in the
+       manner specified by section 6 of the GNU GPL for conveying
+       Corresponding Source.
+
+       1) Use a suitable shared library mechanism for linking with the
+       Library.  A suitable mechanism is one that (a) uses at run time
+       a copy of the Library already present on the user's computer
+       system, and (b) will operate properly with a modified version
+       of the Library that is interface-compatible with the Linked
+       Version.
+
+   e) Provide Installation Information, but only if you would otherwise
+   be required to provide such information under section 6 of the
+   GNU GPL, and only to the extent that such information is
+   necessary to install and execute a modified version of the
+   Combined Work produced by recombining or relinking the
+   Application with a modified version of the Linked Version. (If
+   you use option 4d0, the Installation Information must accompany
+   the Minimal Corresponding Source and Corresponding Application
+   Code. If you use option 4d1, you must provide the Installation
+   Information in the manner specified by section 6 of the GNU GPL
+   for conveying Corresponding Source.)
+
+  5. Combined Libraries.
+
+  You may place library facilities that are a work based on the
+Library side by side in a single library together with other library
+facilities that are not Applications and are not covered by this
+License, and convey such a combined library under terms of your
+choice, if you do both of the following:
+
+   a) Accompany the combined library with a copy of the same work based
+   on the Library, uncombined with any other library facilities,
+   conveyed under the terms of this License.
+
+   b) Give prominent notice with the combined library that part of it
+   is a work based on the Library, and explaining where to find the
+   accompanying uncombined form of the same work.
+
+  6. Revised Versions of the GNU Lesser General Public License.
+
+  The Free Software Foundation may publish revised and/or new versions
+of the GNU Lesser General Public License from time to time. Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.
+
+  Each version is given a distinguishing version number. If the
+Library as you received it specifies that a certain numbered version
+of the GNU Lesser General Public License "or any later version"
+applies to it, you have the option of following the terms and
+conditions either of that published version or of any later version
+published by the Free Software Foundation. If the Library as you
+received it does not specify a version number of the GNU Lesser
+General Public License, you may choose any version of the GNU Lesser
+General Public License ever published by the Free Software Foundation.
+
+  If the Library as you received it specifies that a proxy can decide
+whether future versions of the GNU Lesser General Public License shall
+apply, that proxy's public statement of acceptance of any version is
+permanent authorization for you to choose that version for the
+Library.
