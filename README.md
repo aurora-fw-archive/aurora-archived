@@ -43,7 +43,7 @@ Want to contribute? Great! Make a pull request on my github repository.
 1$ is what you need to support the main developer of Aurora Framework. With this money you help me to buy 1 coffee per month! More coffee equals more code, so, lets donate patrons!
 [![Patreon](https://www.partiallyexaminedlife.com/wp-content/uploads/patreon_logo.png "Patreon Page")](https://www.patreon.com/ljmf00)
 
-### Special Thanks
+### Special thanks
 
 [<img src="http://www.freenom.com/images.v2/logo.png" alt="Freenom" width="100">](http://www.freenom.com/) [<img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Cloudflare-logo-horizontal.png" alt="Cloudflare" width="100">](https://www.cloudflare.com/) [<img src="http://dka575ofm4ao0.cloudfront.net/pages-transactional_logos/retina/8389/vz1XuNqHTyfO4YsqI3f2" alt="c9.io" width="100">](https://c9.io/) [<img src="https://cdn.travis-ci.com/images/logos/TravisCI-Full-Color-7f5db09495c8b09c21cb678c4de18d21.png" alt="Travis-CI" width="100">](https://travis-ci.org/) [<img src="https://www.appveyor.com/assets/images/appveyor-logo-256.png" alt="Appveyor" width="30">](https://ci.appveyor.com/) [<img src="http://www.comixlaunch.com/wp-content/uploads/2016/08/patreon-logo-05-2.jpg" alt="Patreon" width="30">](https://www.patreon.com/) [<img src="https://tools.livecoding.tv/downloads/livecodingLogo.png" alt="Livecoding" width="175">](https://www.livecoding.tv/)
 
