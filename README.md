@@ -39,6 +39,11 @@ NOTE: See [Installation.md](Installation.md) to compile Aurora framework on a cr
 
 Want to contribute? Great! Make a pull request on my github repository.
 
+### Donations
+
+[![Patreon](https://www.partiallyexaminedlife.com/wp-content/uploads/patreon_logo.png "Patreon Page")](https://www.patreon.com/ljmf00)
+
+
 ### License
 Aurora Public License (AuPLv1.0), Version 1.0 - September 17, 2016
 
