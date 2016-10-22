@@ -32,6 +32,7 @@ NOTE: See [Installation.md](Installation.md) to compile Aurora framework on a cr
 
 ### UML Structure
 ![UML1](https://raw.githubusercontent.com/aurora-fw/docs/master/Core/Resources/UML_Structure-Framework.png "Aurora Class Structure - UML")
+![UML2](https://raw.githubusercontent.com/aurora-fw/docs/master/Core/Resources/UML_Modules-Structure.png "Aurora Modules Structure - UML")
 
 ### Contributors
  - **Luís Ferreira** - General Developer
