@@ -40,11 +40,15 @@ NOTE: See [Installation.md](Installation.md) to compile Aurora framework on a cr
 Want to contribute? Great! Make a pull request on my github repository.
 
 ### Donations
-
+1$ is what you need to support the main developer of Aurora Framework. With this money you help me to buy 1 coffee per month! More coffee equals more code, so, lets donate patrons!
 [![Patreon](https://www.partiallyexaminedlife.com/wp-content/uploads/patreon_logo.png "Patreon Page")](https://www.patreon.com/ljmf00)
 
 ### License
 The GNU Lesser General Public License, version 3.0 (LGPL-3.0)
+
+### Special thanks
+
+[<img src="https://www.gnu.org/graphics/gnu-head-30-years-anniversary.svg" alt="GNU" width="30">](https://www.gnu.org/) [<img src="http://www.freenom.com/images.v2/logo.png" alt="Freenom" width="100">](http://www.freenom.com/) [<img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Cloudflare-logo-horizontal.png" alt="Cloudflare" width="100">](https://www.cloudflare.com/) [<img src="http://dka575ofm4ao0.cloudfront.net/pages-transactional_logos/retina/8389/vz1XuNqHTyfO4YsqI3f2" alt="c9.io" width="100">](https://c9.io/) [<img src="https://cdn.travis-ci.com/images/logos/TravisCI-Full-Color-7f5db09495c8b09c21cb678c4de18d21.png" alt="Travis-CI" width="100">](https://travis-ci.org/) [<img src="https://www.appveyor.com/assets/images/appveyor-logo-256.png" alt="Appveyor" width="30">](https://ci.appveyor.com/) [<img src="http://www.comixlaunch.com/wp-content/uploads/2016/08/patreon-logo-05-2.jpg" alt="Patreon" width="30">](https://www.patreon.com/) [<img src="https://tools.livecoding.tv/downloads/livecodingLogo.png" alt="Livecoding" width="175">](https://www.livecoding.tv/) [<img src="http://plantuml.com/logo3.png" alt="PlantUML" width="30">](http://plantuml.com/) [<img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" alt="Git" width="75">](https://git-scm.com/) [<img src="https://camo.githubusercontent.com/fb782da4019ab66eeea35cc9b9ce73b2438b1688/687474703a2f2f646f632e72756c746f722e636f6d2f696d616765732f6769746875622d6c6f676f2e706e67" alt="Github" width="100">](https://github.com/)
 
 [![OSI](https://opensource.org/files/osi_logo_100X133_90ppi_0.png "Open Source Initiative")](https://opensource.org/) [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Open-source-hardware-logo.svg/512px-Open-source-hardware-logo.svg.png" alt="Open Source Hardware Association" width="120">](http://www.oshwa.org/ "Open Source Hardware Association")
 
