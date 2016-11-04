@@ -26,11 +26,11 @@
 #include <ostream>
 #include <cstring>
 #include <cwchar>
-//#include <cassert>
+#include <cassert>
 #elif defined(AURORA_TARGET_CC)
 #include <string.h>
 #include <wchar.h>
-//#include <assert.h>
+#include <assert.h>
 #endif
 
 #ifdef AURORA_TARGET_CXX
@@ -91,13 +91,71 @@
 		}
 
 		/*
-		** @brief  function to get length of the string
-		** @return length (size of buffer)
+		** @brief  function to get size of the string
+		** @return size (size of buffer)
 		*/
 		template<class charT>
 		inline size_t string<charT>::size() const
 		{
+			return len * sizeof(charT);
+		}
+
+		/*
+		** @brief  function to get length of the string
+		** @return length
+		*/
+		template<class charT>
+		inline size_t string<charT>::length() const
+		{
 			return len;
+		}
+
+		/*
+		** @brief function to find a strings inside the string buffer
+		** @return pos of first char of search query
+		*/
+		template<class charT>
+		int string<charT>::find(const string<charT>& needle, size_t pos) const
+		{
+			assert(pos+needle.length()+1<=len);
+			for(size_t i = pos; i+1<=len-needle.length(); i++)
+			{
+				size_t j = 0;
+				while(j+1 < needle.length() && buf[i+j] == needle[j]) j++;
+				if(j+1 == needle.length()) return i;
+			}
+			return -1;
+		}
+
+		/*
+		** @brief function to find a array of chars inside the string buffer
+		** @return pos of first char of search query
+		*/
+		template<>
+		int string<char>::find(const char* needle, size_t pos) const
+		{
+			int tmp_len = strlen(needle);
+			assert(pos+tmp_len+1<=len);
+			for(size_t i = pos; i+1<=len-tmp_len; i++)
+			{
+				size_t j = 0;
+				while(j+1 < tmp_len && buf[i+j] == needle[j]) j++;
+				if(j+1 == tmp_len) return i;
+			}
+			return -1;
+		}
+		template<>
+		int string<wchar_t>::find(const wchar_t* needle, size_t pos) const
+		{
+			int tmp_len = wcslen(needle);
+			assert(pos+tmp_len+1<=len);
+			for(size_t i = pos; i+1<=len-tmp_len; i++)
+			{
+				size_t j = 0;
+				while(j+1 < tmp_len && buf[i+j] == needle[j]) j++;
+				if(j+1 == tmp_len) return i;
+			}
+			return -1;
 		}
 
 		/*
@@ -259,7 +317,7 @@
 		}
 
 		template<class charT>
-		inline void string<charT>::remove(size_t pos, size_t n)
+		inline void string<charT>::erase(size_t pos, size_t n)
 		{
 			//for(int i = )
 		}

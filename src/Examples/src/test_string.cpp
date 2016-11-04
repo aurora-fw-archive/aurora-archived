@@ -15,24 +15,26 @@ Application *MyApp;
 
 ArSlot_t slot_MyApp_on_open()
 {
+	Shell::Output << sizeof(char) << Shell::EndLine;
+
 	/*
 	** @brief Creating a normal string - Procidual operations
 	*/
 	Shell::Log(Shell::Debug, "creating a string and output it...");
 	Ar::String TestString("Test!");
 	Shell::Output << TestString << Shell::EndLine;
-	if(TestString.size() == 5)
+	if(TestString.length() == 5)
 		Shell::setColor(Shell::Color::Green, Shell::ColorType::Foreground);
 	else
 		Shell::setColor(Shell::Color::Red, Shell::ColorType::Foreground);
-	Shell::Output << TestString.size() << Shell::EndLine;
+	Shell::Output << TestString.length() << Shell::EndLine;
 	Shell::resetColor();
 
 	Shell::Log(Shell::Debug, "done.");
 	Shell::Log(Shell::Debug, "creating a wide string and output it...");
 	Ar::wString wTestString(L"Test!");
 	Shell::wOutput << wTestString << Shell::EndLine;
-	Shell::wOutput << wTestString.size() << Shell::EndLine;
+	Shell::wOutput << wTestString.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 
 	/*
@@ -42,13 +44,13 @@ ArSlot_t slot_MyApp_on_open()
 	Ar::String World = " World!";
 	Ar::String CpWorld(World);
 	Shell::Output << CpWorld << Shell::EndLine;
-	Shell::Output << CpWorld.size() << Shell::EndLine;
+	Shell::Output << CpWorld.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	Shell::Log(Shell::Debug, "creating a wide string by copy and output it...");
 	Ar::wString wWorld = L" World!";
 	Ar::wString wCpWorld(wWorld);
 	Shell::wOutput << wCpWorld << Shell::EndLine;
-	Shell::wOutput << wCpWorld.size() << Shell::EndLine;
+	Shell::wOutput << wCpWorld.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 
 	/*
@@ -59,14 +61,14 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Log(Shell::Debug, "concatenation process...");
 	Ar::String HelloWorld = Hello + World;
 	Shell::Output << HelloWorld << Shell::EndLine;
-	Shell::Output << HelloWorld.size() << Shell::EndLine;
+	Shell::Output << HelloWorld.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 	Shell::Log(Shell::Debug, "creating two wide strings, try to contatenate them with operator+ and output the result...");
 	Ar::wString wHello = L"Hello,";
 	Shell::Log(Shell::Debug, "concatenation process...");
 	Ar::wString wHelloWorld = wHello + wWorld;
 	Shell::wOutput << wHelloWorld << Shell::EndLine;
-	Shell::wOutput << wHelloWorld.size() << Shell::EndLine;
+	Shell::wOutput << wHelloWorld.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 
 	/*
@@ -76,7 +78,7 @@ ArSlot_t slot_MyApp_on_open()
 	Ar::String SomeString = "Hello";
 	SomeString += ", World";
 	Shell::Output << SomeString << Shell::EndLine;
-	Shell::Output << SomeString.size() << Shell::EndLine;
+	Shell::Output << SomeString.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 
 	/*
@@ -86,7 +88,7 @@ ArSlot_t slot_MyApp_on_open()
 	Ar::String SomeString2 = "Message: ";
 	SomeString2 += SomeString;
 	Shell::Output << SomeString2 << Shell::EndLine;
-	Shell::Output << SomeString2.size() << Shell::EndLine;
+	Shell::Output << SomeString2.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 
 	Shell::Log(Shell::Debug, "creating two strings and try to use conditional ==operator with another string and output the result...");
@@ -124,13 +126,16 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Input >> inputstr;
 	Shell::Log(Shell::Debug, "reading input...");
 	Shell::Output << inputstr << Shell::EndLine;
-	Shell::Output << inputstr.size() << Shell::EndLine;
+	Shell::Output << inputstr.length() << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 }
 
 ArInt_t main(ArInt_t argc, ArChar_t * argv[])
 {
-	MyApp = new Application(slot_MyApp_on_open, argc, argv);
-	delete MyApp;
+	//MyApp = new Application(slot_MyApp_on_open, argc, argv);
+	//delete MyApp;
+	Ar::String str = "World Hello!";
+	Ar::String tmp_str = "Hello";
+	Shell::Output << str.find(tmp_str, 0) << Shell::EndLine;
 	return 0;
 }

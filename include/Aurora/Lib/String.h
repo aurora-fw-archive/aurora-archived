@@ -47,17 +47,22 @@ namespace Ar
 		string& operator += (const charT* );					// Operator: += (char ptr)
 		inline charT& operator [] (const size_t ) const;			// Operator: []
 		inline bool operator == (const string<charT> );		// Operator: == (string)
-		inline bool operator == (const charT );					// Operator: == (char ptr)
+		inline bool operator == (const charT );			// Operator: == (char ptr)
 		inline bool operator != (const string<charT> );		// Operator: != (string)
-		inline bool operator != (const charT* );					// Operator: != (char ptr)
+		inline bool operator != (const charT* );			// Operator: != (char ptr)
 
 		void add (size_t, const string<charT>& );
 		void add (size_t, const charT* );
-		void remove (const size_t ,const size_t );
+		void erase (const size_t ,const size_t );
 		inline void output (std::ostream& );
 		inline void output (std::wostream& );
 		void input (std::istream& );
 		void input (std::wistream& );
+		int find (const string<charT>& , size_t = 0) const; // Search from another string
+		int find (const charT* , size_t  = 0) const; // Search from an array of char
+		size_t find (const charT* , size_t , size_t ) const; // Search from a buffer
+		size_t find (const charT , size_t = 0) const; // Search from a char
+		inline size_t length() const;					// Return String length
 		inline size_t size() const;                    // Return String size
 
 	private:
