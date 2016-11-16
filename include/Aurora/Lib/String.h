@@ -59,9 +59,9 @@ namespace Ar
 		void input (std::istream& );
 		void input (std::wistream& );
 		int find (const string<charT>& , size_t = 0) const; // Search from another string
-		int find (const charT* , size_t  = 0) const; // Search from an array of char
-		size_t find (const charT* , size_t , size_t ) const; // Search from a buffer
-		size_t find (const charT , size_t = 0) const; // Search from a char
+		int find (const charT* , const size_t  = 0) const; // Search from an array of char
+		int find (const charT* , size_t , const size_t ) const; // Search from a buffer
+		int find (const charT , const size_t = 0) const; // Search from a char
 		inline size_t length() const;					// Return String length
 		inline size_t size() const;                    // Return String size
 

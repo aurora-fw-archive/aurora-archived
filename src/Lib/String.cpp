@@ -115,7 +115,7 @@
 		** @return pos of first char of search query
 		*/
 		template<class charT>
-		int string<charT>::find(const string<charT>& needle, size_t pos) const
+		int string<charT>::find(const string<charT>& needle, const size_t pos) const
 		{
 			assert(pos+needle.length()+1<=len);
 			for(size_t i = pos; i+1<=len-needle.length(); i++)
@@ -132,9 +132,9 @@
 		** @return pos of first char of search query
 		*/
 		template<>
-		int string<char>::find(const char* needle, size_t pos) const
+		int string<char>::find(const char* needle, const size_t pos) const
 		{
-			int tmp_len = strlen(needle);
+			size_t tmp_len = strlen(needle);
 			assert(pos+tmp_len+1<=len);
 			for(size_t i = pos; i+1<=len-tmp_len; i++)
 			{
@@ -145,15 +145,53 @@
 			return -1;
 		}
 		template<>
-		int string<wchar_t>::find(const wchar_t* needle, size_t pos) const
+		int string<wchar_t>::find(const wchar_t* needle, const size_t pos) const
 		{
-			int tmp_len = wcslen(needle);
+		 	size_t tmp_len = wcslen(needle);
 			assert(pos+tmp_len+1<=len);
 			for(size_t i = pos; i+1<=len-tmp_len; i++)
 			{
 				size_t j = 0;
 				while(j+1 < tmp_len && buf[i+j] == needle[j]) j++;
 				if(j+1 == tmp_len) return i;
+			}
+			return -1;
+		}
+
+		/*
+		** @brief function to find a array of chars inside the string buffer with a specific counter
+		** @return pos of first char of search query
+		*/
+		template<>
+		int string<char>::find(const char* needle, size_t pos, const size_t count) const
+		{
+			for(size_t tmp_count = 1; tmp_count <= count; tmp_count++)
+			{
+				pos += find(needle, pos)+strlen(needle);
+			}
+			return pos;
+		}
+		template<>
+		int string<wchar_t>::find(const wchar_t* needle, size_t pos, const size_t count) const
+		{
+			for(size_t tmp_count = 1; tmp_count <= count; tmp_count++)
+			{
+				pos += find(needle, pos)+wcslen(needle);
+			}
+			return pos;
+		}
+
+		/*
+		** @brief function to find a char inside the string buffer
+		** @return pos of char of search query
+		*/
+		template<class charT>
+		int string<charT>::find(const charT needle, size_t pos) const
+		{
+			assert(pos+2<=len);
+			for(size_t i = pos; i+1<=len-1; i++)
+			{
+				if(buf[i] == needle) return i;
 			}
 			return -1;
 		}

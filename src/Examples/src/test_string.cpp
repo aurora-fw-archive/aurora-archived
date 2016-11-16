@@ -106,6 +106,22 @@ ArSlot_t slot_MyApp_on_open()
 	Shell::Output << checkEq << Shell::EndLine;
 	Shell::Log(Shell::Debug, "done.");
 
+	Shell::Log(Shell::Debug, "try to find a string inside an another string");
+	Ar::String findStr = "World Hello!";
+	Ar::String tmp_str = "Hello";
+	Shell::Log(Shell::Information, "the result need to be 6");
+	Shell::Output << findStr.find(tmp_str, 0) << Shell::EndLine;
+
+	Shell::Log(Shell::Debug, "try to find an array of chars inside a string");
+	Ar::String findStr2 = "World Hello!";
+	Shell::Log(Shell::Information, "the result need to be 6");
+	Shell::Output << findStr2.find("Hello", 0) << Shell::EndLine;
+
+	Shell::Log(Shell::Debug, "try to find an array of chars inside a string with a specific counter");
+	Ar::String findStr3 = "HHHH";
+	Shell::Log(Shell::Information, "the result need to be 21");
+	Shell::Output << findStr3.find("H", 0, 4) << Shell::EndLine;
+
 	Shell::Log(Shell::Debug, "creating two strings and try to use conditional !=operator with another string and output the result...");
 	Ar::String Check1NEq = "Hello";
 	Ar::String Check2NEq = "World!";
@@ -132,10 +148,7 @@ ArSlot_t slot_MyApp_on_open()
 
 ArInt_t main(ArInt_t argc, ArChar_t * argv[])
 {
-	//MyApp = new Application(slot_MyApp_on_open, argc, argv);
-	//delete MyApp;
-	Ar::String str = "World Hello!";
-	Ar::String tmp_str = "Hello";
-	Shell::Output << str.find(tmp_str, 0) << Shell::EndLine;
+	MyApp = new Application(slot_MyApp_on_open, argc, argv);
+	delete MyApp;
 	return 0;
 }
