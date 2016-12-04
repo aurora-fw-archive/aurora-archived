@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="bin|ARM">
+      <Configuration>bin</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="dbg|ARM">
+      <Configuration>dbg</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="dbg|Win32">
+      <Configuration>dbg</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="bin|Win32">
+      <Configuration>bin</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="dbg|x64">
+      <Configuration>dbg</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="bin|x64">
+      <Configuration>bin</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Aurora\Aurora.h" />
+    <ClInclude Include="include\Aurora\Core\Application.h" />
+    <ClInclude Include="include\Aurora\Core\Aurora.h" />
+    <ClInclude Include="include\Aurora\Core\Debug.h" />
+    <ClInclude Include="include\Aurora\Cross\System\IO.h" />
+    <ClInclude Include="include\Aurora\Cross\Video\VGA.h" />
+    <ClInclude Include="include\Aurora\Crypto\AES.h" />
+    <ClInclude Include="include\Aurora\Crypto\MARS.h" />
+    <ClInclude Include="include\Aurora\Crypto\ModeCBC.h" />
+    <ClInclude Include="include\Aurora\Crypto\ModeECB.h" />
+    <ClInclude Include="include\Aurora\Crypto\RC6.h" />
+    <ClInclude Include="include\Aurora\Crypto\RSA.h" />
+    <ClInclude Include="include\Aurora\GL\Window.h" />
+    <ClInclude Include="include\Aurora\GUI\Application.h" />
+    <ClInclude Include="include\Aurora\GUI\Label.h" />
+    <ClInclude Include="include\Aurora\GUI\Layout.h" />
+    <ClInclude Include="include\Aurora\GUI\Window.h" />
+    <ClInclude Include="include\Aurora\Hash\Checksum.h" />
+    <ClInclude Include="include\Aurora\Hash\MD2.h" />
+    <ClInclude Include="include\Aurora\Hash\MD4.h" />
+    <ClInclude Include="include\Aurora\Hash\MD5.h" />
+    <ClInclude Include="include\Aurora\Hash\SHA1.h" />
+    <ClInclude Include="include\Aurora\Hash\SHA2.h" />
+    <ClInclude Include="include\Aurora\Hash\SHA3.h" />
+    <ClInclude Include="include\Aurora\Info\CPU.h" />
+    <ClInclude Include="include\Aurora\Info\GPU.h" />
+    <ClInclude Include="include\Aurora\Info\OS.h" />
+    <ClInclude Include="include\Aurora\Info\RAM.h" />
+    <ClInclude Include="include\Aurora\Info\System.h" />
+    <ClInclude Include="include\Aurora\IO\COM.h" />
+    <ClInclude Include="include\Aurora\IO\File.h" />
+    <ClInclude Include="include\Aurora\Lib\Aurora.h" />
+    <ClInclude Include="include\Aurora\Lib\Endian.h" />
+    <ClInclude Include="include\Aurora\Lib\IOStream.h" />
+    <ClInclude Include="include\Aurora\Lib\String.h" />
+    <ClInclude Include="include\Aurora\Lib\Target.h" />
+    <ClInclude Include="include\Aurora\Lib\Type.h" />
+    <ClInclude Include="include\Aurora\Net\Socket.h" />
+    <ClInclude Include="include\Aurora\Parse\JSON.h" />
+    <ClInclude Include="include\Aurora\Parse\XML.h" />
+    <ClInclude Include="include\Aurora\Shell\ASCII.h" />
+    <ClInclude Include="include\Aurora\Shell\Color.h" />
+    <ClInclude Include="include\Aurora\Shell\Input.h" />
+    <ClInclude Include="include\Aurora\Shell\Log.h" />
+    <ClInclude Include="include\Aurora\Shell\Output.h" />
+    <ClInclude Include="include\Aurora\Vulkan\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Core\Application.cpp" />
+    <ClCompile Include="src\Core\Debug.cpp" />
+    <ClCompile Include="src\Crypto\AES.cpp" />
+    <ClCompile Include="src\GUI\Application.cpp" />
+    <ClCompile Include="src\GUI\Label.cpp" />
+    <ClCompile Include="src\GUI\Style.cpp" />
+    <ClCompile Include="src\GUI\Window.cpp" />
+    <ClCompile Include="src\Info\OS.cpp" />
+    <ClCompile Include="src\Info\RAM.cpp" />
+    <ClCompile Include="src\Lib\IOStream.cpp" />
+    <ClCompile Include="src\Lib\String.cpp" />
+    <ClCompile Include="src\Shell\Color.cpp" />
+    <ClCompile Include="src\Shell\Input.cpp" />
+    <ClCompile Include="src\Shell\Output.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CD501D56-D2FD-422C-9806-E04D2DD0E721}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+    <ProjectName>aurora_framework</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dbg|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dbg|ARM'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='bin|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='bin|ARM'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dbg|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='bin|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='dbg|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='dbg|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='bin|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='bin|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='dbg|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='bin|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dbg|Win32'">
+    <NMakeOutput>
+    </NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <IncludePath>$(ProjectDir)include;$(IncludePath);-IC:/ToolDev/include/gtk-3.0;-IC:/ToolDev/include/atk-1.0;-IC:/ToolDev/include/cairo;-IC:/ToolDev/include/gdk-pixbuf-2.0;-IC:/ToolDev/include/pango-1.0;-IC:/ToolDev/include/glib-2.0;-IC:/ToolDev/lib/glib-2.0/include;-IC:/ToolDev/include;-IC:/ToolDev/include/pixman-1;-IC:/ToolDev/include/freetype2;-IC:/ToolDev/include/libpng15;</IncludePath>
+    <SourcePath>$(ProjectDir)src;$(SourcePath)</SourcePath>
+    <NMakeBuildCommandLine>make dbgwin32build -f build/Makefile.win 2&lt;&amp;1 | sed -u -f build/errfix.sed</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>make dbgwin32build -f build/Makefile.win 2&lt;&amp;1 | sed -u -f build/errfix.sed</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>make win32clean -f build/Makefile.win 2&lt;&amp;1 | sed -u -f build/errfix.sed</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dbg|ARM'">
+    <NMakeOutput>aurora.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='bin|Win32'">
+    <NMakeOutput>aurora.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='bin|ARM'">
+    <NMakeOutput>aurora.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
