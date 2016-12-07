@@ -126,7 +126,7 @@
 	#ifndef AURORA_TARGET_COMPILER_GNU
 		#define AURORA_TARGET_COMPILER_GNU
 	#endif
-	#define AURORA_TARGET_COMPILER_GNU_CXX        
+	#define AURORA_TARGET_COMPILER_GNU_CXX
 	#define AURORA_TARGET_CXX
 	#ifdef __GNUC__
 		#define AURORA_TARGET_CC
@@ -194,6 +194,43 @@
 
 #ifdef __STRICT_ANSI__
 	#define AURORA_TARGET_STRICT_ANSI
+#endif
+
+/*checks for pragma once support*/
+#if (defined(__SUNPRO_C)&&(__SUNPRO_C>=0x5140))||(defined(__SUNPRO_CC)&&(__SUNPRO_CC>=0x5140))
+	//Oracle Developer Studio C/C++ (12.5 or later)
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(_MSC_VER)&&(_MSC_VER>=1020)	//MSVC
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__clang__)		//clang
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__COMO__)			//comeau
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__CODEGEARC__)&&(__CODEGEARC__ >=650)
+	//C++Builder (XE3 or greater)
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__DMC__)			//Digital Mars
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__GNUC__)&&((__GNUC__ >3)||(defined(__GNUC_MINOR__)&&(__GNUC__ ==3)&&(__GNUC_MINOR__ >=4)))
+	//GCC
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__HP_aCC)&&(__HP_aCC >=61200)
+	//HP aC++ (A.06.12)
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__xlC__)&&((__xlC__ >1301)||((__xlC__ ==1301)&&(__xlC_ver__ >0100)))
+	//IBM
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__INTEL_COMPILER)||defined(__ICC)||defined(__ECC)||defined(__ICL)
+	//intel
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__POCC__)			//Pelles C
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__CC_ARM)			//ARM compiler
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__IAR_SYSTEMS_ICC__)	//IAR C/C++
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 1
+#elif defined(__PGI)			//Portland Group C/C++
+	#define AURORA_TARGET_PRAGMA_ONCE_SUPPORT 0
 #endif
 
 #endif // INCLUDE_H_AURORA_LIB_TARGET
