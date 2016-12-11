@@ -1,27 +1,48 @@
-// <Aurora/Lib/String.h> -*- C++ -*-
-// ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
-// ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
-// ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
-//  Copyright (c) 2016 - Luís Ferreira. All right reserved
-//  More information in: https://github.com/ljmf00/ (Github Page)
+/// <Aurora/Lib/String.h> -*- C/C++ Header -*-
+/// ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
+/// ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
+/// ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
+///  Copyright (c) 2016 - Luís Ferreira. All right reserved
+///  More information in: https://github.com/ljmf00/ (Github Page)
 
-// This file is part of the Aurora Framework. This framework is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License, v3.
+/// This file is part of the Aurora Framework. This framework is free
+/// software; you can redistribute it and/or modify it under the
+/// terms of the GNU Lesser General Public License, v3.
 
-/* Contains: String Class (Compatible with STL) */
+/* @module aurora-core-tlib
+** @title String Class (Compatible with STL)
+** @brief This is the header file of Aurora String implementation.
+** 		  It's more fast than STL String Class and it's compatible
+** 		  with STL.
+*/
+
+#ifndef AURORA_MODULE_CORE_TLIB
+	#define AURORA_MODULE_CORE_TLIB
+#endif /// AURORA_MODULE_CORE_TLIB
+
+/// Safe include
+#include <Aurora/Lib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
 
 #ifndef INCLUDE_H_AURORA_LIB_STRING
 #define INCLUDE_H_AURORA_LIB_STRING    1
 
-#pragma once
-
-#include <Aurora/Lib/Target.h>
+#ifndef AURORA_STRING_MAXSIZE
+	#ifdef AURORA_WORDSIZE
+		#if AURORA_WORDSIZE == 64
+			#define AURORA_STRING_MAXSIZE   9223372036854775807
+		#elif AURORA_
+			#define AURORA_STRING_MAXSIZE   2147483647
+		#endif
+	#endif /// AURORA_WORDSIZE
+#endif /// AURORA_STRING_MAXSIZE
 
 #ifdef AURORA_TARGET_CXX
 	extern "C"
 	{
-#endif
+#endif /// AURORA_TARGET_CXX
 		// extern
 #ifdef AURORA_TARGET_CXX
 	}
@@ -34,9 +55,9 @@ namespace Ar
 	class string
 	{
 	public:
-		string();                                     //Blank string
-		string (const charT* );                        // Normal string
-		string (const string<charT>& );              // String by copy
+		string(); //Blank string
+		string (const charT* ); // Normal string
+		string (const string<charT>& ); // String by copy
 		~string();
 
 		//Operators
@@ -82,16 +103,6 @@ namespace Ar
 	extern std::wostream& operator << (std::wostream& wout, wString &wstr);
 	extern std::wistream& operator >> (std::wistream& win, wString &wstr);
 }
-#endif
+#endif /// AURORA_TARGET_CXX
 
-#ifndef AURORA_STRING_MAXSIZE
-	#ifdef AURORA_WORDSIZE
-		#if AURORA_WORDSIZE == 64
-			#define AURORA_STRING_MAXSIZE   9223372036854775807
-		#else
-			#define AURORA_STRING_MAXSIZE   2147483647
-		#endif
-	#endif
-#endif
-
-#endif // INCLUDE_H_AURORA_LIB_STRING
+#endif /// INCLUDE_H_AURORA_LIB_STRING

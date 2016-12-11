@@ -1,15 +1,20 @@
-// "src/Lib/String.cpp" -*- C++ -*-
-// ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
-// ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
-// ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
-//  Copyright (c) 2016 - Luís Ferreira. All right reserved
-//  More information in: https://github.com/ljmf00/ (Github Page)
+/// "src/aurora-core-tlib/String.cpp" -*- C++ -*-
+/// ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
+/// ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
+/// ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
+///  Copyright (c) 2016 - Luís Ferreira. All right reserved
+///  More information in: https://github.com/ljmf00/ (Github Page)
 
-// This file is part of the Aurora Framework. This framework is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License, v3.
+/// This file is part of the Aurora Framework. This framework is free
+/// software; you can redistribute it and/or modify it under the
+/// terms of the GNU Lesser General Public License, v3.
 
-/* @brief: String Class (Compatible with STL)
+/* @module aurora-core-tlib
+** @title String Class (Compatible with STL)
+** @brief This is the source file of Aurora String implementation.
+** 		  It's more fast than STL String Class and it's compatible
+** 		  with STL.
+**
 ** @TODO: Create Ar::String Normal and Conditional Operators:
 **			Conditional Operators:
 **         		- >
@@ -18,9 +23,9 @@
 **         		- >=
 */
 
-#include <Aurora/Lib/Target.h>
 #include <Aurora/Lib/String.h>
 #include <Aurora/Info/RAM.h>
+#include <Aurora/Lib/Target.h>
 #ifdef AURORA_TARGET_CXX
 #include <istream>
 #include <ostream>
@@ -31,7 +36,7 @@
 #include <string.h>
 #include <wchar.h>
 #include <assert.h>
-#endif
+#endif /// AURORA_TARGET_CXX
 
 #ifdef AURORA_TARGET_CXX
 	namespace Ar
@@ -40,7 +45,7 @@
 		// @brief blank constructor for new string.
 		template<class charT> string<charT>::string() {}
 
-		/*
+		/**
 		** @brief        private constructor for temporary buffer.
 		** @param cstr array of characters (string)
 		*/
@@ -50,7 +55,7 @@
 			len = n;
 		}
 
-		/*
+		/**
 		** @brief        constructor for new string.
 		** @param cstr array of characters (string)
 		*/
@@ -68,7 +73,7 @@
 			buf = new wchar_t[size() + 1];
 			memcpy(buf, cstr, (size() + 1) * sizeof(wchar_t));
 		}
-		/*
+		/**
 		** @brief        constructor for new string by copy.
 		** @param &str string object (for copy purpose).
 		*/
@@ -80,7 +85,7 @@
 			memcpy(buf, str.buf, (size() + 1) * sizeof(charT));
 		}
 
-		/*
+		/**
 		** @brief destructor of string object: delete buffer ptr
 		**        (pointer).
 		*/
@@ -90,7 +95,7 @@
 			delete [] buf;
 		}
 
-		/*
+		/**
 		** @brief  function to get size of the string
 		** @return size (size of buffer)
 		*/
@@ -100,7 +105,7 @@
 			return len * sizeof(charT);
 		}
 
-		/*
+		/**
 		** @brief  function to get length of the string
 		** @return length
 		*/
@@ -110,7 +115,7 @@
 			return len;
 		}
 
-		/*
+		/**
 		** @brief function to find a strings inside the string buffer
 		** @return pos of first char of search query
 		*/
@@ -127,7 +132,7 @@
 			return -1;
 		}
 
-		/*
+		/**
 		** @brief function to find a array of chars inside the string buffer
 		** @return pos of first char of search query
 		*/
@@ -158,7 +163,7 @@
 			return -1;
 		}
 
-		/*
+		/**
 		** @brief function to find a array of chars inside the string buffer with a specific counter
 		** @return pos of first char of search query
 		*/
@@ -181,7 +186,7 @@
 			return pos;
 		}
 
-		/*
+		/**
 		** @brief function to find a char inside the string buffer
 		** @return pos of char of search query
 		*/
@@ -196,7 +201,7 @@
 			return -1;
 		}
 
-		/*
+		/**
 		** @brief        string operator = from another string
 		** @param &str string object
 		** @return       string (string with the same character type)
@@ -210,7 +215,7 @@
 			return *this;
 		}
 
-		/*
+		/**
 		** @brief      string operator [] from index of buffer
 		** @param  i index of the buffer
 		** @return     character from the specific index of the
@@ -222,7 +227,7 @@
 			return buf[i];
 		}
 
-		/*
+		/**
 		** @breif		 string operator + from a char ptr
 		** @param &str char ptr
 		** @return		 string (default string + char ptr)
@@ -243,7 +248,7 @@
 			wcscat(temp.buf, str);
 			return temp;
 		}
-		/*
+		/**
 		** @brief        string operator + from another string
 		** @param &str string object
 		** @return       string (string with the same character type)
@@ -265,7 +270,7 @@
 			return temp;
 		}
 
-		/*
+		/**
 		** @brief        string operator += from another string
 		** @param &str string object
 		** @return       string (string with the same character type)
@@ -285,7 +290,7 @@
 			return *this;
 		}
 
-		/*
+		/**
 		** @brief        string operator += from a char ptr
 		** @param &str char pointer
 		** @return       string (string with the same character type)
@@ -305,7 +310,7 @@
 			return *this;
 		}
 
-		/*
+		/**
 		** @brief			string conditional operator ==
 		** @param &str	string object
 		** @return			bool
@@ -316,7 +321,7 @@
 			return (size() == str.size()) && (memcmp(buf, str.buf, sizeof(charT)) == 0);
 		}
 
-		/*
+		/**
 		** @brief			string conditional operator ==
 		** @param &str	char pointer
 		** @return			bool
@@ -332,7 +337,7 @@
 			return (size() == wcslen(&str)) && (memcmp(buf, &str, sizeof(wchar_t)) == 0);
 		}
 
-		/*
+		/**
 		** @brief			string conditional operator !=
 		** @param &str	string object
 		** @return			bool
@@ -343,7 +348,7 @@
 			return (size() != str.size()) || (memcmp(buf, str.buf, sizeof(charT)) != 0);
 		}
 
-		/*
+		/**
 		** @brief			string conditional operator !=
 		** @param &str	char pointer
 		** @return			bool
@@ -365,7 +370,7 @@
 		{
 			return buf;
 		}
-		/*
+		/**
 		** @brief        function to write on the output stream (std::ostream)
 		** @param &out ostream object (output stream)
 		*/
@@ -380,7 +385,7 @@
 			wout << buf;
 		}
 
-		/*
+		/**
 		** @brief       function to write on the input stream (std::istream)
 		** @param &in istream object (input stream)
 		**
@@ -415,8 +420,8 @@
 		template class string<char>;
 		template class string<wchar_t>;
 
-		/// stream operators
-		/*
+		// stream operators
+		/**
 		** @brief        output stream (std::ostream) operator << from String
 		**        (string).
 		** @param &_out stream object (output stream)
@@ -428,7 +433,7 @@
 			return out;
 		}
 
-		/*
+		/**
 		** @brief        input stream (std::istream) operator >> from String
 		**        (string).
 		** @param &_in   stream object (input stream)
@@ -440,7 +445,7 @@
 			return in;
 		}
 		// for wide characters
-		/*
+		/**
 		** @brief        output stream (std::wostream) operator << from wString
 		**        (wide string).
 		** @param &_wout  stream object (output stream for wide characters)
@@ -452,7 +457,7 @@
 			return wout;
 		}
 
-		/*
+		/**
 		** @brief         input stream (std::wistream) operator >> from wString
 		**        (wide string).
 		** @param &_win   wstream object (input stream for wide characters)
@@ -464,4 +469,4 @@
 			return win;
 		}
 	}
-#endif
+#endif /// AURORA_TARGET_CXX
