@@ -1,0 +1,5 @@
+Name: aurora-core
+Description: 
+Version: 0.1
+Libs: -L"/home/ljmf00/workspace/git/github/aurora/src/aurora-core/ide/vs/bin/Debug" -laurora-core
+Cflags: -I"/home/ljmf00/workspace/git/github/aurora/include/Aurora/Core" -I"/home/ljmf00/workspace/git/github/aurora/include/Aurora"

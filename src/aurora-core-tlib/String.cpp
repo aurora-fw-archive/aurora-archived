@@ -359,6 +359,12 @@
 		{
 			//for(int i = )
 		}
+
+		template<class charT>
+		inline charT* string<charT>::toCString() const
+		{
+			return buf;
+		}
 		/*
 		** @brief        function to write on the output stream (std::ostream)
 		** @param &out ostream object (output stream)

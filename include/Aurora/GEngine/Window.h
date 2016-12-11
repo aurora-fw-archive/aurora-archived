@@ -1,16 +1,23 @@
 #pragma once
 
+#include <Aurora/Lib/String.h>
+
 namespace Aurora {
     namespace GEngine {
+        typedef struct _GLFWwindow GLFWwindow;
+
         class Window
         {
-        private:
-            const char *name;
-            int width, height;
+        	public:
+        		Window(Ar::String, int, int);
+                Window(const char*, int, int);
 
-        public:
-            Window(const char *name, int width, int height);
-            ~Window();
+        	private:
+                void Init();
+        		GLFWwindow *window;
+        		unsigned long ID = 0;
+                char* name;
+                int width, height;
         };
     }
 }

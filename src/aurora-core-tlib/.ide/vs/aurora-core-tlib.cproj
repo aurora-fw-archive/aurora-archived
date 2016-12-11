@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{56E04BF1-60AD-4327-A3EE-112312797B42}</ProjectGuid>
+    <Compiler>
+      <Compiler ctype="GppCompiler" />
+    </Compiler>
+    <Language>CPP</Language>
+    <Target>Bin</Target>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug</OutputPath>
+    <OutputName>aurora-core-tlib</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <DefineSymbols>DEBUG MONODEVELOP</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <OutputName>aurora-core-tlib</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <OptimizationLevel>3</OptimizationLevel>
+    <DefineSymbols>MONODEVELOP</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\CircularShift.cpp">
+      <Link>Source Files\CircularShift.cpp</Link>
+    </Compile>
+    <Compile Include="..\..\Endian.cpp">
+      <Link>Source Files\Endian.cpp</Link>
+    </Compile>
+    <Compile Include="..\..\IOStream.cpp">
+      <Link>Source Files\IOStream.cpp</Link>
+    </Compile>
+    <Compile Include="..\..\String.c">
+      <Link>Source Files\String.c</Link>
+    </Compile>
+    <Compile Include="..\..\String.cpp">
+      <Link>Source Files\String.cpp</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\include\Aurora\Lib\Aurora.h">
+      <Link>Headers\Aurora\Lib\Aurora.h</Link>
+    </None>
+    <None Include="..\..\..\..\include\Aurora\Lib\CircularShift.h">
+      <Link>Headers\Aurora\Lib\CircularShift.h</Link>
+    </None>
+    <None Include="..\..\..\..\include\Aurora\Lib\Endian.h">
+      <Link>Headers\Aurora\Lib\Endian.h</Link>
+    </None>
+    <None Include="..\..\..\..\include\Aurora\Lib\IOStream.h">
+      <Link>Headers\Aurora\Lib\IOStream.h</Link>
+    </None>
+    <None Include="..\..\..\..\include\Aurora\Lib\Limits.h">
+      <Link>Headers\Aurora\Lib\Limits.h</Link>
+    </None>
+    <None Include="..\..\..\..\include\Aurora\Lib\String.h">
+      <Link>Headers\Aurora\Lib\String.h</Link>
+    </None>
+    <None Include="..\..\..\..\include\Aurora\Lib\Target.h">
+      <Link>Headers\Aurora\Lib\Target.h</Link>
+    </None>
+    <None Include="..\..\..\..\include\Aurora\Lib\Type.h">
+      <Link>Headers\Aurora\Lib\Type.h</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Headers\" />
+    <Folder Include="Source Files\" />
+    <Folder Include="Headers\Aurora\" />
+    <Folder Include="Headers\Aurora\Lib\" />
+  </ItemGroup>
+</Project>

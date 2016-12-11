@@ -64,6 +64,8 @@ namespace Ar
 		int find (const charT , const size_t = 0) const; // Search from a char
 		inline size_t length() const;					// Return String length
 		inline size_t size() const;                    // Return String size
+		inline charT* toCString() const;
+		inline std::string toSTLString() const;
 
 	private:
 		string (size_t );

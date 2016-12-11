@@ -1,0 +1,5 @@
+Name: aurora-core-tlib
+Description: 
+Version: 0.1
+Libs: -L"/home/ljmf00/workspace/git/github/aurora/src/aurora-core-tlib/ide/vs/bin/Debug" -laurora-core-tlib
+Cflags: -I"/home/ljmf00/workspace/git/github/aurora/include/Aurora/Lib"
