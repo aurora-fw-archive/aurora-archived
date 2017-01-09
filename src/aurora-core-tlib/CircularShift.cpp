@@ -31,6 +31,19 @@
 		count &= mask;
 		return (value>>count) | (value<<( (-count) & mask ));
 	}
+	inline uint64_t rotl64 (uint64_t value, unsigned int count)
+	{
+		const unsigned int mask = (CHAR_BIT*sizeof(value)-1);
+		count &= mask;
+		return (value>>count) | (value<<( (-count) & mask ));
+	}
+	inline uint64_t rotr64 (uint64_t value, unsigned int count)
+	{
+		const unsigned int mask = (CHAR_BIT*sizeof(value)-1);
+		count &= mask;
+		return (value>>count) | (value<<( (-count) & mask ));
+	}
+
 #ifdef AURORA_TARGET_CXX
 	}
 #endif
