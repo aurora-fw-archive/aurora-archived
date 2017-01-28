@@ -46,7 +46,6 @@ Want to contribute? Great! Make a pull request on my github repository.
 ### License
 The GNU Lesser General Public License, version 3.0 (LGPL-3.0)
 
-### Special thanks
 
 [![OSI](https://opensource.org/files/osi_logo_100X133_90ppi_0.png "Open Source Initiative")](https://opensource.org/) [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Open-source-hardware-logo.svg/512px-Open-source-hardware-logo.svg.png" alt="Open Source Hardware Association" width="120">](http://www.oshwa.org/ "Open Source Hardware Association")
 
