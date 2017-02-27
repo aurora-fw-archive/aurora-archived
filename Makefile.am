@@ -92,23 +92,6 @@ __top_builddir_____bin_libaurora_gui_la_CXXFLAGS = $(AM_CXXFLAGS) `pkg-config --
 __top_builddir_____bin_libaurora_gui_la_CFLAGS = $(AM_CFLAGS) `pkg-config --cflags --libs gtk+-3.0`
 
 # Source files
-__top_builddir_____bin_libaurora_la_SOURCES = ../src/GUI/Window.cpp \
-                                              ../src/GUI/Application.cpp \
-                                              ../src/GUI/Label.cpp \
-                                              ../src/Info/RAM.cpp \
-                                              ../src/Core/Application.cpp \
-                                              ../src/Core/Debug.cpp \
-                                              ../src/Shell/Color.cpp \
-                                              ../src/Crypto/AES.cpp \
-                                              ../src/Info/OS.cpp \
-                                              ../src/Lib/IOStream.cpp \
-                                              ../src/Shell/Input.cpp \
-                                              ../src/Shell/Output.cpp \
-                                              ../src/Lib/String.cpp \
-                                              ../src/Lib/CircularShift.cpp
-
-__top_builddir_____bin_libaurora_c_la_SOURCES = ../src/Lib/Memory.c \
-                                               ../src/Lib/String2.c
 
 # Headers
 rootincludedir = $(includedir)/Aurora
@@ -135,7 +118,7 @@ audioincludedir = $(includedir)/Aurora/Audio
 
     # CLI ASCII Engine Headers
     cliasciiincludedir = $(includedir)/Aurora/CLI/ASCII
-    #cliasciiinclude_HEADERS =
+#   cliasciiinclude_HEADERS =
 
 # Core Headers
 coreincludedir = $(includedir)/Aurora/Core

@@ -12,6 +12,8 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 
+AM_PROG_AR
+
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_CPP
@@ -21,7 +23,7 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
-AM_PROG_AR
+
 
 # Checks for libraries.
 
