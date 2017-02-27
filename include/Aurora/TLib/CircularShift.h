@@ -19,7 +19,7 @@
 */
 
 #include <Aurora/Lib/Target.h>
-#include <Aurora/Lib/Type.h> // for uint32_t, to get 32bit-wide rotates, regardless of the size of int.  
+#include <Aurora/Lib/Type.h> // for uint32_t, to get 32bit-wide rotates, regardless of the size of int.
 #include <Aurora/Lib/Limits.h> // for CHAR_BIT
 
 #ifdef AURORA_TARGET_CXX
@@ -50,6 +50,10 @@
 #endif
 	extern inline uint32_t rotl32 (uint32_t value, unsigned int count);
 	extern inline uint32_t rotr32 (uint32_t value, unsigned int count);
+	#if AURORA_TARGET_WORDSIZE == 64
+		extern inline uint64_t rotl64 (uint64_t value, unsigned int count);
+		extern inline uint64_t rotr64 (uint64_t value, unsigned int count);
+	#endif
 #ifdef AURORA_TARGET_CXX
 	}
 #endif
