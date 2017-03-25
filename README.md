@@ -19,9 +19,6 @@ Required Packages:
 - libtool
 - make
 - automake
-[//]: # (- glu)
-[//]: # (- mesa)
-[//]: # (- gtkglext)
 
 ```
 $ autoreconf -vif
