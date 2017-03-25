@@ -1,4 +1,3 @@
-
 # ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 # ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 # ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
@@ -99,7 +98,7 @@ install-sh
 ltmain.sh
 Makefile.in
 missing
-build/Makefile
+Makefile
 stamp-h1
 libtool
 config.status
@@ -116,8 +115,4 @@ config.guess
 .deps/
 *.la
 
-# Test Output
-src/Examples/bin/test_gui
-src/Examples/bin/test_shell
-src/Examples/bin/test_string
-
+.tmp/
