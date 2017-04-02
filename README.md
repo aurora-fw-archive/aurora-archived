@@ -1,7 +1,7 @@
 # aurora [![Slack Badge](https://img.shields.io/badge/chat-aurora%20slack-blue.svg?style=flat-square)](https://aurorafw-slack.herokuapp.com/) [![Build State](https://img.shields.io/travis/aurora-fw/aurora.svg?style=flat-square)](https://travis-ci.org/aurora-fw/aurora) [![Appveyor State](https://img.shields.io/appveyor/ci/ljmf00/aurora.svg?style=flat-square&label=appveyor)](https://ci.appveyor.com/project/ljmf00/aurora) [![coverity Scan State](https://img.shields.io/coverity/scan/11321.svg?style=flat-square&label=coverity)](https://ci.appveyor.com/project/ljmf00/aurora) [![License](https://img.shields.io/badge/License-LGPL_v3.0-lightgrey.svg?style=flat-square)](https://www.gnu.org/licenses/lgpl.txt)
 :fire: Powerful, Scalable and Cross Platform Framework
 
-**Aurora** is a Scalable and Cross-Platform Software Framework for General Purpose developed by Luís Ferreira that runs in all platforms, like (Windows NT and UNIX Environments such as Linux and Apple Systems). It includes libraries to make code more easier to use. See the features in Wiki Main Page.
+**Aurora** is a Scalable and Cross-Platform Software Framework for General Purpose developed by Luís Ferreira that runs in all platforms, like (Windows NT and *NIX Environments such as Linux and Apple Systems). It includes libraries to make code more easier to use. See the features in Wiki Main Page.
 
 See the Documentation [here](https://github.com/ljmf00/aurora/wiki).
 
