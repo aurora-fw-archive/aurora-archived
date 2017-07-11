@@ -7,7 +7,14 @@
 #ifndef INCLUDE_H_AURORA_SHELL_COLOR
 #define INCLUDE_H_AURORA_SHELL_COLOR
 
-#include <Aurora/Core/Aurora.h>
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
 
 namespace Aurora
 {

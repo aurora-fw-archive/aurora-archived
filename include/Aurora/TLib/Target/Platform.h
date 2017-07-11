@@ -1,3 +1,10 @@
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#include <Aurora/TLib/Target/Kernel.h>
+
 #ifdef _WIN16
 	#define AURORA_TARGET_PLATFORM_WINDOWS
 	#define AURORA_TARGET_PLATFORM_WINDOWS_16
@@ -29,19 +36,10 @@
 			#undef INTERNAL_AURORA_TARGET_PLATFORM_IPHONE_SIMULATOR
 		#endif
 	#endif
-#elif defined(__linux__) || defined(__linux) || defined(linux)
-	#define AURORA_TARGET_KERNEL_LINUX
-	#ifndef AURORA_TARGET_IS_OPENSOURCE
-		#define AURORA_TARGET_IS_OPENSOURCE
-	#endif
+#elif defined(AURORA_TARGET_KERNEL_LINUX)
 	#ifdef __gnu_linux__
 		#define AURORA_TARGET_PLATFORM_GNU_LINUX
-		#ifndef AURORA_TARGET_IS_OPENSOURCE
-			#define AURORA_TARGET_IS_OPENSOURCE
-		#endif
 	#endif
-#endif
-
-#if defined(__unix__) || defined(__unix) || defined(unix)
-	#define AURORA_TARGET_ENVIRONMENT_UNIX
+#elif defined(__ANDROID__)
+    #define AURORA_TARGET_PLATFORM_ANDROID
 #endif

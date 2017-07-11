@@ -12,10 +12,18 @@
 #ifndef INCLUDE_H_AURORA_SHELL_LOG
 #define INCLUDE_H_AURORA_SHELL_LOG
 
-#include <Aurora/Lib/Target.h>
-#include <Aurora/Shell/Output.h>
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
+#include <Aurora/TLib/Target/Environment.h>
+#include <Aurora/CLI/Output.h>
 #include <Aurora/Core/Debug.h>
-#include <Aurora/Core/Aurora.h>
 
 namespace Aurora { namespace Shell
 	{
@@ -45,7 +53,7 @@ namespace Aurora { namespace Shell
 			//       Needs to be tested on Windows and Apple platforms
 			if(status == Error)
 			{
-				#ifdef AURORA_TARGET_UNIX
+				#ifdef AURORA_TARGET_ENVIRONMENT_UNIX
 				Output << "\e[0m\e[1m[\e[1;31mERROR\e[0;1m] \e[0m";
 				#else
 				Output << "[ERROR] ";
@@ -53,7 +61,7 @@ namespace Aurora { namespace Shell
 			}
 			else if (status == Warning)
 			{
-				#ifdef AURORA_TARGET_UNIX
+				#ifdef AURORA_TARGET_ENVIRONMENT_UNIX
 				Output << "\e[0m\e[1m[\e[1;33mWARNING\e[0;1m] \e[0m";
 				#else
 				Output << "[WARNING] ";
@@ -61,7 +69,7 @@ namespace Aurora { namespace Shell
 			}
 			else if (status == Notice)
 			{
-				#ifdef AURORA_TARGET_UNIX
+				#ifdef AURORA_TARGET_ENVIRONMENT_UNIX
 				Output << "\e[0m\e[1m[\e[1;36mNOTICE\e[0;1m] \e[0m";
 				#else
 				Output << "[NOTICE] ";
@@ -69,7 +77,7 @@ namespace Aurora { namespace Shell
 			}
 			else if (status == Information)
 			{
-				#ifdef AURORA_TARGET_UNIX
+				#ifdef AURORA_TARGET_ENVIRONMENT_UNIX
 				Output << "\e[0m\e[1m[\e[1;32mINFORMATION\e[0;1m] \e[0m";
 				#else
 				Output << "[INFORMATION] ";
@@ -83,7 +91,7 @@ namespace Aurora { namespace Shell
 
 					#else
 						if(Debug::isVerbose == false)
-						#ifdef AURORA_TARGET_UNIX
+						#ifdef AURORA_TARGET_ENVIRONMENT_UNIX
 							Output << "\e[0m\e[1m[\e[1;36mDEBUG\e[0;1m] \e[0m";
 						#else
 							Output << "[DEBUG] ";

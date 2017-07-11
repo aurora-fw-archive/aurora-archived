@@ -7,7 +7,7 @@
 #include <gtk/gtk.h>
 #include <Aurora/GUI/Window.h>
 #include <Aurora/Core/Debug.h>
-#include <Aurora/Shell/Log.h>
+#include <Aurora/CLI/Log.h>
 
 namespace Aurora
 {
@@ -29,7 +29,7 @@ namespace Aurora
 		Shell::Log(Shell::Debug, "window id_", ID, " is created.");
 	}
 
-	void GUIWindow::setTitle(std::string title) 
+	void GUIWindow::setTitle(std::string title)
 	{
 		Shell::Log(Shell::Debug, "setting title on window id_", ID);
 		gtk_window_set_title(GTK_WINDOW(Window), title.c_str());

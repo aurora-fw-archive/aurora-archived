@@ -16,18 +16,22 @@
 ** 		  with STL.
 */
 
-#ifndef AURORA_MODULE_CORE_TLIB
-	#define AURORA_MODULE_CORE_TLIB
-#endif /// AURORA_MODULE_CORE_TLIB
+#ifndef INCLUDE_H_AURORA_LIB_STRING
+#define INCLUDE_H_AURORA_LIB_STRING    1
 
 /// Safe include
-#include <Aurora/Lib/Target/PragmaOnce.h>
+#include <Aurora/TLib/Target/PragmaOnce.h>
 #if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
     #pragma once
 #endif
 
-#ifndef INCLUDE_H_AURORA_LIB_STRING
-#define INCLUDE_H_AURORA_LIB_STRING    1
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
+#ifndef AURORA_MODULE_CORE_TLIB
+	#define AURORA_MODULE_CORE_TLIB
+#endif /// AURORA_MODULE_CORE_TLIB
 
 #ifndef AURORA_STRING_MAXSIZE
 	#ifdef AURORA_WORDSIZE

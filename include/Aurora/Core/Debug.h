@@ -4,12 +4,17 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
 #ifndef INCLUDE_H_AURORA_CORE_DEBUG
 #define INCLUDE_H_AURORA_CORE_DEBUG
-
-#pragma once
-
-#include <Aurora/Core/Aurora.h>
 
 namespace Aurora { namespace Debug
     {

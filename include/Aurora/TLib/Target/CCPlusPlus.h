@@ -1,6 +1,11 @@
 //TODO: Need to be documented and structured !!!
 
-#include <Aurora/Target/Compilers.h>
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#include <Aurora/TLib/Target/Compiler.h>
 
 #ifdef __cplusplus
 	#ifndef AURORA_TARGET_CXX

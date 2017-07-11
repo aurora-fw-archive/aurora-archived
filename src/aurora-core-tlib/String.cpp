@@ -23,9 +23,10 @@
 **         		- >=
 */
 
-#include <Aurora/Lib/String.h>
+#include <Aurora/TLib/Target/CCPlusPlus.h>
+#include <Aurora/TLib/String.h>
+//#include <Aurora/TLib/Memory.h>
 #include <Aurora/Info/RAM.h>
-#include <Aurora/Lib/Target.h>
 #ifdef AURORA_TARGET_CXX
 #include <istream>
 #include <ostream>

@@ -4,17 +4,27 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_LIB_ENDIAN
-#define INCLUDE_H_AURORA_LIB_ENDIAN 1
+#ifndef INCLUDE_H_AURORA_TLIB_ENDIAN
+#define INCLUDE_H_AURORA_TLIB_ENDIAN 1
 
-#pragma once
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
 
-#include <Aurora/Core/Aurora.h>
-#include <Aurora/Lib/Target.h>
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
 
-#if defined(AURORA_TARGET_LINUX) || defined(AURORA_TARGET_CYGWIN)
+#ifndef AURORA_MODULE_CORE_TLIB
+	#define AURORA_MODULE_CORE_TLIB
+#endif /// AURORA_MODULE_CORE_TLIB
+
+#include <Aurora/TLib/Target/Platform.h>
+
+#if defined(AURORA_TARGET_KERNEL_LINUX) || defined(AURORA_TARGET_CYGWIN)
 	#include <endian.h>
-#elif defined(AURORA_TARGET_APPLE)
+#elif defined(AURORA_TARGET_PLATFORM_APPLE)
 	#include <libkern/OSByteOrder.h>
 
 	#define htobe16(x) OSSwapHostToBigInt16(x)
@@ -36,9 +46,9 @@
 	#define __BIG_ENDIAN    BIG_ENDIAN
 	#define __LITTLE_ENDIAN LITTLE_ENDIAN
 	#define __PDP_ENDIAN    PDP_ENDIAN
-#elif defined(AURORA_TARGET_OPENBSD)
+#elif defined(AURORA_TARGET_KERNEL_OPENBSD)
 	#include <sys/endian.h>
-#elif defined(AURORA_TARGET_NETBSD) || defined(AURORA_TARGET_FREEBSD) || defined(AURORA_TARGET_DRAGONFLY)
+#elif defined(AURORA_TARGET_KERNEL_NETBSD) || defined(AURORA_TARGET_KERNEL_FREEBSD) || defined(AURORA_TARGET_KERNEL_DRAGONFLY)
 	#include <sys/endian.h>
 	#define be16toh(x) betoh16(x)
 	#define le16toh(x) letoh16(x)
@@ -48,7 +58,7 @@
 
 	#define be64toh(x) betoh64(x)
 	#define le64toh(x) letoh64(x)
-#elif defined(AURORA_TARGET_WINDOWS)
+#elif defined(AURORA_TARGET_PLATFORM_WINDOWS)
 	#include <winsock2.h>
 	#include <sys/param.h>
 
@@ -115,10 +125,10 @@
 	#define AURORA_PDP_ENDIAN           __PDP_ENDIAN
 
 	#ifdef AURORA_TARGET_CXX
-		#include <Aurora/Lib/Type.h>
+		#include <Aurora/TLib/Type.h>
 		namespace Ar
 		{
-			class Endian 
+			class Endian
 			{
 				static inline ArUInt16_t HtoBE16(ArUInt16_t h);
 				static inline ArUInt16_t HtoLE16(ArUInt16_t h);
@@ -139,4 +149,4 @@
 	#endif
 #endif
 
-#endif // INCLUDE_H_AURORA_LIB_ENDIAN
+#endif // INCLUDE_H_AURORA_TLIB_ENDIAN

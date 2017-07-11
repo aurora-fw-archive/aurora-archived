@@ -3,10 +3,8 @@
     #pragma once
 #endif
 
-#ifndef AURORA_MODULE_CORE_TLIB
-	#define AURORA_MODULE_CORE_TLIB
-#endif /// AURORA_MODULE_CORE_TLIB
-
-#ifdef __STRICT_ANSI__
-	#define AURORA_TARGET_STRICT_ANSI
+#if defined(__unix__) || defined(__unix) || defined(unix)
+	#define AURORA_TARGET_ENVIRONMENT_UNIX
+#elif defined(__CYGWIN__)
+    #define AURORA_TARGET_CYGWIN
 #endif

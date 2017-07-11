@@ -1,5 +1,10 @@
 // TODO: Include Compiler Targets ( https://sourceforge.net/p/predef/wiki/Compilers/ )
 
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
 #if defined(__GNUG__) || (defined(__GNUC__) && defined(__cplusplus))
 	#ifndef AURORA_TARGET_COMPILER_GNU
 		#define AURORA_TARGET_COMPILER_GNU

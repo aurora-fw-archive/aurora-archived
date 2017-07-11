@@ -8,7 +8,7 @@
 
 #include <Aurora/GUI/Label.h>
 #include <Aurora/GUI/Window.h>
-#include <Aurora/Shell/Log.h>
+#include <Aurora/CLI/Log.h>
 #include <Aurora/Core/Debug.h>
 
 namespace Aurora
@@ -123,7 +123,7 @@ namespace Aurora
 		}
 		assert(isCustom);
 	}
-	
+
 	void GUILabel::setAlignment(const float x, const float y)
 	// x and y is acceptable between 0 and 1
 	// x value for horizontal	| x >>

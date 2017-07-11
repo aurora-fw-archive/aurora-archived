@@ -1,36 +1,43 @@
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
 #ifndef AURORA_MODULE_CORE_TLIB
 	#define AURORA_MODULE_CORE_TLIB
 #endif /// AURORA_MODULE_CORE_TLIB
 
-#include <Aurora/Lib/Target/Platform.h>
+#include <Aurora/TLib/Target/Platform.h>
+#include <Aurora/TLib/Target/Kernel.h>
+#include <Aurora/TLib/Target/Environment.h>
 
-#ifdef __ANDROID__
-	#define AURORA_TARGET_PLATFORM_ANDROID
+#ifdef AURORA_TARGET_PLATFORM_ANDROID
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+    #endif
+#elif defined(AURORA_TARGET_CYGWIN)
+	#ifndef AURORA_TARGET_IS_OPENSOURCE
+		#define AURORA_TARGET_IS_OPENSOURCE
+    #endif
+#endif
+
+#ifdef AURORA_TARGET_KERNEL_LINUX
+    #ifndef AURORA_TARGET_IS_OPENSOURCE
+        #define AURORA_TARGET_IS_OPENSOURCE
+    #endif
+#elif defined(AURORA_TARGET_FREEBSD)
 	#ifndef AURORA_TARGET_IS_OPENSOURCE
 		#define AURORA_TARGET_IS_OPENSOURCE
 	#endif
-#elif __CYGWIN__
-	#define AURORA_TARGET_CYGWIN
+#elif defined(AURORA_TARGET_OPENBSD)
 	#ifndef AURORA_TARGET_IS_OPENSOURCE
 		#define AURORA_TARGET_IS_OPENSOURCE
 	#endif
-#elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
-	#define AURORA_TARGET_FREEBSD
+#elif defined(AURORA_TARGET_NETBSD)
 	#ifndef AURORA_TARGET_IS_OPENSOURCE
 		#define AURORA_TARGET_IS_OPENSOURCE
 	#endif
-#elif defined(__OpenBSD__)
-	#define AURORA_TARGET_OPENBSD
-	#ifndef AURORA_TARGET_IS_OPENSOURCE
-		#define AURORA_TARGET_IS_OPENSOURCE
-	#endif
-#elif defined(__NetBSD__)
-	#define AURORA_TARGET_NETBSD
-	#ifndef AURORA_TARGET_IS_OPENSOURCE
-		#define AURORA_TARGET_IS_OPENSOURCE
-	#endif
-#elif defined(__DragonFly__)
-	#define AURORA_TARGET_DRAGONFLY
+#elif defined(AURORA_TARGET_DRAGONFLY)
 	#ifndef AURORA_TARGET_IS_OPENSOURCE
 		#define AURORA_TARGET_IS_OPENSOURCE
 	#endif

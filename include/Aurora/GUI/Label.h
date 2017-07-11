@@ -4,13 +4,21 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
 #ifndef INCLUDE_H_AURORA_GUI_LABEL
 #define INCLUDE_H_AURORA_GUI_LABEL
 
 #include <Aurora/GUI/Window.h>
 #include <Aurora/GUI/Layout.h>
-#include <Aurora/Core/Aurora.h>
-#include <Aurora/Lib/Target.h>
+#include <Aurora/TLib/Target.h>
 
 #ifdef AURORA_TARGET_CXX
 	#include <cassert>

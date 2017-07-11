@@ -11,17 +11,30 @@
 
 /* Contains: Memory Managment function */
 
-#include <Aurora/Core/Aurora.h>
-#include <Aurora/Lib/Target.h>
-#include <Aurora/Lib/Type.h>
+/// Safe include
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
+#ifndef AURORA_MODULE_CORE_TLIB
+	#define AURORA_MODULE_CORE_TLIB
+#endif /// AURORA_MODULE_CORE_TLIB
+
+#include <Aurora/TLib/Target/CCPlusPlus.h>
+#include <Aurora/TLib/Type.h>
 
 #ifdef AURORA_TARGET_CXX
 	extern "C" {
 #endif
-		extern void *memcpy(void *dst, const void *src, size_t n);
-		extern void *memmove(void *dst, const void *src, size_t n);
-		extern int memcmp(const void *cs, const void *ct, size_t n);
-		extern void *memset(void *s, int c, size_t n);
+		void *memcpy(void *dst, const void *src, size_t n);
+		void *memmove(void *dst, const void *src, size_t n);
+		int memcmp(const void *cs, const void *ct, size_t n);
+		void *memset(void *s, int c, size_t n);
 #ifdef AURORA_TARGET_CXX
 	}
 #endif

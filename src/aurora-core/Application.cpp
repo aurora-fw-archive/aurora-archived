@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 #include <Aurora/Core/Application.h>
-#include <Aurora/Shell/Log.h>
+#include <Aurora/CLI/Log.h>
 #include <Aurora/Core/Debug.h>
 
 namespace Aurora

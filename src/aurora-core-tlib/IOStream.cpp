@@ -12,9 +12,9 @@
 // File: src/Aurora/Lib/IOStream.cpp
 // Contains: Input Stream and Output Stream Objects
 
-#include <Aurora/Lib/IOStream.h>
+#include <Aurora/TLib/IOStream.h>
 
 namespace Ar
 {
-    
+
 }

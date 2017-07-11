@@ -10,10 +10,18 @@
 #ifndef INCLUDE_H_AURORA_LIB_TYPE
 #define INCLUDE_H_AURORA_LIB_TYPE   1
 
-#pragma once
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
 
-#include <Aurora/Core/Aurora.h>
-#include <Aurora/Lib/Target.h>
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
+#include <Aurora/TLib/Target/CCPlusPlus.h>
+#include <Aurora/TLib/Target/Compiler.h>
+#include <Aurora/TLib/Target/Standards.h>
 
 #ifdef AURORA_TARGET_CXX
 #include <cstdint>

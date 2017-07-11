@@ -20,7 +20,7 @@
 #ifndef INCLUDE_H_AURORA_LIB_TARGET_PRAGMAONCE
 #define INCLUDE_H_AURORA_LIB_TARGET_PRAGMAONCE 1
 
-#include <Aurora/Lib/Target/Compilers.h>
+#include <Aurora/TLib/Target/Compiler.h>
 
 // Oracle Developer Studio C/C++ (12.5 or later)
 #if (defined(__SUNPRO_C)&&(__SUNPRO_C>=0x5140))||(defined(__SUNPRO_CC)&&(__SUNPRO_CC>=0x5140))

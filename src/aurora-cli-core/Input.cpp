@@ -11,7 +11,7 @@
 
 /* Contains: Input Stream Objects */
 
-#include <Aurora/Shell/Input.h>
+#include <Aurora/CLI/Input.h>
 #include <iostream>
 
 namespace Aurora { namespace Shell

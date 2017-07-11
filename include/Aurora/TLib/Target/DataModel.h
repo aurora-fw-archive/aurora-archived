@@ -16,6 +16,11 @@
 ** @TODO: Nothing yet.
 */
 
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
 // Data type 	LP32 	ILP32 	LP64 	LLP64 	ILP64 	SILP64
 // char 		8 		8 		8 		8 		8 		8
 // short 		16 		16 		16 		16 		16 		64

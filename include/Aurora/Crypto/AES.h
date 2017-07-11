@@ -4,19 +4,27 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
 #ifndef INCLUDE_H_AURORA_CRYPTO_AES
 #define INCLUDE_H_AURORA_CRYPTO_AES
 
-#include <Aurora/Core/Aurora.h>
-#include <Aurora/Lib/Memory.h>
+#include <Aurora/TLib/Memory.h>
 
-/* 
+/*
  * The number of columns comprising a _s in AES.
  * This is a constant in AES. Value=4
  */
 #define AURORA_AES_NUM 4
 
-// AURORA_AES_TIME is a macro that finds the product of {02} and the argument to xtime modulo {1b}  
+// AURORA_AES_TIME is a macro that finds the product of {02} and the argument to xtime modulo {1b}
 #define AURORA_AES_TIME(x)   ((x<<1) ^ (((x>>7) & 1) * 0x1b))
 
 // _AURORA_AES_MULTI is a macro used to multiply numbers in the field GF(2^8)
@@ -44,7 +52,7 @@ namespace Aurora
 		// Inverted getSBV
 		static int getISBV(const int);
 
-		// This function produces Nb(Nr+1) round keys. The round keys are used in each round to decrypt the states. 
+		// This function produces Nb(Nr+1) round keys. The round keys are used in each round to decrypt the states.
 		static void ke();
 		/* This function adds the round key to state.
 		* The round key is added to the state by an XOR function.

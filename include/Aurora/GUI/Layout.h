@@ -4,10 +4,17 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#ifndef INCLUDE_H_AURORA_GUI_LAYOUT
-#define INCLUDE_H_AURORA_GUI_LAYOUT 
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
 
-#include <Aurora/Core/Aurora.h>
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
+#ifndef INCLUDE_H_AURORA_GUI_LAYOUT
+#define INCLUDE_H_AURORA_GUI_LAYOUT
 
 namespace Aurora
 {

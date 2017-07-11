@@ -17,36 +17,36 @@
 ** @TODO: Implement other macros ( https://sourceforge.net/p/predef/wiki/Home/ )
 */
 
+#ifndef INCLUDE_H_AURORA_LIB_TARGET
+#define INCLUDE_H_AURORA_LIB_TARGET	1
+
 #ifndef AURORA_MODULE_CORE_TLIB
 	#define AURORA_MODULE_CORE_TLIB
 #endif /// AURORA_MODULE_CORE_TLIB
 
 /// Safe include
-#include <Aurora/Target/PragmaOnce.h>
+#include <Aurora/TLib/Target/PragmaOnce.h>
 #if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
     #pragma once
 #endif
 
-#ifndef INCLUDE_H_AURORA_LIB_TARGET
-#define INCLUDE_H_AURORA_LIB_TARGET	1
-
 // CPU Architecture Targets
-#include <Aurora/Lib/Target/Architecture.h>
+#include <Aurora/TLib/Target/Architecture.h>
 // C or C++ Languages detection
-#include <Aurora/Lib/Target/CCPlusPlus.h>
+#include <Aurora/TLib/Target/CCPlusPlus.h>
 // Compiler Targets (Include detection and version)
-#include <Aurora/Lib/Target/Compiler.h>
+#include <Aurora/TLib/Target/Compiler.h>
 // Data Models
-#include <Aurora/Lib/Target/DataModel.h>
+#include <Aurora/TLib/Target/DataModel.h>
 // Others Targets detections
-#include <Aurora/Lib/Target/Misc.h>
+#include <Aurora/TLib/Target/Misc.h>
 // Open Source Target detection
-#include <Aurora/Lib/Target/OpenSource.h>
+#include <Aurora/TLib/Target/OpenSource.h>
 // Platform detection
-#include <Aurora/Lib/Target/Platform.h>
+#include <Aurora/TLib/Target/Platform.h>
 // Standards detections
-#include <Aurora/Lib/Target/Standards.h>
+#include <Aurora/TLib/Target/Standards.h>
 // Data Type size - Word size for a specific target
-#include <Aurora/Lib/Target/Wordsize.h>
+#include <Aurora/TLib/Target/Wordsize.h>
 
 #endif /// INCLUDE_H_AURORA_LIB_TARGET

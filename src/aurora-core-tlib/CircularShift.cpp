@@ -13,7 +13,7 @@
 ** @contains: Circular Shift operations Source file
 */
 
-#include <Aurora/Lib/CircularShift.h>
+#include <Aurora/TLib/CircularShift.h>
 
 #ifdef AURORA_TARGET_CXX
 	namespace

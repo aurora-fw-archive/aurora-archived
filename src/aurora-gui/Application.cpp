@@ -8,7 +8,7 @@
 #include <gtk/gtk.h>
 #include <Aurora/GUI/Application.h>
 #include <Aurora/Core/Debug.h>
-#include <Aurora/Shell/Log.h>
+#include <Aurora/CLI/Log.h>
 
 
 namespace Aurora

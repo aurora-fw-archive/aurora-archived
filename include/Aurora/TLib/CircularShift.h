@@ -18,9 +18,15 @@
 ** when the shift count is 0 or >= the width of unsigned int.
 */
 
-#include <Aurora/Lib/Target.h>
-#include <Aurora/Lib/Type.h> // for uint32_t, to get 32bit-wide rotates, regardless of the size of int.
-#include <Aurora/Lib/Limits.h> // for CHAR_BIT
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#include <Aurora/TLib/Target/CCPlusPlus.h>
+#include <Aurora/TLib/Target/Wordsize.h>
+#include <Aurora/TLib/Type.h> // for uint32_t, to get 32bit-wide rotates, regardless of the size of int.
+#include <Aurora/TLib/Limits.h> // for CHAR_BIT
 
 #ifdef AURORA_TARGET_CXX
 	namespace Ar

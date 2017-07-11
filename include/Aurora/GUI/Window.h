@@ -9,12 +9,20 @@
 // software; you can redistribute it and/or modify it under the
 // terms of the GNU General Public License, v3.
 
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
+
 #ifndef INCLUDE_H_AURORA_GUI_WINDOW
 #define INCLUDE_H_AURORA_GUI_WINDOW
 
 #include <iostream>
 #include <string>
-#include <Aurora/Core/Aurora.h>
 
 typedef struct _GtkWidget GtkWidget;
 
@@ -48,7 +56,7 @@ namespace Aurora
 		void connect(std::string detailedSignal, void (*signalFunction)(), void* signalData = NULL);
 		void show(void);
 		void start(void (*startFunction)() = []{});
-	
+
 	protected:
 		GtkWidget *Window;
 		unsigned long ID = 0;

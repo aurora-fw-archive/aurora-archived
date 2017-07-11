@@ -5,9 +5,9 @@
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
 #include <gtk/gtk.h>
-#include <Aurora/GUI/Style.h>
+//#include <Aurora/GUI/Style.h>
 
 namespace Aurora
 {
-    
+
 }

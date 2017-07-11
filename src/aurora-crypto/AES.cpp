@@ -14,15 +14,14 @@
 ** @TODO		Fix the errors!
 */
 #include <Aurora/Crypto/AES.h>
-#include <Aurora/Shell/Log.h>
-#include <Aurora/Lib/Memory.h>
-#ifdef AURORA_TARGETCXX
+#include <Aurora/CLI/Log.h>
+#include <Aurora/TLib/Memory.h>
+#include <Aurora/TLib/Target/CCPlusPlus.h>
+#ifdef AURORA_TARGET_CXX
 #include <iostream>
 #include <cstdlib>
-#include <cstring>
-#elif defined(AURORA_TARGETCC)
+#elif defined(AURORA_TARGET_CC)
 #include <stdlib.h>
-#include <string.h>
 #endif
 
 namespace Aurora

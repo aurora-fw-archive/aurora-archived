@@ -16,9 +16,9 @@
 #ifndef INCLUDE_H_AURORA_HASH_MD5
 #define INCLUDE_H_AURORA_HASH_MD5
 
-#include <Aurora/Core/Typedef.h>
-#include <Aurora/Lib/CircularShift.h>
-#include <Aurora/Lib/Endian.h>
+#include <Aurora/TLib/Type.h>
+#include <Aurora/TLib/CircularShift.h>
+#include <Aurora/TLib/Endian.h>
 
 namespace Aurora
 {
@@ -32,11 +32,11 @@ namespace Aurora
 
 			// split into 64 byte blocks (=> 512 bits), hash is 16 bytes long
 			enum
-			{ 
+			{
 				BlockSize = 512 / 8,
 				HashBytes = 16
 			};
-		
+
 			// compute MD5 of a memory block
 			const char* operator()(const void* , size_t );
 			// compute MD5 of a string, excluding final zero

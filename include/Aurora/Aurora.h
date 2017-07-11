@@ -14,10 +14,17 @@
 #ifndef INCLUDE_H_AURORA_H_INCLUDE
 #define INCLUDE_H_AURORA_H_INCLUDE
 
-#pragma once
+/// Safe include
+#include <Aurora/TLib/Target/PragmaOnce.h>
+#if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
+    #pragma once
+#endif
+
+#ifndef AURORA_FW
+#define AURORA_FW 1
+#endif // AURORA_FW
 
 // Core
-#include <Aurora/Core/Aurora.h>
 #include <Aurora/Core/Application.h>
 #include <Aurora/Core/Debug.h>
 
@@ -31,18 +38,17 @@
 #include <Aurora/GUI/Application.h>
 
 // Shell
-#include <Aurora/Shell/Log.h>
-#include <Aurora/Shell/Color.h>
-#include <Aurora/Shell/Output.h>
-#include <Aurora/Shell/Input.h>
+#include <Aurora/CLI/Log.h>
+#include <Aurora/CLI/Color.h>
+#include <Aurora/CLI/Output.h>
+#include <Aurora/CLI/Input.h>
 
 // Lib
-#include <Aurora/Lib/Aurora.h>
-#include <Aurora/Lib/Target.h>
-#include <Aurora/Lib/Type.h>
-#include <Aurora/Lib/IOStream.h>
-#include <Aurora/Lib/Endian.h>
-#include <Aurora/Lib/String.h>
+#include <Aurora/TLib/Target.h>
+#include <Aurora/TLib/Type.h>
+#include <Aurora/TLib/IOStream.h>
+#include <Aurora/TLib/Endian.h>
+#include <Aurora/TLib/String.h>
 
 // Information
 #include <Aurora/Info/RAM.h>

@@ -11,7 +11,7 @@
 
 /* Contains: Output Stream Objects */
 
-#include <Aurora/Shell/Output.h>
+#include <Aurora/CLI/Output.h>
 #include <iostream>
 
 namespace Aurora { namespace Shell

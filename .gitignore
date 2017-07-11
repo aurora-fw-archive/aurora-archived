@@ -116,3 +116,7 @@ config.guess
 *.la
 
 .tmp/
+
+bin/*.so
+bin/dbg/*.so
+bin/dbg/*.out

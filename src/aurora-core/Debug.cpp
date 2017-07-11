@@ -4,7 +4,7 @@
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
 //  More information in: https://github.com/ljmf00/ (Github Page)
 
-#include <Aurora/Shell/Log.h>
+#include <Aurora/CLI/Log.h>
 #include <Aurora/Core/Debug.h>
 
 namespace Aurora { namespace Debug

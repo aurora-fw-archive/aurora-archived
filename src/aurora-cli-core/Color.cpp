@@ -10,9 +10,9 @@
 #include <windows.h>
 #endif
 
-#include <Aurora/Shell/Color.h>
-#include <Aurora/Shell/Log.h>
-#include <Aurora/Lib/Target.h>
+#include <Aurora/CLI/Color.h>
+#include <Aurora/CLI/Log.h>
+#include <Aurora/TLib/Target.h>
 
 namespace Aurora
 {
@@ -20,7 +20,7 @@ namespace Aurora
     {
         void setColor(Color color, ColorType type)
         {
-            #ifdef AURORA_TARGET_WINDOWS
+            #ifdef AURORA_TARGET_PLATFORM_WINDOWS
 
                 // TODO: Needs to be tested!
                 unsigned char colr_id_tmp;

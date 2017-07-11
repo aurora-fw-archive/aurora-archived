@@ -11,9 +11,9 @@
 
 namespace Aurora {
     namespace Math {
-        Parser::Parser()
+        /*Parser::Parser()
         {
-            
-        }
+
+        }*/
     }
 }

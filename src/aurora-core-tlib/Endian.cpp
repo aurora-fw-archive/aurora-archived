@@ -9,8 +9,8 @@
 // software; you can redistribute it and/or modify it under the
 // terms of the GNU General Public License, v3.
 
-#include <Aurora/Lib/Endian.h>
-#include <Aurora/Lib/Type.h>
+#include <Aurora/TLib/Endian.h>
+#include <Aurora/TLib/Type.h>
 
 #ifdef AURORA_TARGET_CXX
 	namespace Ar
