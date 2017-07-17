@@ -35,9 +35,8 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/gcc-5 /usr/bin/gcc; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/g++-5 /usr/bin/g++; fi
-  - autoreconf -vfi
-  - cd build && ../configure --prefix=/usr
+  - cd build && cmake .
   - cd build && make
 
-install:
-  - cd build && make install
+#install:
+#  - cd build && make install
