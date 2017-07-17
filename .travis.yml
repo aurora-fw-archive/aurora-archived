@@ -36,3 +36,10 @@ before_install:
 
 install:
   - echo "No installation script!"
+
+notifications:
+    email:
+        recipients:
+            - contact@lsferreira.net
+    on_success: never
+    on_failure: always
