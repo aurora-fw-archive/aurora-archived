@@ -10,6 +10,8 @@ os:
   - linux
   - osx
 
+dist: trusty
+
 sudo: true
 
 addons:
@@ -17,27 +19,27 @@ addons:
    sources:
    - ubuntu-toolchain-r-test
    packages:
-   - gcc-5
-   - g++-5
-   - automake
-   - autotools-dev
+   - gcc-6
+   - g++-6
    - build-essential
    - libgtk-3-dev
+   - pkg-config
 
-# Handle git submodules yourself
-git:
-    submodules: false
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
   - uname
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules; fi
-  - git submodule update --init --recursive
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/gcc-5 /usr/bin/gcc; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/g++-5 /usr/bin/g++; fi
-  - autoreconf -vfi
-  - cd build && ../configure --prefix=/usr
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/gcc-6 /usr/bin/gcc; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -sf /usr/bin/g++-6 /usr/bin/g++; fi
+  - cd build && cmake .
   - cd build && make
 
 install:
-  - cd build && make install
+  - echo "No installation script!"
+
+notifications:
+    email:
+        recipients:
+            - contact@lsferreira.net
+    on_success: never
+    on_failure: always
