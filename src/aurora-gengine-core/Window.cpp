@@ -2,17 +2,10 @@
 
 namespace Aurora {
     namespace GEngine {
-        Window::Window(Ar::String name, int width, int height)
+        Window::Window(Application* parent, const WindowProperties& wp)
             : width(width), height(height)
         {
-            this->name = name.toCString();
-            Init();
-        }
-
-        Window::Window(const char *name, int width, int height)
-            : name((char*) name), width(width), height(height)
-        {
-            Init();
+            this->name = (char*) parent->name.c_str();
         }
     }
 }

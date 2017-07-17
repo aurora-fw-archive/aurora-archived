@@ -3,17 +3,27 @@
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
+
+#ifndef INCLUDE_H_AURORA_GENGINE_APPLICATION
+#define INCLUDE_H_AURORA_GENGINE_APPLICATION
 
 #include <Aurora/GEngine/API.h>
+#include <Aurora/Core/Application.h>
+#include <iostream>
 
 namespace Aurora {
 	namespace GEngine {
-		class Application {
+		class AURORA_PREFIX Application {
 		public:
-			Application();
+			Application(void (*)() , std::string , GraphicsAPI = GraphicsAPI::OpenGL , int = 0, char** = NULL);
+            ~Application();
+            std::string name;
+        private:
+            GraphicsAPI gapi;
+            Aurora::Application *App;
 		};
 	}
 }
+
+#endif // INCLUDE_H_AURORA_GENGINE_APPLICATION

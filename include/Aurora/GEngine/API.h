@@ -3,23 +3,22 @@
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
+
+#ifndef INCLUDE_H_AURORA_GENGINE_API
+#define INCLUDE_H_AURORA_GENGINE_API
 
 namespace Aurora {
 	namespace GEngine {
 		enum class GraphicsAPI
 		{
-			None
 			OpenGL,
 			#ifdef AURORA_TARGET_PLATFORM_WINDOWS
-				DirectX,
+				Direct3D,
 			#endif
 			Vulkan
 		};
 	}
 }
 
-
-Aurora::GEngine::gAPI
+#endif // INCLUDE_H_AURORA_GENGINE_API

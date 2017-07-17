@@ -10,7 +10,7 @@
 #include <Aurora/Aurora.h>
 using namespace Aurora;
 
-Application *MyApp;
+GEngine::Application *MyApp;
 
 ArSlot_t slot_MyApp_on_open()
 {
@@ -19,7 +19,7 @@ ArSlot_t slot_MyApp_on_open()
 
 int main(int argc, char * argv[])
 {
-	MyApp = new Application(slot_MyApp_on_open, argc, argv);
+	MyApp = new GEngine::Application(slot_MyApp_on_open, "Testing GEngine", GEngine::GraphicsAPI::OpenGL, argc, argv);
 	delete MyApp;
 	return 0;
 }

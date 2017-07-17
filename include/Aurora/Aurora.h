@@ -20,9 +20,7 @@
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
 
 // Core
 #include <Aurora/Core/Application.h>
@@ -53,6 +51,12 @@
 // Information
 #include <Aurora/Info/RAM.h>
 #include <Aurora/Info/OS.h>
+
+//GEngine
+#include <Aurora/GEngine/Application.h>
+#include <Aurora/GEngine/Window.h>
+#include <Aurora/GEngine/API.h>
+
 //#include <Aurora/Info/GPU.h>
 //#include <Aurora/Info/CPU.h>
 //#include <Aurora/Info/System.h>

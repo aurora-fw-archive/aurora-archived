@@ -9,11 +9,23 @@
 cmake_minimum_required (VERSION 2.8)
 project (aurorafw)
 
+message("┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework")
+message("├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira")
+message("┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3")
+#message(STATUS "Aurora Framework is building...")
+
 # Check for dependencies
 find_package(PkgConfig REQUIRED)
+find_package(glfw3 3.2 REQUIRED)
+find_package(OpenGL REQUIRED)
+find_package(OpenAL REQUIRED)
+find_package(Vulkan)
+find_package(CUDA)
+
 pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 
 if (NOT CONFIGURED_ONCE)
+    add_definitions(-DAURORA_IS_COMPILING)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -std=c++14")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -std=c++14")
     #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -std=c++14"
@@ -27,9 +39,30 @@ if (NOT CONFIGURED_ONCE)
         set(LIBRARY_OUTPUT_PATH ${ROOT_DIR}/bin)
         set(EXECUTABLE_OUTPUT_PATH ${ROOT_DIR}/bin)
     endif()
+
+    #if compiled from source code
+    #set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+    #set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+    #set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 endif()
 
-include_directories(${ROOT_DIR}/include ${GTK3_INCLUDE_DIRS})
+if(CUDA_FOUND)
+    add_definitions(-DAURORA_NVIDIA_CUDA_FOUND)
+endif()
+if(OPENGL_FOUND)
+    add_definitions(-DAURORA_OPENGL_FOUND)
+endif()
+if(OPENGL_XMESA_FOUND)
+    add_definitions(-DAURORA_OPENGL_XMESA_FOUND)
+endif()
+if(OPENGL_GLU_FOUND)
+    add_definitions(-DAURORA_OPENGL_GLU_FOUND)
+endif()
+if(Vulkan_FOUND)
+    add_definitions(-DAURORA_VULKAN_FOUND)
+endif()
+
+include_directories(${ROOT_DIR}/include ${GTK3_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR})
 link_directories(${GTK3_LIBRARY_DIRS})
 add_definitions(${GTK3_CFLAGS_OTHER})
 
@@ -53,7 +86,9 @@ add_library (aurora-crypto SHARED ${SOURCE_DIR}/aurora-crypto/AES.cpp
                                   #${SOURCE_DIR}/aurora-crypto/MD5.cpp
                             )
 
-add_library (aurora-gengine-core SHARED ${SOURCE_DIR}/aurora-gengine-core/Window.cpp)
+add_library (aurora-gengine-core SHARED ${SOURCE_DIR}/aurora-gengine-core/Window.cpp
+                                        ${SOURCE_DIR}/aurora-gengine-core/Application.cpp
+                            )
 
 add_library (aurora-gui SHARED ${SOURCE_DIR}/aurora-gui/Application.cpp
                                ${SOURCE_DIR}/aurora-gui/Label.cpp
@@ -64,6 +99,8 @@ add_library (aurora-math-parser SHARED ${SOURCE_DIR}/aurora-math-parser/Math.cpp
 
 target_link_libraries(aurora-core-tlib aurora-io)
 target_link_libraries(aurora-crypto aurora-core)
+target_link_libraries(aurora-gengine-core aurora-core
+                      ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY})
 target_link_libraries(aurora-core aurora-cli-core)
 target_link_libraries(aurora-gui aurora-core ${GTK3_LIBRARIES})
 
@@ -81,7 +118,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
     add_executable(test_string ${SOURCE_DIR}/aurora-examples/test_string.cpp)
 
     target_link_libraries(test_crypto aurora-core aurora-cli-core aurora-crypto)
-    target_link_libraries(test_gengine aurora-core)
+    target_link_libraries(test_gengine aurora-core aurora-gengine-core)
     target_link_libraries(test_gui aurora-core aurora-cli-core aurora-gui)
     target_link_libraries(test_string aurora-core aurora-core-tlib aurora-cli-core)
     target_link_libraries(test_shell aurora-core aurora-cli-core aurora-io)

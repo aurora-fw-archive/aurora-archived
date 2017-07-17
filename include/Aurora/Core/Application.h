@@ -9,9 +9,7 @@
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
 
 #ifndef INCLUDE_H_AURORA_CORE_APPLICATION
 #define INCLUDE_H_AURORA_CORE_APPLICATION
@@ -20,7 +18,7 @@
 
 namespace Aurora
 {
-    struct Application
+    class AURORA_PREFIX Application
     {
     public:
         Application(void (*mainFunction)(), int argc = 0, char *argv[] = NULL);

@@ -23,7 +23,7 @@ ArSlot_t slot_MyWindow_on_open()
 	HelloLabel->setWrapMode(WrapMode::Word);
 	HelloLabel->setAlignment(AlignMode::Custom);
 	HelloLabel->setAlignment(0.7, 0.8);
-	AlignMode alignLabel = HelloLabel->getAlignment();
+	//AlignMode alignLabel = HelloLabel->getAlignment();
 	Shell::Log(Shell::Information,"X: ", HelloLabel->getXAlignment());
 	Shell::Log(Shell::Information,"Y: ", HelloLabel->getYAlignment());
 }

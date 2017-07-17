@@ -3,24 +3,30 @@
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
 
-#include <Aurora/TLib/String.h>
+#ifndef INCLUDE_H_AURORA_GENGINE_WINDOW
+#define INCLUDE_H_AURORA_GENGINE_WINDOW
+
+#include <Aurora/GEngine/Application.h>
 
 namespace Aurora {
     namespace GEngine {
         typedef struct _GLFWwindow GLFWwindow;
 
-        class Window
+        struct AURORA_PREFIX WindowProperties {
+            uint width, height;
+		    bool fullscreen;
+            bool vsync;
+        };
+
+        class AURORA_PREFIX Window
         {
         	public:
-        		Window(Ar::String, int, int);
-                Window(const char*, int, int);
+        		Window(Application* , const WindowProperties& );
 
         	private:
-                void Init();
+                //void Init();
         		GLFWwindow *window;
         		unsigned long ID = 0;
                 char* name;
@@ -28,3 +34,5 @@ namespace Aurora {
         };
     }
 }
+
+#endif // INCLUDE_H_AURORA_GENGINE_WINDOW
