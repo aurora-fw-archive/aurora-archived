@@ -1,0 +1,185 @@
+@startuml
+title Aurora Class Structure
+
+skinparam packageStyle node
+
+package "Core Module" as CoreModule {
+	class String <Character Type>{
+		+Constructors: String, charT
+		+Destructor
+		.. Public ..
+		+Operators: =, +, +=, []
+		+Input & Output Methods
+		+Getters
+		-- Protected --
+		#Buffer: charT
+	}
+}
+package "Graphical User Interface Module" {
+	enum GUIApplicationFlags {
+		NoneFlag
+		ServiceFlag
+		LauncherFlag
+		HandlesOpenFlag
+		HandlesCommandLineFlag
+		SendEnvironmentFlag
+		NonUniqueFlag
+		OverrideAppIDFlag
+	}
+	enum WrapMode {
+		Word
+		Char
+		WordChar
+	}
+	enum AlignMode {
+		TopLeft
+		TopCenter
+		TopRight
+		Left
+		Center
+		Right
+		BottomLeft
+		BottomCenter
+		BottomRight
+		Custom
+	}
+	enum JustifyMode {
+		Left
+		Right
+		Center
+		Fill
+	}
+	class GUIApplication {
+		+GUIApplication()
+		+~GUIApplication()
+		.. Public ..
+		+connect()
+		+AppStatus : Integer
+		-- Protected --
+		#App* : GUIApplication
+		#ID : uLong
+	}
+	class GUILabel {
+		+GUILabel()
+		.. Public ..
+		+Some Setters
+		+Some Getters
+		-- Protected --
+		#Label* : GUILabel
+		#ID :uLong
+		__ Private __
+		-WindowParent* : GUIWindow
+	}
+	enum GUIWindowType {
+		ToplevelWindow
+		PopupWindow
+	}
+	enum GUIWindowPosition {
+		NonePosition
+		CenterPosition
+		MousePosition
+		AlwaysCenterPosition
+		CenterParentPosition
+	}
+	class GUIWindow {
+		+GUIWindow()
+		.. Public ..
+		+Some Setters
+		+Some Getters
+		-- Protected --
+		#Window : GUIWindow
+		#ID : uLong
+	}
+	WrapMode <|.. GUILabel
+	AlignMode <|.. GUILabel
+	JustifyMode <|.. GUILabel
+	GUIApplicationFlags o-- GUIApplication
+	GUIWindowType o-- GUIWindow
+	GUIWindowPosition o-- GUIWindow
+	GUILabel *-- GUIWindow
+}
+package "Math Module" {
+
+}
+package "Cryptography Module" {
+	class AES {
+		+Encrypt
+		+Decrypt
+		__ Private __
+		-Cryptography Steps
+	}
+}
+package "Graphical Engine Module" {
+
+}
+package "Input/Output Module" as IOModule {
+	class File {
+		+File()
+		.. Public ..
+		open()
+		__ Private __
+		-Path
+	}
+	enum Permission {
+		RW
+		RO
+		WO
+	}
+	class InfoRAM {
+		__ RAM Getters __
+		{static} +Virtual RAM
+		{static} +Physical RAM
+	}
+	class InfoOS {
+		__ OS Getters __
+		{static} +Manufacturer()
+		{static} +Architecture()
+		{static} +Version()
+		{static} +Name()
+		{static} +UserComputerName()
+	}
+	InfoRAM ..|> String : Input Buffer Size
+	File ..|> Permission
+	File ..|> String : "Path for file object"
+}
+package "Network Socket Module" {
+
+}
+package "Command Line Interface Module" {
+	enum ColorType {
+		Background
+		Foreground
+	}
+	enum Color {
+		Black
+		Blue
+		Green
+		Cyan
+		Red
+		Magenta
+		Yellow
+		LightGrey
+		DarkGrey
+		LightBlue
+		LightGreen
+		LightCyan
+		LightRed
+		LightMagenta
+		LightYellow
+		White
+	}
+	enum MessageStatus {
+		Error
+		Warning
+		Notice
+		Information
+		Debug
+	}
+}
+package "ASCII Engine Module" {
+
+}
+package "System on Chip Module" {
+
+}
+@enduml

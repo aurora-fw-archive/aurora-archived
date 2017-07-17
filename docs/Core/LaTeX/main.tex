@@ -1,0 +1,35 @@
+\documentclass[pdftex,12pt,a4paper,oneside]{book}
+
+\usepackage{setspace}
+\usepackage[pdftex]{graphicx}
+\usepackage{titlesec}
+\usepackage{glossaries}
+\usepackage{lastpage}
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\title{Aurora Framework Documentation}
+\author{Open Source Community}
+
+\begin{document}
+
+\input{../title.tex}
+
+\tableofcontents
+
+\input{../getting_started.tex}
+\input{../documentation.tex}
+\input{../tutorials.tex}
+
+\end{document}

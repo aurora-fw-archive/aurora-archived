@@ -1,0 +1,97 @@
+@startuml
+title Aurora Modules Structure
+
+skinparam monochrome true
+
+package "Core Group" {
+    [Core Submodule: Template Library\naurora-core-tlib] as CoreTLib
+    [Core Module\naurora-core] as Core
+    Core <|.. CoreTLib
+}
+
+[Audio Module\naurora-audio] as Audio
+Audio --* Core
+
+[Cryptography Module\naurora-crypto] as Crypto
+Crypto --* Core
+
+[Graphical User Interface Module\naurora-gui] as GUI
+GUI --* Core
+
+[Image Manipulation Module\naurora-image] as Image
+Core *-- Image
+
+[Input and Output Module\naurora-io] as IO
+IO --* Core
+
+[Network Sockets Module\naurora-netsocks] as NetSocks
+NetSocks --* Core
+
+[Miscellaneous Module\naurora-misc] as Misc
+Misc --* Core
+
+[Artificial Intelligence Module\naurora-ai] as AI
+AI --* Core
+
+package "Command Line Interface Group" {
+    [Command Line Interface Submodule: ASCII Engine\naurora-cli-asciiengine] as CLIASCIIEngine
+    [Command Line Interface Module: Core\naurora-cli-core] as CLICore
+    [Command Line Interface Module\naurora-cli] as CLI
+
+    CLICore <|.. CLIASCIIEngine
+    CLI o-- CLIASCIIEngine
+    CLI o-- CLICore
+}
+CLICore .* Core
+
+package "Graphical Engine Group" {
+    [Graphical Engine Module\naurora-gengine] as GEngine
+    [Graphical Engine Module: Core\naurora-gengine-core] as GEngineCore
+
+    GEngineCore --o GEngine
+}
+GEngineCore .* Core
+
+package "Parse Group" {
+    [Parse Submodule: JSON\naurora-parse-json] as ParseJSON
+    [Parse Submodule: XML\naurora-parse-xml] as ParseXML
+    [Parse Module\naurora-parse] as Parse
+
+    ParseJSON --o Parse
+    ParseXML --o Parse
+}
+ParseJSON .* Core
+ParseXML .* Core
+
+package "Math Group" {
+    [Math Submodule: Parser\naurora-math-parser] as MathParser
+    [Math Module\naurora-math] as Math
+    [Math Module: Core\naurora-math-core] as MathCore
+    Math o-- MathParser
+    Math o-- MathCore
+    MathCore <|.. MathParser
+}
+MathParser .* Core
+Core *. Math
+
+package "System on Chip Group" {
+    [System on Chip Module\naurora-soc] as SoC
+    [System on Chip Module: Android\naurora-soc-android] as SoCAndroid
+    [System on Chip Module: AVR\naurora-soc-avr] as SoCAVR
+    [System on Chip Module: ARM\naurora-soc-arm] as SoCARM
+    [System on Chip AVR Submodule: Core\naurora-soc-avr-core] as SoCAVRCore
+    [System on Chip AVR Submodule: Arduino\naurora-soc-avr-arduino] as SoCAVRArduino
+
+    SoC o-- SoCAndroid
+    SoC o-- SoCAVR
+    SoCAVR o-- SoCAVRCore
+    SoCAVR o-- SoCAVRArduino
+    SoC o-- SoCARM
+
+    SoCAVRCore <|.. SoCAVRArduino
+}
+SoCAVRCore .* Core
+SoCAndroid .* Core
+SoCARM .* Core
+
+@enduml
