@@ -18,6 +18,7 @@ message("┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ �
 find_package(PkgConfig REQUIRED)
 find_package(glfw3 3.2 REQUIRED)
 find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
 find_package(OpenAL REQUIRED)
 find_package(Vulkan)
 find_package(CUDA)
@@ -62,7 +63,7 @@ if(Vulkan_FOUND)
     add_definitions(-DAURORA_VULKAN_FOUND)
 endif()
 
-include_directories(${ROOT_DIR}/include ${GTK3_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR})
+include_directories(${ROOT_DIR}/include ${GTK3_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS})
 link_directories(${GTK3_LIBRARY_DIRS})
 add_definitions(${GTK3_CFLAGS_OTHER})
 
@@ -100,7 +101,7 @@ add_library (aurora-math-parser SHARED ${SOURCE_DIR}/aurora-math-parser/Math.cpp
 target_link_libraries(aurora-core-tlib aurora-io)
 target_link_libraries(aurora-crypto aurora-core)
 target_link_libraries(aurora-gengine-core aurora-core
-                      ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY} glfw)
+${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} glfw)
 target_link_libraries(aurora-core aurora-cli-core)
 target_link_libraries(aurora-gui aurora-core ${GTK3_LIBRARIES})
 
