@@ -13,9 +13,13 @@ using namespace Aurora;
 Application *MyApp;
 GEngine::Application MyGApp(GEngine::GraphicsAPI::OpenGL);
 
+ArSlot_t slot_Window_on_render() {
+
+}
+
 ArSlot_t slot_MyApp_on_open()
 {
-	GEngine::Window("Testing GEngine", GEngine::WindowProperties(800, 600));
+	GEngine::Window(slot_Window_on_render, "Testing GEngine", GEngine::WindowProperties(800, 600));
 	Application::ExitSuccess();
 }
 

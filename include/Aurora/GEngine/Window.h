@@ -9,10 +9,10 @@
 #define INCLUDE_H_AURORA_GENGINE_WINDOW
 
 #include <Aurora/GEngine/Application.h>
+#include <GLFW/glfw3.h>
 
 namespace Aurora {
     namespace GEngine {
-        typedef struct _GLFWwindow GLFWwindow;
 
         struct AURORA_PREFIX WindowProperties {
             WindowProperties(uint , uint , bool = false, bool = false);
@@ -24,7 +24,8 @@ namespace Aurora {
         class AURORA_PREFIX Window
         {
         	public:
-        		Window(const char* name , const WindowProperties& );
+        		Window(void (*)() , const char* , const WindowProperties& );
+                ~Window();
 
         	private:
                 //void Init();
@@ -32,6 +33,7 @@ namespace Aurora {
         		const unsigned long ID;
                 const char* name;
                 const int width, height;
+                const bool fullscreen, vsync;
         };
     }
 }

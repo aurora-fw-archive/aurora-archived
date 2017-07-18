@@ -2,8 +2,6 @@
 #include <assert.h>
 #include <Aurora/GEngine/Application.h>
 
-#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
 #include <Aurora/GEngine/Direct3D.h>
 
 namespace Aurora {
