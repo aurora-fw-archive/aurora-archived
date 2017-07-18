@@ -16,12 +16,10 @@ namespace Aurora {
 	namespace GEngine {
 		class AURORA_PREFIX Application {
 		public:
-			Application(void (*)() , std::string , GraphicsAPI = GraphicsAPI::OpenGL , int = 0, char** = NULL);
+			Application(GraphicsAPI = GraphicsAPI::OpenGL);
             ~Application();
-            std::string name;
         private:
             GraphicsAPI gapi;
-            Aurora::Application *App;
 		};
 	}
 }

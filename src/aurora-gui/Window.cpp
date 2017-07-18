@@ -12,8 +12,8 @@
 namespace Aurora
 {
 	GUIWindow::GUIWindow(std::string name, int width, int height, GUIWindowPosition pos, GUIWindowType type)
+		: ID(( unsigned long ) Aurora::Debug::LastID)
 	{
-		ID = ( unsigned long ) Aurora::Debug::LastID;
 		static const unsigned long scid_tmp = ID;
 		Aurora::Debug::LastID++;
 		Shell::Log(Shell::Debug, "creating new window: id_", ID);

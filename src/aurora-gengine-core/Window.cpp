@@ -1,11 +1,17 @@
 #include <Aurora/GEngine/Window.h>
+#include <Aurora/Core/Debug.h>
 
 namespace Aurora {
     namespace GEngine {
-        Window::Window(Application* parent, const WindowProperties& wp)
-            : width(width), height(height)
+        WindowProperties::WindowProperties(uint width, uint height, bool fullscreen, bool vsync)
+            : width(width), height(height), fullscreen(fullscreen), vsync(vsync)
+        {}
+
+        Window::Window(const char*, const WindowProperties& wp)
+            : width(wp.width), height(wp.height),
+              ID(( unsigned long ) Aurora::Debug::LastID)
         {
-            this->name = (char*) parent->name.c_str();
+            Aurora::Debug::LastID++;
         }
     }
 }

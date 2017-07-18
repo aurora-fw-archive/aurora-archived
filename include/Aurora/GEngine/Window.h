@@ -15,6 +15,7 @@ namespace Aurora {
         typedef struct _GLFWwindow GLFWwindow;
 
         struct AURORA_PREFIX WindowProperties {
+            WindowProperties(uint , uint , bool = false, bool = false);
             uint width, height;
 		    bool fullscreen;
             bool vsync;
@@ -23,14 +24,14 @@ namespace Aurora {
         class AURORA_PREFIX Window
         {
         	public:
-        		Window(Application* , const WindowProperties& );
+        		Window(const char* name , const WindowProperties& );
 
         	private:
                 //void Init();
         		GLFWwindow *window;
-        		unsigned long ID = 0;
-                char* name;
-                int width, height;
+        		const unsigned long ID;
+                const char* name;
+                const int width, height;
         };
     }
 }

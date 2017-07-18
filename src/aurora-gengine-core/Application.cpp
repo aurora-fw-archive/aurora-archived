@@ -8,8 +8,8 @@
 
 namespace Aurora {
 	namespace GEngine {
-		Application::Application(void (*mainFunction)(), std::string name, GraphicsAPI gapi, int argc, char *argv[])
-			: name(name), gapi(gapi)
+		Application::Application(GraphicsAPI gapi)
+			: gapi(gapi)
 		{
 			#ifdef AURORA_TARGET_PLATFORM_WINDOWS
 				LPDIRECT3D9 d3d = Direct3DCreate9( D3D_SDK_VERSION );
@@ -28,10 +28,8 @@ namespace Aurora {
 			#endif
 				case GraphicsAPI::OpenGL: break;
 			}
-			App = new Aurora::Application(mainFunction, argc, argv);
 		}
 		Application::~Application() {
-			delete App;
 		}
 	}
 }

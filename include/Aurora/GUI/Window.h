@@ -59,7 +59,7 @@ namespace Aurora
 
 	protected:
 		GtkWidget *Window;
-		unsigned long ID = 0;
+		const unsigned long ID;
 	};
 }
 
