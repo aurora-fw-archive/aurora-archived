@@ -89,7 +89,10 @@ add_library (aurora-crypto SHARED ${SOURCE_DIR}/aurora-crypto/AES.cpp
 
 add_library (aurora-gengine-core SHARED ${SOURCE_DIR}/aurora-gengine-core/Window.cpp
                                         ${SOURCE_DIR}/aurora-gengine-core/Application.cpp
+                                        ${SOURCE_DIR}/aurora-gengine-core/Input.cpp
                             )
+
+add_library (aurora-gengine-opengl SHARED ${SOURCE_DIR}/aurora-gengine-opengl/OpenGL.cpp)
 
 add_library (aurora-gui SHARED ${SOURCE_DIR}/aurora-gui/Application.cpp
                                ${SOURCE_DIR}/aurora-gui/Label.cpp
@@ -100,8 +103,9 @@ add_library (aurora-math-parser SHARED ${SOURCE_DIR}/aurora-math-parser/Math.cpp
 
 target_link_libraries(aurora-core-tlib aurora-io)
 target_link_libraries(aurora-crypto aurora-core)
-target_link_libraries(aurora-gengine-core aurora-core
-${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} glfw)
+target_link_libraries(aurora-gengine-core aurora-gengine-opengl
+                      aurora-core
+                      ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} glfw)
 target_link_libraries(aurora-core aurora-cli-core)
 target_link_libraries(aurora-gui aurora-core ${GTK3_LIBRARIES})
 

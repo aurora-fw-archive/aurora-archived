@@ -8,8 +8,11 @@
 #ifndef INCLUDE_H_AURORA_GENGINE_INPUT
 #define INCLUDE_H_AURORA_GENGINE_INPUT
 
-#define AURORA_GENGINE_INPUT_MAX_KEYS
-#define AURORA_GENGINE_INPUT_MAX_BUTTONS
+#include <Aurora/GEngine/Window.h>
+
+//Max Array Values
+#define AURORA_GENGINE_INPUT_MAX_KEYS    1024
+#define AURORA_GENGINE_INPUT_MAX_BUTTONS 32
 
 ///Keycodes
 //Mouse
@@ -102,5 +105,22 @@
 #define AURORA_GENGINE_KEY_NUMPAD7
 #define AURORA_GENGINE_KEY_NUMPAD8
 #define AURORA_GENGINE_KEY_NUMPAD9
+
+namespace Aurora {
+    namespace GEngine {
+        class Input {
+            Input(Window* );
+            ~Input();
+        public:
+            bool isKeyPressed(unsigned int keycode) const;
+            bool isButtonPressed(unsigned int button) const;
+            void getMousePosition(double& x, double& y) const;
+        private:
+            bool keys[AURORA_GENGINE_INPUT_MAX_KEYS];
+            bool buttons[AURORA_GENGINE_INPUT_MAX_BUTTONS];
+            double mx, my;
+        };
+    }
+}
 
 #endif // INCLUDE_H_AURORA_GENGINE_INPUT

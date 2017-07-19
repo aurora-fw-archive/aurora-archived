@@ -10,8 +10,12 @@
 
 #include <Aurora/GEngine/Application.h>
 
-typedef struct GLFWwindow GLFWwindow;
-typedef struct GLFWmonitor GLFWmonitor;
+#include <Aurora/GEngine/OpenGL.h>
+#include <Aurora/GEngine/Vulkan.h>
+#include <Aurora/GEngine/GLFW.h>
+
+//typedef struct GLFWwindow GLFWwindow;
+//typedef struct GLFWmonitor GLFWmonitor;
 
 namespace Aurora {
     namespace GEngine {

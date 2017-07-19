@@ -1,13 +1,16 @@
-#include <iostream>
-#include <assert.h>
 #include <Aurora/GEngine/Application.h>
 
+#include <Aurora/GEngine.h>
+#include <Aurora/GEngine/Vulkan.h>
 #include <Aurora/GEngine/Direct3D.h>
+
+#include <iostream>
+#include <assert.h>
 
 namespace Aurora {
 	namespace GEngine {
-		Application::Application(GraphicsAPI gapi)
-			: gapi(gapi)
+		Application::Application(const char* name, GraphicsAPI gapi)
+			: name(name), gapi(gapi)
 		{
 			#ifdef AURORA_TARGET_PLATFORM_WINDOWS
 				LPDIRECT3D9 d3d = Direct3DCreate9( D3D_SDK_VERSION );
@@ -15,14 +18,15 @@ namespace Aurora {
 			#endif
 			switch (gapi) {
 				case GraphicsAPI::Vulkan:
-					#ifndef AURORA_VULKAN_FOUND
-					static_assert(false, "Vulkan API is not supported on this device!");
-					#endif
+					vkappinfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+					vkappinfo.pNext = NULL;
+					vkappinfo.pApplicationName = name;
+					vkappinfo.pEngineName = "Aurora GEngine";
+					vkappinfo.engineVersion = AURORA_GENGINE_VERSION;
+					vkappinfo.apiVersion = VK_API_VERSION_1_0;
 					break;
 			#ifdef AURORA_TARGET_PLATFORM_WINDOWS
-				case GraphicsAPI::DirectX:
-					static_assert(FAILED(d3d->GetDeviceCaps(D3DADAPTER_DEFAULT , D3DDEVTYPE_HAL, &caps)), "Direct3D API is not supported on this device!");
-					break;
+				case GraphicsAPI::DirectX: break;
 			#endif
 				case GraphicsAPI::OpenGL: break;
 			}

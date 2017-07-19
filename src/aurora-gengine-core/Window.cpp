@@ -1,9 +1,5 @@
 #include <Aurora/GEngine/Window.h>
 #include <Aurora/Core/Debug.h>
-//#define GLFW_INCLUDE_VULKAN
-
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 namespace Aurora {
     namespace GEngine {
@@ -60,9 +56,11 @@ namespace Aurora {
 
             /* Make the window's context current */
             glfwMakeContextCurrent(window);
-            glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height) {
-                glViewport(0, 0, width, height);
-            });
+            if(gapp.gapi == GraphicsAPI::OpenGL) {
+                glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height) {
+                    glViewport(0, 0, width, height);
+                });
+            }
 
             if(glewInit() != GLEW_OK)
             {

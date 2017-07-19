@@ -12,13 +12,22 @@
 #include <Aurora/Core/Application.h>
 #include <iostream>
 
+#include <Aurora/GEngine/Vulkan.h>
+
 namespace Aurora {
 	namespace GEngine {
 		class AURORA_PREFIX Application {
+        friend class Window;
 		public:
-			Application(GraphicsAPI = GraphicsAPI::OpenGL);
+			Application(const char* , GraphicsAPI = GraphicsAPI::OpenGL);
             ~Application();
+        protected:
+            VkApplicationInfo vkappinfo;
+            VkInstanceCreateInfo vkinstanceinfo;
+            VkInstance vkinstance;
+
         private:
+            const char* name;
             GraphicsAPI gapi;
 		};
 	}

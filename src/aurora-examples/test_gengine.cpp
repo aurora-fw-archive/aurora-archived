@@ -9,18 +9,16 @@
 
 #include <Aurora/Aurora.h>
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 using namespace Aurora;
 
 Application *MyApp;
-GEngine::Application MyGApp(GEngine::GraphicsAPI::OpenGL);
+GEngine::Application MyGApp("Test GEngine", GEngine::GraphicsAPI::OpenGL);
 
 ArSlot_t slot_Window_on_render(GEngine::Window* window) {
-	Shell::Output << window->getWidth() << "*" << window->getHeight()
-				  << Shell::EndLine;
-	/*glBegin(GL_TRIANGLES);
+	//Shell::Output << window->getWidth() << "*" << window->getHeight() << Shell::EndLine;
+	/* DEBUG ONLY!!!
+
+	glBegin(GL_TRIANGLES);
 	glVertex2f(-0.5f, -0.5f);
 	glVertex2f(0.5f, 0.5f);
 	glVertex2f(0.5f, -0.5f);
@@ -31,11 +29,16 @@ ArSlot_t slot_Window_on_render(GEngine::Window* window) {
 ArSlot_t slot_MyApp_on_open()
 {
 	GEngine::Window* window = new GEngine::Window(MyGApp, "Testing GEngine", GEngine::WindowProperties(800, 600, false, true));
+	Shell::Log(Shell::Information, "OpenGL Version: ", GEngine::getGLVersion());
+
+
+	//DEBUG ONLY!!!
 	glClearColor(0.2f, 0.3f, 0.8f, 0.5f);
 
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
+	//...
 
 	while(!window->isClosed())
 	{

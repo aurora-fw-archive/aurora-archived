@@ -9,9 +9,7 @@
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
 
 #ifndef INCLUDE_H_AURORA_CORE_DEBUG
 #define INCLUDE_H_AURORA_CORE_DEBUG
