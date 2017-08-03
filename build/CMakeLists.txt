@@ -81,7 +81,8 @@ add_library (aurora-cli-core SHARED ${SOURCE_DIR}/aurora-cli-core/Color.cpp
                                     ${SOURCE_DIR}/aurora-cli-core/Output.cpp)
 
 add_library (aurora-io SHARED ${SOURCE_DIR}/aurora-io/InfoOS.cpp
-                              ${SOURCE_DIR}/aurora-io/InfoRAM.cpp)
+                              ${SOURCE_DIR}/aurora-io/InfoRAM.cpp
+                              ${SOURCE_DIR}/aurora-io/Timer.cpp)
 
 add_library (aurora-crypto SHARED ${SOURCE_DIR}/aurora-crypto/AES.cpp
                                   #${SOURCE_DIR}/aurora-crypto/MD5.cpp
@@ -95,9 +96,14 @@ add_library (aurora-gengine-core SHARED ${SOURCE_DIR}/aurora-gengine-core/Window
 add_library (aurora-gengine-opengl SHARED ${SOURCE_DIR}/aurora-gengine-opengl/OpenGL.cpp)
 
 add_library (aurora-gui SHARED ${SOURCE_DIR}/aurora-gui/Application.cpp
+                               ${SOURCE_DIR}/aurora-gui/Button.cpp
                                ${SOURCE_DIR}/aurora-gui/Label.cpp
                                ${SOURCE_DIR}/aurora-gui/Style.cpp
                                ${SOURCE_DIR}/aurora-gui/Window.cpp)
+
+add_library(aurora-math SHARED ${SOURCE_DIR}/aurora-math/2DVector.cpp
+                               ${SOURCE_DIR}/aurora-math/3DVector.cpp
+                               ${SOURCE_DIR}/aurora-math/4DVector.cpp)
 
 add_library (aurora-math-parser SHARED ${SOURCE_DIR}/aurora-math-parser/Math.cpp)
 
