@@ -22,29 +22,31 @@ typedef struct _GtkApplication GtkApplication;
 
 namespace Aurora
 {
-    class GUIApplication
-    {
-    public:
-        enum GUIApplicationFlags
+    namespace GUI {
+        class Application
         {
-            NoneFlag,
-            ServiceFlag,
-            LauncherFlag,
-            HandlesOpenFlag,
-            HandlesCommandLineFlag,
-            SendEnvironmentFlag,
-            NonUniqueFlag,
-            OverrideAppIDFlag
-        };
-        GUIApplication(std::string pkgname = "org.aurora.example", GUIApplicationFlags flags = NoneFlag, void (*mainfunction)() = []{}, int argc = 0, char *argv[] = NULL);
-        ~GUIApplication();
-        void connect(std::string detailedSignal, void (*signalFunction)(), void *signalData = NULL);
-        int AppStatus;
+        public:
+            enum ApplicationFlags
+            {
+                NoneFlag,
+                ServiceFlag,
+                LauncherFlag,
+                HandlesOpenFlag,
+                HandlesCommandLineFlag,
+                SendEnvironmentFlag,
+                NonUniqueFlag,
+                OverrideAppIDFlag
+            };
+            Application(std::string pkgname = "org.aurora.example", ApplicationFlags flags = NoneFlag, void (*mainfunction)() = []{}, int argc = 0, char *argv[] = NULL);
+            ~Application();
+            void connect(std::string detailedSignal, void (*signalFunction)(), void *signalData = NULL);
+            int AppStatus;
 
-    protected:
-        GtkApplication *App;
-        unsigned long ID = 0;
-    };
+        protected:
+            GtkApplication *App;
+            unsigned long ID = 0;
+        };
+    }
 }
 
 #endif // INCLUDE_H_AURORA_GUI_APPLICATION

@@ -9,5 +9,7 @@
 
 namespace Aurora
 {
-
+	namespace GUI {
+		
+	}
 }

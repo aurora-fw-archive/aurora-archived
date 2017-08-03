@@ -1,17 +1,20 @@
+// <Aurora/GUI/Label.h> -*- C++ -*-
 // ┌─┐┬ ┬┬─┐┌─┐┬─┐┌─┐  ┌─┐┬─┐┌─┐┌┬┐┌─┐┬ ┬┌─┐┬─┐┬┌─ | Powerful, Scalable and Cross Platform Framework
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
-//  More information in: https://github.com/ljmf00/ (Github Page)
+//  More information in: https://github.com/aurora-fw/ (Github Page)
+
+// This file is part of the Aurora Framework. This framework is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License, v3.
 
 #include <Aurora/TLib/Target/PragmaOnce.h>
 #if defined(AURORA_TARGET_PRAGMA_ONCE_SUPPORT) && AURORA_TARGET_PRAGMA_ONCE_SUPPORT
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
 
 #ifndef INCLUDE_H_AURORA_GUI_LABEL
 #define INCLUDE_H_AURORA_GUI_LABEL
@@ -55,37 +58,40 @@ typedef struct _GtkWidget GtkWidget;
 
 namespace Aurora
 {
-	class GUILabel
-	{
-	public:
-		GUILabel(GUIWindow *parent, std::string name = "New Label");
+	namespace GUI {
+        class AURORA_PREFIX Label
+    	{
+    	public:
+    		Label(Window*& , std::string name = "New Label");
+            ~Label();
 
-		//Setters
-		void setText(std::string);
-		void setSelectable(bool);
-		void setWrap(bool);
-		void setWrapMode(WrapMode);
-		void setAlignment(AlignMode);
-		void setAlignment(const float, const float);
+    		//Setters
+    		void setText(std::string);
+    		void setSelectable(bool);
+    		void setWrap(bool);
+    		void setWrapMode(WrapMode);
+    		void setAlignment(AlignMode);
+    		void setAlignment(const float, const float);
 
-		//Getters
-		std::string getText();
-		bool isSelectable();
-		bool isWrap();
-		WrapMode getWrapMode();
-		AlignMode getAlignment();
-		float getXAlignment();
-		float getYAlignment();
+    		//Getters
+    		std::string getText();
+    		bool isSelectable();
+    		bool isWrap();
+    		WrapMode getWrapMode();
+    		AlignMode getAlignment();
+    		float getXAlignment();
+    		float getYAlignment();
 
-		//Signals
+    		//Signals
 
 
-	protected:
-		unsigned long ID = 0;
-		GtkWidget *Label;
-	private:
-		GtkWidget *WindowParent;
-	};
+    	protected:
+    		unsigned long ID = 0;
+    		GtkWidget *label;
+    	private:
+    		GtkWidget *WindowParent;
+    	};
+    }
 }
 
 #endif // INCLUDE_H_AURORA_GUI_LABEL

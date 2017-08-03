@@ -3,7 +3,7 @@
 // ├─┤│ │├┬┘│ │├┬┘├─┤  ├┤ ├┬┘├─┤│││├┤ ││││ │├┬┘├┴┐ | @author Luís Ferreira
 // ┴ ┴└─┘┴└─└─┘┴└─┴ ┴  └  ┴└─┴ ┴┴ ┴└─┘└┴┘└─┘┴└─┴ ┴ | @license GNU Public License v3
 //  Copyright (c) 2016 - Luís Ferreira. All right reserved
-//  More information in: https://github.com/ljmf00/ (Github Page)
+//  More information in: https://github.com/aurora-fw/ (Github Page)
 
 // This file is part of the Aurora Framework. This framework is free
 // software; you can redistribute it and/or modify it under the
@@ -14,9 +14,7 @@
     #pragma once
 #endif
 
-#ifndef AURORA_FW
-#define AURORA_FW 1
-#endif // AURORA_FW
+#include <Aurora/Common.h>
 
 #ifndef INCLUDE_H_AURORA_GUI_WINDOW
 #define INCLUDE_H_AURORA_GUI_WINDOW
@@ -28,39 +26,42 @@ typedef struct _GtkWidget GtkWidget;
 
 namespace Aurora
 {
-	class GUIWindow
-	{
-	friend class GUILabel;
-	public:
+	namespace GUI {
+        class Window
+    	{
+    	friend class Label;
+        friend class Button;
+    	public:
 
-		// Window Types
-		enum GUIWindowType
-		{
-			ToplevelWindow,
-			PopupWindow
-		};
+    		// Window Types
+    		enum WindowType
+    		{
+    			ToplevelWindow,
+    			PopupWindow
+    		};
 
-		// Window Positions
-		enum GUIWindowPosition
-		{
-			NonePosition,
-			CenterPosition,
-			MousePosition,
-			AlwaysCenterPosition,
-			CenterParentPosition
-		};
+    		// Window Positions
+    		enum WindowPosition
+    		{
+    			NonePosition,
+    			CenterPosition,
+    			MousePosition,
+    			AlwaysCenterPosition,
+    			CenterParentPosition
+    		};
 
-		GUIWindow(std::string name = "Aurora Window", int width = 200, int height = 200, GUIWindowPosition pos = NonePosition, GUIWindowType type = ToplevelWindow);
-		void setTitle(std::string title);
-		void setPos(GUIWindowPosition pos);
-		void connect(std::string detailedSignal, void (*signalFunction)(), void* signalData = NULL);
-		void show(void);
-		void start(void (*startFunction)() = []{});
+    		Window(std::string = "Aurora Window", int = 200, int = 200, WindowPosition = NonePosition, WindowType = ToplevelWindow);
+    		void setTitle(std::string );
+    		void setPos(WindowPosition );
+    		void connect(std::string , void (*)(), void* = NULL);
+    		void show(void);
+    		void start(void (*)() = []{});
 
-	protected:
-		GtkWidget *Window;
-		const unsigned long ID;
-	};
+    	protected:
+    		GtkWidget *window;
+    		const unsigned long ID;
+    	};
+    }
 }
 
 #endif // INCLUDE_H_AURORA_GUI_WINDOW
