@@ -38,7 +38,7 @@ Want to contribute? Great! Make a pull request on my github repository.
 
 ### Donations
 1$ is what you need to support the main developer of Aurora Framework. With this money you help me to buy 1 coffee per month! More coffee equals more code, so, lets donate patrons!
-[![Patreon](https://www.partiallyexaminedlife.com/wp-content/uploads/patreon_logo.png "Patreon Page")](https://www.patreon.com/ljmf00)
+<p><a href="https://www.patreon.com/ljmf00"><img src="https://www.partiallyexaminedlife.com/wp-content/uploads/patreon_logo.png" alt="Patreon Page" width="240"></a></p>
 
 ### License
 The GNU Lesser General Public License, version 3.0 (LGPL-3.0)
