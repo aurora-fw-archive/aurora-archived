@@ -101,9 +101,9 @@ add_library (aurora-gui SHARED ${SOURCE_DIR}/aurora-gui/Application.cpp
                                ${SOURCE_DIR}/aurora-gui/Style.cpp
                                ${SOURCE_DIR}/aurora-gui/Window.cpp)
 
-add_library(aurora-math SHARED ${SOURCE_DIR}/aurora-math/2DVector.cpp
-                               ${SOURCE_DIR}/aurora-math/3DVector.cpp
-                               ${SOURCE_DIR}/aurora-math/4DVector.cpp)
+add_library(aurora-math SHARED ${SOURCE_DIR}/aurora-math/Vector2D.cpp
+                               ${SOURCE_DIR}/aurora-math/Vector3D.cpp
+                               ${SOURCE_DIR}/aurora-math/Vector4D.cpp)
 
 add_library (aurora-math-parser SHARED ${SOURCE_DIR}/aurora-math-parser/Math.cpp)
 

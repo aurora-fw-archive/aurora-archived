@@ -8,9 +8,9 @@
 #ifndef INCLUDE_H_AURORA_MATH_2DVECTOR
 #define INCLUDE_H_AURORA_MATH_2DVECTOR
 
-#include <ostream>
-#include <Aurora/Math/3DVector.h>
-#include <Aurora/Math/4DVector.h>
+#include <iostream>
+#include <Aurora/Math/Vector3D.h>
+#include <Aurora/Math/Vector4D.h>
 
 namespace Aurora {
 	namespace Math {
@@ -68,9 +68,9 @@ namespace Aurora {
 			bool operator>(const Vector2D& ) const;
 			bool operator>=(const Vector2D& ) const;
 
-            float Magnitude() const;
-            Vector2D Normalise() const;
-            float Dot(const Vector2D& ) const;
+            float magnitude() const;
+            Vector2D normalise() const;
+            float dot(const Vector2D& ) const;
             float distance(const Vector2D& ) const;
             float distance(const Vector2D& , const Vector2D& ) const;
 

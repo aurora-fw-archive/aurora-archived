@@ -1,4 +1,6 @@
-#include <Aurora/Math/2DVector.h>
+#include <Aurora/Math/Vector2D.h>
+#include <string>
+#include <cmath>
 
 namespace Aurora {
 	namespace Math {
@@ -14,13 +16,13 @@ namespace Aurora {
 			: x(x), y(y)
 		{}
 
-		Vector2D::Vector2D(const vec3& v)
+		Vector2D::Vector2D(const Vector3D& v)
 		{
 			this->x = v.x;
 			this->y = v.y;
 		}
 
-		Vector2D& Vector2D::Add(const Vector2D& v)
+		Vector2D& Vector2D::add(const Vector2D& v)
 		{
 			x += v.x;
 			y += v.y;
@@ -28,7 +30,7 @@ namespace Aurora {
 			return *this;
 		}
 
-		Vector2D& Vector2D::Subtract(const Vector2D& v)
+		Vector2D& Vector2D::subtract(const Vector2D& v)
 		{
 			x -= v.x;
 			y -= v.y;
@@ -36,7 +38,7 @@ namespace Aurora {
 			return *this;
 		}
 
-		Vector2D& Vector2D::Multiply(const Vector2D& v)
+		Vector2D& Vector2D::multiply(const Vector2D& v)
 		{
 			x *= v.x;
 			y *= v.y;
@@ -44,7 +46,7 @@ namespace Aurora {
 			return *this;
 		}
 
-		Vector2D& Vector2D::Divide(const Vector2D& v)
+		Vector2D& Vector2D::divide(const Vector2D& v)
 		{
 			x /= v.x;
 			y /= v.y;
@@ -52,7 +54,7 @@ namespace Aurora {
 			return *this;
 		}
 
-		Vector2D& Vector2D::Add(float val)
+		Vector2D& Vector2D::add(float val)
 		{
 			x += val;
 			y += val;
@@ -60,7 +62,7 @@ namespace Aurora {
 			return *this;
 		}
 
-		Vector2D& Vector2D::Subtract(float val)
+		Vector2D& Vector2D::subtract(float val)
 		{
 			x -= val;
 			y -= val;
@@ -68,7 +70,7 @@ namespace Aurora {
 			return *this;
 		}
 
-		Vector2D& Vector2D::Multiply(float val)
+		Vector2D& Vector2D::multiply(float val)
 		{
 			x *= val;
 			y *= val;
@@ -76,7 +78,7 @@ namespace Aurora {
 			return *this;
 		}
 
-		Vector2D& Vector2D::Divide(float val)
+		Vector2D& Vector2D::divide(float val)
 		{
 			x /= val;
 			y /= val;
@@ -86,22 +88,22 @@ namespace Aurora {
 
 		Vector2D operator+(Vector2D left, const Vector2D& right)
 		{
-			return left.Add(right);
+			return left.add(right);
 		}
 
 		Vector2D operator-(Vector2D left, const Vector2D& right)
 		{
-			return left.Subtract(right);
+			return left.subtract(right);
 		}
 
 		Vector2D operator*(Vector2D left, const Vector2D& right)
 		{
-			return left.Multiply(right);
+			return left.multiply(right);
 		}
 
 		Vector2D operator/(Vector2D left, const Vector2D& right)
 		{
-			return left.Divide(right);
+			return left.divide(right);
 		}
 
 		Vector2D operator+(Vector2D left, float value)
@@ -126,42 +128,42 @@ namespace Aurora {
 
 		Vector2D& Vector2D::operator+=(const Vector2D& other)
 		{
-			return Add(other);
+			return add(other);
 		}
 
 		Vector2D& Vector2D::operator-=(const Vector2D& other)
 		{
-			return Subtract(other);
+			return subtract(other);
 		}
 
 		Vector2D& Vector2D::operator*=(const Vector2D& other)
 		{
-			return Multiply(other);
+			return multiply(other);
 		}
 
 		Vector2D& Vector2D::operator/=(const Vector2D& other)
 		{
-			return Divide(other);
+			return divide(other);
 		}
 
 		Vector2D& Vector2D::operator+=(float value)
 		{
-			return Add(value);
+			return add(value);
 		}
 
 		Vector2D& Vector2D::operator-=(float value)
 		{
-			return Subtract(value);
+			return subtract(value);
 		}
 
 		Vector2D& Vector2D::operator*=(float value)
 		{
-			return Multiply(value);
+			return multiply(value);
 		}
 
 		Vector2D& Vector2D::operator/=(float value)
 		{
-			return Divide(value);
+			return divide(value);
 		}
 
 		bool Vector2D::operator==(const Vector2D& other) const
@@ -194,39 +196,37 @@ namespace Aurora {
 			return x >= other.x && y >= other.y;
 		}
 
-		float Vector2D::Distance(const Vector2D& other) const
+		float Vector2D::distance(const Vector2D& other) const
 		{
 			float a = x - other.x;
 			float b = y - other.y;
 			return sqrt(a * a + b * b);
 		}
 
-		float Vector2D::Dot(const Vector2D& other) const
+		float Vector2D::dot(const Vector2D& other) const
 		{
 			return x * other.x + y * other.y;
 		}
 
-		float Vector2D::Magnitude() const
+		float Vector2D::magnitude() const
 		{
 			return sqrt(x * x + y * y);
 		}
 
-		Vector2D Vector2D::Normalise() const
+		Vector2D Vector2D::normalise() const
 		{
-			float length = Magnitude();
+			float length = magnitude();
 			return Vector2D(x / length, y / length);
 		}
 
-		String Vector2D::ToString() const
+		std::string Vector2D::toString() const
 		{
-			std::stringstream result;
-			result << "Vector2D: (" << x << ", " << y << ")";
-			return result.str();
+			return "Vector2D: (" + std::to_string(x) + ", " + std::to_string(y) + ")";
 		}
 
 		std::ostream& operator<<(std::ostream& stream, const Vector2D& vector)
 		{
-			stream << vector.ToString();
+			stream << vector.toString();
 			return stream;
 		}
 	}
