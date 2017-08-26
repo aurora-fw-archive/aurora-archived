@@ -10,56 +10,73 @@
 
 #include <ostream>
 #include <Aurora/Math/3DVector.h>
+#include <Aurora/Math/4DVector.h>
 
 namespace Aurora {
 	namespace Math {
-		struct vec3;
+		struct Vector3D;
+        struct Vector4D;
 
-		struct AURORA_PREFIX vec2 {
-			vec2();
-			vec2(float );
-			vec2(float , float );
-			vec2(const vec3& );
+		struct AURORA_PREFIX Vector2D {
+			Vector2D();
+			Vector2D(float );
+			Vector2D(float , float );
+			Vector2D(const Vector3D& );
+            Vector2D(const Vector4D& );
 
-			vec2& Add(const vec2& );
-			vec2& Subtract(const vec2& );
-			vec2& Multiply(const vec2& );
-			vec2& Divide(const vec2& );
+            bool isNull() const;
+            float length() const;
 
-			vec2& Add(float );
-			vec2& Subtract(float );
-			vec2& Multiply(float );
-			vec2& Divide(float );
+			Vector2D& add(const Vector2D& );
+			Vector2D& subtract(const Vector2D& );
+			Vector2D& multiply(const Vector2D& );
+			Vector2D& divide(const Vector2D& );
 
-			friend vec2 operator+(vec2 , const vec2& );
-			friend vec2 operator-(vec2 , const vec2& );
-			friend vec2 operator*(vec2 , const vec2& );
-			friend vec2 operator/(vec2 , const vec2& );
+			Vector2D& add(float );
+			Vector2D& subtract(float );
+			Vector2D& multiply(float );
+			Vector2D& divide(float );
 
-			friend vec2 operator+(vec2 , float );
-			friend vec2 operator-(vec2 , float );
-			friend vec2 operator*(vec2 , float );
-			friend vec2 operator/(vec2 , float );
+            void setX(float );
+            void setY(float );
 
-			bool operator==(const vec2& ) const;
-			bool operator!=(const vec2& ) const;
+			friend Vector2D operator+(Vector2D , const Vector2D& );
+			friend Vector2D operator-(Vector2D , const Vector2D& );
+			friend Vector2D operator*(Vector2D , const Vector2D& );
+			friend Vector2D operator/(Vector2D , const Vector2D& );
 
-			vec2& operator+=(const vec2& );
-			vec2& operator-=(const vec2& );
-			vec2& operator*=(const vec2& );
-			vec2& operator/=(const vec2& );
+			friend Vector2D operator+(Vector2D , float );
+			friend Vector2D operator-(Vector2D , float );
+			friend Vector2D operator*(Vector2D , float );
+			friend Vector2D operator/(Vector2D , float );
 
-			vec2& operator+=(float );
-			vec2& operator-=(float );
-			vec2& operator*=(float );
-			vec2& operator/=(float );
+			bool operator==(const Vector2D& ) const;
+			bool operator!=(const Vector2D& ) const;
 
-			bool operator<(const vec2& ) const;
-			bool operator<=(const vec2& ) const;
-			bool operator>(const vec2& ) const;
-			bool operator>=(const vec2& ) const;
+			Vector2D& operator+=(const Vector2D& );
+			Vector2D& operator-=(const Vector2D& );
+			Vector2D& operator*=(const Vector2D& );
+			Vector2D& operator/=(const Vector2D& );
 
-			friend std::ostream& operator<<(std::ostream& , const vec2& );
+			Vector2D& operator+=(float );
+			Vector2D& operator-=(float );
+			Vector2D& operator*=(float );
+			Vector2D& operator/=(float );
+
+			bool operator<(const Vector2D& ) const;
+			bool operator<=(const Vector2D& ) const;
+			bool operator>(const Vector2D& ) const;
+			bool operator>=(const Vector2D& ) const;
+
+            float Magnitude() const;
+            Vector2D Normalise() const;
+            float Dot(const Vector2D& ) const;
+            float distance(const Vector2D& ) const;
+            float distance(const Vector2D& , const Vector2D& ) const;
+
+            std::string toString() const;
+
+			friend std::ostream& operator<<(std::ostream& , const Vector2D& );
 
 			float x, y;
 		};
